@@ -1231,82 +1231,82 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     </style>
     <script>
-        // Bouton play dans le message d'activation
-        const playMsgBtn = document.getElementById('audio-play-message');
-        if(playMsgBtn){
-            playMsgBtn.addEventListener('click',()=>{
-                playPause();
-            });
-        }
-        // --- Lecteur audio discret personnalisé ---
-        const audioFiles = [
-            {src: 'mp3/C-Debussy-Clair-de-Lune-Maria-João-Pires-live-at.mp3', title: 'Clair de lune - Debussy'},
-            {src: 'mp3/Chopin-Nocturne-op-27-no-2-Maria-João-Pires.mp3', title: 'Nocturne - Chopin'},
-            {src: 'mp3/Chopin-Piano-concerto-no-1-in-E-minor-Op.mp3', title: 'Concerto - Chopin'},
-            {src: 'mp3/Rachmaninov-Rhapsody-on-a-Theme-of-Paganini-Var-18.mp3', title: 'Rhapsody - Rachmaninov'}
-        ];
-        // Mélanger l'ordre des pistes au chargement
-        function shuffleArray(array) {
-            for (let i = array.length - 1; i > 0; i--) {
-                const j = Math.floor(Math.random() * (i + 1));
-                [array[i], array[j]] = [array[j], array[i]];
+        document.addEventListener('DOMContentLoaded', function() {
+            // --- Lecteur audio discret personnalisé ---
+            const audioFiles = [
+                {src: 'mp3/C-Debussy-Clair-de-Lune-Maria-João-Pires-live-at.mp3', title: 'Clair de lune - Debussy'},
+                {src: 'mp3/Chopin-Nocturne-op-27-no-2-Maria-João-Pires.mp3', title: 'Nocturne - Chopin'},
+                {src: 'mp3/Chopin-Piano-concerto-no-1-in-E-minor-Op.mp3', title: 'Concerto - Chopin'},
+                {src: 'mp3/Rachmaninov-Rhapsody-on-a-Theme-of-Paganini-Var-18.mp3', title: 'Rhapsody - Rachmaninov'}
+            ];
+            function shuffleArray(array) {
+                for (let i = array.length - 1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    [array[i], array[j]] = [array[j], array[i]];
+                }
             }
-        }
-        shuffleArray(audioFiles);
-        let currentTrack = 0;
-        const audio = document.getElementById('audio-element');
-        const playBtn = document.getElementById('audio-play');
-        const prevBtn = document.getElementById('audio-prev');
-        const nextBtn = document.getElementById('audio-next');
-               const msg = document.getElementById('audio-player-message');
-        // Volume initial faible
-        audio.volume = 0.15;
-        // Charger la première piste aléatoire
-        audio.src = audioFiles[currentTrack].src;
-        // Gestion lecture/pause
-        let isPlaying = false;
-        function playPause() {
-            if(audio.paused){
-                audio.play();
-            }else{
-                audio.pause();
-            }
-        }
-        playBtn.addEventListener('click', playPause);
-        audio.addEventListener('play', () => {
-            playBtn.innerHTML = '&#10073;&#10073;'; // Pause icon
-            isPlaying = true;
-            // Disparition message en fondu
-            msg.style.opacity = 0;
-            setTimeout(()=>{msg.style.display='none';},700);
-        });
-        audio.addEventListener('pause', () => {
-            playBtn.innerHTML = '&#9654;'; // Play icon
-            isPlaying = false;
-        });
-        // Playlist navigation
-        function loadTrack(idx){
-            if(idx<0) idx=audioFiles.length-1;
-            if(idx>=audioFiles.length) idx=0;
-            currentTrack=idx;
+            shuffleArray(audioFiles);
+            let currentTrack = 0;
+            const audio = document.getElementById('audio-element');
+            const playBtn = document.getElementById('audio-play');
+            const prevBtn = document.getElementById('audio-prev');
+            const nextBtn = document.getElementById('audio-next');
+            const msg = document.getElementById('audio-player-message');
+            if (!audio || !playBtn || !prevBtn || !nextBtn) return;
+            audio.volume = 0.15;
             audio.src = audioFiles[currentTrack].src;
-            if(isPlaying) audio.play();
-        }
-        prevBtn.addEventListener('click',()=>{loadTrack(currentTrack-1);});
-        nextBtn.addEventListener('click',()=>{loadTrack(currentTrack+1);});
-        audio.addEventListener('ended',()=>{loadTrack(currentTrack+1);});
-        // Remettre l'icône play quand la musique se termine
-                audio.addEventListener('ended', function() {
-                    playBtn.innerHTML = '&#9654;';
+            let isPlaying = false;
+            function playPause() {
+                if(audio.paused){
+                    audio.play();
+                }else{
+                    audio.pause();
+                }
+            }
+            playBtn.addEventListener('click', playPause);
+            audio.addEventListener('play', () => {
+                playBtn.innerHTML = '&#10073;&#10073;'; // Pause icon
+                isPlaying = true;
+                if(msg){
+                    msg.style.opacity = 0;
+                    setTimeout(()=>{msg.style.display='none';},700);
+                }
             });
-
-            // Permet de relancer la musique si elle est terminée et qu'on clique sur le lecteur
+            audio.addEventListener('pause', () => {
+                playBtn.innerHTML = '&#9654;'; // Play icon
+                isPlaying = false;
+            });
+            function loadTrack(idx){
+                if(idx<0) idx=audioFiles.length-1;
+                if(idx>=audioFiles.length) idx=0;
+                currentTrack=idx;
+                audio.src = audioFiles[currentTrack].src;
+                if(isPlaying) audio.play();
+            }
+            prevBtn.addEventListener('click',()=>{loadTrack(currentTrack-1);});
+            nextBtn.addEventListener('click',()=>{loadTrack(currentTrack+1);});
+            audio.addEventListener('ended',()=>{loadTrack(currentTrack+1);});
+            audio.addEventListener('ended', function() {
+                playBtn.innerHTML = '&#9654;';
+            });
             audio.addEventListener('click', function() {
                 if (audio.ended || audio.currentTime === audio.duration) {
                     audio.currentTime = 0;
                     audio.play();
                 }
             });
+            // Bouton play dans le message d'activation
+            const playMsgBtn = document.getElementById('audio-play-message');
+            if(playMsgBtn){
+                playMsgBtn.addEventListener('click',()=>{
+                    playPause();
+                });
+            }
+            // Gestion erreur de chargement audio
+            audio.addEventListener('error', function() {
+                alert('Impossible de charger la musique. Vérifiez le fichier ou le chemin.');
+            });
+        });
         // Menu contextuel déroulant (hamburger)
         const menuToggle = document.getElementById('context-menu-toggle');
         const menu = document.getElementById('context-menu');
