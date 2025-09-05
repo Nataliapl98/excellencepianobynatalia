@@ -383,4 +383,11 @@
                 if(rect.top > 80 && rect.top < window.innerHeight * 0.6) {
                     photo.classList.remove('evaporate');
                 } else if(rect.top <= 80) {
-                    photo.classList.add('evaporate');
+                                    photo.classList.add('evaporate');
+                                }
+                            });
+                        }
+                        window.addEventListener('scroll', handlePhotoFade);
+                        window.addEventListener('resize', handlePhotoFade);
+                        document.addEventListener('DOMContentLoaded', handlePhotoFade);
+                    </script>
