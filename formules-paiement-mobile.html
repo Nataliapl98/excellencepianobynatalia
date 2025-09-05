@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+.pay-card * {
+    font-size: 2.5rem !important;
+    line-height: 1.3 !important;
+}
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #f9fafb;
+    color: #1f2937;
+    margin: 0;
+    padding: 0;
+}
+header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    width: 100%;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    height: 18rem;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+}
+.logo-container-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: auto;
+    width: 100vw;
+    max-width: 600px;
+    height: 180px;
+    background: transparent;
+}
+.logo-header {
+    height: 120px;
+    width: 120px;
+    object-fit: cover;
+    border-radius: 50%;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+footer {
+    background-color: #1f2937;
+    color: #fff;
+    padding: 2rem 1.5rem;
+    border-radius: 0;
+    max-width: 100vw;
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
+    left: 0;
+    right: 0;
+}
+.container {
+    max-width: 100vw;
+    margin: 0 auto;
+    text-align: center;
+}
+.main-title {
+    font-size: 3rem;
+    font-weight: bold;
+    color: #18233f;
+    text-align: center;
+    margin-bottom: 40px;
+    font-family: 'Great Vibes', cursive;
+    letter-spacing: 1px;
+    text-shadow: 2px 2px 8px rgba(185,148,78,0.08);
+    background: linear-gradient(90deg, #18233f 0%, #b9944e 60%, #18233f 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+.section-subtitle {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #0033cc;
+    text-align: center;
+    margin-top: 48px;
+    margin-bottom: 28px;
+    background: linear-gradient(90deg, #f0f4ff 0%, #eaf0fa 100%);
+    border-radius: 18px;
+    box-shadow: 0 2px 10px rgba(0,51,204,0.07);
+    padding: 18px 0 14px 0;
+    letter-spacing: 0.5px;
+    border-bottom: 3px solid #0033cc;
+    width: 100%;
+    max-width: 100vw;
+    margin-left: auto;
+    margin-right: auto;
+}
+.labels {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+.label {
+    cursor: pointer;
+    font-size: 2.3rem;
+    color: #666;
+}
+.label-on {
+    font-weight: bold;
+    color: #b9944e;
+}
+.switch {
+    position: relative;
+    width: 220px;
+    height: 40px;
+    background: linear-gradient(90deg, #18233f 0%, #4b5a7a 40%, #b9944e 60%, #4b5a7a 100%);
+    border-radius: 25px;
+    margin: 0 auto 24px;
+    cursor: pointer;
+    overflow: hidden;
+    transition: background 0.4s;
+}
+.switch-on-0 {
+    background: linear-gradient(90deg, #18233f 0%, #4b5a7a 40%, #b9944e 60%, #4b5a7a 100%);
+}
+.switch-on-1 {
+    background: linear-gradient(90deg, #4b5a7a 0%, #b9944e 30%, #18233f 50%, #b9944e 70%, #4b5a7a 100%);
+}
+.switch-on-2 {
+    background: linear-gradient(90deg, #4b5a7a 0%, #b9944e 40%, #18233f 100%);
+}
+.switch::after {
+    content: "";
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    width: 70px;
+    height: 30px;
+    border-radius: 20px;
+    background: linear-gradient(135deg, #fff 60%, #e0e0e0 100%);
+    box-shadow: 0 2px 8px rgba(0,51,204,0.15);
+    transition: left 0.3s cubic-bezier(.4,1.3,.6,1), background 0.3s;
+}
+.switch-on-0::after { left: 5px; }
+.switch-on-1::after { left: 75px; }
+.switch-on-2::after { left: 145px; }
+.payments-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    width: 100vw;
+    max-width: 100vw;
+    margin: 32px auto;
+    align-items: center;
+    padding: 0 2vw;
+    box-sizing: border-box;
+    background: linear-gradient(120deg, #f9fafb 60%, #eaf0fa 100%);
+    border-radius: 24px;
+    box-shadow: 0 4px 24px 0 rgba(24,35,63,0.10), 0 2px 8px 0 rgba(185,148,78,0.08);
+}
+.pay-card {
+    background: rgba(180, 180, 200, 0.13);
+    border: 2px solid #b9944e;
+    border-radius: 20px;
+    padding: 32px 24px 56px 24px;
+    box-shadow: 0 6px 14px rgba(0,0,0,0.08);
+    transition: box-shadow 0.3s, background 0.3s, transform 0.3s, border-color 0.3s;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    min-height: 380px;
+    max-width: 95vw;
+    width: 95vw;
+    font-size: 2.5rem;
+}
+.pay-card * {
+    font-size: 2.5rem !important;
+}
+.inscription-link {
+    color: #b9944e;
+    font-weight: bold;
+    text-decoration: none;
+    font-size: 1.2rem;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 24px;
+    text-align: center;
+    transition: color 0.2s;
+}
+.inscription-link:hover {
+    color: #a67c2c;
+    text-decoration: underline;
+}
+.pay-card:hover {
+    background: rgba(220, 220, 240, 0.32);
+    border-color: #b9944e;
+    box-shadow:
+        0 0 12px 3px #ffe8b0cc,
+        0 0 24px 6px #b9944e44,
+        0 0 0 2px #b9944e,
+        0 10px 32px 0 rgba(24,35,63,0.10),
+        0 2px 8px 0 rgba(185,148,78,0.07);
+    transform: translateY(-2px) scale(1.035);
+    z-index: 2;
+}
+.pay-card.unactive {
+    border: 0px solid #1e90ff;
+    box-shadow: 0 8px 20px rgba(30,144,255,0.25);
+    transform: translateY(-2px);
+}
+.pay-price {
+    font-size: 3.1rem;
+    font-weight: 700;
+    color: #18233f;
+    line-height: 1.2;
+    margin: 0 0 6px;
+    background: none;
+}
+.pay-note {
+    font-size: 2.1rem;
+    color: #18233f;
+    margin: 0;
+    background: none;
+}
+.explanation-container {
+    max-width: 100vw;
+    width: 100vw;
+    margin: 0 0 36px 0;
+    padding: 36px 32px 32px 32px;
+    background: linear-gradient(120deg, #f9fafb 60%, #eaf0fa 100%);
+    border: 1.5px solid #b9944e;
+    border-radius: 22px;
+    box-shadow: 0 8px 32px 0 rgba(24,35,63,0.10), 0 2px 8px 0 rgba(185,148,78,0.08);
+    text-align: center;
+    box-sizing: border-box;
+    font-size: 2.35rem;
+}
+.explanation-container h2 {
+    font-size: 3.2rem;
+    font-weight: 700;
+    color: #18233f;
+    margin-top: 0;
+    margin-bottom: 18px;
+    letter-spacing: 0.5px;
+    font-family: 'Great Vibes', cursive;
+}
+.explanation-container p {
+    font-size: 2.35rem;
+    color: #18233f;
+    line-height: 1.7;
+    margin: 0 auto;
+    max-width: 95vw;
+}
+</style>
+</head>
+<body class="antialiased">
+    <!-- Header Section -->
+    <header class="bg-white shadow-md py-4 px-6 rounded-b-xl flex items-center justify-center relative z-1000">
+        <div class="logo-container-header">
+            <img src="images/logo-header.jpg" alt="Logo Piano" style="height:120px;width:100vw;object-fit:contain;max-width:600px;">
+        </div>
+    </header>
+<!-- SECTION 1 -->
+<div style="width:100vw;position:relative;left:50%;transform:translateX(-50%);background:#f9fafb;padding:0;margin-bottom:3rem;">
+    <div style="background:#f9fafb;padding:2.5rem 0;">
+        <div style="max-width:100vw;margin:0 auto;">
+            <h1 class="main-title">Formules de Paiement</h1>
+            <div class="explanation-container">
+                <h2>Comment ça marche ?</h2>
+                <p>Choisissez votre niveau (Découverte, Progression, ou Excellence) à l'aide du sélecteur ci-dessus.<br><br> Les tarifs pour chaque formule de paiement (À la carte, Mensuel, 3 versements) <br>s'ajusteront automatiquement.<br> Cela vous permet de comparer facilement les options et de choisir celle qui correspond <br>le mieux à vos besoins.<br><br><i>Afin de réduire les absences trop nombreuses qui perturbent l'organisation des cours et la progression des élèves, je propose un engagement sur 10 mois avec créneaux fixes. Cette formule permet d'établir un planning stable dès septembre et d'assurer un suivi pédagogique de qualité</i></p>
+            </div>
+            <h2 class="section-subtitle" style="background:linear-gradient(90deg,#23305a 0%,#18233f 100%);color:#fff;border-bottom:none;box-shadow:0 2px 10px rgba(24,35,63,0.18);">Tarifs pour les élèves inscrits après 2024</h2>
+            <div id="paiements">
+                <div class="labels">
+                    <span id="label-decouverte"  class="label">Découverte 30'</span>
+                    <span id="label-progression" class="label">Progression 45'</span>
+                    <span id="label-excellence"  class="label">Excellence 60'</span>
+                </div>
+                <div id="toggleSwitch" class="switch"></div>
+                <div style="height:16px;"></div>
+                <div class="payments-grid">
+                    <div class="pay-card">
+                        <div class="pay-title">À la carte</div>
+                        <div class="pay-price" id="price-per-course">--€</div>
+                        <div class="pay-note"  id="yearly-note-per-course"></div>
+                        <p class="text-lg text-gray-700 mb-6"><br><br><br>Payez au cours avec engagement à l'année</p>
+                            <p><strong>Possibilité de faire une période d'essai d'un mois sans engagement.</strong></p>
+                        <p class="text-lg text-gray-700 mb-6">Basé sur une année de 32 cours.<br><br>1 absence autorisée et non facturée</p>
+                        <p class="text-lg text-gray-700 mb-6">Absences supplémentaires rattrapées ou facturées</p>
+                        <a class="inscription-link" href="https://forms.gle/7Kob2aKeVZzQGfDV6" target="_blank">Je m'inscris</a>
+                    </div>
+                    <div class="pay-card">
+                        <div class="pay-title">Mensuel</div>
+                        <div class="pay-price" id="price-monthly">--€</div>
+                        <div class="pay-note"  id="yearly-note-monthly">--</div><br>
+                        <p class="text-lg text-gray-700 mb-6">Lissez vos paiements sur 10 mois, de septembre à juin, pour une gestion budgétaire facilitée.</p>
+                                <p><strong>Fonctionnement :</strong></p>
+                        <p class="text-lg text-gray-700 mb-6">32 cours payés sur l'année, répartis sur 10 mensualités</p>
+                        <p class="text-lg text-gray-700 mb-6">Basé sur une année de 32 cours<br><br>1 absence autorisée et non facturée</p>
+                        <p class="text-lg text-gray-700 mb-6">Absences supplémentaires rattrapées ou facturées</p>
+                        <a class="inscription-link" href="https://forms.gle/7Kob2aKeVZzQGfDV6" target="_blank">Je m'inscris</a>
+                    </div>
+                    <div class="pay-card">
+                        <div class="pay-title">3 versements</div>
+                        <div class="pay-price" id="price-three-installment">--€</div>
+                        <div class="pay-note"  id="yearly-note-three-installment">--</div><br>
+                        <p class="text-lg text-gray-700 mb-6">Lissez vos paiements sur 10 mois, de septembre à juin, pour une gestion budgétaire facilitée.</p>
+                                <p><strong>Fonctionnement :</strong></p>
+                        <p class="text-lg text-gray-700 mb-6">32 cours payés sur l'année, répartis sur 3 versements</p>
+                        <p class="text-lg text-gray-700 mb-6">Basé sur une année de 32 cours.<br><br>1 absence autorisée et non facturée</p>
+                        <p class="text-lg text-gray-700 mb-6">Absences supplémentaires rattrapées ou facturées</p>
+                        <a class="inscription-link" href="https://forms.gle/7Kob2aKeVZzQGfDV6" target="_blank">Je m'inscris</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- SECTION 2 -->
+<div style="width:100vw;position:relative;left:50%;transform:translateX(-50%);background:#f9fafb;padding:0;margin-bottom:3rem;">
+    <div style="background:#f9fafb;padding:2.5rem 0;">
+        <div style="max-width:100vw;margin:0 auto;">
+            <h2 class="section-subtitle" style="background:linear-gradient(90deg,#23305a 0%,#18233f 100%);color:#fff;border-bottom:none;box-shadow:0 2px 10px rgba(24,35,63,0.18);">Tarifs pour les élèves inscrits avant 2024</h2>
+            <div id="paiements-2">
+                <div class="labels">
+                    <span id="label-decouverte-2"  class="label">Découverte 30'</span>
+                    <span id="label-progression-2" class="label">Progression 45'</span>
+                    <span id="label-excellence-2"  class="label">Excellence 60'</span>
+                </div>
+                <div id="toggleSwitch-2" class="switch"></div>
+                <div style="height:16px;"></div>
+                <div class="payments-grid">
+                    <div class="pay-card">
+                        <div class="pay-title">À la carte</div>
+                        <div class="pay-price" id="price-per-course-2">--€</div>
+                        <div class="pay-note"  id="yearly-note-per-course-2"></div>
+                        <p class="text-lg text-gray-700 mb-6"><br><br><br>Payez au cours avec engagement à l'année</p>
+                            <p><strong>Possibilité de faire une période d'essai d'un mois sans engagement.</strong></p>
+                        <p class="text-lg text-gray-700 mb-6">Basé sur une année de 32 cours.<br><br>1 absence autorisée et non facturée</p>
+                        <p class="text-lg text-gray-700 mb-6">Absences supplémentaires rattrapées ou facturées</p>
+                        <a class="inscription-link" href="https://forms.gle/7Kob2aKeVZzQGfDV6" target="_blank">Je m'inscris</a>
+                    </div>
+                    <div class="pay-card">
+                        <div class="pay-title">Mensuel</div>
+                        <div class="pay-price" id="price-monthly-2">--€</div>
+                        <div class="pay-note"  id="yearly-note-monthly-2">--</div><br>
+                        <p class="text-lg text-gray-700 mb-6">Lissez vos paiements sur 10 mois, de septembre à juin, pour une gestion budgétaire facilitée.</p>
+                            <p>Fonctionnement :</p>
+                        <p class="text-lg text-gray-700 mb-6">32 cours payés sur l'année, répartis sur 10 mensualités</p>
+                        <p class="text-lg text-gray-700 mb-6">Basé sur une année de 32 cours<br><br>1 absence autorisée et non facturée</p>
+                        <p class="text-lg text-gray-700 mb-6">Absences supplémentaires rattrapées ou facturées</p>
+                        <a class="inscription-link" href="https://forms.gle/7Kob2aKeVZzQGfDV6" target="_blank">Je m'inscris</a>
+                    </div>
+                    <div class="pay-card">
+                        <div class="pay-title">3 versements</div>
+                        <div class="pay-price" id="price-three-installment-2">--€</div>
+                        <div class="pay-note"  id="yearly-note-three-installment-2">--</div><br>
+                        <p class="text-lg text-gray-700 mb-6">Lissez vos paiements sur 10 mois, de septembre à juin, pour une gestion budgétaire facilitée.</p>
+                            <p>Fonctionnement :</p>
+                        <p class="text-lg text-gray-700 mb-6">32 cours payés sur l'année, répartis sur 3 versements</p>
+                        <p class="text-lg text-gray-700 mb-6">Basé sur une année de 32 cours.<br><br>1 absence autorisée et non facturée</p>
+                        <p class="text-lg text-gray-700 mb-6">Absences supplémentaires rattrapées ou facturées</p>
+                        <a class="inscription-link" href="https://forms.gle/7Kob2aKeVZzQGfDV6" target="_blank">Je m'inscris</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+(function() {
+    const priceOptions = {
+        decouverte: { perCourse: 40, monthly: 122, threeInstallment: 384 },
+        progression: { perCourse: 50, monthly: 152, threeInstallment: 480 },
+        excellence: { perCourse: 60, monthly: 182, threeInstallment: 576 }
+    };
+    const priceOptions2 = {
+        decouverte: { perCourse: 40, monthly: 122, threeInstallment: 384 },
+        progression: { perCourse: 45, monthly: 137, threeInstallment: 432 },
+        excellence: { perCourse: 55, monthly: 167, threeInstallment: 528 }
+    };
+    const optionsMap = ['decouverte', 'progression', 'excellence'];
+    function updateSwitchVisuals(state, switchId) {
+        const switchElement = document.getElementById(switchId);
+        const labelsContainerId = switchId.includes('-2') ? 'paiements-2' : 'paiements';
+        const labels = document.querySelectorAll(`#${labelsContainerId} .labels .label`);
+        if (!switchElement) return;
+        switchElement.classList.remove('switch-on-0','switch-on-1','switch-on-2');
+        switchElement.classList.add(`switch-on-${state}`);
+        labels.forEach((label,index)=>{
+            if(index===state) label.classList.add('label-on');
+            else label.classList.remove('label-on');
+        });
+    }
+    function updatePaymentPrices(option,switchId){
+        let currentPrices;
+        let noteMensuel = '';
+        let noteVersement = '';
+            if(switchId==='toggleSwitch-2') {
+                currentPrices = priceOptions2[option];
+                if(option==='decouverte') {
+                        noteMensuel = '<span style="font-size:1rem;font-style:italic">Soit 5% de réduction</span><br><span style="font-size:1rem;font-style:italic">Soit le cours à 38,13 €</span>';
+                        noteVersement = '<span style="font-size:1rem;font-style:italic">soit 10% de réduction</span><br><span style="font-size:1rem;font-style:italic">Soit le cours à 36 €</span>';
+                } else if(option==='progression') {
+                        noteMensuel = '<span style="font-size:1rem;font-style:italic">Soit 5% de réduction</span><br><span style="font-size:1rem;font-style:italic">Soit le cours à 43 €</span>';
+                        noteVersement = '<span style="font-size:1rem;font-style:italic">soit 10% de réduction</span><br><span style="font-size:1rem;font-style:italic">Soit le cours à 40 €</span>';
+                } else if(option==='excellence') {
+                        noteMensuel = '<span style="font-size:1rem;font-style:italic">Soit 5% de réduction</span><br><span style="font-size:1rem;font-style:italic">Soit le cours à 52,19 €</span>';
+                        noteVersement = '<span style="font-size:1rem;font-style:italic">soit 10% de réduction</span><br><span style="font-size:1rem;font-style:italic">Soit le cours à 48 €</span>';
+                }
+        } else {
+            currentPrices = priceOptions[option];
+            if(option==='decouverte') {
+                    noteMensuel = '<span style="font-size:1rem;font-style:italic">Soit 5% de réduction</span><br><span style="font-size:1rem;font-style:italic">Soit le cours à 38,13 €</span>';
+                    noteVersement = '<span style="font-size:1rem;font-style:italic">soit 10% de réduction</span><br><span style="font-size:1rem;font-style:italic">Soit le cours à 36 €</span>';
+            } else if(option==='progression') {
+                    noteMensuel = '<span style="font-size:1rem;font-style:italic">Soit 5% de réduction</span><br><span style="font-size:1rem;font-style:italic">Soit le cours à 47,50 €</span>';
+                    noteVersement = '<span style="font-size:1rem;font-style:italic">soit 10% de réduction</span><br><span style="font-size:1rem;font-style:italic">Soit le cours à 45 €</span>';
+            } else if(option==='excellence') {
+                    noteMensuel = '<span style="font-size:1rem;font-style:italic">Soit 5% de réduction</span><br><span style="font-size:1rem;font-style:italic">Soit le cours à 57 €</span>';
+                    noteVersement = '<span style="font-size:1rem;font-style:italic">soit 10% de réduction</span><br><span style="font-size:1rem;font-style:italic">Soit le cours à 54 €</span>';
+            }
+        }
+        const suffix = switchId==='toggleSwitch-2'?'-2':'',
+            elPerCourse = document.getElementById(`price-per-course${suffix}`),
+            elMonthly = document.getElementById(`price-monthly${suffix}`),
+            elThree = document.getElementById(`price-three-installment${suffix}`);
+        if (!elPerCourse || !elMonthly || !elThree) return;
+        elPerCourse.textContent=`${currentPrices.perCourse}€`;
+        document.getElementById(`yearly-note-per-course${suffix}`).textContent=``;
+        elMonthly.textContent=`${currentPrices.monthly}€`;
+        document.getElementById(`yearly-note-monthly${suffix}`).innerHTML = noteMensuel;
+        elThree.textContent=`${currentPrices.threeInstallment}€`;
+        document.getElementById(`yearly-note-three-installment${suffix}`).innerHTML=noteVersement;
+        const cards = document.querySelectorAll(`#${switchId.includes('-2')?'paiements-2':'paiements'} .pay-card`);
+        cards.forEach(c=>c.classList.remove('active'));
+        if(option==='decouverte') cards[0].classList.add('active');
+        if(option==='progression') cards[1].classList.add('active');
+        if(option==='excellence') cards[2].classList.add('active');
+    }
+    document.addEventListener('DOMContentLoaded',()=>{
+        window.switchState = 1;
+        window.switchState2 = 1;
+        updateSwitchVisuals(window.switchState,'toggleSwitch');
+        updatePaymentPrices(optionsMap[window.switchState],'toggleSwitch');
+        updateSwitchVisuals(window.switchState2,'toggleSwitch-2');
+        updatePaymentPrices(optionsMap[window.switchState2],'toggleSwitch-2');
+        const toggleSwitchElement = document.getElementById('toggleSwitch');
+        if(toggleSwitchElement) {
+            toggleSwitchElement.addEventListener('click',event=>{
+                const clickX = event.offsetX;
+                const width = toggleSwitchElement.offsetWidth;
+                const third = width / 3;
+                let newState;
+                if(clickX < third) newState = 0;
+                else if(clickX < 2*third) newState = 1;
+                else newState = 2;
+                window.switchState = newState;
+                updateSwitchVisuals(window.switchState,'toggleSwitch');
+                updatePaymentPrices(optionsMap[window.switchState],'toggleSwitch');
+            });
+        }
+        ['label-decouverte','label-progression','label-excellence'].forEach((id,idx)=>{
+            const el = document.getElementById(id);
+            if(el) el.addEventListener('click',()=>{
+                window.switchState=idx;
+                updateSwitchVisuals(window.switchState,'toggleSwitch');
+                updatePaymentPrices(optionsMap[window.switchState],'toggleSwitch');
+            });
+        });
+        const toggleSwitchElement2 = document.getElementById('toggleSwitch-2');
+        if(toggleSwitchElement2) {
+            toggleSwitchElement2.addEventListener('click',event=>{
+                const clickX = event.offsetX;
+                const width = toggleSwitchElement2.offsetWidth;
+                const third = width / 3;
+                let newState;
+                if(clickX < third) newState = 0;
+                else if(clickX < 2*third) newState = 1;
+                else newState = 2;
+                window.switchState2 = newState;
+                updateSwitchVisuals(window.switchState2,'toggleSwitch-2');
+                updatePaymentPrices(optionsMap[window.switchState2],'toggleSwitch-2');
+            });
+        }
+        ['label-decouverte-2','label-progression-2','label-excellence-2'].forEach((id,idx)=>{
+            const el = document.getElementById(id);
+            if(el) el.addEventListener('click',()=>{
+                window.switchState2=idx;
+                updateSwitchVisuals(window.switchState2,'toggleSwitch-2');
+                updatePaymentPrices(optionsMap[window.switchState2],'toggleSwitch-2');
+            });
+        });
+    });
+})();
+</script>
+<!-- Bouton retour en haut -->
+<button id="back-to-top" title="Retour en haut" style="position:fixed;bottom:32px;right:32px;z-index:2000;background:rgba(255,255,255,0.7);color:#4338ca;border:none;border-radius:50%;width:64px;height:64px;box-shadow:0 2px 8px rgba(0,0,0,0.12);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background 0.2s;opacity:0.8;font-size:2rem;">
+    <svg width="32" height="32" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 15l7-7 7 7"/></svg>
+</button>
+<footer class="bg-gray-800 text-white py-8 px-6 md:px-12 mt-20" style="border-radius:0;max-width:100vw;width:100vw;margin-left:calc(-50vw + 50%);left:0;right:0;">
+    <div class="container mx-auto text-center">
+        <p class="mb-4">&copy; 2025 Excellence piano by Natalia. Tous droits réservés.</p>
+        <p class="text-sm">
+            <a href="mentions-legales.html" style="color:#b9944e;text-decoration:underline;margin-right:18px;">Mentions légales</a>
+            <a href="politique-confidentialite.html" style="color:#b9944e;text-decoration:underline;">Politique de confidentialité</a>
+        </p>
+    </div>
+</footer>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    var backToTopBtn = document.getElementById('back-to-top');
+    if (backToTopBtn) {
+        backToTopBtn.addEventListener('click', function() {
+            window.scrollTo({top:0,behavior:'smooth'});
+        });
+        window.addEventListener('scroll', function() {
+            if(window.scrollY > 200){
+                backToTopBtn.style.display = 'flex';
+            }else{
+                backToTopBtn.style.display = 'none';
+            }
+        });
+        backToTopBtn.style.display = 'none';
+    }
+});
+</script>
+</body>
+</html>
