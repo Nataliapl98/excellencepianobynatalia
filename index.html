@@ -1298,8 +1298,15 @@ document.addEventListener('DOMContentLoaded', function() {
         // Remettre l'icône play quand la musique se termine
                 audio.addEventListener('ended', function() {
                     playBtn.innerHTML = '&#9654;';
-                    isPlaying = false;
-                });
+            });
+
+            // Permet de relancer la musique si elle est terminée et qu'on clique sur le lecteur
+            audio.addEventListener('click', function() {
+                if (audio.ended || audio.currentTime === audio.duration) {
+                    audio.currentTime = 0;
+                    audio.play();
+                }
+            });
         // Menu contextuel déroulant (hamburger)
         const menuToggle = document.getElementById('context-menu-toggle');
         const menu = document.getElementById('context-menu');
