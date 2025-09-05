@@ -1330,7 +1330,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 if(idx>=audioFiles.length) idx=0;
                 currentTrack=idx;
                 audio.src = audioFiles[currentTrack].src;
-                if(isPlaying) audio.play();
+                audio.play();
             }
             prevBtn.addEventListener('click',()=>{loadTrack(currentTrack-1);});
             nextBtn.addEventListener('click',()=>{loadTrack(currentTrack+1);});
