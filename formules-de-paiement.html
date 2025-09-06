@@ -1,7 +1,3 @@
-/* Espacement entre les paragraphes dans les notes de paiement */
-.pay-note p {
-    margin: 22px 0;
-}
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -19,6 +15,10 @@
 <!-- Tailwind CSS CDN -->
 <script src="https://cdn.tailwindcss.com"></script>
 <style>
+/* Couleur du texte du menu contextuel */
+#context-menu a {
+    color: #18233f !important;
+}
 
 body {
     font-family: 'Inter', sans-serif;
@@ -206,7 +206,7 @@ footer {
     color: #b9944e;
     font-weight: bold;
     text-decoration: none;
-    font-size: 17px;
+    font-size: 22px;
     position: absolute;
     left: 0;
     right: 0;
@@ -306,15 +306,8 @@ footer {
         <svg width="32" height="32" viewBox="0 0 32 32" fill="none" stroke="#1f2937" stroke-width="3" stroke-linecap="round"><line x1="7" y1="10" x2="25" y2="10"/><line x1="7" y1="16" x2="25" y2="16"/><line x1="7" y1="22" x2="25" y2="22"/></svg>
     </button>
     <nav id="context-menu" style="margin-top:10px;display:none;flex-direction:column;gap:12px;align-items:flex-end;min-width:160px;">
-        <a href="accueil.html#branding-hero" class="bg-white/90 hover:bg-indigo-100 text-indigo-700 font-semibold py-2 px-5 rounded-lg shadow transition-all duration-200" style="backdrop-filter:blur(4px);">Accueil</a>
-        <a href="accueil.html#a-propos" class="bg-white/90 hover:bg-indigo-100 text-indigo-700 font-semibold py-2 px-5 rounded-lg shadow transition-all duration-200" style="backdrop-filter:blur(4px);">Ma pédagogie</a>
-        <a href="accueil.html#concert" class="bg-white/90 hover:bg-indigo-100 text-indigo-700 font-semibold py-2 px-5 rounded-lg shadow transition-all duration-200" style="backdrop-filter:blur(4px);">Concert de fin d'année</a>
-        <a href="accueil.html#stages-intensifs" class="bg-white/90 hover:bg-indigo-100 text-indigo-700 font-semibold py-2 px-5 rounded-lg shadow transition-all duration-200" style="backdrop-filter:blur(4px);">Stages intensifs</a>
-        <a href="accueil.html#exigences-piano" class="bg-white/90 hover:bg-indigo-100 text-indigo-700 font-semibold py-2 px-5 rounded-lg shadow transition-all duration-200" style="backdrop-filter:blur(4px);">Choisir son instrument</a>
-        <a href="accueil.html#options-cours" class="bg-white/90 hover:bg-indigo-100 text-indigo-700 font-semibold py-2 px-5 rounded-lg shadow transition-all duration-200" style="backdrop-filter:blur(4px);">Tarifs des cours</a>
-        <a href="formules-de-paiement.html" target="_blank" class="bg-white/90 hover:bg-indigo-100 text-indigo-700 font-semibold py-2 px-5 rounded-lg shadow transition-all duration-200" style="backdrop-filter:blur(4px);">Offres de paiements</a>
-        <a href="accueil.html#inscription" class="bg-white/90 hover:bg-indigo-100 text-indigo-700 font-semibold py-2 px-5 rounded-lg shadow transition-all duration-200" style="backdrop-filter:blur(4px);">Inscription</a>
-        <a href="accueil.html#contact" class="bg-white/90 hover:bg-indigo-100 text-indigo-700 font-semibold py-2 px-5 rounded-lg shadow transition-all duration-200" style="backdrop-filter:blur(4px);">Contact</a>
+    <a href="#paiements" class="bg-white/90 hover:bg-indigo-100 text-indigo-700 font-semibold py-2 px-5 rounded-lg shadow transition-all duration-200" style="backdrop-filter:blur(4px);">Nouveaux élèves</a>
+    <a href="#paiements-2" class="bg-white/90 hover:bg-indigo-100 text-indigo-700 font-semibold py-2 px-5 rounded-lg shadow transition-all duration-200" style="backdrop-filter:blur(4px);">Anciens élèves</a>
     </nav>
 </div>
 
