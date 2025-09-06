@@ -83,34 +83,6 @@
     <!-- Google Fonts - Inter pour le corps du texte, Great Vibes pour les titres -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
     <style>
-        #inscription .photo-grid {
-            display: flex !important;
-            justify-content: center !important;
-            gap: 32px !important;
-        }
-        #inscription .photo-wrapper {
-            width: 80px !important;
-            height: 50px !important;
-        }
-        #inscription .photo-wrapper img {
-            width: 100% !important;
-            height: 50px !important;
-            object-fit: cover !important;
-        }
-        /* Forcer la taille des photos de la section inscription */
-        #inscription .photo-grid {
-            height: 100px !important;
-            max-width: 700px !important;
-        }
-        #inscription .photo-wrapper {
-            height: 100px !important;
-        }
-        #inscription .photo-wrapper img {
-            height: 100px !important;
-            max-height: 100px !important;
-            width: 100% !important;
-            object-fit: cover !important;
-        }
         html, body {
             scroll-behavior: smooth;
             font-family: 'Inter', sans-serif;
@@ -822,10 +794,10 @@ document.addEventListener('DOMContentLoaded', function() {
             <h2 class="text-4xl mb-4" style="color:#18233f;font-family:'Great Vibes',cursive;text-align:center;width:100%;">L'instrument, partenaire de votre apprentissage</h2>
             <div class="piano-images" style="display:flex;justify-content:center;gap:1rem;margin-bottom:2rem;">
                 <div class="image-wrapper" style="width:45%;min-width:180px;">
-                    <img src="images/exigences-non.jpg" alt="Petit piano jouet rouge, non adapté à l'apprentissage" style="width:100%;height:100%;object-fit:cover;">
+                    <img src="images/exigences-non.jpg" alt="Petit piano jouet rouge, non adapté à l'apprentissage" style="width:100%;height:320px;object-fit:cover;">
                 </div>
                 <div class="image-wrapper" style="width:45%;min-width:180px;">
-                    <img src="images/exigences-oui.jpg" alt="Piano droit acoustique, idéal pour progresser" style="width:100%;height:100%;object-fit:cover;">
+                    <img src="images/exigences-oui.jpg" alt="Piano droit acoustique, idéal pour progresser" style="width:100%;height:320px;object-fit:cover;">
                 </div>
             </div>
             <p style="font-size:1.125rem;line-height:1.6;text-align:center;color:#18233f;max-width:100%;margin:0 auto 1rem auto;">
@@ -907,14 +879,14 @@ document.addEventListener('DOMContentLoaded', function() {
 <!-- Section : Inscription (parallaxe) -->
 <section id="inscription" style="margin-top:0;margin-bottom:60px">
     <!-- Conteneur principal qui gère l'animation de défilement (zone centrale réduite) -->
-    <div class="scroll-wrapper" id="scroll-wrapper-inscription" style="transform:skewY(-4deg);width:100%;max-width:900px;margin:0 auto;">
-    <div class="parallax-container" style="max-width:900px;margin:0 auto;">
-            <div class="photo-grid">
-                <div class="photo-wrapper left-photo" id="photo1-inscription" style="width:30px !important;height:20px !important;">
-                    <img src="images/inscription1.jpg" alt="Piano à queue noir, ambiance inscription" style="width:30px !important;height:20px !important;object-fit:cover !important;display:block !important;">
+    <div class="scroll-wrapper" id="scroll-wrapper-inscription" style="transform:skewY(-4deg);width:1500px;margin:0 auto;">
+        <div class="parallax-container" style="max-width:1500px;margin:0 auto;">
+            <div class="photo-grid" style="position:absolute;top:0;left:0;width:100%;height:96%;display:flex;z-index:10;max-width:1500px;margin:0 auto;">
+                <div class="photo-wrapper left-photo" id="photo1-inscription" style="width:50%;height:100%;border-radius:0;box-shadow:none;">
+                    <img src="images/inscription1.jpg" alt="Piano à queue noir, ambiance inscription" style="width:100%;height:100%;object-fit:cover;display:block;">
                 </div>
-                <div class="photo-wrapper right-photo" id="photo2-inscription" style="width:30px !important;height:20px !important;">
-                    <img src="images/inscription2.jpg" alt="Piano droit moderne, ambiance inscription" style="width:30px !important;height:20px !important;object-fit:cover !important;display:block !important;">
+                <div class="photo-wrapper right-photo" id="photo2-inscription" style="width:50%;height:100%;border-radius:0;box-shadow:none;">
+                    <img src="images/inscription2.jpg" alt="Piano droit moderne, ambiance inscription" style="width:100%;height:100%;object-fit:cover;display:block;">
                 </div>
             </div>
             <div class="reveal-section" id="reveal-section-inscription" style="position:relative;z-index:20;pointer-events:auto;display:flex;align-items:center;justify-content:center;height:100vh;width:100%;max-width:1500px;margin:0 auto;">
