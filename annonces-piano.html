@@ -11,7 +11,7 @@
             gtag('config', 'G-WD9VS5039D');
         </script>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=1500">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Annonces Piano - Excellence piano by Natalia</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -24,8 +24,8 @@
             color: #1f2937;
         }
         .page-section {
-            min-width: 1500px;
-            max-width: 1500px;
+            width: 100%;
+            max-width: 1200px;
             margin: 0 auto;
             min-height: 100vh;
             display: flex;
@@ -70,11 +70,11 @@
             <svg width="32" height="32" viewBox="0 0 32 32" fill="none" stroke="#1f2937" stroke-width="3" stroke-linecap="round"><line x1="7" y1="10" x2="25" y2="10"/><line x1="7" y1="16" x2="25" y2="16"/><line x1="7" y1="22" x2="25" y2="22"/></svg>
         </button>
         <nav id="context-menu" style="margin-top:10px;display:none;flex-direction:column;gap:12px;align-items:flex-end;min-width:160px;">
-            <a href="#annonces-piano" class="bg-white/90 hover:bg-indigo-100 text-indigo-700 font-semibold py-2 px-5 rounded-lg shadow transition-all duration-200" style="backdrop-filter:blur(4px);">Accueil</a>
-            <a href="#pianos-droits" class="bg-white/90 hover:bg-indigo-100 text-indigo-700 font-semibold py-2 px-5 rounded-lg shadow transition-all duration-200" style="backdrop-filter:blur(4px);">Pianos droits</a>
-            <a href="#pianos-silent" class="bg-white/90 hover:bg-indigo-100 text-indigo-700 font-semibold py-2 px-5 rounded-lg shadow transition-all duration-200" style="backdrop-filter:blur(4px);">Piano droits Silent</a>
-            <a href="#pianos-numeriques" class="bg-white/90 hover:bg-indigo-100 text-indigo-700 font-semibold py-2 px-5 rounded-lg shadow transition-all duration-200" style="backdrop-filter:blur(4px);">Pianos numériques</a>
-            <a href="#piano-queue" class="bg-white/90 hover:bg-indigo-100 text-indigo-700 font-semibold py-2 px-5 rounded-lg shadow transition-all duration-200" style="backdrop-filter:blur(4px);">Piano à queue</a>
+            <a href="#annonces-piano" class="bg-white/90 hover:bg-indigo-100 font-semibold py-2 px-5 rounded-lg shadow transition-all duration-200" style="backdrop-filter:blur(4px);color:#18233f;">Accueil</a>
+            <a href="#pianos-droits" class="bg-white/90 hover:bg-indigo-100 font-semibold py-2 px-5 rounded-lg shadow transition-all duration-200" style="backdrop-filter:blur(4px);color:#18233f;">Pianos droits</a>
+            <a href="#pianos-silent" class="bg-white/90 hover:bg-indigo-100 font-semibold py-2 px-5 rounded-lg shadow transition-all duration-200" style="backdrop-filter:blur(4px);color:#18233f;">Piano droits Silent</a>
+            <a href="#pianos-numeriques" class="bg-white/90 hover:bg-indigo-100 font-semibold py-2 px-5 rounded-lg shadow transition-all duration-200" style="backdrop-filter:blur(4px);color:#18233f;">Pianos numériques</a>
+            <a href="#piano-queue" class="bg-white/90 hover:bg-indigo-100 font-semibold py-2 px-5 rounded-lg shadow transition-all duration-200" style="backdrop-filter:blur(4px);color:#18233f;">Piano à queue</a>
         </nav>
     </div>
     <script>
@@ -220,9 +220,9 @@
             <div class="section-content-wrapper" style="transform: skewY(4deg); width: 100%; text-align: center;">
                 <h2 class="section-title" style="color:#18233f;">Piano droits Silent</h2>
                 <p style="font-size: 1.1rem;">Retrouvez ici les annonces pour les pianos droits équipés du système Silent, idéals pour jouer à toute heure.</p>
-                <div class="grid grid-cols-4 gap-8 mt-12 mb-8" style="justify-items:center;">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mt-12 mb-8 w-full" style="justify-items:center;">
                     <!-- Piano Silent 1 -->
-                    <div class="bg-white rounded-xl shadow-lg p-4 w-64 flex flex-col items-center">
+                    <div class="bg-white rounded-xl shadow-lg p-4 w-full max-w-xs flex flex-col items-center">
                         <img src="images/annonces-piano/Silent/piano droit samick silent.jpg" alt="Piano Silent 1" class="rounded-lg mb-3 w-full h-40 object-cover">
                         <div class="text-lg font-semibold text-indigo-700 mb-1">Prix : 800 €</div>
                         <div class="text-sm text-gray-700 mb-1">Mon avis : A ce prix, il serait fou de s'en priver !<br>Excellent rapport qualité-prix!</div>
@@ -399,7 +399,7 @@
 </body>
 </main>
 <!-- Footer (copié de accueil.html) -->
-<footer class="bg-gray-800 text-white py-8 px-6 md:px-12 mt-20" style="border-radius:0;max-width:100vw;width:100vw;margin-left:calc(-50vw + 50%);left:0;right:0;">
+<footer class="bg-gray-800 text-white py-8 px-6 md:px-12 mt-20" style="border-radius:0;width:100%;left:0;right:0;">
     <div class="container mx-auto text-center">
         <p class="mb-4">&copy; 2025 Excellence piano by Natalia. Tous droits réservés.</p>
         <p class="text-sm">
