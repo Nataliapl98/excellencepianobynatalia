@@ -1,3 +1,7 @@
+/* Espacement entre les paragraphes dans les notes de paiement */
+.pay-note p {
+    margin: 22px 0;
+}
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -246,11 +250,13 @@ footer {
     text-align: center;
 }
 .pay-note {
+    display: block;
+    margin-bottom: 6px;
     font-size: 15px;
     color: #18233f;
-    margin: 0;
     background: none;
     text-align: center;
+    word-break: break-word;
 }
 
 /* Explanation Box */
@@ -482,26 +488,26 @@ document.addEventListener('click', (e) => {
         if(switchId==='toggleSwitch-2') {
             currentPrices = priceOptions2[option];
             if(option==='decouverte') {
-                noteMensuel = 'Soit 5% de réduction<br>Soit le cours à 38,13 €<br>';
-                noteVersement = 'soit 10% de réduction<br>Soit le cours à 36 €<br>';
+                noteMensuel = '<p>Soit 5% de réduction</p><p>Soit le cours à 38,13 €</p>';
+                noteVersement = '<p>soit 10% de réduction</p><p>Soit le cours à 36 €</p>';
             } else if(option==='progression') {
-                noteMensuel = 'Soit 5% de réduction<br>Soit le cours à 43 €<br>';
-                noteVersement = 'soit 10% de réduction<br>Soit le cours à 40 €<br>';
+                noteMensuel = '<p>Soit 5% de réduction</p><p>Soit le cours à 43 €</p>';
+                noteVersement = '<p>soit 10% de réduction</p><p>Soit le cours à 40 €</p>';
             } else if(option==='excellence') {
-                noteMensuel = 'Soit 5% de réduction<br>Soit le cours à 52,19 €<br>';
-                noteVersement = 'soit 10% de réduction<br>Soit le cours à 48 €<br>';
+                noteMensuel = '<p>Soit 5% de réduction</p><p>Soit le cours à 52,19 €</p>';
+                noteVersement = '<p>soit 10% de réduction</p><p>Soit le cours à 48 €</p>';
             }
         } else {
             currentPrices = priceOptions[option];
             if(option==='decouverte') {
-                noteMensuel = 'Soit 5% de réduction<br>Soit le cours à 38,13 €<br>';
-                noteVersement = 'soit 10% de réduction<br>Soit le cours à 36 €<br>';
+                noteMensuel = '<p>Soit 5% de réduction</p><p>Soit le cours à 38,13 €</p>';
+                noteVersement = '<p>soit 10% de réduction</p><p>Soit le cours à 36 €</p>';
             } else if(option==='progression') {
-                noteMensuel = 'Soit 5% de réduction<br>Soit le cours à 47,50 €<br>';
-                noteVersement = 'soit 10% de réduction<br>Soit le cours à 45 €<br>';
+                noteMensuel = '<p>Soit 5% de réduction</p><p>Soit le cours à 47,50 €</p>';
+                noteVersement = '<p>soit 10% de réduction</p><p>Soit le cours à 45 €</p>';
             } else if(option==='excellence') {
-                noteMensuel = 'Soit 5% de réduction<br>Soit le cours à 57 €<br>';
-                noteVersement = 'soit 10% de réduction<br>Soit le cours à 54 €<br>';
+                noteMensuel = '<p>Soit 5% de réduction</p><p>Soit le cours à 57 €</p>';
+                noteVersement = '<p>soit 10% de réduction</p><p>Soit le cours à 54 €</p>';
             }
         }
         const suffix = switchId==='toggleSwitch-2'?'-2':'',
