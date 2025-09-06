@@ -1,15 +1,14 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-        <!-- Google tag (gtag.js) -->
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-WD9VS5039D"></script>
-        <script>
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-
-            gtag('config', 'G-WD9VS5039D');
-        </script>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-WD9VS5039D"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-WD9VS5039D');
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Accueil Mobile - Excellence piano by Natalia</title>
@@ -35,14 +34,6 @@
                 height: 100px;
             }
         }
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Accueil Mobile - Excellence piano by Natalia</title>
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts - Inter pour le corps du texte, Great Vibes pour les titres -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
-    <style>
         html, body {
             scroll-behavior: smooth;
             font-family: 'Inter', sans-serif;
@@ -78,7 +69,6 @@
             margin-bottom: 1rem;
             color: #18233f;
         }
-    /* header supprimé */
         /* Menu contextuel mobile */
         #context-menu-wrapper {
             position:fixed;top:16px;right:16px;z-index:2000;display:flex;flex-direction:column;align-items:flex-end;
@@ -275,6 +265,24 @@
                 height: 50px;
                 width: 50px;
             }
+        }
+        /* Styles audio player déplacés ici */
+        #audio-player-message {
+            background:rgba(245,236,220,0.55) !important;
+            color:#18233f !important;
+            border:1px solid #b9944e !important;
+            border-radius:10px 10px 0 10px !important;
+            font-weight:500;
+            font-size: 0.82rem !important;
+            padding: 2px 7px !important;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+        }
+        #audio-player-container > div[style*='background:rgba(245,236,220'] {
+            background:rgba(245,236,220,0.55) !important;
+            border-radius:10px 10px 10px 0 !important;
+            padding: 4px 8px !important;
+            gap: 6px !important;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.05) !important;
         }
     </style>
 </head>
