@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Mélodia — L'Aventure Musicale</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <meta name="description" content="Un jeu d'aventure musicale pour apprendre la lecture de notes, le rythme et la culture musicale — par Excellence Piano By Natalia." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <div id="app">
+      <!-- Écran de création de personnage -->
+      <section id="screen-create" class="screen active">
+        <form id="create-form" class="create-card">
+          <h1>🎵 Mélodia</h1>
+          <p class="subtitle">L'aventure musicale — par Excellence Piano By Natalia</p>
+
+          <label for="player-name">Comment t'appelles-tu ?</label>
+          <input id="player-name" type="text" placeholder="Ton prénom" maxlength="18" autocomplete="off" />
+
+          <label>Choisis ton personnage</label>
+          <div id="avatar-grid"></div>
+
+          <button id="create-start" type="submit" class="btn-primary" disabled>C'est parti ! 🚀</button>
+        </form>
+      </section>
+
+      <!-- Écran de la carte -->
+      <section id="screen-map" class="screen">
+        <header id="hud">
+          <div id="hud-avatar">🙂</div>
+          <div class="hud-identity">
+            <span id="hud-name">—</span>
+            <span id="hud-level">Niveau 1</span>
+          </div>
+          <div class="hud-xpbar"><div id="hud-xpbar-fill"></div></div>
+          <div id="hud-quest-count">0/3 quêtes</div>
+          <div id="hud-companions"></div>
+          <button id="hud-reset" title="Réinitialiser la progression">⚙️</button>
+        </header>
+
+        <div id="map-wrap">
+          <canvas id="map-canvas"></canvas>
+          <button id="interact-btn" class="hidden"></button>
+        </div>
+
+        <div id="touch-controls">
+          <button data-dir="up">▲</button>
+          <div class="row">
+            <button data-dir="left">◀</button>
+            <button data-dir="down">▼</button>
+            <button data-dir="right">▶</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Modale de quête -->
+      <div id="quest-modal" class="modal hidden">
+        <div class="modal-inner">
+          <button id="quest-close" class="close-btn">✕</button>
+          <div id="quest-content"></div>
+        </div>
+      </div>
+
+      <!-- Modale de récompense -->
+      <div id="reward-modal" class="modal hidden"></div>
+    </div>
+
+    <script type="module" src="js/main.js"></script>
+  </body>
+</html>
