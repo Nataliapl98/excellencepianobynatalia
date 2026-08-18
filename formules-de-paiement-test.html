@@ -557,6 +557,10 @@ document.addEventListener('click', (e) => {
     }
 
     document.addEventListener('DOMContentLoaded', () => {
+        const params = new URLSearchParams(window.location.search);
+        const formuleFromUrl = FORMULES.indexOf(params.get('formule'));
+        if (formuleFromUrl !== -1) state.formule = formuleFromUrl;
+
         initSwitch('switch-formule', ['label-decouverte', 'label-progression', 'label-excellence'], 3,
             () => state.formule, (i) => { state.formule = i; });
         initSwitch('switch-fidelite', ['label-fid-1', 'label-fid-2', 'label-fid-3', 'label-fid-4'], 4,
