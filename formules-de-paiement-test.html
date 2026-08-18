@@ -487,9 +487,9 @@ document.addEventListener('click', (e) => {
         { label: '7 ans et +', pct: 10 }
     ];
     const PAIEMENT = [
-        { label: 'Mensuel', pct: 0, periodMonths: 1, unit: 'mois', detail: '32 cours/an sur 10 mensualités' },
-        { label: 'Trimestriel', pct: 5, periodMonths: 3, unit: 'trimestre', detail: '32 cours/an, paiement par trimestre' },
-        { label: 'Annuel', pct: 10, periodMonths: 10, unit: 'an', detail: '32 cours/an, paiement en une fois' }
+        { label: 'Mensuel', pct: 0, installments: 10, unit: 'mois', detail: '32 cours/an, répartis sur 10 mensualités' },
+        { label: 'Trimestriel', pct: 5, installments: 3, unit: 'versement', detail: '32 cours/an, répartis sur 3 versements' },
+        { label: 'Annuel', pct: 10, installments: 1, unit: 'an', detail: '32 cours/an, paiement en une fois' }
     ];
 
     const state = { formule: 1, fidelite: 0, paiement: 0 };
@@ -541,8 +541,8 @@ document.addEventListener('click', (e) => {
         const fid = FIDELITE[state.fidelite];
         const pay = PAIEMENT[state.paiement];
         const net = base * (1 - fid.pct / 100) * (1 - pay.pct / 100);
-        const monthlyBase = net * 32 / 10;
-        const periodPrice = monthlyBase * pay.periodMonths;
+        const annualTotal = net * 32;
+        const periodPrice = annualTotal / pay.installments;
 
         document.getElementById('result-formule').textContent = `Formule ${NOMS[formuleKey]} — ${DUREES[formuleKey]}`;
         document.getElementById('result-price').textContent = formatPrice(net);
