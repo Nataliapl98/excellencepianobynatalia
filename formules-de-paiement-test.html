@@ -414,7 +414,7 @@ footer {
                     <p><span>Remise fidélité (<span id="result-fid-label">1-2 ans</span>)</span><strong id="result-fid-pct">0%</strong></p>
                     <p><span>Remise paiement (<span id="result-pay-label">Mensuel</span>)</span><strong id="result-pay-pct">0%</strong></p>
                 </div>
-                <p class="result-monthly-note">soit environ <strong id="result-monthly">173€</strong>/mois (32 cours/an sur 10 mensualités)</p>
+                <p class="result-monthly-note">soit environ <strong id="result-period-price">173€</strong>/<span id="result-period-unit">mois</span> <span id="result-period-detail">(32 cours/an sur 10 mensualités)</span></p>
                 <a class="inscription-link" href="https://forms.gle/7Kob2aKeVZzQGfDV6" target="_blank" style="position:static;display:inline-block;margin-top:18px;">Je m'inscris</a>
             </div>
             <p style="text-align:center;font-size:0.9rem;color:#18233f;opacity:0.7;max-width:600px;margin:20px auto 0 auto;">Tarif indicatif — le montant exact applicable à votre situation vous est confirmé individuellement.</p>
@@ -487,9 +487,9 @@ document.addEventListener('click', (e) => {
         { label: '7 ans et +', pct: 10 }
     ];
     const PAIEMENT = [
-        { label: 'Mensuel', pct: 0 },
-        { label: 'Trimestriel', pct: 5 },
-        { label: 'Annuel', pct: 10 }
+        { label: 'Mensuel', pct: 0, periodMonths: 1, unit: 'mois', detail: '32 cours/an sur 10 mensualités' },
+        { label: 'Trimestriel', pct: 5, periodMonths: 3, unit: 'trimestre', detail: '32 cours/an, paiement par trimestre' },
+        { label: 'Annuel', pct: 10, periodMonths: 10, unit: 'an', detail: '32 cours/an, paiement en une fois' }
     ];
 
     const state = { formule: 1, fidelite: 0, paiement: 0 };
@@ -541,7 +541,8 @@ document.addEventListener('click', (e) => {
         const fid = FIDELITE[state.fidelite];
         const pay = PAIEMENT[state.paiement];
         const net = base * (1 - fid.pct / 100) * (1 - pay.pct / 100);
-        const monthly = net * 32 / 10;
+        const monthlyBase = net * 32 / 10;
+        const periodPrice = monthlyBase * pay.periodMonths;
 
         document.getElementById('result-formule').textContent = `Formule ${NOMS[formuleKey]} — ${DUREES[formuleKey]}`;
         document.getElementById('result-price').textContent = formatPrice(net);
@@ -550,7 +551,9 @@ document.addEventListener('click', (e) => {
         document.getElementById('result-fid-pct').textContent = fid.pct > 0 ? `-${fid.pct}%` : '0%';
         document.getElementById('result-pay-label').textContent = pay.label;
         document.getElementById('result-pay-pct').textContent = pay.pct > 0 ? `-${pay.pct}%` : '0%';
-        document.getElementById('result-monthly').textContent = '~' + Math.round(monthly) + '€';
+        document.getElementById('result-period-price').textContent = '~' + Math.round(periodPrice) + '€';
+        document.getElementById('result-period-unit').textContent = pay.unit;
+        document.getElementById('result-period-detail').textContent = `(${pay.detail})`;
     }
 
     document.addEventListener('DOMContentLoaded', () => {
