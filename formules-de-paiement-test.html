@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+        <!-- Google tag (gtag.js) -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-WD9VS5039D"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-WD9VS5039D');
+        </script>
+<meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
+<!-- Tailwind CSS CDN -->
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+/* Couleur du texte du menu contextuel */
+#context-menu a {
+    color: #18233f !important;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #f9fafb;
+    color: #1f2937;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    width: 100%;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    height: 14rem;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+}
+
+.logo-container-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: auto;
+    width: 1400px;
+    height: 300px;
+    background: transparent;
+}
+
+
+.logo-header {
+    height: 110px;
+    width: 110px;
+    object-fit: cover;
+    border-radius: 50%;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+footer {
+    background-color: #1f2937;
+    color: #fff;
+    padding: 2rem 1.5rem;
+    border-radius: 0;
+    max-width: 100vw;
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
+    left: 0;
+    right: 0;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.main-title {
+    font-size: 28px;
+    font-weight: bold;
+    color: #333;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.section-subtitle {
+    font-size: 25px;
+    font-weight: bold;
+    color: #0033cc;
+    text-align: center;
+    margin-top: 48px;
+    margin-bottom: 28px;
+    background: linear-gradient(90deg, #f0f4ff 0%, #eaf0fa 100%);
+    border-radius: 18px;
+    box-shadow: 0 2px 10px rgba(0,51,204,0.07);
+    padding: 18px 0 14px 0;
+    letter-spacing: 0.5px;
+    border-bottom: 3px solid #0033cc;
+    width: 100%;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+/* SWITCH & LABELS */
+.labels {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.label {
+    cursor: pointer;
+    font-size: 19px;
+    color: #666;
+}
+
+.label-on {
+    font-weight: bold;
+    color: #b9944e;
+}
+
+
+/* SWITCH dégradé (générique, N positions) */
+
+.switch {
+    position: relative;
+    width: 280px;
+    height: 34px;
+    background: linear-gradient(90deg, #18233f 0%, #b9944e 50%, #18233f 100%);
+    border-radius: 25px;
+    margin: 0 auto 20px;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.switch-thumb {
+    position: absolute;
+    top: 3px;
+    height: 28px;
+    border-radius: 20px;
+    background: linear-gradient(135deg, #fff 60%, #e0e0e0 100%);
+    box-shadow: 0 2px 8px rgba(0,51,204,0.15);
+    transition: left 0.3s cubic-bezier(.4,1.3,.6,1), width 0.3s;
+}
+
+/* SIMULATEUR */
+.selector-group {
+    max-width: 900px;
+    margin: 0 auto 32px auto;
+    text-align: center;
+}
+.selector-group h3 {
+    font-size: 1.1rem;
+    color: #18233f;
+    font-weight: 700;
+    margin-bottom: 12px;
+}
+.simulator-result-card {
+    max-width: 460px;
+    margin: 12px auto 0 auto;
+    background: rgba(180, 180, 200, 0.13);
+    border: 2px solid #b9944e;
+    border-radius: 16px;
+    padding: 28px 28px 32px 28px;
+    box-shadow: 0 6px 14px rgba(0,0,0,0.06);
+    text-align: center;
+}
+.simulator-result-card .result-formule {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #18233f;
+    margin-bottom: 6px;
+}
+.simulator-result-card .result-price {
+    font-size: 2.4rem;
+    font-weight: 800;
+    color: #18233f;
+    margin-bottom: 2px;
+}
+.simulator-result-card .result-price-unit {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #18233f;
+    opacity: 0.75;
+    margin-bottom: 18px;
+}
+.result-breakdown {
+    text-align: left;
+    max-width: 300px;
+    margin: 0 auto;
+    font-size: 0.98rem;
+    color: #18233f;
+}
+.result-breakdown p {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin: 0;
+    border-bottom: 1px dashed rgba(24,35,63,0.15);
+    padding: 6px 0;
+}
+.result-monthly-note {
+    margin-top: 16px;
+    font-size: 0.95rem;
+    color: #18233f;
+    opacity: 0.85;
+}
+
+/* CARDS DE PAIEMENT */
+.payments-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(220px, 1fr));
+    gap: 24px;
+    width: 100%;
+    max-width: 900px;
+    margin: 20px 0;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.pay-title {
+    text-align: center;
+}
+
+
+.pay-card {
+    background: rgba(180, 180, 200, 0.13);
+    border: 2px solid #b9944e;
+    border-radius: 16px;
+    padding: 18px 20px 48px 20px;
+    box-shadow: 0 6px 14px rgba(0,0,0,0.06);
+    transition: box-shadow 0.3s, background 0.3s, transform 0.3s, border-color 0.3s;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    min-height: 340px;
+}
+
+.inscription-link {
+    color: #b9944e;
+    font-weight: bold;
+    text-decoration: none;
+    font-size: 22px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 16px;
+    text-align: center;
+    transition: color 0.2s;
+}
+.inscription-link:hover {
+    color: #a67c2c;
+    text-decoration: underline;
+}
+
+
+.pay-card:hover {
+    background: rgba(220, 220, 240, 0.32);
+    border-color: #b9944e;
+    box-shadow:
+        0 0 12px 3px #ffe8b0cc,
+        0 0 24px 6px #b9944e44,
+        0 0 0 2px #b9944e,
+        0 10px 32px 0 rgba(24,35,63,0.10),
+        0 2px 8px 0 rgba(185,148,78,0.07);
+    transform: translateY(-2px) scale(1.035);
+    z-index: 2;
+}
+
+.pay-card.unactive {
+    border: 0px solid #1e90ff;
+    box-shadow: 0 8px 20px rgba(30,144,255,0.25);
+    transform: translateY(-2px);
+}
+
+
+.pay-price {
+    font-size: 28px;
+    font-weight: 700;
+    color: #18233f;
+    line-height: 1.2;
+    margin: 0 0 6px;
+    background: none;
+    text-align: center;
+}
+.pay-note {
+    display: block;
+    margin-bottom: 6px;
+    font-size: 15px;
+    color: #18233f;
+    background: none;
+    text-align: center;
+    word-break: break-word;
+}
+
+/* Explanation Box */
+.explanation-container {
+    max-width: 900px;
+    width: 100%;
+    margin: 0 0 36px 0;
+    padding: 36px 32px 32px 32px;
+    background: linear-gradient(120deg, #f9fafb 60%, #eaf0fa 100%);
+    border: 1.5px solid #b9944e;
+    border-radius: 22px;
+    box-shadow: 0 8px 32px 0 rgba(24,35,63,0.10), 0 2px 8px 0 rgba(185,148,78,0.08);
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.explanation-container h2 {
+    font-size: 1.7rem;
+    font-weight: 700;
+    color: #18233f;
+    margin-top: 0;
+    margin-bottom: 18px;
+    letter-spacing: 0.5px;
+}
+
+.explanation-container p {
+    font-size: 1.18rem;
+    color: #18233f;
+    line-height: 1.7;
+    margin: 0 auto;
+    max-width: 700px;
+}
+
+</style>
+</head>
+<body class="antialiased">
+    <!-- Header Section -->
+    <header class="bg-white shadow-md py-4 px-6 rounded-b-xl flex items-center justify-center relative z-1000">
+        <div class="logo-container-header" style="display:flex;justify-content:center;align-items:center;position:absolute;left:0;right:0;margin:auto;width:1400px;height:300px;background:transparent;">
+            <img src="images/logo-header.jpg" alt="Logo Piano" style="height:240px;width:600px;object-fit:contain;">
+        </div>
+    </header>
+
+<!-- Menu contextuel sticky déroulant en haut à droite -->
+<div id="context-menu-wrapper" style="position:fixed;top:32px;right:32px;z-index:2000;display:flex;flex-direction:column;align-items:flex-end;">
+    <button id="context-menu-toggle" aria-label="Ouvrir le menu" style="background:rgba(255,255,255,0.9);border:none;border-radius:12px;padding:10px 14px;box-shadow:0 2px 8px rgba(0,0,0,0.10);cursor:pointer;display:flex;align-items:center;justify-content:center;">
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" stroke="#1f2937" stroke-width="3" stroke-linecap="round"><line x1="7" y1="10" x2="25" y2="10"/><line x1="7" y1="16" x2="25" y2="16"/><line x1="7" y1="22" x2="25" y2="22"/></svg>
+    </button>
+    <nav id="context-menu" style="margin-top:10px;display:none;flex-direction:column;gap:12px;align-items:flex-end;min-width:160px;">
+    <a href="#simulateur" class="bg-white/90 hover:bg-indigo-100 text-indigo-700 font-semibold py-2 px-5 rounded-lg shadow transition-all duration-200" style="backdrop-filter:blur(4px);">Simulateur de tarif</a>
+    <a href="#formules-flexibles" class="bg-white/90 hover:bg-indigo-100 text-indigo-700 font-semibold py-2 px-5 rounded-lg shadow transition-all duration-200" style="backdrop-filter:blur(4px);">Formules flexibles</a>
+    </nav>
+</div>
+
+<!-- SECTION 1 : INTRO + SIMULATEUR -->
+<div id="simulateur" style="width:100vw;position:relative;left:50%;transform:translateX(-50%);background:#f9fafb;padding:0;margin-bottom:3rem;">
+    <div style="background:#f9fafb;padding:2.5rem 0;">
+        <div style="max-width:1000px;margin:0 auto;">
+            <h1 class="main-title" style="font-family:'Great Vibes',cursive;font-size:2.7rem;color:#18233f;text-shadow:2px 2px 6px rgba(255,255,255,0.7);background:none;box-shadow:none;border-radius:0;margin-bottom:2rem;text-align:center;letter-spacing:0.5px;font-style:cursive;">Formules de Paiement</h1>
+            <div class="explanation-container" style="background:#fff;color:#18233f;box-shadow:0 6px 14px rgba(24,35,63,0.10);margin-left:auto;margin-right:auto;">
+                <h2 style="font-family:'Great Vibes',cursive;text-align:center;font-size:2.3rem;
+                    background: linear-gradient(90deg, #18233f 0%, #b9944e 60%, #18233f 100%);
+                    -webkit-background-clip: text;
+                    -webkit-text-fill-color: transparent;
+                    background-clip: text;
+                    margin-bottom: 18px;">Comment ça marche ?</h2>
+                <p style="color:#18233f;font-family:'Inter',sans-serif;text-align:center;margin-left:auto;margin-right:auto;max-width:950px;font-size:1.08rem;">Sélectionnez votre formule, votre ancienneté et votre rythme de paiement ci-dessous : votre tarif s'affiche automatiquement.<br><br>Les remises fidélité et paiement se cumulent en cascade sur le tarif de base.</p><br><i>Formules à l'année : engagement de septembre à juin, avec des créneaux fixes, pour un planning stable et un suivi pédagogique de qualité.</i>
+            </div>
+            <h2 class="section-subtitle" style="background:linear-gradient(90deg,#23305a 0%,#18233f 100%);color:#fff;border-bottom:none;box-shadow:0 2px 10px rgba(24,35,63,0.18);">Simulateur — formules à l'année</h2>
+
+            <div class="selector-group">
+                <h3>1. Votre formule</h3>
+                <div class="labels">
+                    <span id="label-decouverte"  class="label">Découverte 30'</span>
+                    <span id="label-progression" class="label">Progression 45'</span>
+                    <span id="label-excellence"  class="label">Excellence 60'</span>
+                </div>
+                <div id="switch-formule" class="switch" style="width:280px;"></div>
+            </div>
+
+            <div class="selector-group">
+                <h3>2. Votre ancienneté</h3>
+                <div class="labels">
+                    <span id="label-fid-1" class="label">1-2 ans</span>
+                    <span id="label-fid-2" class="label">3-4 ans</span>
+                    <span id="label-fid-3" class="label">5-6 ans</span>
+                    <span id="label-fid-4" class="label">7 ans et +</span>
+                </div>
+                <div id="switch-fidelite" class="switch" style="width:340px;"></div>
+            </div>
+
+            <div class="selector-group">
+                <h3>3. Votre rythme de paiement</h3>
+                <div class="labels">
+                    <span id="label-pay-1" class="label">Mensuel</span>
+                    <span id="label-pay-2" class="label">Trimestriel</span>
+                    <span id="label-pay-3" class="label">Annuel</span>
+                </div>
+                <div id="switch-paiement" class="switch" style="width:280px;"></div>
+            </div>
+
+            <div class="simulator-result-card">
+                <div class="result-formule" id="result-formule">Formule Progression — 45 minutes</div>
+                <div class="result-price" id="result-price">54€</div>
+                <div class="result-price-unit">par cours</div>
+                <div class="result-breakdown">
+                    <p><span>Prix de base</span><strong id="result-base">54€</strong></p>
+                    <p><span>Remise fidélité (<span id="result-fid-label">1-2 ans</span>)</span><strong id="result-fid-pct">0%</strong></p>
+                    <p><span>Remise paiement (<span id="result-pay-label">Mensuel</span>)</span><strong id="result-pay-pct">0%</strong></p>
+                </div>
+                <p class="result-monthly-note">soit environ <strong id="result-monthly">173€</strong>/mois (32 cours/an sur 10 mensualités)</p>
+                <a class="inscription-link" href="https://forms.gle/7Kob2aKeVZzQGfDV6" target="_blank" style="position:static;display:inline-block;margin-top:18px;">Je m'inscris</a>
+            </div>
+            <p style="text-align:center;font-size:0.9rem;color:#18233f;opacity:0.7;max-width:600px;margin:20px auto 0 auto;">Tarif indicatif — le montant exact applicable à votre situation vous est confirmé individuellement.</p>
+        </div>
+    </div>
+</div>
+
+<!-- SECTION 2 : FORMULES FLEXIBLES -->
+<div id="formules-flexibles" style="width:100vw;position:relative;left:50%;transform:translateX(-50%);background:#f9fafb;padding:0;margin-bottom:3rem;">
+    <div style="background:#f9fafb;padding:2.5rem 0;">
+        <div style="max-width:1000px;margin:0 auto;">
+            <h2 class="section-subtitle" style="background:linear-gradient(90deg,#23305a 0%,#18233f 100%);color:#fff;border-bottom:none;box-shadow:0 2px 10px rgba(24,35,63,0.18);">Formules flexibles — sans engagement à l'année</h2>
+            <div class="payments-grid" style="grid-template-columns:repeat(2,minmax(260px,1fr));max-width:700px;">
+                <div class="pay-card">
+                    <div class="pay-title">Formule Impromptu</div>
+                    <div class="pay-price">430€ à 650€</div>
+                    <div class="pay-note"><strong>Carnet de 10 cours</strong></div>
+                    <ul style="text-align:left;padding-left:20px;margin:12px auto 0 auto;max-width:260px;color:#18233f;font-size:0.98rem;line-height:1.5;">
+                        <li style="margin-bottom:8px;">30 min : 430€ · 45 min : 540€ · 60 min : 650€</li>
+                        <li style="margin-bottom:8px;">Valable 4 mois, réservation libre en semaine de 9h à 15h</li>
+                        <li style="margin-bottom:8px;">Présentiel — idéal pour retraités, télétravailleurs, parents disponibles en journée</li>
+                        <li style="margin-bottom:8px;">Sans remise fidélité ni paiement</li>
+                        <li style="margin-bottom:8px;color:#7a5d28;">Essai Prélude (optionnel) : 30 min, 20€ — premier cours avant de vous engager (1 par élève)</li>
+                    </ul>
+                    <a class="inscription-link" href="https://forms.gle/7Kob2aKeVZzQGfDV6" target="_blank">Je m'inscris</a>
+                </div>
+                <div class="pay-card">
+                    <div class="pay-title">Formule Résonance</div>
+                    <div class="pay-price">140€ à 200€</div>
+                    <div class="pay-note"><strong>Forfait mensuel (4 cours)</strong></div>
+                    <ul style="text-align:left;padding-left:20px;margin:12px auto 0 auto;max-width:260px;color:#18233f;font-size:0.98rem;line-height:1.5;">
+                        <li style="margin-bottom:8px;">3 cours en visio + 1 en présentiel par mois, en semaine de 9h à 15h</li>
+                        <li style="margin-bottom:8px;">30 min : 35€ · 45 min : 40€ · 60 min : 50€ le cours</li>
+                        <li style="margin-bottom:8px;">Formule hybride idéale pour l'arrière-pays</li>
+                        <li style="margin-bottom:8px;">Engagement minimum 3 mois, virement dû avant le 5 du mois</li>
+                        <li style="margin-bottom:8px;color:#7a5d28;">Essai Prélude (optionnel) : 30 min en visio, 20€ — premier cours avant de vous engager (1 par élève)</li>
+                    </ul>
+                    <a class="inscription-link" href="https://forms.gle/7Kob2aKeVZzQGfDV6" target="_blank">Je m'inscris</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+// Menu contextuel déroulant (hamburger)
+const menuToggle = document.getElementById('context-menu-toggle');
+const menu = document.getElementById('context-menu');
+let menuOpen = false;
+menuToggle.addEventListener('click', () => {
+    menuOpen = !menuOpen;
+    menu.style.display = menuOpen ? 'flex' : 'none';
+});
+// Fermer le menu au clic en dehors
+document.addEventListener('click', (e) => {
+    if (!menu.contains(e.target) && !menuToggle.contains(e.target)) {
+        menu.style.display = 'none';
+        menuOpen = false;
+    }
+});
+// Simulateur de tarif : formule x ancienneté x rythme de paiement
+(function() {
+    const BASE_PRICES = { decouverte: 43, progression: 54, excellence: 65 };
+    const DUREES = { decouverte: '30 minutes', progression: '45 minutes', excellence: '60 minutes' };
+    const NOMS = { decouverte: 'Découverte', progression: 'Progression', excellence: 'Excellence' };
+    const FORMULES = ['decouverte', 'progression', 'excellence'];
+    const FIDELITE = [
+        { label: '1-2 ans', pct: 0 },
+        { label: '3-4 ans', pct: 5 },
+        { label: '5-6 ans', pct: 8 },
+        { label: '7 ans et +', pct: 10 }
+    ];
+    const PAIEMENT = [
+        { label: 'Mensuel', pct: 0 },
+        { label: 'Trimestriel', pct: 5 },
+        { label: 'Annuel', pct: 10 }
+    ];
+
+    const state = { formule: 1, fidelite: 0, paiement: 0 };
+
+    function formatPrice(n) {
+        const rounded = Math.round(n * 100) / 100;
+        return (Number.isInteger(rounded) ? String(rounded) : rounded.toFixed(2).replace('.', ',')) + '€';
+    }
+
+    function initSwitch(switchId, labelIds, count, getIndex, onSelect) {
+        const el = document.getElementById(switchId);
+        if (!el) return;
+        const thumb = document.createElement('div');
+        thumb.className = 'switch-thumb';
+        el.appendChild(thumb);
+
+        function place() {
+            const index = getIndex();
+            const w = el.offsetWidth;
+            const seg = w / count;
+            thumb.style.width = (seg - 6) + 'px';
+            thumb.style.left = (index * seg + 3) + 'px';
+            labelIds.forEach((id, i) => {
+                const lbl = document.getElementById(id);
+                if (lbl) lbl.classList.toggle('label-on', i === index);
+            });
+        }
+
+        el.addEventListener('click', (e) => {
+            const w = el.offsetWidth;
+            const seg = w / count;
+            let idx = Math.floor(e.offsetX / seg);
+            idx = Math.max(0, Math.min(count - 1, idx));
+            onSelect(idx);
+            place();
+            updateResult();
+        });
+        labelIds.forEach((id, i) => {
+            const lbl = document.getElementById(id);
+            if (lbl) lbl.addEventListener('click', () => { onSelect(i); place(); updateResult(); });
+        });
+        place();
+        window.addEventListener('resize', place);
+    }
+
+    function updateResult() {
+        const formuleKey = FORMULES[state.formule];
+        const base = BASE_PRICES[formuleKey];
+        const fid = FIDELITE[state.fidelite];
+        const pay = PAIEMENT[state.paiement];
+        const net = base * (1 - fid.pct / 100) * (1 - pay.pct / 100);
+        const monthly = net * 32 / 10;
+
+        document.getElementById('result-formule').textContent = `Formule ${NOMS[formuleKey]} — ${DUREES[formuleKey]}`;
+        document.getElementById('result-price').textContent = formatPrice(net);
+        document.getElementById('result-base').textContent = base + '€';
+        document.getElementById('result-fid-label').textContent = fid.label;
+        document.getElementById('result-fid-pct').textContent = fid.pct > 0 ? `-${fid.pct}%` : '0%';
+        document.getElementById('result-pay-label').textContent = pay.label;
+        document.getElementById('result-pay-pct').textContent = pay.pct > 0 ? `-${pay.pct}%` : '0%';
+        document.getElementById('result-monthly').textContent = '~' + Math.round(monthly) + '€';
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        initSwitch('switch-formule', ['label-decouverte', 'label-progression', 'label-excellence'], 3,
+            () => state.formule, (i) => { state.formule = i; });
+        initSwitch('switch-fidelite', ['label-fid-1', 'label-fid-2', 'label-fid-3', 'label-fid-4'], 4,
+            () => state.fidelite, (i) => { state.fidelite = i; });
+        initSwitch('switch-paiement', ['label-pay-1', 'label-pay-2', 'label-pay-3'], 3,
+            () => state.paiement, (i) => { state.paiement = i; });
+        updateResult();
+    });
+})();
+</script>
+    <!-- Bouton retour en haut -->
+    <button id="back-to-top" title="Retour en haut" style="position:fixed;bottom:32px;right:32px;z-index:2000;background:rgba(255,255,255,0.7);color:#4338ca;border:none;border-radius:50%;width:48px;height:48px;box-shadow:0 2px 8px rgba(0,0,0,0.12);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background 0.2s;opacity:0.7;">
+        <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 15l7-7 7 7"/></svg>
+    </button>
+    <footer class="bg-gray-800 text-white py-8 px-6 md:px-12 mt-20" style="border-radius:0;max-width:100vw;width:100vw;margin-left:calc(-50vw + 50%);left:0;right:0;">
+        <div class="container mx-auto text-center">
+            <p class="mb-4">&copy; 2025 Excellence piano by Natalia. Tous droits réservés.</p>
+            <p class="text-sm">
+                <a href="mentions-legales.html" style="color:#b9944e;text-decoration:underline;margin-right:18px;">Mentions légales</a>
+                <a href="politique-confidentialite.html" style="color:#b9944e;text-decoration:underline;">Politique de confidentialité</a>
+            </p>
+        </div>
+    </footer>
+    <script>
+    // Bouton retour en haut
+    document.addEventListener('DOMContentLoaded', function() {
+        var backToTopBtn = document.getElementById('back-to-top');
+        if (backToTopBtn) {
+            backToTopBtn.addEventListener('click', function() {
+                window.scrollTo({top:0,behavior:'smooth'});
+            });
+            // Affichage du bouton seulement après un scroll
+            window.addEventListener('scroll', function() {
+                if(window.scrollY > 200){
+                    backToTopBtn.style.display = 'flex';
+                }else{
+                    backToTopBtn.style.display = 'none';
+                }
+            });
+            // Initialement caché
+            backToTopBtn.style.display = 'none';
+        }
+    });
+    </script>
+</body>
+</html>
