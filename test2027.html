@@ -439,29 +439,13 @@
                     linear-gradient(30deg, rgba(179, 177, 177, 0.741) 0%, rgba(172, 170, 170, 0.848) 100%);
                 border: 0px solid #b9944e;
                 border-radius: 16px;
-                padding: 18px 20px 60px 20px;
+                padding: 18px 20px 24px 20px;
                 box-shadow: 0 6px 18px #18233f;
                 position: relative;
                 display: flex;
                 flex-direction: column;
                 min-height: 320px;
                 transition: box-shadow 0.3s, transform 0.3s;
-            }
-            #options-cours .paiement-link {
-                color: #18233f;
-                font-weight: bold;
-                text-decoration: none;
-                font-size: 16px;
-                position: absolute;
-                left: 0;
-                right: 0;
-                bottom: 16px;
-                text-align: center;
-                transition: color 0.2s;
-            }
-            #options-cours .paiement-link:hover {
-                color: #18233f;
-                text-decoration: underline;
             }
             #options-cours .option-card:hover {
                 box-shadow: 0 3px 3px #b9944e;
@@ -1038,7 +1022,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 <li>Initiation au solfège en douceur</li>
                 <li>Développement de l'oreille, du rythme et de la coordination</li>
             </ul>
-            <a class="paiement-link" href="formules-de-paiement.html?formule=decouverte#simulateur" target="_blank">Voir le simulateur de tarif</a>
         </div>
         <div class="option-card">
             <div class="option-title">Formule Progression</div>
@@ -1052,7 +1035,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 <li>Approfondissement du solfège et de la théorie</li>
                 <li>Développement de l'autonomie</li>
             </ul>
-            <a class="paiement-link" href="formules-de-paiement.html?formule=progression#simulateur" target="_blank">Voir le simulateur de tarif</a>
         </div>
         <div class="option-card">
             <div class="option-title">Formule Excellence</div>
@@ -1066,7 +1048,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 <li>Travail sur la technique et la musicalité</li>
                 <li>Développement de l'improvisation et initiation à la composition</li>
             </ul>
-            <a class="paiement-link" href="formules-de-paiement.html?formule=excellence#simulateur" target="_blank">Voir le simulateur de tarif</a>
         </div>
     </div>
     <div class="tarif-remises">
@@ -1090,6 +1071,7 @@ document.addEventListener('DOMContentLoaded', function() {
         </div>
         <p>Les deux remises se cumulent en cascade sur le tarif de base. Le tarif exact applicable à votre situation vous est communiqué individuellement.</p>
     </div>
+    <a href="formules-de-paiement.html#simulateur" class="bg-white/90 font-semibold rounded-lg shadow transition-all duration-200" style="backdrop-filter:blur(4px);color:#b9944e;font-weight:bold;border:2px solid #b9944e;padding:22px 32px;min-width:240px;max-width:420px;font-size:1.15rem;display:block;margin:2.5rem auto 0 auto;text-align:center;line-height:1.5;box-sizing:border-box;border-radius:1.2rem;transform:skewY(4deg);" target="_blank" rel="noopener">Je configure ma formule</a>
 </section>
 <section id="formules-flexibles">
     <div style="width:100%;display:flex;justify-content:center;align-items:center;margin-top:60px;margin-bottom:60px;transform:skewY(4deg);z-index:2;position:relative;">
