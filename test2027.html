@@ -349,7 +349,33 @@
         #options-cours .main-title 
         {transform: skewY(4deg);
         }
+        /* Section Formules flexibles avec effet biaisé et image de fond fixe */
+        #formules-flexibles {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 0;
+            min-height: 100vh;
+            background: url('images/piano4.jpg') center center/cover no-repeat fixed;
+            padding: 40px 0;
+            overflow: hidden;
+            transform: skewY(-4deg);
+            border-bottom: 25px solid rgba(0,0,0,0.05);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
         @media (max-width: 767px) {
+            #formules-flexibles {
+                transform: skewY(4deg);
+                border-bottom: none;
+                box-shadow: none;
+                min-height: auto;
+                margin-bottom: 2rem;
+                padding-top: 2rem;
+                padding-bottom: 2rem;
+                border-radius: 0.75rem;
+            }
             #options-cours {
                 transform: skewY(4deg);
                 border-bottom: none;
@@ -559,7 +585,7 @@
                 margin: 40px auto 0 auto;
                 background: rgba(255,255,255,0.32);
                 border-radius: 2.5rem;
-                padding: 2rem 1.8rem 1.8rem 1.8rem;
+                padding: 1.6rem 1.8rem 1.4rem 1.8rem;
                 box-shadow: 0 0 64px 32px rgba(255,255,255,0.45), 0 2px 24px 0 rgba(31,41,55,0.10);
                 backdrop-filter: blur(32px);
                 -webkit-backdrop-filter: blur(32px);
@@ -1056,13 +1082,11 @@ document.addEventListener('DOMContentLoaded', function() {
             <div class="option-price">430€ à 650€</div>
             <div class="option-subprice">le carnet de 10 cours</div>
             <ul class="option-list">
-                <li>Carnet de 10 cours, valable 4 mois</li>
                 <li>30 min : 430€ · 45 min : 540€ · 60 min : 650€</li>
-                <li>Réservation libre chaque semaine, en semaine de 9h à 15h</li>
-                <li>Cours en présentiel</li>
-                <li>Idéale pour retraités, télétravailleurs, parents disponibles en journée</li>
+                <li>Valable 4 mois, réservation libre en semaine de 9h à 15h</li>
+                <li>Présentiel — idéal pour retraités, télétravailleurs, parents disponibles en journée</li>
                 <li>Tarif plein, sans remise fidélité ni paiement</li>
-                <li>Cours d'essai Prélude possible : 30 min, 20€ (non déductible, 1 par élève)</li>
+                <li>Essai Prélude : 30 min, 20€ (1 par élève)</li>
             </ul>
             <a class="paiement-link" href="formules-de-paiement.html" target="_blank">Voir les formules de paiements</a>
         </div>
@@ -1071,14 +1095,11 @@ document.addEventListener('DOMContentLoaded', function() {
             <div class="option-price">140€ à 200€</div>
             <div class="option-subprice">par mois (4 cours)</div>
             <ul class="option-list">
-                <li>3 cours en visio + 1 cours en présentiel par mois</li>
-                <li>Tarif identique visio ou présentiel</li>
+                <li>3 cours en visio + 1 en présentiel par mois</li>
                 <li>30 min : 35€ · 45 min : 40€ · 60 min : 50€ le cours</li>
-                <li>Total mensuel : 140€ (30 min) · 160€ (45 min) · 200€ (60 min)</li>
                 <li>Formule hybride idéale pour l'arrière-pays</li>
-                <li>Paiement par virement, dû avant le 5 du mois</li>
-                <li>Engagement minimum de 3 mois</li>
-                <li>Cours d'essai Prélude possible : 30 min en visio, 20€ (non déductible, 1 par élève)</li>
+                <li>Engagement minimum 3 mois, virement dû avant le 5 du mois</li>
+                <li>Essai Prélude : 30 min en visio, 20€ (1 par élève)</li>
             </ul>
             <a class="paiement-link" href="formules-de-paiement.html" target="_blank">Voir les formules de paiements</a>
         </div>
