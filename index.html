@@ -349,7 +349,33 @@
         #options-cours .main-title 
         {transform: skewY(4deg);
         }
+        /* Section Formules flexibles avec effet biaisé et image de fond fixe */
+        #formules-flexibles {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 0;
+            min-height: 100vh;
+            background: url('images/piano4.jpg') center center/cover no-repeat fixed;
+            padding: 40px 0;
+            overflow: hidden;
+            transform: skewY(-4deg);
+            border-bottom: 25px solid rgba(0,0,0,0.05);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
         @media (max-width: 767px) {
+            #formules-flexibles {
+                transform: skewY(4deg);
+                border-bottom: none;
+                box-shadow: none;
+                min-height: auto;
+                margin-bottom: 2rem;
+                padding-top: 2rem;
+                padding-bottom: 2rem;
+                border-radius: 0.75rem;
+            }
             #options-cours {
                 transform: skewY(4deg);
                 border-bottom: none;
@@ -454,7 +480,19 @@
                 font-weight: 700;
                 color: #18233f;
                 text-align: center;
-                margin-bottom: 18px;
+                margin-bottom: 2px;
+            }
+            #options-cours .option-price .option-price-unit {
+                font-size: 15px;
+                font-weight: 600;
+            }
+            #options-cours .option-price-sub {
+                font-size: 14px;
+                font-weight: 500;
+                color: #18233f;
+                opacity: 0.75;
+                text-align: center;
+                margin-bottom: 16px;
             }
             #options-cours .option-list {
                 margin: 0 0 0 0;
@@ -465,6 +503,155 @@
                 color: #18233f;
                 margin-bottom: 10px;
                 list-style-type: disc;
+            }
+            #options-cours .option-note {
+                display: inline-block;
+                align-self: center;
+                font-size: 12.5px;
+                font-weight: 700;
+                letter-spacing: 0.2px;
+                color: #7a5d28;
+                background: rgba(255,255,255,0.6);
+                border: 1px solid rgba(185,148,78,0.65);
+                border-radius: 999px;
+                padding: 3px 12px;
+                text-align: center;
+                margin-bottom: 14px;
+            }
+            /* ----------- Formules flexibles (Impromptu / Résonance) ----------- */
+            #formules-flexibles .section-content-wrapper,
+            #formules-flexibles .options-grid,
+            #formules-flexibles .main-title {
+                transform: skewY(4deg);
+            }
+            #formules-flexibles .options-grid {
+                display: grid;
+                grid-template-columns: repeat(2, minmax(220px, 1fr));
+                gap: 24px;
+                width: 100%;
+                max-width: 720px;
+                margin: 40px auto 0 auto;
+            }
+            #formules-flexibles .option-card {
+                background:
+                    linear-gradient(85deg, rgba(92, 81, 16, 0.009) 0%, rgba(92, 81, 16, 0.089) 100%),
+                    linear-gradient(30deg, rgba(179, 177, 177, 0.741) 0%, rgba(172, 170, 170, 0.848) 100%);
+                border: 0px solid #b9944e;
+                border-radius: 16px;
+                padding: 18px 20px 60px 20px;
+                box-shadow: 0 6px 18px #18233f;
+                position: relative;
+                display: flex;
+                flex-direction: column;
+                min-height: 320px;
+                transition: box-shadow 0.3s, transform 0.3s;
+            }
+            #formules-flexibles .option-card:hover {
+                box-shadow: 0 3px 3px #b9944e;
+                transform: translateY(-6px) scale(1.03);
+                z-index: 2;
+            }
+            #formules-flexibles .option-title {
+                font-size: 20px;
+                font-weight: bold;
+                color: #18233f;
+                margin-bottom: 8px;
+                text-align: center;
+            }
+            #formules-flexibles .option-tag {
+                font-size: 15px;
+                font-weight: 700;
+                color: #18233f;
+                text-align: center;
+                margin-bottom: 6px;
+            }
+            #formules-flexibles .option-price {
+                font-size: 22px;
+                font-weight: 700;
+                color: #18233f;
+                text-align: center;
+                margin-bottom: 18px;
+            }
+            #formules-flexibles .option-list {
+                margin: 0;
+                padding: 0 0 0 18px;
+            }
+            #formules-flexibles .option-list li {
+                font-size: 15px;
+                color: #18233f;
+                margin-bottom: 10px;
+                list-style-type: disc;
+            }
+            #formules-flexibles .paiement-link {
+                color: #18233f;
+                font-weight: bold;
+                text-decoration: none;
+                font-size: 16px;
+                position: absolute;
+                left: 0;
+                right: 0;
+                bottom: 16px;
+                text-align: center;
+                transition: color 0.2s;
+            }
+            #formules-flexibles .paiement-link:hover {
+                color: #18233f;
+                text-decoration: underline;
+            }
+            /* ----------- Transparence remises (fidélité / paiement) ----------- */
+            .tarif-remises {
+                max-width: 720px;
+                margin: 40px auto 0 auto;
+                background: rgba(255,255,255,0.32);
+                border-radius: 2.5rem;
+                padding: 1.6rem 1.8rem 1.4rem 1.8rem;
+                box-shadow: 0 0 64px 32px rgba(255,255,255,0.45), 0 2px 24px 0 rgba(31,41,55,0.10);
+                backdrop-filter: blur(32px);
+                -webkit-backdrop-filter: blur(32px);
+                border: 1px solid rgba(255,255,255,0.10);
+                transform: skewY(4deg);
+            }
+            .tarif-remises h3 {
+                font-family: 'Great Vibes', cursive;
+                font-size: 1.8rem;
+                color: #18233f;
+                text-align: center;
+                margin: 0 0 1rem 0;
+                font-weight: 700;
+            }
+            .tarif-remises-grid {
+                display: grid;
+                grid-template-columns: repeat(2, minmax(200px, 1fr));
+                gap: 1.5rem;
+            }
+            .tarif-remises table {
+                width: 100%;
+                border-collapse: collapse;
+            }
+            .tarif-remises caption {
+                font-weight: 700;
+                color: #18233f;
+                margin-bottom: 0.5rem;
+                text-align: center;
+                font-size: 1rem;
+            }
+            .tarif-remises th, .tarif-remises td {
+                padding: 6px 10px;
+                text-align: center;
+                font-size: 0.95rem;
+                color: #18233f;
+                border-bottom: 1px solid rgba(24,35,63,0.15);
+            }
+            .tarif-remises th {
+                font-weight: 700;
+                color: #7a5d28;
+            }
+            .tarif-remises p {
+                font-size: 0.95rem;
+                color: #18233f;
+                text-align: center;
+                margin-top: 1.2rem;
+                margin-bottom: 0;
             }
         /* ----------- Parallaxe Exigences Piano ----------- */
  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
@@ -570,7 +757,8 @@
             <a href="#stages-intensifs" class="bg-white/90 hover:bg-indigo-100 font-semibold py-2 px-5 rounded-lg shadow transition-all duration-200" style="backdrop-filter:blur(4px);color:#18233f;">Stages intensifs</a>
             <a href="#exigences-piano" class="bg-white/90 hover:bg-indigo-100 font-semibold py-2 px-5 rounded-lg shadow transition-all duration-200" style="backdrop-filter:blur(4px);color:#18233f;">Choisir son instrument</a>
             <a href="#options-cours" class="bg-white/90 hover:bg-indigo-100 font-semibold py-2 px-5 rounded-lg shadow transition-all duration-200" style="backdrop-filter:blur(4px);color:#18233f;">Tarifs des cours</a>
-            <a href="formules-de-paiement.html" target="_blank" class="bg-white/90 hover:bg-indigo-100 font-semibold py-2 px-5 rounded-lg shadow transition-all duration-200" style="backdrop-filter:blur(4px);color:#18233f;">Offres de paiements</a>
+            <a href="#formules-flexibles" class="bg-white/90 hover:bg-indigo-100 font-semibold py-2 px-5 rounded-lg shadow transition-all duration-200" style="backdrop-filter:blur(4px);color:#18233f;">Formules flexibles</a>
+            <a href="formules-de-paiement.html" target="_blank" class="bg-white/90 hover:bg-indigo-100 font-semibold py-2 px-5 rounded-lg shadow transition-all duration-200" style="backdrop-filter:blur(4px);color:#18233f;">Simulateur de tarif</a>
             <a href="#inscription" class="bg-white/90 hover:bg-indigo-100 font-semibold py-2 px-5 rounded-lg shadow transition-all duration-200" style="backdrop-filter:blur(4px);color:#18233f;">Inscription</a>
             <a href="#contact" class="bg-white/90 hover:bg-indigo-100 font-semibold py-2 px-5 rounded-lg shadow transition-all duration-200" style="backdrop-filter:blur(4px);color:#18233f;">Contact</a>
         </nav>
@@ -834,12 +1022,15 @@ document.addEventListener('DOMContentLoaded', function() {
     <div style="width:100%;display:flex;justify-content:center;align-items:center;margin-top:60px;margin-bottom:60px;transform:skewY(4deg);z-index:2;position:relative;">
     <div style="background:rgba(255,255,255,0.32);border-radius:2.5rem;padding:2rem 1.5rem 1.5rem 1.5rem;box-shadow:0 0 64px 32px rgba(255,255,255,0.45), 0 2px 24px 0 rgba(31,41,55,0.10);backdrop-filter:blur(32px);-webkit-backdrop-filter:blur(32px);border:1px solid rgba(255,255,255,0.10);max-width:540px;margin:0 auto;">
     <h2 style="font-size:2.2rem;font-family:'Great Vibes',cursive;color:#18233f;text-align:center;margin-bottom:1.2rem;width:100%;font-weight:700;text-shadow:none;background:none;">Découvrez les formules de cours adaptées à tous les niveaux et objectifs.</h2>
+    <p style="font-size:1.05rem;color:#18233f;text-align:center;margin:0;">Formules à l'année, avec engagement de septembre à juin. Découverte, Progression et Excellence se distinguent par l'objectif pédagogique et l'envie de l'élève, pas par le niveau technique.</p>
     </div>
     </div>
     <div class="options-grid" style="margin-top:40px;">
         <div class="option-card">
             <div class="option-title">Formule Découverte</div>
-            <div class="option-price">43€</div>
+            <div class="option-price">Dès 138€<span class="option-price-unit">/mois</span></div>
+            <div class="option-price-sub">soit 43€ le cours</div>
+            <div class="option-note">Engagement à l'année · sept-juin</div>
             <ul class="option-list">
                 <li>30 minutes de cours</li>
                 <li>Pour les 5 à 6 ans</li>
@@ -847,11 +1038,13 @@ document.addEventListener('DOMContentLoaded', function() {
                 <li>Initiation au solfège en douceur</li>
                 <li>Développement de l'oreille, du rythme et de la coordination</li>
             </ul>
-            <a class="paiement-link" href="formules-de-paiement.html" target="_blank">Voir les formules de paiements</a>
+            <a class="paiement-link" href="formules-de-paiement.html" target="_blank">Voir le simulateur de tarif</a>
         </div>
         <div class="option-card">
             <div class="option-title">Formule Progression</div>
-            <div class="option-price">54€</div>
+            <div class="option-price">Dès 173€<span class="option-price-unit">/mois</span></div>
+            <div class="option-price-sub">soit 54€ le cours</div>
+            <div class="option-note">Engagement à l'année · sept-juin</div>
             <ul class="option-list">
                 <li>45 minutes de cours</li>
                 <li>A partir de 7 ans</li>
@@ -859,11 +1052,13 @@ document.addEventListener('DOMContentLoaded', function() {
                 <li>Approfondissement du solfège et de la théorie</li>
                 <li>Développement de l'autonomie</li>
             </ul>
-            <a class="paiement-link" href="formules-de-paiement.html" target="_blank">Voir les formules de paiements</a>
+            <a class="paiement-link" href="formules-de-paiement.html" target="_blank">Voir le simulateur de tarif</a>
         </div>
         <div class="option-card">
             <div class="option-title">Formule Excellence</div>
-            <div class="option-price">65€</div>
+            <div class="option-price">Dès 208€<span class="option-price-unit">/mois</span></div>
+            <div class="option-price-sub">soit 65€ le cours</div>
+            <div class="option-note">Engagement à l'année · sept-juin</div>
             <ul class="option-list">
                 <li>60 minutes de cours</li>
                 <li>A partir de 7 ans</li>
@@ -871,7 +1066,64 @@ document.addEventListener('DOMContentLoaded', function() {
                 <li>Travail sur la technique et la musicalité</li>
                 <li>Développement de l'improvisation et initiation à la composition</li>
             </ul>
-            <a class="paiement-link" href="formules-de-paiement.html" target="_blank">Voir les formules de paiements</a>
+            <a class="paiement-link" href="formules-de-paiement.html" target="_blank">Voir le simulateur de tarif</a>
+        </div>
+    </div>
+    <div class="tarif-remises">
+        <h3>Remises fidélité &amp; paiement (cumulables)</h3>
+        <div class="tarif-remises-grid">
+            <table>
+                <caption>Ancienneté</caption>
+                <tr><th>Durée</th><th>Remise</th></tr>
+                <tr><td>1-2 ans</td><td>0%</td></tr>
+                <tr><td>3-4 ans</td><td>-5%</td></tr>
+                <tr><td>5-6 ans</td><td>-8%</td></tr>
+                <tr><td>7 ans et +</td><td>-10%</td></tr>
+            </table>
+            <table>
+                <caption>Fréquence de paiement</caption>
+                <tr><th>Rythme</th><th>Remise</th></tr>
+                <tr><td>Mensuel</td><td>0%</td></tr>
+                <tr><td>Trimestriel</td><td>-5%</td></tr>
+                <tr><td>Annuel</td><td>-10%</td></tr>
+            </table>
+        </div>
+        <p>Les deux remises se cumulent en cascade sur le tarif de base. Le tarif exact applicable à votre situation vous est communiqué individuellement.</p>
+    </div>
+</section>
+<section id="formules-flexibles">
+    <div style="width:100%;display:flex;justify-content:center;align-items:center;margin-top:60px;margin-bottom:60px;transform:skewY(4deg);z-index:2;position:relative;">
+    <div style="background:rgba(255,255,255,0.32);border-radius:2.5rem;padding:2rem 1.5rem 1.5rem 1.5rem;box-shadow:0 0 64px 32px rgba(255,255,255,0.45), 0 2px 24px 0 rgba(31,41,55,0.10);backdrop-filter:blur(32px);-webkit-backdrop-filter:blur(32px);border:1px solid rgba(255,255,255,0.10);max-width:540px;margin:0 auto;">
+    <h2 style="font-size:2.2rem;font-family:'Great Vibes',cursive;color:#18233f;text-align:center;margin-bottom:1.2rem;width:100%;font-weight:700;text-shadow:none;background:none;">Des formules flexibles, sans planning fixe à la rentrée.</h2>
+    <p style="font-size:1.05rem;color:#18233f;text-align:center;margin:0;">Pour celles et ceux qui veulent du piano sans engagement scolaire classique, ou qui habitent loin.</p>
+    </div>
+    </div>
+    <div class="options-grid" style="margin-top:40px;">
+        <div class="option-card">
+            <div class="option-title">Formule Impromptu</div>
+            <div class="option-tag">Carnet de 10 cours</div>
+            <div class="option-price">430€ à 650€</div>
+            <ul class="option-list">
+                <li>30 min : 430€ · 45 min : 540€ · 60 min : 650€</li>
+                <li>Valable 4 mois, réservation libre en semaine de 9h à 15h</li>
+                <li>Présentiel — idéal pour retraités, télétravailleurs, parents disponibles en journée</li>
+                <li>Sans remise fidélité ni paiement</li>
+                <li>Essai Prélude (optionnel) : 30 min, 20€ — premier cours avant de vous engager (1 par élève)</li>
+            </ul>
+            <a class="paiement-link" href="formules-de-paiement.html" target="_blank">Voir le simulateur de tarif</a>
+        </div>
+        <div class="option-card">
+            <div class="option-title">Formule Résonance</div>
+            <div class="option-tag">Forfait mensuel (4 cours)</div>
+            <div class="option-price">140€ à 200€</div>
+            <ul class="option-list">
+                <li>3 cours en visio + 1 en présentiel par mois, en semaine de 9h à 15h</li>
+                <li>30 min : 35€ · 45 min : 40€ · 60 min : 50€ le cours</li>
+                <li>Formule hybride idéale pour l'arrière-pays</li>
+                <li>Engagement minimum 3 mois, virement dû avant le 5 du mois</li>
+                <li>Essai Prélude (optionnel) : 30 min en visio, 20€ — premier cours avant de vous engager (1 par élève)</li>
+            </ul>
+            <a class="paiement-link" href="formules-de-paiement.html" target="_blank">Voir le simulateur de tarif</a>
         </div>
     </div>
 </section>
