@@ -218,37 +218,6 @@ footer {
     opacity: 0.85;
 }
 
-/* CARDS DE PAIEMENT */
-.payments-grid {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(220px, 1fr));
-    gap: 24px;
-    width: 100%;
-    max-width: 900px;
-    margin: 20px 0;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.pay-title {
-    text-align: center;
-}
-
-
-.pay-card {
-    background: rgba(180, 180, 200, 0.13);
-    border: 2px solid #b9944e;
-    border-radius: 16px;
-    padding: 18px 20px 48px 20px;
-    box-shadow: 0 6px 14px rgba(0,0,0,0.06);
-    transition: box-shadow 0.3s, background 0.3s, transform 0.3s, border-color 0.3s;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    min-height: 340px;
-}
-
 .inscription-link {
     color: #b9944e;
     font-weight: bold;
@@ -266,45 +235,6 @@ footer {
     text-decoration: underline;
 }
 
-
-.pay-card:hover {
-    background: rgba(220, 220, 240, 0.32);
-    border-color: #b9944e;
-    box-shadow:
-        0 0 12px 3px #ffe8b0cc,
-        0 0 24px 6px #b9944e44,
-        0 0 0 2px #b9944e,
-        0 10px 32px 0 rgba(24,35,63,0.10),
-        0 2px 8px 0 rgba(185,148,78,0.07);
-    transform: translateY(-2px) scale(1.035);
-    z-index: 2;
-}
-
-.pay-card.unactive {
-    border: 0px solid #1e90ff;
-    box-shadow: 0 8px 20px rgba(30,144,255,0.25);
-    transform: translateY(-2px);
-}
-
-
-.pay-price {
-    font-size: 28px;
-    font-weight: 700;
-    color: #18233f;
-    line-height: 1.2;
-    margin: 0 0 6px;
-    background: none;
-    text-align: center;
-}
-.pay-note {
-    display: block;
-    margin-bottom: 6px;
-    font-size: 15px;
-    color: #18233f;
-    background: none;
-    text-align: center;
-    word-break: break-word;
-}
 
 /* Explanation Box */
 .explanation-container {
@@ -354,7 +284,6 @@ footer {
     </button>
     <nav id="context-menu" style="margin-top:10px;display:none;flex-direction:column;gap:12px;align-items:flex-end;min-width:160px;">
     <a href="#simulateur" class="bg-white/90 hover:bg-indigo-100 text-indigo-700 font-semibold py-2 px-5 rounded-lg shadow transition-all duration-200" style="backdrop-filter:blur(4px);">Simulateur de tarif</a>
-    <a href="#formules-flexibles" class="bg-white/90 hover:bg-indigo-100 text-indigo-700 font-semibold py-2 px-5 rounded-lg shadow transition-all duration-200" style="backdrop-filter:blur(4px);">Formules flexibles</a>
     </nav>
 </div>
 
@@ -422,42 +351,6 @@ footer {
     </div>
 </div>
 
-<!-- SECTION 2 : FORMULES FLEXIBLES -->
-<div id="formules-flexibles" style="width:100vw;position:relative;left:50%;transform:translateX(-50%);background:#f9fafb;padding:0;margin-bottom:3rem;">
-    <div style="background:#f9fafb;padding:2.5rem 0;">
-        <div style="max-width:1000px;margin:0 auto;">
-            <h2 class="section-subtitle" style="background:linear-gradient(90deg,#23305a 0%,#18233f 100%);color:#fff;border-bottom:none;box-shadow:0 2px 10px rgba(24,35,63,0.18);">Formules flexibles — sans engagement à l'année</h2>
-            <div class="payments-grid" style="grid-template-columns:repeat(2,minmax(260px,1fr));max-width:700px;">
-                <div class="pay-card">
-                    <div class="pay-title">Formule Impromptu</div>
-                    <div class="pay-price">430€ à 650€</div>
-                    <div class="pay-note"><strong>Carnet de 10 cours</strong></div>
-                    <ul style="text-align:left;padding-left:20px;margin:12px auto 0 auto;max-width:260px;color:#18233f;font-size:0.98rem;line-height:1.5;">
-                        <li style="margin-bottom:8px;">30 min : 430€ · 45 min : 540€ · 60 min : 650€</li>
-                        <li style="margin-bottom:8px;">Valable 4 mois, réservation libre en semaine de 9h à 15h</li>
-                        <li style="margin-bottom:8px;">Présentiel — idéal pour retraités, télétravailleurs, parents disponibles en journée</li>
-                        <li style="margin-bottom:8px;">Sans remise fidélité ni paiement</li>
-                        <li style="margin-bottom:8px;color:#7a5d28;">Essai Prélude (optionnel) : 30 min, 20€ — premier cours avant de vous engager (1 par élève)</li>
-                    </ul>
-                    <a class="inscription-link" href="https://forms.gle/7Kob2aKeVZzQGfDV6" target="_blank">Je m'inscris</a>
-                </div>
-                <div class="pay-card">
-                    <div class="pay-title">Formule Résonance</div>
-                    <div class="pay-price">140€ à 200€</div>
-                    <div class="pay-note"><strong>Forfait mensuel (4 cours)</strong></div>
-                    <ul style="text-align:left;padding-left:20px;margin:12px auto 0 auto;max-width:260px;color:#18233f;font-size:0.98rem;line-height:1.5;">
-                        <li style="margin-bottom:8px;">3 cours en visio + 1 en présentiel par mois, en semaine de 9h à 15h</li>
-                        <li style="margin-bottom:8px;">30 min : 35€ · 45 min : 40€ · 60 min : 50€ le cours</li>
-                        <li style="margin-bottom:8px;">Formule hybride idéale pour l'arrière-pays</li>
-                        <li style="margin-bottom:8px;">Engagement minimum 3 mois, virement dû avant le 5 du mois</li>
-                        <li style="margin-bottom:8px;color:#7a5d28;">Essai Prélude (optionnel) : 30 min en visio, 20€ — premier cours avant de vous engager (1 par élève)</li>
-                    </ul>
-                    <a class="inscription-link" href="https://forms.gle/7Kob2aKeVZzQGfDV6" target="_blank">Je m'inscris</a>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
 <script>
 // Menu contextuel déroulant (hamburger)
 const menuToggle = document.getElementById('context-menu-toggle');
