@@ -1,0 +1,996 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+        <!-- Google tag (gtag.js) -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-WD9VS5039D"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-WD9VS5039D');
+        </script>
+<meta charset="UTF-8">
+<title>Formulaire d'inscription - Excellence piano by Natalia</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
+<!-- Tailwind CSS CDN -->
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+/* Couleur du texte du menu contextuel */
+#context-menu a {
+    color: #18233f !important;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #f9fafb;
+    color: #1f2937;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    width: 100%;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    height: 14rem;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+}
+
+.logo-container-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: auto;
+    width: 1400px;
+    height: 300px;
+    background: transparent;
+}
+
+footer {
+    background-color: #1f2937;
+    color: #fff;
+    padding: 2rem 1.5rem;
+    border-radius: 0;
+    max-width: 100vw;
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
+    left: 0;
+    right: 0;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.main-title {
+    font-size: 28px;
+    font-weight: bold;
+    color: #333;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.section-subtitle {
+    font-size: 25px;
+    font-weight: bold;
+    color: #0033cc;
+    text-align: center;
+    margin-top: 48px;
+    margin-bottom: 28px;
+    background: linear-gradient(90deg, #f0f4ff 0%, #eaf0fa 100%);
+    border-radius: 18px;
+    box-shadow: 0 2px 10px rgba(0,51,204,0.07);
+    padding: 18px 0 14px 0;
+    letter-spacing: 0.5px;
+    border-bottom: 3px solid #0033cc;
+    width: 100%;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.explanation-container {
+    max-width: 900px;
+    width: 100%;
+    margin: 0 auto 36px auto;
+    padding: 36px 32px 32px 32px;
+    background: linear-gradient(120deg, #f9fafb 60%, #eaf0fa 100%);
+    border: 1.5px solid #b9944e;
+    border-radius: 22px;
+    box-shadow: 0 8px 32px 0 rgba(24,35,63,0.10), 0 2px 8px 0 rgba(185,148,78,0.08);
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.explanation-container h2 {
+    font-size: 1.7rem;
+    font-weight: 700;
+    color: #18233f;
+    margin-top: 0;
+    margin-bottom: 18px;
+    letter-spacing: 0.5px;
+}
+
+.explanation-container p {
+    font-size: 1.08rem;
+    color: #18233f;
+    line-height: 1.7;
+    margin: 0 auto;
+    max-width: 700px;
+}
+
+/* ===== FORMULAIRE ===== */
+.form-shell {
+    max-width: 720px;
+    margin: 0 auto 40px auto;
+    background: #fff;
+    border: 1.5px solid #b9944e;
+    border-radius: 22px;
+    box-shadow: 0 8px 32px 0 rgba(24,35,63,0.10), 0 2px 8px 0 rgba(185,148,78,0.08);
+    padding: 2.4rem 2rem 2rem 2rem;
+    box-sizing: border-box;
+}
+
+.form-progress {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 2rem;
+}
+.form-progress .dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #e5e0d5;
+    border: 1px solid #b9944e;
+    transition: background 0.3s;
+}
+.form-progress .dot.active {
+    background: #b9944e;
+}
+.form-progress .dot.done {
+    background: #18233f;
+    border-color: #18233f;
+}
+.form-step-label {
+    text-align: center;
+    font-size: 0.95rem;
+    color: #18233f;
+    font-weight: 700;
+    margin-bottom: 1.6rem;
+    letter-spacing: 0.3px;
+}
+
+.form-step {
+    display: none;
+}
+.form-step.active {
+    display: block;
+}
+
+.form-step h3 {
+    font-family: 'Great Vibes', cursive;
+    font-size: 2rem;
+    color: #18233f;
+    text-align: center;
+    margin: 0 0 1.6rem 0;
+    font-weight: 700;
+}
+
+.field-group {
+    margin-bottom: 1.4rem;
+}
+.field-group label.field-label {
+    display: block;
+    font-weight: 700;
+    color: #18233f;
+    margin-bottom: 8px;
+    font-size: 0.98rem;
+}
+.field-group .field-hint {
+    display: block;
+    font-weight: 400;
+    font-size: 0.85rem;
+    color: #6b7280;
+    margin-top: 4px;
+}
+.field-group input[type="text"],
+.field-group input[type="email"],
+.field-group textarea {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 12px 14px;
+    border: 1.5px solid #d8cba9;
+    border-radius: 10px;
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+    color: #18233f;
+    background: #fdfcf8;
+}
+.field-group input[type="text"]:focus,
+.field-group input[type="email"]:focus,
+.field-group textarea:focus {
+    outline: none;
+    border-color: #b9944e;
+    box-shadow: 0 0 0 3px rgba(185,148,78,0.15);
+}
+.field-group textarea { resize: vertical; min-height: 90px; }
+
+.choice-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+.choice-chip {
+    position: relative;
+}
+.choice-chip input {
+    position: absolute;
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    cursor: pointer;
+}
+.choice-chip span {
+    display: block;
+    padding: 10px 18px;
+    border: 1.5px solid #d8cba9;
+    border-radius: 999px;
+    font-size: 0.95rem;
+    color: #18233f;
+    background: #fdfcf8;
+    transition: background 0.2s, border-color 0.2s, color 0.2s;
+    cursor: pointer;
+    user-select: none;
+}
+.choice-chip input:checked + span {
+    background: #18233f;
+    border-color: #18233f;
+    color: #d9b866;
+    font-weight: 700;
+}
+.choice-chip input:focus-visible + span {
+    box-shadow: 0 0 0 3px rgba(185,148,78,0.35);
+}
+
+.avail-grid-wrapper {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+table.avail-grid {
+    border-collapse: collapse;
+    width: 100%;
+    min-width: 480px;
+}
+table.avail-grid th, table.avail-grid td {
+    text-align: center;
+    padding: 4px;
+    font-size: 0.82rem;
+    color: #18233f;
+}
+table.avail-grid th {
+    font-weight: 700;
+    color: #7a5d28;
+    padding-bottom: 8px;
+}
+table.avail-grid td:first-child {
+    text-align: right;
+    font-weight: 600;
+    padding-right: 8px;
+    white-space: nowrap;
+}
+table.avail-grid input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    accent-color: #18233f;
+    cursor: pointer;
+}
+
+.reminder-box {
+    background: #fdfaf2;
+    border: 1px solid rgba(185,148,78,0.4);
+    border-radius: 14px;
+    padding: 14px 18px;
+    margin-bottom: 1.6rem;
+    font-size: 0.9rem;
+    color: #18233f;
+    line-height: 1.6;
+}
+.reminder-box strong { color: #7a5d28; }
+
+.legal-box {
+    max-height: 340px;
+    overflow-y: auto;
+    background: #fdfcf8;
+    border: 1.5px solid #d8cba9;
+    border-radius: 14px;
+    padding: 1.2rem 1.4rem;
+    font-size: 0.88rem;
+    line-height: 1.6;
+    color: #18233f;
+    text-align: left;
+    margin-bottom: 1.2rem;
+}
+.legal-box h4 {
+    color: #7a5d28;
+    font-size: 0.95rem;
+    margin: 1.1rem 0 0.4rem 0;
+}
+.legal-box h4:first-child { margin-top: 0; }
+.legal-box ul { margin: 0.3rem 0; padding-left: 1.2rem; }
+.legal-box p { margin: 0.4rem 0; }
+
+.consent-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    background: #fdfaf2;
+    border: 1.5px solid rgba(185,148,78,0.5);
+    border-radius: 12px;
+    padding: 14px 16px;
+}
+.consent-row input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    margin-top: 2px;
+    accent-color: #18233f;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+.consent-row label {
+    font-size: 0.92rem;
+    color: #18233f;
+    line-height: 1.5;
+    cursor: pointer;
+}
+
+.upload-zone {
+    border: 2px dashed #b9944e;
+    border-radius: 16px;
+    padding: 2rem 1.5rem;
+    text-align: center;
+    background: #fdfaf2;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+.upload-zone:hover { background: #f9f2df; }
+.upload-zone input[type="file"] { display: none; }
+.upload-zone .upload-icon { font-size: 2.2rem; margin-bottom: 8px; }
+.upload-status {
+    margin-top: 12px;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+.upload-status.pending { color: #7a5d28; }
+.upload-status.success { color: #18233f; }
+.upload-status.error { color: #b91c1c; }
+
+.form-nav {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin-top: 2rem;
+}
+.form-nav button {
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    padding: 14px 28px;
+    border-radius: 1rem;
+    cursor: pointer;
+    border: 2px solid #18233f;
+    transition: background 0.25s, color 0.25s, transform 0.2s;
+}
+.btn-prev {
+    background: #fff;
+    color: #18233f;
+}
+.btn-prev:hover { background: #f3f0e7; }
+.btn-next, .btn-submit {
+    background: #18233f;
+    color: #d9b866;
+    border-color: #18233f;
+    margin-left: auto;
+}
+.btn-next:hover, .btn-submit:hover {
+    background: #23305a;
+    transform: translateY(-2px);
+}
+.btn-prev:disabled { visibility: hidden; }
+
+.error-message {
+    color: #b91c1c;
+    font-size: 0.85rem;
+    margin-top: 6px;
+    display: none;
+}
+
+.success-panel {
+    text-align: center;
+    padding: 2rem 1rem;
+}
+.success-panel .checkmark {
+    font-size: 3rem;
+    color: #18233f;
+    margin-bottom: 1rem;
+}
+
+@media (max-width: 640px) {
+    .form-shell { padding: 1.6rem 1.2rem; }
+    .form-nav button { padding: 12px 18px; font-size: 0.92rem; }
+}
+</style>
+</head>
+<body class="antialiased">
+    <!-- Header Section -->
+    <header class="bg-white shadow-md py-4 px-6 rounded-b-xl flex items-center justify-center relative z-1000">
+        <div class="logo-container-header" style="display:flex;justify-content:center;align-items:center;position:absolute;left:0;right:0;margin:auto;width:1400px;height:300px;background:transparent;">
+            <img src="images/logo-header.jpg" alt="Logo Piano" style="height:240px;width:600px;object-fit:contain;">
+        </div>
+    </header>
+
+<!-- Menu contextuel sticky déroulant en haut à droite -->
+<div id="context-menu-wrapper" style="position:fixed;top:32px;right:32px;z-index:2000;display:flex;flex-direction:column;align-items:flex-end;">
+    <button id="context-menu-toggle" aria-label="Ouvrir le menu" style="background:rgba(255,255,255,0.9);border:none;border-radius:12px;padding:10px 14px;box-shadow:0 2px 8px rgba(0,0,0,0.10);cursor:pointer;display:flex;align-items:center;justify-content:center;">
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" stroke="#1f2937" stroke-width="3" stroke-linecap="round"><line x1="7" y1="10" x2="25" y2="10"/><line x1="7" y1="16" x2="25" y2="16"/><line x1="7" y1="22" x2="25" y2="22"/></svg>
+    </button>
+    <nav id="context-menu" style="margin-top:10px;display:none;flex-direction:column;gap:12px;align-items:flex-end;min-width:160px;">
+    <a href="index.html" class="bg-white/90 hover:bg-indigo-100 text-indigo-700 font-semibold py-2 px-5 rounded-lg shadow transition-all duration-200" style="backdrop-filter:blur(4px);">Accueil</a>
+    <a href="formules-de-paiement.html" class="bg-white/90 hover:bg-indigo-100 text-indigo-700 font-semibold py-2 px-5 rounded-lg shadow transition-all duration-200" style="backdrop-filter:blur(4px);">Simulateur de tarif</a>
+    </nav>
+</div>
+
+<div style="width:100vw;position:relative;left:50%;transform:translateX(-50%);background:#f9fafb;padding:0;margin-bottom:3rem;">
+    <div style="background:#f9fafb;padding:2.5rem 0;">
+        <div style="max-width:1000px;margin:0 auto;padding:0 1rem;">
+            <h1 class="main-title" style="font-family:'Great Vibes',cursive;font-size:2.7rem;color:#18233f;text-shadow:2px 2px 6px rgba(255,255,255,0.7);background:none;box-shadow:none;border-radius:0;margin-bottom:2rem;text-align:center;letter-spacing:0.5px;">Formulaire d'inscription 2025/2026</h1>
+
+            <div class="explanation-container" style="background:#fff;color:#18233f;box-shadow:0 6px 14px rgba(24,35,63,0.10);">
+                <h2 style="font-family:'Great Vibes',cursive;text-align:center;font-size:2.1rem;background:linear-gradient(90deg,#18233f 0%,#b9944e 60%,#18233f 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:14px;">Comment ça marche ?</h2>
+                <p>Remplissez les 5 étapes ci-dessous : vos informations, la formule souhaitée et vos disponibilités, l'emploi du temps de votre enfant, puis les conditions générales et l'autorisation d'image à valider.<br><br>
+                Inscriptions par secteur géographique — je vous propose ensuite un créneau adapté à vos disponibilités une fois la rentrée scolaire connue.</p>
+            </div>
+
+            <form id="inscriptionForm" class="form-shell" novalidate>
+                <div class="form-progress" aria-hidden="true">
+                    <span class="dot active" data-dot="1"></span>
+                    <span class="dot" data-dot="2"></span>
+                    <span class="dot" data-dot="3"></span>
+                    <span class="dot" data-dot="4"></span>
+                    <span class="dot" data-dot="5"></span>
+                </div>
+                <div class="form-step-label" id="stepLabel">Étape 1 sur 5 — Infos famille</div>
+
+                <!-- ÉTAPE 1 : INFOS FAMILLE -->
+                <div class="form-step active" data-step="1">
+                    <h3>Infos famille</h3>
+
+                    <div class="field-group">
+                        <label class="field-label">À ce jour, l'inscription concerne *</label>
+                        <div class="choice-row">
+                            <label class="choice-chip"><input type="radio" name="type_inscription" value="Élève déjà inscrit" required><span>Élève déjà inscrit</span></label>
+                            <label class="choice-chip"><input type="radio" name="type_inscription" value="Nouvel élève" required><span>Nouvel élève</span></label>
+                        </div>
+                        <div class="error-message">Merci de sélectionner une option.</div>
+                    </div>
+
+                    <div class="field-group">
+                        <label class="field-label" for="nom_responsable">Nom et prénom du responsable *</label>
+                        <input type="text" id="nom_responsable" name="nom_responsable" required>
+                        <div class="error-message">Ce champ est obligatoire.</div>
+                    </div>
+
+                    <div class="field-group">
+                        <label class="field-label" for="nom_eleves">Nom et prénom du ou des élèves *</label>
+                        <input type="text" id="nom_eleves" name="nom_eleves" required>
+                        <div class="error-message">Ce champ est obligatoire.</div>
+                    </div>
+
+                    <div class="field-group">
+                        <label class="field-label" for="email">Adresse e-mail *<span class="field-hint">Utilisée pour vous envoyer documents et factures — merci d'indiquer une adresse que vous consultez régulièrement.</span></label>
+                        <input type="email" id="email" name="email" required>
+                        <div class="error-message">Merci d'indiquer une adresse e-mail valide.</div>
+                    </div>
+                </div>
+
+                <!-- ÉTAPE 2 : FORMULE + DISPONIBILITÉS -->
+                <div class="form-step" data-step="2">
+                    <h3>Formule &amp; disponibilités</h3>
+
+                    <div class="reminder-box">
+                        <strong>Rappel des tarifs 2025/2026 :</strong> Découverte 43€ (30 min) · Progression 54€ (45 min) · Excellence 65€ (60 min) le cours.<br>
+                        Remise fidélité selon ancienneté (0 à -6%) + remise selon rythme de paiement (Mensuel 0%, Trimestriel -5%, Annuel -10%), cumulables.<br>
+                        Détail et simulateur : <a href="formules-de-paiement.html" target="_blank" style="color:#7a5d28;font-weight:700;">voir la page tarifs</a>.
+                    </div>
+
+                    <div class="field-group">
+                        <label class="field-label">Durée désirée du cours *<span class="field-hint">Si fratrie, indiquez la durée totale des cours (ex : 2× Progression 45 min = 90 min).</span></label>
+                        <div class="choice-row">
+                            <label class="choice-chip"><input type="checkbox" name="duree_cours" value="Découverte 30 minutes"><span>Découverte 30 min</span></label>
+                            <label class="choice-chip"><input type="checkbox" name="duree_cours" value="Progression 45 minutes"><span>Progression 45 min</span></label>
+                            <label class="choice-chip"><input type="checkbox" name="duree_cours" value="Excellence 60 minutes"><span>Excellence 60 min</span></label>
+                            <label class="choice-chip"><input type="checkbox" name="duree_cours" value="90 minutes (fratrie)"><span>90 min (fratrie)</span></label>
+                            <label class="choice-chip"><input type="checkbox" name="duree_cours" value="120 minutes (fratrie)"><span>120 min (fratrie)</span></label>
+                        </div>
+                        <div class="error-message">Merci de sélectionner au moins une durée.</div>
+                    </div>
+
+                    <div class="field-group">
+                        <label class="field-label" for="autre_duree">Autre (précisez si besoin)</label>
+                        <input type="text" id="autre_duree" name="autre_duree">
+                    </div>
+
+                    <div class="field-group">
+                        <label class="field-label">Rythme de paiement souhaité *</label>
+                        <div class="choice-row">
+                            <label class="choice-chip"><input type="radio" name="rythme_paiement" value="Mensuel" required><span>Mensuel</span></label>
+                            <label class="choice-chip"><input type="radio" name="rythme_paiement" value="Trimestriel" required><span>Trimestriel</span></label>
+                            <label class="choice-chip"><input type="radio" name="rythme_paiement" value="Annuel" required><span>Annuel</span></label>
+                        </div>
+                        <div class="error-message">Merci de sélectionner un rythme de paiement.</div>
+                    </div>
+
+                    <div class="field-group">
+                        <label class="field-label">Disponibilités — cochez tous les jours et créneaux possibles *</label>
+                        <div class="avail-grid-wrapper">
+                            <table class="avail-grid" id="availGrid">
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th>Lundi</th>
+                                        <th>Mardi</th>
+                                        <th>Mercredi</th>
+                                        <th>Jeudi</th>
+                                        <th>Vendredi</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="availGridBody"></tbody>
+                            </table>
+                        </div>
+                        <div class="error-message">Merci de cocher au moins un créneau.</div>
+                    </div>
+
+                    <div class="field-group">
+                        <label class="field-label">Situation de garde partagée ?</label>
+                        <div class="choice-row">
+                            <label class="choice-chip"><input type="radio" name="garde_partagee" value="Non"><span>Non</span></label>
+                            <label class="choice-chip"><input type="radio" name="garde_partagee" value="Oui"><span>Oui</span></label>
+                        </div>
+                    </div>
+
+                    <div class="field-group">
+                        <label class="field-label" for="garde_jours">Si garde partagée, précisez les jours</label>
+                        <input type="text" id="garde_jours" name="garde_jours">
+                    </div>
+
+                    <div class="field-group">
+                        <label class="field-label" for="garde_adresses">Si garde partagée, le cours peut-il avoir lieu aux deux adresses ? Si oui, précisez les deux</label>
+                        <textarea id="garde_adresses" name="garde_adresses"></textarea>
+                    </div>
+                </div>
+
+                <!-- ÉTAPE 3 : EMPLOI DU TEMPS -->
+                <div class="form-step" data-step="3">
+                    <h3>Emploi du temps</h3>
+                    <p style="text-align:center;color:#18233f;font-size:0.95rem;margin-top:-0.6rem;margin-bottom:1.4rem;">Envoyez-moi l'emploi du temps scolaire et des activités extrascolaires de votre enfant — je choisirai l'heure et le jour du cours en fonction de vos disponibilités indiquées à l'étape précédente.</p>
+
+                    <div class="field-group">
+                        <label class="field-label">Emploi du temps scolaire et extrascolaire — photo, PDF ou document *</label>
+                        <label class="upload-zone" id="uploadZone">
+                            <div class="upload-icon">📎</div>
+                            <div id="uploadZoneText">Cliquez pour choisir un fichier (PDF, JPG, PNG)</div>
+                            <input type="file" id="emploiDuTempsFile" accept=".pdf,.jpg,.jpeg,.png">
+                        </label>
+                        <div class="upload-status" id="uploadStatus"></div>
+                        <input type="hidden" name="emploi_du_temps_url" id="emploi_du_temps_url">
+                        <div class="error-message" id="uploadError">Merci de joindre un fichier.</div>
+                    </div>
+
+                    <div class="field-group">
+                        <label class="field-label" for="precisions">Précisions ou observations éventuelles</label>
+                        <textarea id="precisions" name="precisions"></textarea>
+                    </div>
+                </div>
+
+                <!-- ÉTAPE 4 : CONDITIONS GÉNÉRALES -->
+                <div class="form-step" data-step="4">
+                    <h3>Conditions générales</h3>
+                    <p style="text-align:center;color:#18233f;font-size:0.95rem;margin-top:-0.6rem;margin-bottom:1rem;">Veuillez lire attentivement les conditions générales des cours de piano.</p>
+
+                    <div class="legal-box">
+                        <p><strong>CONDITIONS GÉNÉRALES DES COURS DE PIANO</strong><br>
+                        Excellence Piano by Natalia — SIRET : 940 420 417 00013<br>
+                        Conformément aux articles L.111-1 et suivants du Code de la consommation.</p>
+
+                        <h4>Cours d'essai</h4>
+                        <p>Pour les formules Impromptu et Résonance, un cours d'essai Prélude est proposé : 30 minutes, 20€, non déductible d'un futur engagement (1 par élève).</p>
+
+                        <h4>Tarification</h4>
+                        <p>Les tarifs des formules à l'année (Découverte, Progression, Excellence) sont établis sur une base forfaitaire de 32 cours par année scolaire, avec engagement à l'année indépendamment du rythme de paiement choisi.</p>
+                        <ul>
+                            <li>Tarif de base au cours : Découverte 43€ · Progression 54€ · Excellence 65€</li>
+                            <li>Remise fidélité selon ancienneté : 1-2 ans 0% · 3-4 ans -2% · 5-6 ans -4% · 7 ans et + -6%</li>
+                            <li>Remise selon rythme de paiement : Mensuel 0% · Trimestriel -5% · Annuel -10%</li>
+                            <li>Les deux remises se cumulent en cascade sur le tarif de base</li>
+                        </ul>
+                        <p>Adaptation selon le calendrier scolaire : le nombre effectif de cours peut varier entre 30 et 32 séances selon les jours fériés. Si l'année compte moins de 32 cours, l'ajustement est répercuté sur la facture suivante ; le tarif forfaitaire de base reste inchangé.</p>
+
+                        <h4>Modalités de paiement</h4>
+                        <p>Mensuel : facture envoyée en fin de mois, à régler sous 30 jours (espèces, virement bancaire ou chèque).<br>
+                        Trimestriel : 3 versements répartis sur l'année.<br>
+                        Annuel : paiement en une fois.<br>
+                        En cas de retard de paiement : pénalités de 13,15% par an et indemnité forfaitaire de 40€.</p>
+
+                        <h4>Politique de gestion des absences</h4>
+                        <p>Une absence par année scolaire est accordée sans justificatif et sans obligation de rattrapage ; elle est déduite de la facture suivante (s'applique à tous les rythmes de paiement).<br>
+                        Au-delà, toute absence ne donne lieu ni à déduction ni à remboursement. Un cours de rattrapage est systématiquement proposé, en priorité le week-end, pendant les vacances scolaires, ou en semaine selon les disponibilités. Un cours non rattrapé par choix de l'élève/famille reste dû.<br>
+                        Exceptions : les absences pour maladie avec certificat médical (plus de 3 cours consécutifs) font l'objet d'un traitement particulier étudié au cas par cas.</p>
+
+                        <h4>Matériel et instrument</h4>
+                        <p>L'apprentissage du piano nécessite la disponibilité d'un instrument de qualité au domicile de l'élève.</p>
+                        <ul>
+                            <li>Idéalement : piano droit acoustique (avec ou sans système silent)</li>
+                            <li>Au minimum : piano numérique de qualité professionnelle (88 touches lestées + pédalier)</li>
+                        </ul>
+                        <p>Les petits claviers électriques ne permettent pas un apprentissage optimal et ne sont pas acceptés. Des solutions de location avec ou sans option d'achat sont disponibles auprès de Pianopolis, Niss'art Pianos, Maison du piano Bettassa ou Cultura. Un conseil personnalisé peut être fourni sur demande.<br>
+                        L'élève et sa famille s'engagent à disposer d'un instrument conforme dans un délai raisonnable après le début des cours.</p>
+                    </div>
+
+                    <div class="consent-row">
+                        <input type="checkbox" id="accepte_cgv" name="accepte_cgv" value="J'ai lu et j'accepte les conditions générales" required>
+                        <label for="accepte_cgv">J'ai lu et j'accepte les conditions générales de vente *</label>
+                    </div>
+                    <div class="error-message" id="accepte_cgvError">Merci d'accepter les conditions générales pour continuer.</div>
+                </div>
+
+                <!-- ÉTAPE 5 : AUTORISATION DROIT À L'IMAGE -->
+                <div class="form-step" data-step="5">
+                    <h3>Autorisation droit à l'image</h3>
+
+                    <div class="legal-box">
+                        <p><strong>AUTORISATION PARENTALE — DROIT À L'IMAGE</strong></p>
+                        <p>Des photos, vidéos et enregistrements audio peuvent être réalisés lors des concerts. Ces enregistrements ont pour objectifs de constituer des souvenirs pour les familles, de valoriser le travail pédagogique et artistique des élèves, et de promouvoir l'activité d'enseignement musical.</p>
+                        <p>Pour les élèves mineurs, l'autorisation écrite des parents ou responsables légaux est obligatoire avant toute captation d'image ou de voix.</p>
+                        <h4>Types d'utilisation concernés</h4>
+                        <ul>
+                            <li>Captation lors des concerts (photos, vidéos, enregistrements audio)</li>
+                            <li>Remise aux familles présentes</li>
+                            <li>Utilisation à des fins pédagogiques internes</li>
+                            <li>Diffusion sur le site internet d'Excellence Piano by Natalia</li>
+                            <li>Publication sur les réseaux sociaux professionnels</li>
+                        </ul>
+                        <h4>Droits et durée</h4>
+                        <p>Cette autorisation est accordée pour une durée d'un an à compter de la signature. Vous disposez d'un droit d'accès, de rectification et de suppression de ces données, d'opposition à leur traitement à tout moment, et de limitation du traitement.</p>
+                    </div>
+
+                    <div class="field-group">
+                        <label class="field-label" for="signature">Signature *<span class="field-hint">Merci de compléter la phrase ci-dessous avec vos informations.</span></label>
+                        <textarea id="signature" name="signature" required></textarea>
+                        <div class="error-message">Merci de compléter votre signature.</div>
+                    </div>
+
+                    <div class="field-group">
+                        <label class="field-label">Acceptation *</label>
+                        <div class="choice-row">
+                            <label class="choice-chip"><input type="radio" name="autorisation_image" value="J'autorise la captation et l'utilisation de l'image/voix de l'élève" required><span>J'autorise</span></label>
+                            <label class="choice-chip"><input type="radio" name="autorisation_image" value="Je refuse toute captation et utilisation de l'image/voix de l'élève" required><span>Je refuse</span></label>
+                        </div>
+                        <div class="error-message">Merci de sélectionner une réponse.</div>
+                    </div>
+                </div>
+
+                <!-- SUCCÈS -->
+                <div class="form-step" data-step="success">
+                    <div class="success-panel">
+                        <div class="checkmark">✓</div>
+                        <h3 style="margin-bottom:0.6rem;">Inscription envoyée !</h3>
+                        <p style="color:#18233f;">Merci, votre dossier a bien été reçu. Je reviens vers vous rapidement pour confirmer votre créneau.</p>
+                    </div>
+                </div>
+
+                <div class="form-nav" id="formNav">
+                    <button type="button" class="btn-prev" id="btnPrev">Retour</button>
+                    <button type="button" class="btn-next" id="btnNext">Suivant</button>
+                    <button type="submit" class="btn-submit" id="btnSubmit" style="display:none;">Envoyer mon inscription</button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>
+
+<script>
+(function() {
+    // ============================================================
+    // CONFIGURATION — à compléter avant mise en ligne
+    // ============================================================
+    const FORMSPREE_ENDPOINT = 'https://formspree.io/f/YOUR_FORM_ID';
+    const CLOUDINARY_CLOUD_NAME = 'YOUR_CLOUD_NAME';
+    const CLOUDINARY_UPLOAD_PRESET = 'YOUR_UPLOAD_PRESET';
+    // ============================================================
+
+    // Menu contextuel déroulant (hamburger)
+    const menuToggle = document.getElementById('context-menu-toggle');
+    const menu = document.getElementById('context-menu');
+    let menuOpen = false;
+    menuToggle.addEventListener('click', () => {
+        menuOpen = !menuOpen;
+        menu.style.display = menuOpen ? 'flex' : 'none';
+    });
+    document.addEventListener('click', (e) => {
+        if (!menu.contains(e.target) && !menuToggle.contains(e.target)) {
+            menu.style.display = 'none';
+            menuOpen = false;
+        }
+    });
+
+    // Génération de la grille de disponibilités (11h30 -> 20h00, pas de 30 min)
+    const DAYS = ['lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi'];
+    const gridBody = document.getElementById('availGridBody');
+    function pad(n) { return n < 10 ? '0' + n : '' + n; }
+    const slots = [];
+    for (let h = 11; h <= 19; h++) {
+        for (let m of [0, 30]) {
+            if (h === 11 && m === 0) continue; // commence à 11h30
+            slots.push(`${h}h${pad(m)}`);
+        }
+    }
+    slots.push('20h00');
+    slots.forEach(slot => {
+        const tr = document.createElement('tr');
+        const tdLabel = document.createElement('td');
+        tdLabel.textContent = slot;
+        tr.appendChild(tdLabel);
+        DAYS.forEach(day => {
+            const td = document.createElement('td');
+            const input = document.createElement('input');
+            input.type = 'checkbox';
+            input.name = 'dispo';
+            input.value = `${day} ${slot}`;
+            td.appendChild(input);
+            tr.appendChild(td);
+        });
+        gridBody.appendChild(tr);
+    });
+
+    // Navigation multi-étapes
+    const steps = ['1', '2', '3', '4', '5'];
+    const stepLabels = {
+        '1': 'Étape 1 sur 5 — Infos famille',
+        '2': 'Étape 2 sur 5 — Formule & disponibilités',
+        '3': 'Étape 3 sur 5 — Emploi du temps',
+        '4': 'Étape 4 sur 5 — Conditions générales',
+        '5': 'Étape 5 sur 5 — Autorisation d\'image'
+    };
+    let currentStepIndex = 0;
+
+    const stepEls = {};
+    document.querySelectorAll('.form-step').forEach(el => { stepEls[el.dataset.step] = el; });
+    const dots = document.querySelectorAll('.form-progress .dot');
+    const stepLabel = document.getElementById('stepLabel');
+    const btnPrev = document.getElementById('btnPrev');
+    const btnNext = document.getElementById('btnNext');
+    const btnSubmit = document.getElementById('btnSubmit');
+    const formNav = document.getElementById('formNav');
+
+    function showStep(stepKey) {
+        Object.values(stepEls).forEach(el => el.classList.remove('active'));
+        stepEls[stepKey].classList.add('active');
+        if (stepKey === 'success') {
+            formNav.style.display = 'none';
+            document.querySelector('.form-progress').style.display = 'none';
+            stepLabel.style.display = 'none';
+            return;
+        }
+        const idx = steps.indexOf(stepKey);
+        dots.forEach((dot, i) => {
+            dot.classList.toggle('active', i === idx);
+            dot.classList.toggle('done', i < idx);
+        });
+        stepLabel.textContent = stepLabels[stepKey];
+        btnPrev.disabled = idx === 0;
+        btnNext.style.display = idx === steps.length - 1 ? 'none' : 'inline-block';
+        btnSubmit.style.display = idx === steps.length - 1 ? 'inline-block' : 'none';
+    }
+
+    function showFieldError(input) {
+        const container = input.closest('.field-group') || input.closest('.consent-row');
+        if (!container) return;
+        const err = container.querySelector('.error-message') || document.getElementById(input.id + 'Error');
+        if (err) err.style.display = 'block';
+    }
+    function hideFieldError(input) {
+        const container = input.closest('.field-group') || input.closest('.consent-row');
+        if (!container) return;
+        const err = container.querySelector('.error-message') || document.getElementById(input.id + 'Error');
+        if (err) err.style.display = 'none';
+    }
+
+    function validateStep(stepKey) {
+        const stepEl = stepEls[stepKey];
+        let valid = true;
+
+        // Champs texte / email / textarea requis
+        stepEl.querySelectorAll('input[type="text"][required], input[type="email"][required], textarea[required]').forEach(input => {
+            const ok = input.value.trim() && (input.type !== 'email' || input.value.includes('@'));
+            if (!ok) { valid = false; showFieldError(input); } else { hideFieldError(input); }
+        });
+
+        // Groupes radio requis (une seule case doit être cochée par groupe)
+        const radioNames = new Set();
+        stepEl.querySelectorAll('input[type="radio"][required]').forEach(input => radioNames.add(input.name));
+        radioNames.forEach(name => {
+            const radios = stepEl.querySelectorAll(`input[type="radio"][name="${CSS.escape(name)}"]`);
+            const checked = stepEl.querySelector(`input[type="radio"][name="${CSS.escape(name)}"]:checked`);
+            if (!checked) { valid = false; showFieldError(radios[0]); } else { hideFieldError(radios[0]); }
+        });
+
+        // Case à cocher unique requise (ex: accepte_cgv)
+        stepEl.querySelectorAll('input[type="checkbox"][required]').forEach(input => {
+            if (!input.checked) { valid = false; showFieldError(input); } else { hideFieldError(input); }
+        });
+
+        // Groupes de checkboxes "au moins une case cochée" (duree_cours, dispo)
+        ['duree_cours', 'dispo'].forEach(groupName => {
+            const boxes = stepEl.querySelectorAll(`input[name="${groupName}"]`);
+            if (boxes.length === 0) return;
+            const anyChecked = Array.from(boxes).some(b => b.checked);
+            if (!anyChecked) { valid = false; showFieldError(boxes[0]); } else { hideFieldError(boxes[0]); }
+        });
+
+        // Étape 3 : upload obligatoire
+        if (stepKey === '3') {
+            const urlField = document.getElementById('emploi_du_temps_url');
+            const uploadError = document.getElementById('uploadError');
+            if (!urlField.value) { valid = false; uploadError.style.display = 'block'; }
+            else { uploadError.style.display = 'none'; }
+        }
+
+        return valid;
+    }
+
+    btnNext.addEventListener('click', () => {
+        const currentKey = steps[currentStepIndex];
+        if (!validateStep(currentKey)) return;
+        currentStepIndex = Math.min(currentStepIndex + 1, steps.length - 1);
+        showStep(steps[currentStepIndex]);
+        window.scrollTo({ top: document.getElementById('inscriptionForm').offsetTop - 100, behavior: 'smooth' });
+    });
+
+    btnPrev.addEventListener('click', () => {
+        currentStepIndex = Math.max(currentStepIndex - 1, 0);
+        showStep(steps[currentStepIndex]);
+        window.scrollTo({ top: document.getElementById('inscriptionForm').offsetTop - 100, behavior: 'smooth' });
+    });
+
+    // Pré-remplissage de la phrase de signature (étape 5) à partir de l'étape 1
+    const signatureField = document.getElementById('signature');
+    let signatureTouched = false;
+    signatureField.addEventListener('input', () => { signatureTouched = true; });
+    function updateSignatureTemplate() {
+        if (signatureTouched) return;
+        const responsable = document.getElementById('nom_responsable').value.trim() || '[Prénom, Nom]';
+        const eleve = document.getElementById('nom_eleves').value.trim() || '[Prénom, Nom de l\'élève]';
+        signatureField.value = `Je soussigné(e), ${responsable}, parent ou responsable légal(e) de l'élève ${eleve}, confirme avoir pris connaissance des informations ci-dessus.`;
+    }
+    btnNext.addEventListener('click', updateSignatureTemplate);
+
+    // Upload Cloudinary
+    const uploadZone = document.getElementById('uploadZone');
+    const fileInput = document.getElementById('emploiDuTempsFile');
+    const uploadStatus = document.getElementById('uploadStatus');
+    const uploadZoneText = document.getElementById('uploadZoneText');
+    const emploiUrlField = document.getElementById('emploi_du_temps_url');
+
+    fileInput.addEventListener('change', async () => {
+        const file = fileInput.files[0];
+        if (!file) return;
+        uploadZoneText.textContent = file.name;
+        uploadStatus.textContent = 'Envoi en cours...';
+        uploadStatus.className = 'upload-status pending';
+        emploiUrlField.value = '';
+
+        try {
+            const formData = new FormData();
+            formData.append('file', file);
+            formData.append('upload_preset', CLOUDINARY_UPLOAD_PRESET);
+            const response = await fetch(`https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD_NAME}/auto/upload`, {
+                method: 'POST',
+                body: formData
+            });
+            if (!response.ok) throw new Error('Échec de l\'envoi');
+            const data = await response.json();
+            emploiUrlField.value = data.secure_url;
+            uploadStatus.textContent = 'Fichier envoyé ✓';
+            uploadStatus.className = 'upload-status success';
+            document.getElementById('uploadError').style.display = 'none';
+        } catch (err) {
+            uploadStatus.textContent = 'Échec de l\'envoi, merci de réessayer.';
+            uploadStatus.className = 'upload-status error';
+        }
+    });
+
+    // Soumission finale vers Formspree
+    const form = document.getElementById('inscriptionForm');
+    form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        if (!validateStep('5')) return;
+
+        btnSubmit.disabled = true;
+        btnSubmit.textContent = 'Envoi en cours...';
+
+        const formData = new FormData(form);
+        const payload = {};
+        for (const [key, value] of formData.entries()) {
+            if (payload[key]) {
+                payload[key] = Array.isArray(payload[key]) ? [...payload[key], value] : [payload[key], value];
+            } else {
+                payload[key] = value;
+            }
+        }
+
+        try {
+            const response = await fetch(FORMSPREE_ENDPOINT, {
+                method: 'POST',
+                headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            });
+            if (!response.ok) throw new Error('Échec de l\'envoi');
+            showStep('success');
+        } catch (err) {
+            btnSubmit.disabled = false;
+            btnSubmit.textContent = 'Envoyer mon inscription';
+            alert('Une erreur est survenue lors de l\'envoi. Merci de réessayer, ou de me contacter directement si le problème persiste.');
+        }
+    });
+})();
+</script>
+
+    <!-- Bouton retour en haut -->
+    <button id="back-to-top" title="Retour en haut" style="position:fixed;bottom:32px;right:32px;z-index:2000;background:rgba(255,255,255,0.7);color:#4338ca;border:none;border-radius:50%;width:48px;height:48px;box-shadow:0 2px 8px rgba(0,0,0,0.12);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background 0.2s;opacity:0.7;">
+        <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 15l7-7 7 7"/></svg>
+    </button>
+    <footer class="bg-gray-800 text-white py-8 px-6 md:px-12 mt-20" style="border-radius:0;max-width:100vw;width:100vw;margin-left:calc(-50vw + 50%);left:0;right:0;">
+        <div class="container mx-auto text-center">
+            <p class="mb-4">&copy; 2025 Excellence piano by Natalia. Tous droits réservés.</p>
+            <p class="text-sm">
+                <a href="mentions-legales.html" style="color:#b9944e;text-decoration:underline;margin-right:18px;">Mentions légales</a>
+                <a href="politique-confidentialite.html" style="color:#b9944e;text-decoration:underline;">Politique de confidentialité</a>
+            </p>
+        </div>
+    </footer>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var backToTopBtn = document.getElementById('back-to-top');
+        if (backToTopBtn) {
+            backToTopBtn.addEventListener('click', function() {
+                window.scrollTo({top:0,behavior:'smooth'});
+            });
+            window.addEventListener('scroll', function() {
+                if(window.scrollY > 200){
+                    backToTopBtn.style.display = 'flex';
+                }else{
+                    backToTopBtn.style.display = 'none';
+                }
+            });
+            backToTopBtn.style.display = 'none';
+        }
+    });
+    </script>
+</body>
+</html>
