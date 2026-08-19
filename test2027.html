@@ -636,6 +636,31 @@
                 margin-top: 1.2rem;
                 margin-bottom: 0;
             }
+            .cta-configurer {
+                background: #18233f;
+                color: #d9b866;
+                font-weight: bold;
+                border: 2px solid #b9944e;
+                border-radius: 1.2rem;
+                padding: 22px 32px;
+                min-width: 240px;
+                max-width: 420px;
+                font-size: 1.15rem;
+                display: block;
+                margin: 2.5rem auto 0 auto;
+                text-align: center;
+                line-height: 1.5;
+                box-sizing: border-box;
+                text-decoration: none;
+                box-shadow: 0 4px 14px rgba(0,0,0,0.35);
+                transform: skewY(4deg);
+                transition: box-shadow 0.3s, transform 0.3s, background 0.3s;
+            }
+            .cta-configurer:hover {
+                background: #23305a;
+                box-shadow: 0 0 12px 3px #ffe8b0cc, 0 6px 18px rgba(0,0,0,0.35);
+                transform: translateY(-3px) scale(1.03) skewY(4deg);
+            }
         /* ----------- Parallaxe Exigences Piano ----------- */
  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
         body {
@@ -1070,7 +1095,7 @@ document.addEventListener('DOMContentLoaded', function() {
         </div>
         <p>Les deux remises se cumulent en cascade sur le tarif de base. Le tarif exact applicable à votre situation vous est communiqué individuellement.</p>
     </div>
-    <a href="formules-de-paiement.html#simulateur" class="font-semibold rounded-lg shadow transition-all duration-200" style="background:#ffffff;color:#b9944e;font-weight:bold;border:2px solid #b9944e;padding:22px 32px;min-width:240px;max-width:420px;font-size:1.15rem;display:block;margin:2.5rem auto 0 auto;text-align:center;line-height:1.5;box-sizing:border-box;border-radius:1.2rem;transform:skewY(4deg);box-shadow:0 4px 14px rgba(0,0,0,0.25);" target="_blank" rel="noopener">Je configure ma formule</a>
+    <a href="formules-de-paiement.html#simulateur" class="cta-configurer" target="_blank" rel="noopener">Je configure ma formule</a>
 </section>
 <section id="formules-flexibles">
     <div style="width:100%;display:flex;justify-content:center;align-items:center;margin-top:60px;margin-bottom:60px;transform:skewY(4deg);z-index:2;position:relative;">
