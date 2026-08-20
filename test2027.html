@@ -743,6 +743,26 @@
             #formules-flexibles > div:first-child {
                 transform: skewY(0deg) !important;
             }
+            /* Effet "skewy" (cartes légèrement inclinées) : effet desktop
+               uniquement. Sur mobile on aplatit toutes les cartes/sections qui
+               gardaient un transform:skewY hérité (règle en dur ou style inline),
+               pour un rendu net comme le reste de la page mobile. */
+            #branding-hero .section-content-wrapper,
+            #citation,
+            #citation .section-content-wrapper,
+            #a-propos .section-content-wrapper > div,
+            #concert .section-content-wrapper > div,
+            #stages-intensifs .section-content-wrapper > div,
+            #temoignages .section-content-wrapper,
+            #exigences-piano .section-content-wrapper > div,
+            #options-cours .options-grid,
+            #options-cours .tarif-remises,
+            #options-cours .cta-configurer,
+            #formules-flexibles .options-grid,
+            #scroll-wrapper-inscription,
+            #reveal-section-inscription .text-center {
+                transform: skewY(0deg) !important;
+            }
         }
         @media (max-width: 480px) {
             .tarif-remises-grid {
