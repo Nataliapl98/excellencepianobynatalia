@@ -331,6 +331,56 @@ select.field-select:focus {
 .choice-chip input:focus-visible + span {
     box-shadow: 0 0 0 3px rgba(185,148,78,0.35);
 }
+.choice-chip input:disabled + span {
+    opacity: 0.4;
+    cursor: not-allowed;
+    background: #ececec;
+    color: #9ca3af;
+}
+.choice-chip input:disabled:checked + span {
+    opacity: 0.6;
+    background: #7d8494;
+    border-color: #7d8494;
+    color: #fff;
+}
+
+.tarifs-table-wrapper {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    margin-bottom: 0.6rem;
+}
+table.tarifs-table {
+    border-collapse: collapse;
+    width: 100%;
+    min-width: 340px;
+    background: #fdfcf8;
+    border-radius: 10px;
+    overflow: hidden;
+}
+table.tarifs-table th, table.tarifs-table td {
+    text-align: center;
+    padding: 10px 8px;
+    font-size: 0.88rem;
+    color: #18233f;
+    border-bottom: 1px solid #eee1c7;
+}
+table.tarifs-table th {
+    font-weight: 700;
+    color: #7a5d28;
+    background: #f9f2df;
+}
+table.tarifs-table td:first-child, table.tarifs-table th:first-child {
+    text-align: left;
+    font-weight: 600;
+}
+table.tarifs-table tr:last-child td { border-bottom: none; }
+.tarifs-tables-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.2rem;
+    margin-top: 0.8rem;
+}
+.tarifs-tables-row .tarifs-table-wrapper { flex: 1 1 220px; }
 
 .avail-grid-wrapper {
     overflow-x: auto;
@@ -533,8 +583,8 @@ table.avail-grid input[type="checkbox"] {
             <form id="inscriptionForm" class="form-shell" novalidate>
                 <div class="form-progress" aria-hidden="true">
                     <span class="dot active" data-dot="lang"></span>
+                    <span class="dot" data-dot="type_formule"></span>
                     <span class="dot" data-dot="famille"></span>
-                    <span class="dot" data-dot="coordonnees"></span>
                     <span class="dot" data-dot="formule"></span>
                     <span class="dot" data-dot="emploi"></span>
                     <span class="dot" data-dot="cgv"></span>
@@ -552,13 +602,35 @@ table.avail-grid input[type="checkbox"] {
                     </div>
                 </div>
 
+                <!-- ÉTAPE : TYPE DE FORMULE -->
+                <div class="form-step" data-step="type_formule">
+                    <h3 data-i18n="heading.type_formule">Quelle formule souhaitez-vous ?</h3>
+                    <div class="field-group">
+                        <div class="choice-row" style="justify-content:center;">
+                            <label class="choice-chip"><input type="radio" name="type_formule" value="Formule à l'année" required><span data-i18n="choice.formule_annee">Formule à l'année</span></label>
+                            <label class="choice-chip"><input type="radio" name="type_formule" value="Formule flexible (9h00-15h00)" required><span data-i18n="choice.formule_flexible">Formule flexible (9h00-15h00)</span></label>
+                        </div>
+                        <div class="error-message" data-i18n="error.select_option">Merci de sélectionner une option.</div>
+                    </div>
+                </div>
+
                 <!-- ÉTAPE : INFOS FAMILLE -->
                 <div class="form-step" data-step="famille">
                     <h3 data-i18n="heading.famille">Infos famille</h3>
 
-                    <div class="reminder-box" data-i18n="intro.famille">Bonjour à tous ! 🎹 J'espère que vous avez passé d'excellentes vacances ! Il est temps d'organiser les créneaux pour cette nouvelle année musicale.<br><br>
+                    <div class="reminder-box" id="introFamilleAnnee" data-i18n="intro.famille.annee">Bonjour à tous ! 🎹 J'espère que vous avez passé d'excellentes vacances ! Il est temps d'organiser les créneaux pour cette nouvelle année musicale.<br><br>
                     ⚠️ Ce formulaire contient des informations importantes sur l'organisation des cours et les conditions générales. Merci de prendre le temps de tout lire attentivement.<br><br>
-                    Les cours ont lieu du lundi au vendredi de 15h à 20h, le mercredi de 12h à 20h, ainsi qu'aux pauses déjeuners pour ceux qui rentrent chez eux. Les anciens créneaux ne peuvent pas être renouvelés suite aux changements d'emploi du temps.</div>
+                    Les cours ont lieu aux horaires suivants :<br>
+                    • Lundi au vendredi de 15h00 à 20h00<br>
+                    • Mercredi de 9h00 à 20h00<br>
+                    • Pause déjeuner de 11h30 à 14h00<br><br>
+                    Les anciens créneaux ne peuvent pas être renouvelés suite aux changements d'emploi du temps.</div>
+
+                    <div class="reminder-box" id="introFamilleFlexible" data-i18n="intro.famille.flexible" style="display:none;">Bonjour à tous ! 🎹 J'espère que vous avez passé d'excellentes vacances ! Il est temps d'organiser les créneaux pour cette nouvelle année musicale.<br><br>
+                    ⚠️ Ce formulaire contient des informations importantes sur l'organisation des cours et les conditions générales. Merci de prendre le temps de tout lire attentivement.<br><br>
+                    Les cours ont lieu aux horaires suivants :<br>
+                    • Lundi au vendredi de 9h00 à 15h00<br><br>
+                    Réservation libre selon les disponibilités — le planning précis sera géré ultérieurement.</div>
 
                     <div class="field-group">
                         <label class="field-label" data-i18n="label.type_inscription">À ce jour, l'inscription concerne *</label>
@@ -586,11 +658,6 @@ table.avail-grid input[type="checkbox"] {
                         <input type="email" id="email" name="email" required>
                         <div class="error-message" data-i18n="error.email">Merci d'indiquer une adresse e-mail valide.</div>
                     </div>
-                </div>
-
-                <!-- ÉTAPE : COORDONNÉES -->
-                <div class="form-step" data-step="coordonnees">
-                    <h3 data-i18n="heading.coordonnees">Coordonnées</h3>
 
                     <div class="field-group">
                         <label class="field-label" for="telephone" data-i18n="label.telephone">Numéro de téléphone *</label>
@@ -617,13 +684,60 @@ table.avail-grid input[type="checkbox"] {
                 <div class="form-step" data-step="formule">
                     <h3 data-i18n="heading.formule">Formule &amp; disponibilités</h3>
 
-                    <div class="reminder-box">
-                        <strong data-i18n="reminder.tarifs.label">Rappel des tarifs 2025/2026 :</strong> <span data-i18n="reminder.tarifs.text">Découverte 43€ (30 min) · Progression 54€ (45 min) · Excellence 65€ (60 min) le cours.</span><br>
-                        <span data-i18n="reminder.remises.text">Remise fidélité selon ancienneté (0 à -6%) + remise selon rythme de paiement (Mensuel 0%, Trimestriel -5%, Annuel -10%), cumulables.</span><br>
-                        <span data-i18n="reminder.detail.label">Détail et simulateur :</span> <a href="formules-de-paiement.html" target="_blank" style="color:#7a5d28;font-weight:700;" data-i18n="reminder.detail.link">voir la page tarifs</a>.
+                    <!-- Tarifs — Formule à l'année -->
+                    <div id="tarifsAnnee">
+                        <div class="tarifs-table-wrapper">
+                            <table class="tarifs-table">
+                                <thead><tr><th data-i18n="tarifs.th.formule">Formule</th><th data-i18n="tarifs.th.duree">Durée</th><th data-i18n="tarifs.th.prix">Tarif</th></tr></thead>
+                                <tbody>
+                                    <tr><td data-i18n="choice.decouverte30">Découverte</td><td>30 min</td><td>43€</td></tr>
+                                    <tr><td data-i18n="choice.progression45">Progression</td><td>45 min</td><td>54€</td></tr>
+                                    <tr><td data-i18n="choice.excellence60">Excellence</td><td>60 min</td><td>65€</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="tarifs-tables-row">
+                            <div class="tarifs-table-wrapper">
+                                <table class="tarifs-table">
+                                    <thead><tr><th data-i18n="remises.th.anciennete">Ancienneté</th><th data-i18n="remises.th.remise">Remise</th></tr></thead>
+                                    <tbody>
+                                        <tr><td data-i18n="remises.anciennete.1">1-2 ans</td><td>0%</td></tr>
+                                        <tr><td data-i18n="remises.anciennete.2">3-4 ans</td><td>-2%</td></tr>
+                                        <tr><td data-i18n="remises.anciennete.3">5-6 ans</td><td>-4%</td></tr>
+                                        <tr><td data-i18n="remises.anciennete.4">7 ans et +</td><td>-6%</td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="tarifs-table-wrapper">
+                                <table class="tarifs-table">
+                                    <thead><tr><th data-i18n="remises.th.rythme">Rythme de paiement</th><th data-i18n="remises.th.remise">Remise</th></tr></thead>
+                                    <tbody>
+                                        <tr><td data-i18n="choice.mensuel">Mensuel</td><td>0%</td></tr>
+                                        <tr><td data-i18n="choice.trimestriel">Trimestriel</td><td>-5%</td></tr>
+                                        <tr><td data-i18n="choice.annuel">Annuel</td><td>-10%</td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <p class="legal-note" style="display:block;margin-top:0.6rem;"><span data-i18n="remises.cumul">Les deux remises se cumulent.</span> <a href="formules-de-paiement.html" target="_blank" style="color:#7a5d28;font-weight:700;" data-i18n="reminder.detail.link">voir la page tarifs</a></p>
                     </div>
 
-                    <div class="field-group">
+                    <!-- Tarifs — Formule flexible -->
+                    <div id="tarifsFlexible" style="display:none;">
+                        <div class="tarifs-table-wrapper">
+                            <table class="tarifs-table">
+                                <thead><tr><th data-i18n="tarifs.th.formule">Formule</th><th>30 min</th><th>45 min</th><th>60 min</th></tr></thead>
+                                <tbody>
+                                    <tr><td data-i18n="choice.impromptu">Impromptu</td><td>430€</td><td>540€</td><td>650€</td></tr>
+                                    <tr><td data-i18n="choice.resonance">Résonance</td><td>35€</td><td>40€</td><td>50€</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <p class="legal-note" style="display:block;" data-i18n="tarifs.flexible.note">Impromptu : carnet de 10 cours, valable 4 mois, paiement unique. Résonance : tarif par cours indiqué, forfait mensuel (3 cours en visio + 1 en présentiel), engagement minimum 3 mois.</p>
+                    </div>
+
+                    <!-- Durée — Formule à l'année -->
+                    <div class="field-group" id="dureeAnneeGroup">
                         <label class="field-label"><span data-i18n="label.duree_cours">Durée désirée du cours *</span><span class="field-hint" data-i18n="hint.duree_cours">Si fratrie, indiquez la durée totale des cours (ex : 2× Progression 45 min = 90 min).</span></label>
                         <div class="choice-row">
                             <label class="choice-chip"><input type="checkbox" name="duree_cours" value="Découverte 30 minutes"><span data-i18n="choice.decouverte30">Découverte 30 min</span></label>
@@ -635,23 +749,53 @@ table.avail-grid input[type="checkbox"] {
                         <div class="error-message" data-i18n="error.select_duree">Merci de sélectionner au moins une durée.</div>
                     </div>
 
-                    <div class="field-group">
+                    <div class="field-group" id="autreDureeGroup">
                         <label class="field-label" for="autre_duree" data-i18n="label.autre_duree">Autre (précisez si besoin)</label>
                         <input type="text" id="autre_duree" name="autre_duree">
                     </div>
 
+                    <!-- Formule + durée — Formule flexible -->
+                    <div class="field-group" id="formuleFlexibleGroup" style="display:none;">
+                        <label class="field-label" data-i18n="label.formule_flexible">Formule souhaitée *</label>
+                        <div class="choice-row">
+                            <label class="choice-chip"><input type="radio" name="formule_flexible" value="Résonance (visio)" required><span data-i18n="choice.resonance_visio">Résonance (visio)</span></label>
+                            <label class="choice-chip"><input type="radio" name="formule_flexible" value="Impromptu" required><span data-i18n="choice.impromptu">Impromptu</span></label>
+                        </div>
+                        <div class="error-message" data-i18n="error.select_option">Merci de sélectionner une option.</div>
+                    </div>
+
+                    <div class="field-group" id="dureeFlexibleGroup" style="display:none;">
+                        <label class="field-label" data-i18n="label.duree_flexible">Durée du cours *</label>
+                        <div class="choice-row">
+                            <label class="choice-chip"><input type="radio" name="duree_flexible" value="30 minutes" required><span data-i18n="choice.duree30">30 minutes</span></label>
+                            <label class="choice-chip"><input type="radio" name="duree_flexible" value="45 minutes" required><span data-i18n="choice.duree45">45 minutes</span></label>
+                            <label class="choice-chip"><input type="radio" name="duree_flexible" value="60 minutes" required><span data-i18n="choice.duree60">60 minutes</span></label>
+                        </div>
+                        <div class="error-message" data-i18n="error.select_option">Merci de sélectionner une option.</div>
+                    </div>
+
+                    <div id="essaiFlexibleGroup" style="display:none;margin-bottom:1.4rem;">
+                        <div class="consent-row">
+                            <input type="checkbox" id="essai_prelude" name="essai_prelude" value="Je souhaite un cours d'essai Prélude (30 min, 20€)">
+                            <label for="essai_prelude" data-i18n="label.essai_prelude">Je souhaite un cours d'essai Prélude (30 min, 20€), non déductible d'un futur engagement</label>
+                        </div>
+                    </div>
+
+                    <!-- Rythme de paiement (commun) -->
                     <div class="field-group">
                         <label class="field-label" data-i18n="label.rythme_paiement">Rythme de paiement souhaité *</label>
                         <div class="choice-row">
-                            <label class="choice-chip"><input type="radio" name="rythme_paiement" value="Mensuel" required><span data-i18n="choice.mensuel">Mensuel</span></label>
-                            <label class="choice-chip"><input type="radio" name="rythme_paiement" value="Trimestriel" required><span data-i18n="choice.trimestriel">Trimestriel</span></label>
-                            <label class="choice-chip"><input type="radio" name="rythme_paiement" value="Annuel" required><span data-i18n="choice.annuel">Annuel</span></label>
+                            <label class="choice-chip"><input type="radio" id="rythme_mensuel" name="rythme_paiement" value="Mensuel" required><span data-i18n="choice.mensuel">Mensuel</span></label>
+                            <label class="choice-chip"><input type="radio" id="rythme_trimestriel" name="rythme_paiement" value="Trimestriel" required><span data-i18n="choice.trimestriel">Trimestriel</span></label>
+                            <label class="choice-chip"><input type="radio" id="rythme_annuel" name="rythme_paiement" value="Annuel" required><span data-i18n="choice.annuel">Annuel</span></label>
                         </div>
+                        <p class="legal-note" id="rythmePaiementNote" style="display:none;margin-top:0.6rem;"></p>
                         <div class="error-message" data-i18n="error.select_rythme">Merci de sélectionner un rythme de paiement.</div>
                     </div>
 
-                    <div class="field-group">
-                        <label class="field-label" data-i18n="label.disponibilites">Disponibilités — cochez tous les jours et créneaux possibles *</label>
+                    <!-- Disponibilités — Formule à l'année uniquement (pause déjeuner) -->
+                    <div class="field-group" id="dispoGroup">
+                        <label class="field-label" data-i18n="label.disponibilites">Disponibilités pendant la pause déjeuner (11h30-14h00) — si votre enfant rentre déjeuner</label>
                         <div class="avail-grid-wrapper">
                             <table class="avail-grid" id="availGrid">
                                 <thead>
@@ -667,25 +811,27 @@ table.avail-grid input[type="checkbox"] {
                                 <tbody id="availGridBody"></tbody>
                             </table>
                         </div>
-                        <div class="error-message" data-i18n="error.select_dispo">Merci de cocher au moins un créneau.</div>
                     </div>
 
-                    <div class="field-group">
-                        <label class="field-label" data-i18n="label.garde_partagee">Situation de garde partagée ?</label>
-                        <div class="choice-row">
-                            <label class="choice-chip"><input type="radio" name="garde_partagee" value="Non"><span data-i18n="choice.non">Non</span></label>
-                            <label class="choice-chip"><input type="radio" name="garde_partagee" value="Oui"><span data-i18n="choice.oui">Oui</span></label>
+                    <!-- Garde partagée — Formule à l'année uniquement -->
+                    <div id="gardePartageeGroup">
+                        <div class="field-group">
+                            <label class="field-label" data-i18n="label.garde_partagee">Situation de garde partagée ?</label>
+                            <div class="choice-row">
+                                <label class="choice-chip"><input type="radio" name="garde_partagee" value="Non"><span data-i18n="choice.non">Non</span></label>
+                                <label class="choice-chip"><input type="radio" name="garde_partagee" value="Oui"><span data-i18n="choice.oui">Oui</span></label>
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="field-group">
-                        <label class="field-label" for="garde_jours" data-i18n="label.garde_jours">Si garde partagée, précisez les jours</label>
-                        <input type="text" id="garde_jours" name="garde_jours">
-                    </div>
+                        <div class="field-group">
+                            <label class="field-label" for="garde_jours" data-i18n="label.garde_jours">Si garde partagée, précisez les jours</label>
+                            <input type="text" id="garde_jours" name="garde_jours">
+                        </div>
 
-                    <div class="field-group">
-                        <label class="field-label" for="garde_adresses" data-i18n="label.garde_adresses">Si garde partagée, le cours peut-il avoir lieu aux deux adresses ? Si oui, précisez les deux</label>
-                        <textarea id="garde_adresses" name="garde_adresses"></textarea>
+                        <div class="field-group">
+                            <label class="field-label" for="garde_adresses" data-i18n="label.garde_adresses">Si garde partagée, le cours peut-il avoir lieu aux deux adresses ? Si oui, précisez les deux</label>
+                            <textarea id="garde_adresses" name="garde_adresses"></textarea>
+                        </div>
                     </div>
                 </div>
 
@@ -943,18 +1089,11 @@ table.avail-grid input[type="checkbox"] {
         }
     });
 
-    // Génération de la grille de disponibilités (11h30 -> 20h00, pas de 30 min)
+    // Génération de la grille de disponibilités (pause déjeuner uniquement, 11h30 -> 14h00, pas de 30 min)
     const DAYS = ['lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi'];
     const gridBody = document.getElementById('availGridBody');
     function pad(n) { return n < 10 ? '0' + n : '' + n; }
-    const slots = [];
-    for (let h = 11; h <= 19; h++) {
-        for (let m of [0, 30]) {
-            if (h === 11 && m === 0) continue; // commence à 11h30
-            slots.push(`${h}h${pad(m)}`);
-        }
-    }
-    slots.push('20h00');
+    const slots = ['11h30', '12h00', '12h30', '13h00', '13h30', '14h00'];
     slots.forEach(slot => {
         const tr = document.createElement('tr');
         const tdLabel = document.createElement('td');
@@ -1022,15 +1161,19 @@ table.avail-grid input[type="checkbox"] {
             'howitworks.heading': 'Comment ça marche ?',
             'howitworks.text': "Remplissez les 7 étapes ci-dessous : votre langue, vos informations, vos coordonnées, la formule souhaitée et vos disponibilités, l'emploi du temps de votre enfant, puis les conditions générales et l'autorisation d'image à valider.<br><br>Inscriptions par secteur géographique — je vous propose ensuite un créneau adapté à vos disponibilités une fois la rentrée scolaire connue.",
             'step.label.lang': 'Étape 1 sur 7 — Langue',
-            'step.label.famille': 'Étape 2 sur 7 — Infos famille',
-            'step.label.coordonnees': 'Étape 3 sur 7 — Coordonnées',
+            'step.label.type_formule': 'Étape 2 sur 7 — Formule',
+            'step.label.famille': 'Étape 3 sur 7 — Infos famille',
             'step.label.formule': 'Étape 4 sur 7 — Formule & disponibilités',
             'step.label.emploi': 'Étape 5 sur 7 — Emploi du temps',
             'step.label.cgv': 'Étape 6 sur 7 — Conditions générales',
             'step.label.autorisation': "Étape 7 sur 7 — Autorisation d'image",
             'heading.lang': 'Choisissez votre langue',
             'heading.famille': 'Infos famille',
-            'intro.famille': "Bonjour à tous ! 🎹 J'espère que vous avez passé d'excellentes vacances ! Il est temps d'organiser les créneaux pour cette nouvelle année musicale.<br><br>⚠️ Ce formulaire contient des informations importantes sur l'organisation des cours et les conditions générales. Merci de prendre le temps de tout lire attentivement.<br><br>Les cours ont lieu du lundi au vendredi de 15h à 20h, le mercredi de 12h à 20h, ainsi qu'aux pauses déjeuners pour ceux qui rentrent chez eux. Les anciens créneaux ne peuvent pas être renouvelés suite aux changements d'emploi du temps.",
+            'heading.type_formule': 'Quelle formule souhaitez-vous ?',
+            'choice.formule_annee': "Formule à l'année",
+            'choice.formule_flexible': 'Formule flexible (9h00-15h00)',
+            'intro.famille.annee': "Bonjour à tous ! 🎹 J'espère que vous avez passé d'excellentes vacances ! Il est temps d'organiser les créneaux pour cette nouvelle année musicale.<br><br>⚠️ Ce formulaire contient des informations importantes sur l'organisation des cours et les conditions générales. Merci de prendre le temps de tout lire attentivement.<br><br>Les cours ont lieu aux horaires suivants :<br>• Lundi au vendredi de 15h00 à 20h00<br>• Mercredi de 9h00 à 20h00<br>• Pause déjeuner de 11h30 à 14h00<br><br>Les anciens créneaux ne peuvent pas être renouvelés suite aux changements d'emploi du temps.",
+            'intro.famille.flexible': "Bonjour à tous ! 🎹 J'espère que vous avez passé d'excellentes vacances ! Il est temps d'organiser les créneaux pour cette nouvelle année musicale.<br><br>⚠️ Ce formulaire contient des informations importantes sur l'organisation des cours et les conditions générales. Merci de prendre le temps de tout lire attentivement.<br><br>Les cours ont lieu aux horaires suivants :<br>• Lundi au vendredi de 9h00 à 15h00<br><br>Réservation libre selon les disponibilités — le planning précis sera géré ultérieurement.",
             'label.type_inscription': "À ce jour, l'inscription concerne *",
             'choice.deja_inscrit': 'Élève déjà inscrit',
             'choice.nouvel_eleve': 'Nouvel élève',
@@ -1041,18 +1184,26 @@ table.avail-grid input[type="checkbox"] {
             'label.email': 'Adresse e-mail *',
             'hint.email': 'Utilisée pour vous envoyer documents et factures — merci d\'indiquer une adresse que vous consultez régulièrement.',
             'error.email': "Merci d'indiquer une adresse e-mail valide.",
-            'heading.coordonnees': 'Coordonnées',
             'label.telephone': 'Numéro de téléphone *',
             'label.adresse': 'Adresse complète *',
             'label.quartier': 'Quartier / secteur *',
             'quartier.placeholder': 'Sélectionnez votre quartier',
             'error.select_quartier': 'Merci de sélectionner un quartier.',
             'heading.formule': 'Formule & disponibilités',
-            'reminder.tarifs.label': 'Rappel des tarifs 2025/2026 :',
-            'reminder.tarifs.text': 'Découverte 43€ (30 min) · Progression 54€ (45 min) · Excellence 65€ (60 min) le cours.',
-            'reminder.remises.text': 'Remise fidélité selon ancienneté (0 à -6%) + remise selon rythme de paiement (Mensuel 0%, Trimestriel -5%, Annuel -10%), cumulables.',
+            'tarifs.th.formule': 'Formule', 'tarifs.th.duree': 'Durée', 'tarifs.th.prix': 'Tarif',
+            'remises.th.anciennete': 'Ancienneté', 'remises.th.remise': 'Remise', 'remises.th.rythme': 'Rythme de paiement',
+            'remises.anciennete.1': '1-2 ans', 'remises.anciennete.2': '3-4 ans', 'remises.anciennete.3': '5-6 ans', 'remises.anciennete.4': '7 ans et +',
+            'remises.cumul': 'Les deux remises se cumulent.',
             'reminder.detail.label': 'Détail et simulateur :',
             'reminder.detail.link': 'voir la page tarifs',
+            'choice.impromptu': 'Impromptu', 'choice.resonance': 'Résonance', 'choice.resonance_visio': 'Résonance (visio)',
+            'tarifs.flexible.note': "Impromptu : carnet de 10 cours, valable 4 mois, paiement unique. Résonance : tarif par cours indiqué, forfait mensuel (3 cours en visio + 1 en présentiel), engagement minimum 3 mois.",
+            'label.formule_flexible': 'Formule souhaitée *',
+            'label.duree_flexible': 'Durée du cours *',
+            'choice.duree30': '30 minutes', 'choice.duree45': '45 minutes', 'choice.duree60': '60 minutes',
+            'label.essai_prelude': "Je souhaite un cours d'essai Prélude (30 min, 20€), non déductible d'un futur engagement",
+            'rythme.note.resonance': 'Paiement mensuel obligatoire pour la formule Résonance (engagement minimum 3 mois).',
+            'rythme.note.impromptu': "Paiement unique à la réservation du carnet de cours — pas de rythme de paiement à choisir pour la formule Impromptu.",
             'label.duree_cours': 'Durée désirée du cours *',
             'hint.duree_cours': 'Si fratrie, indiquez la durée totale des cours (ex : 2× Progression 45 min = 90 min).',
             'choice.decouverte30': 'Découverte 30 min',
@@ -1067,9 +1218,8 @@ table.avail-grid input[type="checkbox"] {
             'choice.trimestriel': 'Trimestriel',
             'choice.annuel': 'Annuel',
             'error.select_rythme': 'Merci de sélectionner un rythme de paiement.',
-            'label.disponibilites': 'Disponibilités — cochez tous les jours et créneaux possibles *',
+            'label.disponibilites': 'Disponibilités pendant la pause déjeuner (11h30-14h00) — si votre enfant rentre déjeuner',
             'day.lundi': 'Lundi', 'day.mardi': 'Mardi', 'day.mercredi': 'Mercredi', 'day.jeudi': 'Jeudi', 'day.vendredi': 'Vendredi',
-            'error.select_dispo': 'Merci de cocher au moins un créneau.',
             'label.garde_partagee': 'Situation de garde partagée ?',
             'choice.non': 'Non', 'choice.oui': 'Oui',
             'label.garde_jours': 'Si garde partagée, précisez les jours',
@@ -1102,15 +1252,19 @@ table.avail-grid input[type="checkbox"] {
             'howitworks.heading': 'How does it work?',
             'howitworks.text': "Fill in the 7 steps below: your language, your details, your contact information, your preferred package and availability, your child's timetable, then the general terms and the image rights authorisation to accept.<br><br>Registration is organised by geographic area — I will then suggest a time slot suited to your availability once the school term schedule is known.",
             'step.label.lang': 'Step 1 of 7 — Language',
-            'step.label.famille': 'Step 2 of 7 — Family details',
-            'step.label.coordonnees': 'Step 3 of 7 — Contact details',
+            'step.label.type_formule': 'Step 2 of 7 — Package type',
+            'step.label.famille': 'Step 3 of 7 — Family details',
             'step.label.formule': 'Step 4 of 7 — Package & availability',
             'step.label.emploi': 'Step 5 of 7 — Timetable',
             'step.label.cgv': 'Step 6 of 7 — General terms',
             'step.label.autorisation': 'Step 7 of 7 — Image authorisation',
             'heading.lang': 'Choose your language',
             'heading.famille': 'Family details',
-            'intro.famille': "Hello everyone! 🎹 I hope you had a wonderful holiday! It's time to organise the time slots for this new music year.<br><br>⚠️ This form contains important information about how lessons are organised and the general terms. Please take the time to read everything carefully.<br><br>Lessons take place Monday to Friday from 3pm to 8pm, Wednesday from 12pm to 8pm, as well as during lunch breaks for those who go home. Previous time slots cannot be renewed due to timetable changes.",
+            'heading.type_formule': 'Which package would you like?',
+            'choice.formule_annee': 'Yearly package',
+            'choice.formule_flexible': 'Flexible package (9am-3pm)',
+            'intro.famille.annee': "Hello everyone! 🎹 I hope you had a wonderful holiday! It's time to organise the time slots for this new music year.<br><br>⚠️ This form contains important information about how lessons are organised and the general terms. Please take the time to read everything carefully.<br><br>Lessons take place at the following times:<br>• Monday to Friday from 3pm to 8pm<br>• Wednesday from 9am to 8pm<br>• Lunch break from 11:30am to 2pm<br><br>Previous time slots cannot be renewed due to timetable changes.",
+            'intro.famille.flexible': "Hello everyone! 🎹 I hope you had a wonderful holiday! It's time to organise the time slots for this new music year.<br><br>⚠️ This form contains important information about how lessons are organised and the general terms. Please take the time to read everything carefully.<br><br>Lessons take place at the following times:<br>• Monday to Friday from 9am to 3pm<br><br>Free booking based on availability — the precise schedule will be managed later on.",
             'label.type_inscription': 'As of today, this registration concerns *',
             'choice.deja_inscrit': 'Student already enrolled',
             'choice.nouvel_eleve': 'New student',
@@ -1121,18 +1275,26 @@ table.avail-grid input[type="checkbox"] {
             'label.email': 'Email address *',
             'hint.email': 'Used to send you documents and invoices — please provide an address you check regularly.',
             'error.email': 'Please provide a valid email address.',
-            'heading.coordonnees': 'Contact details',
             'label.telephone': 'Phone number *',
             'label.adresse': 'Full address *',
             'label.quartier': 'Neighbourhood / area *',
             'quartier.placeholder': 'Select your neighbourhood',
             'error.select_quartier': 'Please select a neighbourhood.',
             'heading.formule': 'Package & availability',
-            'reminder.tarifs.label': '2025/2026 price reminder:',
-            'reminder.tarifs.text': 'Découverte €43 (30 min) · Progression €54 (45 min) · Excellence €65 (60 min) per lesson.',
-            'reminder.remises.text': 'Loyalty discount based on seniority (0 to -6%) + discount based on payment schedule (Monthly 0%, Quarterly -5%, Annual -10%), cumulative.',
+            'tarifs.th.formule': 'Package', 'tarifs.th.duree': 'Duration', 'tarifs.th.prix': 'Price',
+            'remises.th.anciennete': 'Seniority', 'remises.th.remise': 'Discount', 'remises.th.rythme': 'Payment schedule',
+            'remises.anciennete.1': '1-2 years', 'remises.anciennete.2': '3-4 years', 'remises.anciennete.3': '5-6 years', 'remises.anciennete.4': '7 years+',
+            'remises.cumul': 'Both discounts are cumulative.',
             'reminder.detail.label': 'Details and simulator:',
             'reminder.detail.link': 'see the pricing page',
+            'choice.impromptu': 'Impromptu', 'choice.resonance': 'Résonance', 'choice.resonance_visio': 'Résonance (video call)',
+            'tarifs.flexible.note': "Impromptu: pack of 10 lessons, valid for 4 months, one-off payment. Résonance: price shown is per lesson, monthly package (3 video-call lessons + 1 in-person), minimum 3-month commitment.",
+            'label.formule_flexible': 'Preferred package *',
+            'label.duree_flexible': 'Lesson length *',
+            'choice.duree30': '30 minutes', 'choice.duree45': '45 minutes', 'choice.duree60': '60 minutes',
+            'label.essai_prelude': "I would like a Prélude trial lesson (30 min, €20), not deductible from a future commitment",
+            'rythme.note.resonance': 'Monthly payment is required for the Résonance package (minimum 3-month commitment).',
+            'rythme.note.impromptu': "One-off payment when booking the lesson pack — no payment schedule to choose for the Impromptu package.",
             'label.duree_cours': 'Desired lesson length *',
             'hint.duree_cours': 'For siblings, indicate the total lesson length (e.g. 2× Progression 45 min = 90 min).',
             'choice.decouverte30': 'Découverte 30 min',
@@ -1145,9 +1307,8 @@ table.avail-grid input[type="checkbox"] {
             'label.rythme_paiement': 'Preferred payment schedule *',
             'choice.mensuel': 'Monthly', 'choice.trimestriel': 'Quarterly', 'choice.annuel': 'Annual',
             'error.select_rythme': 'Please select a payment schedule.',
-            'label.disponibilites': 'Availability — tick all possible days and time slots *',
+            'label.disponibilites': 'Availability during the lunch break (11:30am-2pm) — if your child comes home for lunch',
             'day.lundi': 'Monday', 'day.mardi': 'Tuesday', 'day.mercredi': 'Wednesday', 'day.jeudi': 'Thursday', 'day.vendredi': 'Friday',
-            'error.select_dispo': 'Please tick at least one time slot.',
             'label.garde_partagee': 'Shared custody situation?',
             'choice.non': 'No', 'choice.oui': 'Yes',
             'label.garde_jours': 'If shared custody, please specify the days',
@@ -1180,15 +1341,19 @@ table.avail-grid input[type="checkbox"] {
             'howitworks.heading': 'Jak to działa?',
             'howitworks.text': 'Wypełnij poniższe 7 etapów: język, dane rodziny, dane kontaktowe, wybraną formułę i dostępność, plan zajęć dziecka, a następnie zaakceptuj ogólne warunki i zgodę na wizerunek.<br><br>Zapisy są organizowane według strefy geograficznej — po ustaleniu terminarza roku szkolnego zaproponuję termin dopasowany do Państwa dostępności.',
             'step.label.lang': 'Etap 1 z 7 — Język',
-            'step.label.famille': 'Etap 2 z 7 — Dane rodziny',
-            'step.label.coordonnees': 'Etap 3 z 7 — Dane kontaktowe',
+            'step.label.type_formule': 'Etap 2 z 7 — Rodzaj formuły',
+            'step.label.famille': 'Etap 3 z 7 — Dane rodziny',
             'step.label.formule': 'Etap 4 z 7 — Formuła i dostępność',
             'step.label.emploi': 'Etap 5 z 7 — Plan zajęć',
             'step.label.cgv': 'Etap 6 z 7 — Ogólne warunki',
             'step.label.autorisation': 'Etap 7 z 7 — Zgoda na wizerunek',
             'heading.lang': 'Wybierz swój język',
             'heading.famille': 'Dane rodziny',
-            'intro.famille': 'Witajcie wszyscy! 🎹 Mam nadzieję, że wakacje były wspaniałe! Czas zorganizować terminy zajęć na nowy rok muzyczny.<br><br>⚠️ Ten formularz zawiera ważne informacje dotyczące organizacji zajęć i ogólnych warunków. Prosimy o uważne zapoznanie się z całą treścią.<br><br>Zajęcia odbywają się od poniedziałku do piątku w godzinach 15:00–20:00, w środę od 12:00 do 20:00, a także w przerwach obiadowych dla osób wracających do domu. Dotychczasowe terminy nie mogą zostać odnowione z powodu zmian w planie zajęć.',
+            'heading.type_formule': 'Jaką formułę Państwo wybierają?',
+            'choice.formule_annee': 'Formuła roczna',
+            'choice.formule_flexible': 'Formuła elastyczna (9:00-15:00)',
+            'intro.famille.annee': 'Witajcie wszyscy! 🎹 Mam nadzieję, że wakacje były wspaniałe! Czas zorganizować terminy zajęć na nowy rok muzyczny.<br><br>⚠️ Ten formularz zawiera ważne informacje dotyczące organizacji zajęć i ogólnych warunków. Prosimy o uważne zapoznanie się z całą treścią.<br><br>Zajęcia odbywają się w następujących godzinach:<br>• Poniedziałek-piątek od 15:00 do 20:00<br>• Środa od 9:00 do 20:00<br>• Przerwa obiadowa od 11:30 do 14:00<br><br>Dotychczasowe terminy nie mogą zostać odnowione z powodu zmian w planie zajęć.',
+            'intro.famille.flexible': 'Witajcie wszyscy! 🎹 Mam nadzieję, że wakacje były wspaniałe! Czas zorganizować terminy zajęć na nowy rok muzyczny.<br><br>⚠️ Ten formularz zawiera ważne informacje dotyczące organizacji zajęć i ogólnych warunków. Prosimy o uważne zapoznanie się z całą treścią.<br><br>Zajęcia odbywają się w następujących godzinach:<br>• Poniedziałek-piątek od 9:00 do 15:00<br><br>Rezerwacja dowolna w zależności od dostępności — szczegółowy harmonogram zostanie ustalony później.',
             'label.type_inscription': 'Zapis dotyczy obecnie *',
             'choice.deja_inscrit': 'Uczeń już zapisany',
             'choice.nouvel_eleve': 'Nowy uczeń',
@@ -1199,18 +1364,26 @@ table.avail-grid input[type="checkbox"] {
             'label.email': 'Adres e-mail *',
             'hint.email': 'Używany do wysyłania dokumentów i faktur — prosimy podać adres, który Państwo regularnie sprawdzają.',
             'error.email': 'Proszę podać prawidłowy adres e-mail.',
-            'heading.coordonnees': 'Dane kontaktowe',
             'label.telephone': 'Numer telefonu *',
             'label.adresse': 'Pełny adres *',
             'label.quartier': 'Dzielnica / rejon *',
             'quartier.placeholder': 'Wybierz swoją dzielnicę',
             'error.select_quartier': 'Proszę wybrać dzielnicę.',
             'heading.formule': 'Formuła i dostępność',
-            'reminder.tarifs.label': 'Przypomnienie cennika 2025/2026:',
-            'reminder.tarifs.text': 'Découverte 43€ (30 min) · Progression 54€ (45 min) · Excellence 65€ (60 min) za lekcję.',
-            'reminder.remises.text': 'Rabat za lojalność w zależności od stażu (0 do -6%) + rabat w zależności od rytmu płatności (Miesięczny 0%, Kwartalny -5%, Roczny -10%), rabaty się kumulują.',
+            'tarifs.th.formule': 'Formuła', 'tarifs.th.duree': 'Czas trwania', 'tarifs.th.prix': 'Cena',
+            'remises.th.anciennete': 'Staż', 'remises.th.remise': 'Rabat', 'remises.th.rythme': 'Rytm płatności',
+            'remises.anciennete.1': '1-2 lata', 'remises.anciennete.2': '3-4 lata', 'remises.anciennete.3': '5-6 lat', 'remises.anciennete.4': '7 lat i więcej',
+            'remises.cumul': 'Oba rabaty się kumulują.',
             'reminder.detail.label': 'Szczegóły i symulator:',
             'reminder.detail.link': 'zobacz stronę z cennikiem',
+            'choice.impromptu': 'Impromptu', 'choice.resonance': 'Résonance', 'choice.resonance_visio': 'Résonance (wideorozmowa)',
+            'tarifs.flexible.note': 'Impromptu: karnet 10 lekcji, ważny 4 miesiące, płatność jednorazowa. Résonance: podana cena za lekcję, pakiet miesięczny (3 lekcje wideo + 1 stacjonarna), minimalne zobowiązanie 3 miesiące.',
+            'label.formule_flexible': 'Wybrana formuła *',
+            'label.duree_flexible': 'Czas trwania lekcji *',
+            'choice.duree30': '30 minut', 'choice.duree45': '45 minut', 'choice.duree60': '60 minut',
+            'label.essai_prelude': 'Chcę skorzystać z lekcji próbnej Prélude (30 min, 20€), niepomniejszającej przyszłego zobowiązania',
+            'rythme.note.resonance': 'Płatność miesięczna jest wymagana w formule Résonance (minimalne zobowiązanie 3 miesiące).',
+            'rythme.note.impromptu': 'Płatność jednorazowa przy rezerwacji karnetu — brak rytmu płatności do wyboru w formule Impromptu.',
             'label.duree_cours': 'Wybrana długość lekcji *',
             'hint.duree_cours': 'W przypadku rodzeństwa proszę podać łączny czas lekcji (np. 2× Progression 45 min = 90 min).',
             'choice.decouverte30': 'Découverte 30 min',
@@ -1223,9 +1396,8 @@ table.avail-grid input[type="checkbox"] {
             'label.rythme_paiement': 'Preferowany rytm płatności *',
             'choice.mensuel': 'Miesięczny', 'choice.trimestriel': 'Kwartalny', 'choice.annuel': 'Roczny',
             'error.select_rythme': 'Proszę wybrać rytm płatności.',
-            'label.disponibilites': 'Dostępność — zaznacz wszystkie możliwe dni i godziny *',
+            'label.disponibilites': 'Dostępność w przerwie obiadowej (11:30-14:00) — jeśli dziecko wraca na obiad do domu',
             'day.lundi': 'Poniedziałek', 'day.mardi': 'Wtorek', 'day.mercredi': 'Środa', 'day.jeudi': 'Czwartek', 'day.vendredi': 'Piątek',
-            'error.select_dispo': 'Proszę zaznaczyć co najmniej jeden termin.',
             'label.garde_partagee': 'Sytuacja opieki naprzemiennej?',
             'choice.non': 'Nie', 'choice.oui': 'Tak',
             'label.garde_jours': 'Jeśli opieka naprzemienna, proszę podać dni',
@@ -1280,6 +1452,8 @@ table.avail-grid input[type="checkbox"] {
         populateQuartierOptions(lang);
         stepLabel.textContent = TRANSLATIONS[lang]['step.label.' + steps[currentStepIndex]];
         if (!signatureTouched) updateSignatureTemplate();
+        const checkedFlexible = document.querySelector('input[name="formule_flexible"]:checked');
+        if (checkedFlexible) applyFormuleFlexibleLock(checkedFlexible.value);
     }
 
     const LANG_VALUE_TO_CODE = { 'Français': 'fr', 'English': 'en', 'Polski': 'pl' };
@@ -1287,8 +1461,83 @@ table.avail-grid input[type="checkbox"] {
         input.addEventListener('change', () => setLanguage(LANG_VALUE_TO_CODE[input.value]));
     });
 
+    // ============================================================
+    // TYPE DE FORMULE (à l'année / flexible) & logique associée
+    // ============================================================
+    const introFamilleAnnee = document.getElementById('introFamilleAnnee');
+    const introFamilleFlexible = document.getElementById('introFamilleFlexible');
+    const tarifsAnneeEl = document.getElementById('tarifsAnnee');
+    const tarifsFlexibleEl = document.getElementById('tarifsFlexible');
+    const dureeAnneeGroup = document.getElementById('dureeAnneeGroup');
+    const autreDureeGroup = document.getElementById('autreDureeGroup');
+    const formuleFlexibleGroup = document.getElementById('formuleFlexibleGroup');
+    const dureeFlexibleGroup = document.getElementById('dureeFlexibleGroup');
+    const essaiFlexibleGroup = document.getElementById('essaiFlexibleGroup');
+    const dispoGroup = document.getElementById('dispoGroup');
+    const gardePartageeGroup = document.getElementById('gardePartageeGroup');
+    const rythmeMensuel = document.getElementById('rythme_mensuel');
+    const rythmeTrimestriel = document.getElementById('rythme_trimestriel');
+    const rythmeAnnuel = document.getElementById('rythme_annuel');
+    const rythmePaiementNote = document.getElementById('rythmePaiementNote');
+
+    function resetRythmePaiement() {
+        [rythmeMensuel, rythmeTrimestriel, rythmeAnnuel].forEach(r => { r.disabled = false; });
+        rythmePaiementNote.style.display = 'none';
+        rythmePaiementNote.textContent = '';
+    }
+
+    function applyFormuleFlexibleLock(value) {
+        if (value === 'Résonance (visio)') {
+            rythmeTrimestriel.checked = false;
+            rythmeAnnuel.checked = false;
+            rythmeMensuel.disabled = false;
+            rythmeTrimestriel.disabled = true;
+            rythmeAnnuel.disabled = true;
+            rythmeMensuel.checked = true;
+            rythmePaiementNote.textContent = TRANSLATIONS[currentLang]['rythme.note.resonance'];
+            rythmePaiementNote.style.display = 'block';
+        } else if (value === 'Impromptu') {
+            [rythmeMensuel, rythmeTrimestriel, rythmeAnnuel].forEach(r => { r.disabled = true; r.checked = false; });
+            rythmePaiementNote.textContent = TRANSLATIONS[currentLang]['rythme.note.impromptu'];
+            rythmePaiementNote.style.display = 'block';
+        } else {
+            resetRythmePaiement();
+        }
+    }
+
+    function updateFormuleTypeUI(typeFormule) {
+        const isAnnee = typeFormule === "Formule à l'année";
+        const isFlexible = typeFormule === 'Formule flexible (9h00-15h00)';
+
+        introFamilleAnnee.style.display = isAnnee ? '' : 'none';
+        introFamilleFlexible.style.display = isFlexible ? '' : 'none';
+        tarifsAnneeEl.style.display = isAnnee ? '' : 'none';
+        tarifsFlexibleEl.style.display = isFlexible ? '' : 'none';
+        dureeAnneeGroup.style.display = isAnnee ? '' : 'none';
+        autreDureeGroup.style.display = isAnnee ? '' : 'none';
+        dispoGroup.style.display = isAnnee ? '' : 'none';
+        gardePartageeGroup.style.display = isAnnee ? '' : 'none';
+        formuleFlexibleGroup.style.display = isFlexible ? '' : 'none';
+        dureeFlexibleGroup.style.display = isFlexible ? '' : 'none';
+        essaiFlexibleGroup.style.display = isFlexible ? '' : 'none';
+
+        if (isAnnee) {
+            resetRythmePaiement();
+        } else if (isFlexible) {
+            const checkedFlexible = document.querySelector('input[name="formule_flexible"]:checked');
+            applyFormuleFlexibleLock(checkedFlexible ? checkedFlexible.value : null);
+        }
+    }
+
+    document.querySelectorAll('input[name="type_formule"]').forEach(input => {
+        input.addEventListener('change', () => updateFormuleTypeUI(input.value));
+    });
+    document.querySelectorAll('input[name="formule_flexible"]').forEach(input => {
+        input.addEventListener('change', () => applyFormuleFlexibleLock(input.value));
+    });
+
     // Navigation multi-étapes
-    const steps = ['lang', 'famille', 'coordonnees', 'formule', 'emploi', 'cgv', 'autorisation'];
+    const steps = ['lang', 'type_formule', 'famille', 'formule', 'emploi', 'cgv', 'autorisation'];
     let currentStepIndex = 0;
 
     const stepEls = {};
@@ -1333,41 +1582,49 @@ table.avail-grid input[type="checkbox"] {
         if (err) err.style.display = 'none';
     }
 
+    function isVisible(el) {
+        return !!(el.offsetParent || el.getClientRects().length);
+    }
+
     function validateStep(stepKey) {
         const stepEl = stepEls[stepKey];
         let valid = true;
 
-        // Champs texte / email / textarea requis
-        stepEl.querySelectorAll('input[type="text"][required], input[type="email"][required], textarea[required]').forEach(input => {
+        // Champs texte / email / textarea requis (les champs masqués par une branche non active sont ignorés)
+        Array.from(stepEl.querySelectorAll('input[type="text"][required], input[type="email"][required], textarea[required]')).filter(isVisible).forEach(input => {
             const ok = input.value.trim() && (input.type !== 'email' || input.value.includes('@'));
             if (!ok) { valid = false; showFieldError(input); } else { hideFieldError(input); }
         });
 
         // Listes déroulantes requises
-        stepEl.querySelectorAll('select[required]').forEach(select => {
+        Array.from(stepEl.querySelectorAll('select[required]')).filter(isVisible).forEach(select => {
             const ok = select.value.trim().length > 0;
             if (!ok) { valid = false; showFieldError(select); } else { hideFieldError(select); }
         });
 
-        // Groupes radio requis (une seule case doit être cochée par groupe)
+        // Groupes radio requis (une seule case doit être cochée par groupe) — ignore les groupes masqués
+        // ou entièrement désactivés (ex : rythme de paiement grisé pour la formule Impromptu).
         const radioNames = new Set();
         stepEl.querySelectorAll('input[type="radio"][required]').forEach(input => radioNames.add(input.name));
         radioNames.forEach(name => {
-            const radios = stepEl.querySelectorAll(`input[type="radio"][name="${CSS.escape(name)}"]`);
-            const checked = stepEl.querySelector(`input[type="radio"][name="${CSS.escape(name)}"]:checked`);
-            if (!checked) { valid = false; showFieldError(radios[0]); } else { hideFieldError(radios[0]); }
+            const allRadios = Array.from(stepEl.querySelectorAll(`input[type="radio"][name="${CSS.escape(name)}"]`));
+            const visibleRadios = allRadios.filter(isVisible);
+            if (visibleRadios.length === 0) return;
+            if (visibleRadios.every(r => r.disabled)) { hideFieldError(visibleRadios[0]); return; }
+            const checked = visibleRadios.some(r => r.checked && !r.disabled);
+            if (!checked) { valid = false; showFieldError(visibleRadios[0]); } else { hideFieldError(visibleRadios[0]); }
         });
 
         // Case à cocher unique requise (ex: accepte_cgv)
-        stepEl.querySelectorAll('input[type="checkbox"][required]').forEach(input => {
+        Array.from(stepEl.querySelectorAll('input[type="checkbox"][required]')).filter(isVisible).forEach(input => {
             if (!input.checked) { valid = false; showFieldError(input); } else { hideFieldError(input); }
         });
 
-        // Groupes de checkboxes "au moins une case cochée" (duree_cours, dispo)
-        ['duree_cours', 'dispo'].forEach(groupName => {
-            const boxes = stepEl.querySelectorAll(`input[name="${groupName}"]`);
+        // Groupes de checkboxes "au moins une case cochée" (durée pour la formule à l'année)
+        ['duree_cours'].forEach(groupName => {
+            const boxes = Array.from(stepEl.querySelectorAll(`input[name="${groupName}"]`)).filter(isVisible);
             if (boxes.length === 0) return;
-            const anyChecked = Array.from(boxes).some(b => b.checked);
+            const anyChecked = boxes.some(b => b.checked);
             if (!anyChecked) { valid = false; showFieldError(boxes[0]); } else { hideFieldError(boxes[0]); }
         });
 
