@@ -1,18 +1,3 @@
-<!-- Splash screen choix version -->
-    <div id="splash-choix-version" style="position:fixed;z-index:9999;top:0;left:0;width:100vw;height:100vh;background:rgba(255,255,255,0.85);display:flex;flex-direction:column;align-items:center;justify-content:center;">
-        <img src="images/LOGO.png" alt="Logo Excellence Piano" style="width:120px;height:120px;object-fit:cover;border-radius:50%;margin-bottom:2rem;box-shadow:0 2px 12px rgba(0,0,0,0.08);border:3px solid #b9944e;">
-        <h2 style="font-family:'Great Vibes',cursive;font-size:2.2rem;color:#b9944e;margin-bottom:1.5rem;text-align:center;">Bienvenue sur Excellence Piano</h2>
-        <p style="font-size:1.1rem;color:#18233f;margin-bottom:2.2rem;text-align:center;max-width:90vw;">Veuillez choisir votre expérience :</p>
-        <div style="display:flex;gap:2rem;flex-wrap:wrap;justify-content:center;">
-            <button onclick="window.location.href='accueil-mobile.html'" style="background:#b9944e;color:#18233f;font-size:1.1rem;padding:0.9rem 2.2rem;border:none;border-radius:999px;box-shadow:0 2px 8px rgba(185,148,78,0.18);font-weight:600;cursor:pointer;transition:background 0.2s;">Version mobile</button>
-            <button onclick="fermerSplash()" style="background:#18233f;color:#b9944e;font-size:1.1rem;padding:0.9rem 2.2rem;border:2px solid #b9944e;border-radius:999px;box-shadow:0 2px 8px rgba(24,35,63,0.18);font-weight:600;cursor:pointer;transition:background 0.2s;">Version ordinateur</button>
-        </div>
-    </div>
-    <script>
-    function fermerSplash() {
-        document.getElementById('splash-choix-version').style.display = 'none';
-    }
-    </script>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -83,11 +68,16 @@
     <!-- Google Fonts - Inter pour le corps du texte, Great Vibes pour les titres -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
     <style>
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
         html, body {
             scroll-behavior: smooth;
             font-family: 'Inter', sans-serif;
             background-color: #f9fafb;
             color: #1f2937;
+            max-width: 100%;
+            overflow-x: hidden;
         }
         .page-section {
             scroll-snap-align: start;
@@ -209,7 +199,8 @@
             left: 0;
             right: 0;
             margin: auto;
-            width: 1400px;
+            width: 100%;
+            max-width: 1400px;
             height: 300px;
             background: transparent;
         }
@@ -221,6 +212,19 @@
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
         @media (max-width: 767px) {
+            header {
+                height: auto;
+                padding-top: 1rem;
+                padding-bottom: 1rem;
+            }
+            header .logo-container-header {
+                position: relative;
+                height: auto;
+            }
+            header .logo-container-header img {
+                width: 260px !important;
+                height: auto !important;
+            }
             .page-section {
                 transform: skewY(0deg);
                 margin-top: 2rem;
@@ -367,7 +371,7 @@
         }
         @media (max-width: 767px) {
             #formules-flexibles {
-                transform: skewY(4deg);
+                transform: skewY(0deg);
                 border-bottom: none;
                 box-shadow: none;
                 min-height: auto;
@@ -377,7 +381,7 @@
                 border-radius: 0.75rem;
             }
             #options-cours {
-                transform: skewY(4deg);
+                transform: skewY(0deg);
                 border-bottom: none;
                 box-shadow: none;
                 min-height: auto;
@@ -385,7 +389,7 @@
                 padding-top: 2rem;
                 padding-bottom: 2rem;
                 border-radius: 0.75rem;
-            } }   
+            } }
             #options-cours .texte-fond-cours {
                 background: rgba(255,255,255,0.32);
                 backdrop-filter: blur(32px);
@@ -729,6 +733,29 @@
         }
         /* ----------- Fin Parallaxe Exigences Piano ----------- */
     </style>
+    <style>
+        @media (max-width: 767px) {
+            /* Le bloc mobile précédent skewait la section ET son bandeau de titre
+               (inline style) dans le même sens au lieu de s'annuler, inclinant
+               visiblement le texte. La section est maintenant à plat (voir plus
+               haut) ; son bandeau de titre doit l'être aussi. */
+            #options-cours > div:first-child,
+            #formules-flexibles > div:first-child {
+                transform: skewY(0deg) !important;
+            }
+        }
+        @media (max-width: 480px) {
+            .tarif-remises-grid {
+                grid-template-columns: 1fr;
+            }
+            #options-cours .options-grid {
+                grid-template-columns: 1fr;
+            }
+            #formules-flexibles .options-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 <body class="antialiased">
     <!-- Header Section -->
@@ -922,11 +949,11 @@ document.addEventListener('DOMContentLoaded', function() {
             }
             rotationProgress = Math.min(Math.max(rotationProgress, 0), 1);
             const rotation = 90 * rotationProgress;
-            phone.style.transform = `rotate(${rotation}deg)`;
+            if (phone) phone.style.transform = `rotate(${rotation}deg)`;
             // Apparition du texte et du formulaire
             const opacityProgress = Math.min(Math.max(totalProgress * 3, 0), 1);
-            textZone.style.opacity = opacityProgress;
-            contactFormContainer.style.opacity = opacityProgress;
+            if (textZone) textZone.style.opacity = opacityProgress;
+            if (contactFormContainer) contactFormContainer.style.opacity = opacityProgress;
         });
         // Gestion du formulaire
         const form = contactSection.querySelector('#contactForm');
@@ -1119,7 +1146,7 @@ document.addEventListener('DOMContentLoaded', function() {
 <!-- Section : Inscription (parallaxe) -->
 <section id="inscription" style="margin-top:0;margin-bottom:60px">
     <!-- Conteneur principal qui gère l'animation de défilement (zone centrale réduite) -->
-    <div class="scroll-wrapper" id="scroll-wrapper-inscription" style="transform:skewY(-4deg);width:1500px;margin:0 auto;">
+    <div class="scroll-wrapper" id="scroll-wrapper-inscription" style="transform:skewY(-4deg);width:100%;max-width:1500px;margin:0 auto;">
         <div class="parallax-container" style="max-width:1500px;margin:0 auto;">
             <div class="photo-grid" style="position:absolute;top:0;left:0;width:100%;height:96%;display:flex;z-index:10;max-width:1500px;margin:0 auto;">
                 <div class="photo-wrapper left-photo" id="photo1-inscription" style="width:50%;height:100%;border-radius:0;box-shadow:none;">
@@ -1388,7 +1415,7 @@ document.addEventListener('DOMContentLoaded', function() {
     <div class="contact-form-container" style="max-width:480px;margin:0 auto;box-sizing:border-box;">
             <!-- Formulaire unique -->
 <div style="text-align:center;padding:24px 0;">
-  <form action="https://getform.io/f/avrmmxoa" method="POST" style="max-width:400px;margin:0 auto;text-align:left;background:#fff;padding:24px 32px;border-radius:16px;box-shadow:0 2px 16px rgba(24,35,63,0.08);">
+  <form id="contactForm" action="https://getform.io/f/avrmmxoa" method="POST" style="max-width:400px;margin:0 auto;text-align:left;background:#fff;padding:24px 32px;border-radius:16px;box-shadow:0 2px 16px rgba(24,35,63,0.08);">
     <h2 style="color:#18233f;font-size:1.4rem;margin-bottom:18px;text-align:center;font-family:'Inter',sans-serif;">Contactez-moi</h2>
     <div class="form-group" style="margin-bottom:16px;">
       <label for="name" style="color:#18233f;font-weight:600;">Nom :</label>
@@ -1787,64 +1814,6 @@ document.addEventListener('DOMContentLoaded', function() {
     </script>
 <!-- Section : Inscription (parallaxe) -->
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const scrollWrapper = document.querySelector('.scroll-wrapper');
-            const parallaxPhoto = document.getElementById('parallax-photo');
-            const parallaxPhotoWrapper = document.getElementById('parallax-photo-wrapper');
-            const pianoSection = document.getElementById('piano-section');
-            let parallaxeActive = false;
-
-            // Fonction d'animation de la parallaxe (photo unique)
-            function handleParallax() {
-                if (!parallaxeActive) return;
-                const rect = scrollWrapper.getBoundingClientRect();
-                const windowHeight = window.innerHeight;
-                // Calcul du scroll relatif à la section
-                const sectionTop = rect.top + window.scrollY;
-                const scrollPos = window.scrollY - sectionTop;
-                const scrollHeight = scrollWrapper.clientHeight - windowHeight;
-                // Accélération plus forte
-                let progress = scrollPos / scrollHeight;
-                progress = Math.min(1, Math.max(0, progress * 2));
-                // Easing pour plus de fluidité (easeInOutQuad)
-                function easeInOutQuad(t) {
-                    return t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2;
-                }
-                progress = easeInOutQuad(progress);
-
-                // Mouvement de la photo du centre vers la gauche
-                const maxTranslateX = parallaxPhotoWrapper.offsetWidth * 0.4; // 40% de la largeur du conteneur
-                parallaxPhoto.style.transform = `translateX(${-progress * maxTranslateX}px)`;
-                parallaxPhoto.style.opacity = 1 - progress * 0.7; // Légère disparition
-
-                // Affichage progressif de la section piano
-                const pianoFadeStart = 0.6; // Commence à apparaître à 60% de l'animation
-                const pianoProgress = Math.min(1, Math.max(0, (progress - pianoFadeStart) / (1 - pianoFadeStart)));
-                pianoSection.style.opacity = pianoProgress;
-            }
-
-            // IntersectionObserver pour activer/désactiver la parallaxe
-            const observer = new window.IntersectionObserver(
-                (entries) => {
-                    entries.forEach(entry => {
-                        parallaxeActive = entry.isIntersecting;
-                        if (!parallaxeActive) {
-                            // Reset styles quand la section sort de la vue
-                            parallaxPhoto.style.transform = '';
-                            parallaxPhoto.style.opacity = '';
-                            pianoSection.style.opacity = 0;
-                        } else {
-                            handleParallax(); // Met à jour dès l'entrée
-                        }
-                    });
-                },
-                { threshold: 0.1 }
-            );
-            observer.observe(scrollWrapper);
-
-            window.addEventListener('scroll', handleParallax);
-        window.addEventListener('resize', handleParallax);
-    });
         <!-- Contact Parallaxe JS -->
         document.addEventListener('DOMContentLoaded', () => {
                 const contactSection = document.getElementById('contact');
@@ -1872,11 +1841,11 @@ document.addEventListener('DOMContentLoaded', function() {
             }
                 rotationProgress = Math.min(Math.max(rotationProgress, 0), 1);
                 const rotation = 90 * rotationProgress;
-                phone.style.transform = `rotate(${rotation}deg)`;
+                if (phone) phone.style.transform = `rotate(${rotation}deg)`;
             // Apparition du texte et du formulaire
                 const opacityProgress = Math.min(Math.max(totalProgress * 3, 0), 1);
-                textZone.style.opacity = opacityProgress;
-                contactFormContainer.style.opacity = opacityProgress;
+                if (textZone) textZone.style.opacity = opacityProgress;
+                if (contactFormContainer) contactFormContainer.style.opacity = opacityProgress;
         });
         /* ----------- Fin Contact Parallaxe Styles ----------- */
         // Gestion du formulaire
