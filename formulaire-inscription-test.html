@@ -726,14 +726,13 @@ table.avail-grid input[type="checkbox"] {
                     <div id="tarifsFlexible" style="display:none;">
                         <div class="tarifs-table-wrapper">
                             <table class="tarifs-table">
-                                <thead><tr><th data-i18n="tarifs.th.formule">Formule</th><th>30 min</th><th>45 min</th><th>60 min</th></tr></thead>
+                                <thead><tr><th data-i18n="tarifs.th.formule">Formule</th><th data-i18n="tarifs.th.composition">Composition</th><th>30 min</th><th>45 min</th><th>60 min</th></tr></thead>
                                 <tbody>
-                                    <tr><td data-i18n="choice.impromptu">Impromptu</td><td>430€</td><td>540€</td><td>650€</td></tr>
-                                    <tr><td data-i18n="choice.resonance">Résonance</td><td>35€</td><td>40€</td><td>50€</td></tr>
+                                    <tr><td data-i18n="choice.impromptu">Impromptu (carnet de 10 cours)</td><td data-i18n="tarifs.composition.impromptu">Carnet de 10 cours, valable 4 mois</td><td>430€</td><td>540€</td><td>650€</td></tr>
+                                    <tr><td data-i18n="choice.resonance_visio">Résonance (hybride visio)</td><td data-i18n="tarifs.composition.resonance">3 cours en visio + 1 à domicile / mois</td><td>35€</td><td>40€</td><td>50€</td></tr>
                                 </tbody>
                             </table>
                         </div>
-                        <p class="legal-note" style="display:block;" data-i18n="tarifs.flexible.note">Impromptu : carnet de 10 cours, valable 4 mois, paiement unique. Résonance : tarif par cours indiqué, forfait mensuel (3 cours en visio + 1 en présentiel), engagement minimum 3 mois.</p>
                     </div>
 
                     <!-- Durée — Formule à l'année -->
@@ -758,8 +757,8 @@ table.avail-grid input[type="checkbox"] {
                     <div class="field-group" id="formuleFlexibleGroup" style="display:none;">
                         <label class="field-label" data-i18n="label.formule_flexible">Formule souhaitée *</label>
                         <div class="choice-row">
-                            <label class="choice-chip"><input type="radio" name="formule_flexible" value="Résonance (visio)" required><span data-i18n="choice.resonance_visio">Résonance (visio)</span></label>
-                            <label class="choice-chip"><input type="radio" name="formule_flexible" value="Impromptu" required><span data-i18n="choice.impromptu">Impromptu</span></label>
+                            <label class="choice-chip"><input type="radio" name="formule_flexible" value="Résonance (visio)" required><span data-i18n="choice.resonance_visio">Résonance (hybride visio)</span></label>
+                            <label class="choice-chip"><input type="radio" name="formule_flexible" value="Impromptu" required><span data-i18n="choice.impromptu">Impromptu (carnet de 10 cours)</span></label>
                         </div>
                         <div class="error-message" data-i18n="error.select_option">Merci de sélectionner une option.</div>
                     </div>
@@ -1114,7 +1113,8 @@ table.avail-grid input[type="checkbox"] {
     // ============================================================
     // QUARTIERS / SECTEURS
     // ============================================================
-    const RESONANCE_SUFFIX = { fr: ' (Formule Résonance uniquement)', en: ' (Résonance package only)', pl: ' (tylko formuła Résonance)' };
+    // "resonance: true" = quartier uniquement desservi via la formule flexible (Résonance) ;
+    // exclu de la liste proposée pour la formule à l'année.
     const QUARTIERS = [
         { name: 'Fontvieille', resonance: false },
         { name: 'Condamine', resonance: false },
@@ -1137,18 +1137,22 @@ table.avail-grid input[type="checkbox"] {
         { name: 'Peille', resonance: true }
     ];
     const quartierSelect = document.getElementById('quartier');
-    function populateQuartierOptions(lang) {
+    function populateQuartierOptions(lang, typeFormule) {
         const previousValue = quartierSelect.value;
         quartierSelect.querySelectorAll('option[data-quartier-option]').forEach(opt => opt.remove());
-        QUARTIERS.forEach(q => {
+        const isFlexible = typeFormule === 'Formule flexible (9h00-15h00)';
+        QUARTIERS.filter(q => isFlexible || !q.resonance).forEach(q => {
             const opt = document.createElement('option');
-            const value = q.resonance ? q.name + RESONANCE_SUFFIX.fr : q.name;
-            opt.value = value;
-            opt.textContent = q.resonance ? q.name + RESONANCE_SUFFIX[lang] : q.name;
+            opt.value = q.name;
+            opt.textContent = q.name;
             opt.setAttribute('data-quartier-option', '1');
             quartierSelect.appendChild(opt);
         });
-        if (previousValue) quartierSelect.value = previousValue;
+        if (previousValue && quartierSelect.querySelector(`option[value="${CSS.escape(previousValue)}"]`)) {
+            quartierSelect.value = previousValue;
+        } else {
+            quartierSelect.value = '';
+        }
     }
     populateQuartierOptions('fr');
 
@@ -1196,8 +1200,10 @@ table.avail-grid input[type="checkbox"] {
             'remises.cumul': 'Les deux remises se cumulent.',
             'reminder.detail.label': 'Détail et simulateur :',
             'reminder.detail.link': 'voir la page tarifs',
-            'choice.impromptu': 'Impromptu', 'choice.resonance': 'Résonance', 'choice.resonance_visio': 'Résonance (visio)',
-            'tarifs.flexible.note': "Impromptu : carnet de 10 cours, valable 4 mois, paiement unique. Résonance : tarif par cours indiqué, forfait mensuel (3 cours en visio + 1 en présentiel), engagement minimum 3 mois.",
+            'choice.impromptu': 'Impromptu (carnet de 10 cours)', 'choice.resonance_visio': 'Résonance (hybride visio)',
+            'tarifs.th.composition': 'Composition',
+            'tarifs.composition.impromptu': 'Carnet de 10 cours, valable 4 mois',
+            'tarifs.composition.resonance': '3 cours en visio + 1 à domicile / mois',
             'label.formule_flexible': 'Formule souhaitée *',
             'label.duree_flexible': 'Durée du cours *',
             'choice.duree30': '30 minutes', 'choice.duree45': '45 minutes', 'choice.duree60': '60 minutes',
@@ -1287,8 +1293,10 @@ table.avail-grid input[type="checkbox"] {
             'remises.cumul': 'Both discounts are cumulative.',
             'reminder.detail.label': 'Details and simulator:',
             'reminder.detail.link': 'see the pricing page',
-            'choice.impromptu': 'Impromptu', 'choice.resonance': 'Résonance', 'choice.resonance_visio': 'Résonance (video call)',
-            'tarifs.flexible.note': "Impromptu: pack of 10 lessons, valid for 4 months, one-off payment. Résonance: price shown is per lesson, monthly package (3 video-call lessons + 1 in-person), minimum 3-month commitment.",
+            'choice.impromptu': 'Impromptu (pack of 10 lessons)', 'choice.resonance_visio': 'Résonance (hybrid video-call)',
+            'tarifs.th.composition': 'Package',
+            'tarifs.composition.impromptu': 'Pack of 10 lessons, valid for 4 months',
+            'tarifs.composition.resonance': '3 video-call lessons + 1 in-person / month',
             'label.formule_flexible': 'Preferred package *',
             'label.duree_flexible': 'Lesson length *',
             'choice.duree30': '30 minutes', 'choice.duree45': '45 minutes', 'choice.duree60': '60 minutes',
@@ -1376,8 +1384,10 @@ table.avail-grid input[type="checkbox"] {
             'remises.cumul': 'Oba rabaty się kumulują.',
             'reminder.detail.label': 'Szczegóły i symulator:',
             'reminder.detail.link': 'zobacz stronę z cennikiem',
-            'choice.impromptu': 'Impromptu', 'choice.resonance': 'Résonance', 'choice.resonance_visio': 'Résonance (wideorozmowa)',
-            'tarifs.flexible.note': 'Impromptu: karnet 10 lekcji, ważny 4 miesiące, płatność jednorazowa. Résonance: podana cena za lekcję, pakiet miesięczny (3 lekcje wideo + 1 stacjonarna), minimalne zobowiązanie 3 miesiące.',
+            'choice.impromptu': 'Impromptu (karnet 10 lekcji)', 'choice.resonance_visio': 'Résonance (hybryda wideo)',
+            'tarifs.th.composition': 'Skład',
+            'tarifs.composition.impromptu': 'Karnet 10 lekcji, ważny 4 miesiące',
+            'tarifs.composition.resonance': '3 lekcje wideo + 1 stacjonarna / miesiąc',
             'label.formule_flexible': 'Wybrana formuła *',
             'label.duree_flexible': 'Czas trwania lekcji *',
             'choice.duree30': '30 minut', 'choice.duree45': '45 minut', 'choice.duree60': '60 minut',
@@ -1449,7 +1459,7 @@ table.avail-grid input[type="checkbox"] {
         if (!TRANSLATIONS[lang]) return;
         currentLang = lang;
         applyTranslations(lang);
-        populateQuartierOptions(lang);
+        populateQuartierOptions(lang, currentTypeFormule);
         stepLabel.textContent = TRANSLATIONS[lang]['step.label.' + steps[currentStepIndex]];
         if (!signatureTouched) updateSignatureTemplate();
         const checkedFlexible = document.querySelector('input[name="formule_flexible"]:checked');
@@ -1505,9 +1515,12 @@ table.avail-grid input[type="checkbox"] {
         }
     }
 
+    let currentTypeFormule = null;
     function updateFormuleTypeUI(typeFormule) {
+        currentTypeFormule = typeFormule;
         const isAnnee = typeFormule === "Formule à l'année";
         const isFlexible = typeFormule === 'Formule flexible (9h00-15h00)';
+        populateQuartierOptions(currentLang, typeFormule);
 
         introFamilleAnnee.style.display = isAnnee ? '' : 'none';
         introFamilleFlexible.style.display = isFlexible ? '' : 'none';
@@ -1639,16 +1652,28 @@ table.avail-grid input[type="checkbox"] {
         return valid;
     }
 
+    function isStepApplicable(stepKey) {
+        if (stepKey === 'emploi') {
+            const typeFormule = document.querySelector('input[name="type_formule"]:checked');
+            return !typeFormule || typeFormule.value === "Formule à l'année";
+        }
+        return true;
+    }
+
     btnNext.addEventListener('click', () => {
         const currentKey = steps[currentStepIndex];
         if (!validateStep(currentKey)) return;
-        currentStepIndex = Math.min(currentStepIndex + 1, steps.length - 1);
+        let nextIndex = Math.min(currentStepIndex + 1, steps.length - 1);
+        while (nextIndex < steps.length - 1 && !isStepApplicable(steps[nextIndex])) nextIndex++;
+        currentStepIndex = nextIndex;
         showStep(steps[currentStepIndex]);
         window.scrollTo({ top: document.getElementById('inscriptionForm').offsetTop - 100, behavior: 'smooth' });
     });
 
     btnPrev.addEventListener('click', () => {
-        currentStepIndex = Math.max(currentStepIndex - 1, 0);
+        let prevIndex = Math.max(currentStepIndex - 1, 0);
+        while (prevIndex > 0 && !isStepApplicable(steps[prevIndex])) prevIndex--;
+        currentStepIndex = prevIndex;
         showStep(steps[currentStepIndex]);
         window.scrollTo({ top: document.getElementById('inscriptionForm').offsetTop - 100, behavior: 'smooth' });
     });
