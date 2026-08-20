@@ -374,6 +374,13 @@ table.tarifs-table td:first-child, table.tarifs-table th:first-child {
     font-weight: 600;
 }
 table.tarifs-table tr:last-child td { border-bottom: none; }
+table.tarifs-table .price-sub {
+    display: block;
+    font-size: 0.72rem;
+    font-weight: 400;
+    color: #9a7d3a;
+    margin-top: 2px;
+}
 .tarifs-tables-row {
     display: flex;
     flex-wrap: wrap;
@@ -729,7 +736,13 @@ table.avail-grid input[type="checkbox"] {
                                 <thead><tr><th data-i18n="tarifs.th.formule">Formule</th><th data-i18n="tarifs.th.composition">Composition</th><th>30 min</th><th>45 min</th><th>60 min</th></tr></thead>
                                 <tbody>
                                     <tr><td data-i18n="choice.impromptu">Impromptu (carnet de 10 cours)</td><td data-i18n="tarifs.composition.impromptu">Carnet de 10 cours, valable 4 mois</td><td>430€</td><td>540€</td><td>650€</td></tr>
-                                    <tr><td data-i18n="choice.resonance_visio">Résonance (hybride visio)</td><td data-i18n="tarifs.composition.resonance">3 cours en visio + 1 à domicile / mois</td><td>35€</td><td>40€</td><td>50€</td></tr>
+                                    <tr>
+                                        <td data-i18n="choice.resonance_visio">Résonance (hybride visio)</td>
+                                        <td data-i18n="tarifs.composition.resonance">3 cours en visio + 1 à domicile / mois</td>
+                                        <td>140€<span data-i18n="unit.mois">/mois</span><span class="price-sub">(35€<span data-i18n="unit.cours">/cours</span>)</span></td>
+                                        <td>160€<span data-i18n="unit.mois">/mois</span><span class="price-sub">(40€<span data-i18n="unit.cours">/cours</span>)</span></td>
+                                        <td>200€<span data-i18n="unit.mois">/mois</span><span class="price-sub">(50€<span data-i18n="unit.cours">/cours</span>)</span></td>
+                                    </tr>
                                 </tbody>
                             </table>
                         </div>
@@ -1204,6 +1217,7 @@ table.avail-grid input[type="checkbox"] {
             'tarifs.th.composition': 'Composition',
             'tarifs.composition.impromptu': 'Carnet de 10 cours, valable 4 mois',
             'tarifs.composition.resonance': '3 cours en visio + 1 à domicile / mois',
+            'unit.mois': '/mois', 'unit.cours': '/cours',
             'label.formule_flexible': 'Formule souhaitée *',
             'label.duree_flexible': 'Durée du cours *',
             'choice.duree30': '30 minutes', 'choice.duree45': '45 minutes', 'choice.duree60': '60 minutes',
@@ -1297,6 +1311,7 @@ table.avail-grid input[type="checkbox"] {
             'tarifs.th.composition': 'Package',
             'tarifs.composition.impromptu': 'Pack of 10 lessons, valid for 4 months',
             'tarifs.composition.resonance': '3 video-call lessons + 1 in-person / month',
+            'unit.mois': '/month', 'unit.cours': '/lesson',
             'label.formule_flexible': 'Preferred package *',
             'label.duree_flexible': 'Lesson length *',
             'choice.duree30': '30 minutes', 'choice.duree45': '45 minutes', 'choice.duree60': '60 minutes',
@@ -1388,6 +1403,7 @@ table.avail-grid input[type="checkbox"] {
             'tarifs.th.composition': 'Skład',
             'tarifs.composition.impromptu': 'Karnet 10 lekcji, ważny 4 miesiące',
             'tarifs.composition.resonance': '3 lekcje wideo + 1 stacjonarna / miesiąc',
+            'unit.mois': '/miesiąc', 'unit.cours': '/lekcja',
             'label.formule_flexible': 'Wybrana formuła *',
             'label.duree_flexible': 'Czas trwania lekcji *',
             'choice.duree30': '30 minut', 'choice.duree45': '45 minut', 'choice.duree60': '60 minut',
