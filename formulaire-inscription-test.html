@@ -583,8 +583,8 @@ table.avail-grid input[type="checkbox"] {
             <form id="inscriptionForm" class="form-shell" novalidate>
                 <div class="form-progress" aria-hidden="true">
                     <span class="dot active" data-dot="lang"></span>
-                    <span class="dot" data-dot="type_formule"></span>
                     <span class="dot" data-dot="famille"></span>
+                    <span class="dot" data-dot="type_formule"></span>
                     <span class="dot" data-dot="formule"></span>
                     <span class="dot" data-dot="emploi"></span>
                     <span class="dot" data-dot="cgv"></span>
@@ -602,35 +602,12 @@ table.avail-grid input[type="checkbox"] {
                     </div>
                 </div>
 
-                <!-- ÉTAPE : TYPE DE FORMULE -->
-                <div class="form-step" data-step="type_formule">
-                    <h3 data-i18n="heading.type_formule">Quelle formule souhaitez-vous ?</h3>
-                    <div class="field-group">
-                        <div class="choice-row" style="justify-content:center;">
-                            <label class="choice-chip"><input type="radio" name="type_formule" value="Formule à l'année" required><span data-i18n="choice.formule_annee">Formule à l'année</span></label>
-                            <label class="choice-chip"><input type="radio" name="type_formule" value="Formule flexible (9h00-15h00)" required><span data-i18n="choice.formule_flexible">Formule flexible (9h00-15h00)</span></label>
-                        </div>
-                        <div class="error-message" data-i18n="error.select_option">Merci de sélectionner une option.</div>
-                    </div>
-                </div>
-
                 <!-- ÉTAPE : INFOS FAMILLE -->
                 <div class="form-step" data-step="famille">
                     <h3 data-i18n="heading.famille">Infos famille</h3>
 
-                    <div class="reminder-box" id="introFamilleAnnee" data-i18n="intro.famille.annee">Bonjour à tous ! 🎹 J'espère que vous avez passé d'excellentes vacances ! Il est temps d'organiser les créneaux pour cette nouvelle année musicale.<br><br>
-                    ⚠️ Ce formulaire contient des informations importantes sur l'organisation des cours et les conditions générales. Merci de prendre le temps de tout lire attentivement.<br><br>
-                    Les cours ont lieu aux horaires suivants :<br>
-                    • Lundi au vendredi de 15h00 à 20h00<br>
-                    • Mercredi de 9h00 à 20h00<br>
-                    • Pause déjeuner de 11h30 à 14h00<br><br>
-                    Les anciens créneaux ne peuvent pas être renouvelés suite aux changements d'emploi du temps.</div>
-
-                    <div class="reminder-box" id="introFamilleFlexible" data-i18n="intro.famille.flexible" style="display:none;">Bonjour à tous ! 🎹 J'espère que vous avez passé d'excellentes vacances ! Il est temps d'organiser les créneaux pour cette nouvelle année musicale.<br><br>
-                    ⚠️ Ce formulaire contient des informations importantes sur l'organisation des cours et les conditions générales. Merci de prendre le temps de tout lire attentivement.<br><br>
-                    Les cours ont lieu aux horaires suivants :<br>
-                    • Lundi au vendredi de 9h00 à 15h00<br><br>
-                    Réservation libre selon les disponibilités — le planning précis sera géré ultérieurement.</div>
+                    <div class="reminder-box" data-i18n="intro.famille">Bonjour à tous ! 🎹 J'espère que vous avez passé d'excellentes vacances ! Il est temps d'organiser les créneaux pour cette nouvelle année musicale.<br><br>
+                    ⚠️ Ce formulaire contient des informations importantes sur l'organisation des cours et les conditions générales. Merci de prendre le temps de tout lire attentivement.</div>
 
                     <div class="field-group">
                         <label class="field-label" data-i18n="label.type_inscription">À ce jour, l'inscription concerne *</label>
@@ -680,9 +657,33 @@ table.avail-grid input[type="checkbox"] {
                     </div>
                 </div>
 
+                <!-- ÉTAPE : TYPE DE FORMULE -->
+                <div class="form-step" data-step="type_formule">
+                    <h3 data-i18n="heading.type_formule">Quelle formule souhaitez-vous ?</h3>
+                    <div class="field-group">
+                        <div class="choice-row" style="justify-content:center;">
+                            <label class="choice-chip"><input type="radio" name="type_formule" value="Formule à l'année" required><span data-i18n="choice.formule_annee">Formule à l'année</span></label>
+                            <label class="choice-chip"><input type="radio" name="type_formule" value="Impromptu" required><span data-i18n="choice.impromptu">Impromptu (carnet de 10 cours)</span></label>
+                            <label class="choice-chip"><input type="radio" name="type_formule" value="Résonance (visio)" required><span data-i18n="choice.resonance_visio">Résonance (carnet de 12 cours)</span></label>
+                        </div>
+                        <p class="legal-note" id="quartierRestrictionNote" style="display:none;margin-top:0.8rem;" data-i18n="hint.formule_quartier">Certaines formules ne sont pas disponibles pour votre quartier — seule la formule Résonance (visio) est proposée hors de Monaco / Beausoleil / Cap d'Ail.</p>
+                        <div class="error-message" data-i18n="error.select_option">Merci de sélectionner une option.</div>
+                    </div>
+                </div>
+
                 <!-- ÉTAPE : FORMULE + DISPONIBILITÉS -->
                 <div class="form-step" data-step="formule">
                     <h3 data-i18n="heading.formule">Formule &amp; disponibilités</h3>
+
+                    <div class="reminder-box" id="introFormuleAnnee" data-i18n="intro.formule.annee">Les cours ont lieu aux horaires suivants :<br>
+                    • Lundi au vendredi de 15h00 à 20h00<br>
+                    • Mercredi de 9h00 à 20h00<br>
+                    • Pause déjeuner de 11h30 à 14h00<br><br>
+                    Les anciens créneaux ne peuvent pas être renouvelés suite aux changements d'emploi du temps.</div>
+
+                    <div class="reminder-box" id="introFormuleFlexible" data-i18n="intro.formule.flexible" style="display:none;">Les cours ont lieu aux horaires suivants :<br>
+                    • Lundi au vendredi de 9h00 à 15h00<br><br>
+                    Réservation libre selon les disponibilités — le planning précis sera géré ultérieurement.</div>
 
                     <!-- Tarifs — Formule à l'année -->
                     <div id="tarifsAnnee">
@@ -723,19 +724,23 @@ table.avail-grid input[type="checkbox"] {
                     </div>
 
                     <!-- Tarifs — Formule flexible -->
-                    <div id="tarifsFlexible" style="display:none;">
+                    <div id="tarifsImpromptu" style="display:none;">
                         <div class="tarifs-table-wrapper">
                             <table class="tarifs-table">
-                                <thead><tr><th data-i18n="tarifs.th.formule">Formule</th><th data-i18n="tarifs.th.composition">Composition</th><th>30 min</th><th>45 min</th><th>60 min</th></tr></thead>
+                                <thead><tr><th data-i18n="tarifs.th.composition">Composition</th><th>30 min</th><th>45 min</th><th>60 min</th></tr></thead>
                                 <tbody>
-                                    <tr><td data-i18n="choice.impromptu">Impromptu (carnet de 10 cours)</td><td data-i18n="tarifs.composition.impromptu">Carnet de 10 cours, valable 5 mois</td><td>430€</td><td>540€</td><td>650€</td></tr>
-                                    <tr>
-                                        <td data-i18n="choice.resonance_visio">Résonance (carnet de 12 cours)</td>
-                                        <td data-i18n="tarifs.composition.resonance">9 cours en visio + 3 à domicile, valable 5 mois</td>
-                                        <td>420€</td>
-                                        <td>480€</td>
-                                        <td>600€</td>
-                                    </tr>
+                                    <tr><td data-i18n="tarifs.composition.impromptu">Carnet de 10 cours, valable 5 mois</td><td>430€</td><td>540€</td><td>650€</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div id="tarifsResonance" style="display:none;">
+                        <div class="tarifs-table-wrapper">
+                            <table class="tarifs-table">
+                                <thead><tr><th data-i18n="tarifs.th.composition">Composition</th><th>30 min</th><th>45 min</th><th>60 min</th></tr></thead>
+                                <tbody>
+                                    <tr><td data-i18n="tarifs.composition.resonance">9 cours en visio + 3 à domicile, valable 5 mois</td><td>420€</td><td>480€</td><td>600€</td></tr>
                                 </tbody>
                             </table>
                         </div>
@@ -759,16 +764,7 @@ table.avail-grid input[type="checkbox"] {
                         <input type="text" id="autre_duree" name="autre_duree">
                     </div>
 
-                    <!-- Formule + durée — Formule flexible -->
-                    <div class="field-group" id="formuleFlexibleGroup" style="display:none;">
-                        <label class="field-label" data-i18n="label.formule_flexible">Formule souhaitée *</label>
-                        <div class="choice-row">
-                            <label class="choice-chip"><input type="radio" name="formule_flexible" value="Impromptu" required><span data-i18n="choice.impromptu">Impromptu (carnet de 10 cours)</span></label>
-                            <label class="choice-chip"><input type="radio" name="formule_flexible" value="Résonance (visio)" required><span data-i18n="choice.resonance_visio">Résonance (carnet de 12 cours)</span></label>
-                        </div>
-                        <div class="error-message" data-i18n="error.select_option">Merci de sélectionner une option.</div>
-                    </div>
-
+                    <!-- Durée — Formule flexible -->
                     <div class="field-group" id="dureeFlexibleGroup" style="display:none;">
                         <label class="field-label" data-i18n="label.duree_flexible">Durée du cours *</label>
                         <div class="choice-row">
@@ -1119,8 +1115,8 @@ table.avail-grid input[type="checkbox"] {
     // ============================================================
     // QUARTIERS / SECTEURS
     // ============================================================
-    // "resonance: true" = quartier uniquement desservi via la formule flexible (Résonance) ;
-    // exclu de la liste proposée pour la formule à l'année.
+    // "resonance: true" = quartier hors de Monaco/Beausoleil/Cap d'Ail, desservi uniquement
+    // via la formule Résonance (visio) ; la formule à l'année et Impromptu y sont indisponibles.
     const QUARTIERS = [
         { name: 'Fontvieille', resonance: false },
         { name: 'Condamine', resonance: false },
@@ -1143,24 +1139,23 @@ table.avail-grid input[type="checkbox"] {
         { name: 'Peille', resonance: true }
     ];
     const quartierSelect = document.getElementById('quartier');
-    function populateQuartierOptions(lang, typeFormule) {
+    function populateQuartierOptions(lang) {
         const previousValue = quartierSelect.value;
         quartierSelect.querySelectorAll('option[data-quartier-option]').forEach(opt => opt.remove());
-        const isFlexible = typeFormule === 'Formule flexible (9h00-15h00)';
-        QUARTIERS.filter(q => isFlexible || !q.resonance).forEach(q => {
+        QUARTIERS.forEach(q => {
             const opt = document.createElement('option');
             opt.value = q.name;
             opt.textContent = q.name;
             opt.setAttribute('data-quartier-option', '1');
             quartierSelect.appendChild(opt);
         });
-        if (previousValue && quartierSelect.querySelector(`option[value="${CSS.escape(previousValue)}"]`)) {
-            quartierSelect.value = previousValue;
-        } else {
-            quartierSelect.value = '';
-        }
+        if (previousValue) quartierSelect.value = previousValue;
     }
     populateQuartierOptions('fr');
+    function isQuartierResonanceOnly(name) {
+        const q = QUARTIERS.find(item => item.name === name);
+        return !!q && q.resonance;
+    }
 
     // ============================================================
     // TRADUCTIONS
@@ -1171,8 +1166,8 @@ table.avail-grid input[type="checkbox"] {
             'howitworks.heading': 'Comment ça marche ?',
             'howitworks.text': "Remplissez les 7 étapes ci-dessous : votre langue, vos informations, vos coordonnées, la formule souhaitée et vos disponibilités, l'emploi du temps de votre enfant, puis les conditions générales et l'autorisation d'image à valider.<br><br>Inscriptions par secteur géographique — je vous propose ensuite un créneau adapté à vos disponibilités une fois la rentrée scolaire connue.",
             'step.label.lang': 'Étape 1 sur 7 — Langue',
-            'step.label.type_formule': 'Étape 2 sur 7 — Formule',
-            'step.label.famille': 'Étape 3 sur 7 — Infos famille',
+            'step.label.famille': 'Étape 2 sur 7 — Infos famille',
+            'step.label.type_formule': 'Étape 3 sur 7 — Formule',
             'step.label.formule': 'Étape 4 sur 7 — Formule & disponibilités',
             'step.label.emploi': 'Étape 5 sur 7 — Emploi du temps',
             'step.label.cgv': 'Étape 6 sur 7 — Conditions générales',
@@ -1181,9 +1176,10 @@ table.avail-grid input[type="checkbox"] {
             'heading.famille': 'Infos famille',
             'heading.type_formule': 'Quelle formule souhaitez-vous ?',
             'choice.formule_annee': "Formule à l'année",
-            'choice.formule_flexible': 'Formule flexible (9h00-15h00)',
-            'intro.famille.annee': "Bonjour à tous ! 🎹 J'espère que vous avez passé d'excellentes vacances ! Il est temps d'organiser les créneaux pour cette nouvelle année musicale.<br><br>⚠️ Ce formulaire contient des informations importantes sur l'organisation des cours et les conditions générales. Merci de prendre le temps de tout lire attentivement.<br><br>Les cours ont lieu aux horaires suivants :<br>• Lundi au vendredi de 15h00 à 20h00<br>• Mercredi de 9h00 à 20h00<br>• Pause déjeuner de 11h30 à 14h00<br><br>Les anciens créneaux ne peuvent pas être renouvelés suite aux changements d'emploi du temps.",
-            'intro.famille.flexible': "Bonjour à tous ! 🎹 J'espère que vous avez passé d'excellentes vacances ! Il est temps d'organiser les créneaux pour cette nouvelle année musicale.<br><br>⚠️ Ce formulaire contient des informations importantes sur l'organisation des cours et les conditions générales. Merci de prendre le temps de tout lire attentivement.<br><br>Les cours ont lieu aux horaires suivants :<br>• Lundi au vendredi de 9h00 à 15h00<br><br>Réservation libre selon les disponibilités — le planning précis sera géré ultérieurement.",
+            'hint.formule_quartier': "Certaines formules ne sont pas disponibles pour votre quartier — seule la formule Résonance (visio) est proposée hors de Monaco / Beausoleil / Cap d'Ail.",
+            'intro.famille': "Bonjour à tous ! 🎹 J'espère que vous avez passé d'excellentes vacances ! Il est temps d'organiser les créneaux pour cette nouvelle année musicale.<br><br>⚠️ Ce formulaire contient des informations importantes sur l'organisation des cours et les conditions générales. Merci de prendre le temps de tout lire attentivement.",
+            'intro.formule.annee': "Les cours ont lieu aux horaires suivants :<br>• Lundi au vendredi de 15h00 à 20h00<br>• Mercredi de 9h00 à 20h00<br>• Pause déjeuner de 11h30 à 14h00<br><br>Les anciens créneaux ne peuvent pas être renouvelés suite aux changements d'emploi du temps.",
+            'intro.formule.flexible': "Les cours ont lieu aux horaires suivants :<br>• Lundi au vendredi de 9h00 à 15h00<br><br>Réservation libre selon les disponibilités — le planning précis sera géré ultérieurement.",
             'label.type_inscription': "À ce jour, l'inscription concerne *",
             'choice.deja_inscrit': 'Élève déjà inscrit',
             'choice.nouvel_eleve': 'Nouvel élève',
@@ -1210,7 +1206,6 @@ table.avail-grid input[type="checkbox"] {
             'tarifs.th.composition': 'Composition',
             'tarifs.composition.impromptu': 'Carnet de 10 cours, valable 5 mois',
             'tarifs.composition.resonance': '9 cours en visio + 3 à domicile, valable 5 mois',
-            'label.formule_flexible': 'Formule souhaitée *',
             'label.duree_flexible': 'Durée du cours *',
             'choice.duree30': '30 minutes', 'choice.duree45': '45 minutes', 'choice.duree60': '60 minutes',
             'label.essai_prelude': "Je souhaite un cours d'essai Prélude (30 min, 20€), non déductible d'un futur engagement",
@@ -1263,8 +1258,8 @@ table.avail-grid input[type="checkbox"] {
             'howitworks.heading': 'How does it work?',
             'howitworks.text': "Fill in the 7 steps below: your language, your details, your contact information, your preferred package and availability, your child's timetable, then the general terms and the image rights authorisation to accept.<br><br>Registration is organised by geographic area — I will then suggest a time slot suited to your availability once the school term schedule is known.",
             'step.label.lang': 'Step 1 of 7 — Language',
-            'step.label.type_formule': 'Step 2 of 7 — Package type',
-            'step.label.famille': 'Step 3 of 7 — Family details',
+            'step.label.famille': 'Step 2 of 7 — Family details',
+            'step.label.type_formule': 'Step 3 of 7 — Package type',
             'step.label.formule': 'Step 4 of 7 — Package & availability',
             'step.label.emploi': 'Step 5 of 7 — Timetable',
             'step.label.cgv': 'Step 6 of 7 — General terms',
@@ -1273,9 +1268,10 @@ table.avail-grid input[type="checkbox"] {
             'heading.famille': 'Family details',
             'heading.type_formule': 'Which package would you like?',
             'choice.formule_annee': 'Yearly package',
-            'choice.formule_flexible': 'Flexible package (9am-3pm)',
-            'intro.famille.annee': "Hello everyone! 🎹 I hope you had a wonderful holiday! It's time to organise the time slots for this new music year.<br><br>⚠️ This form contains important information about how lessons are organised and the general terms. Please take the time to read everything carefully.<br><br>Lessons take place at the following times:<br>• Monday to Friday from 3pm to 8pm<br>• Wednesday from 9am to 8pm<br>• Lunch break from 11:30am to 2pm<br><br>Previous time slots cannot be renewed due to timetable changes.",
-            'intro.famille.flexible': "Hello everyone! 🎹 I hope you had a wonderful holiday! It's time to organise the time slots for this new music year.<br><br>⚠️ This form contains important information about how lessons are organised and the general terms. Please take the time to read everything carefully.<br><br>Lessons take place at the following times:<br>• Monday to Friday from 9am to 3pm<br><br>Free booking based on availability — the precise schedule will be managed later on.",
+            'hint.formule_quartier': 'Some packages are not available for your neighbourhood — only the Résonance (video call) package is offered outside of Monaco / Beausoleil / Cap d\'Ail.',
+            'intro.famille': "Hello everyone! 🎹 I hope you had a wonderful holiday! It's time to organise the time slots for this new music year.<br><br>⚠️ This form contains important information about how lessons are organised and the general terms. Please take the time to read everything carefully.",
+            'intro.formule.annee': "Lessons take place at the following times:<br>• Monday to Friday from 3pm to 8pm<br>• Wednesday from 9am to 8pm<br>• Lunch break from 11:30am to 2pm<br><br>Previous time slots cannot be renewed due to timetable changes.",
+            'intro.formule.flexible': "Lessons take place at the following times:<br>• Monday to Friday from 9am to 3pm<br><br>Free booking based on availability — the precise schedule will be managed later on.",
             'label.type_inscription': 'As of today, this registration concerns *',
             'choice.deja_inscrit': 'Student already enrolled',
             'choice.nouvel_eleve': 'New student',
@@ -1302,7 +1298,6 @@ table.avail-grid input[type="checkbox"] {
             'tarifs.th.composition': 'Package',
             'tarifs.composition.impromptu': 'Pack of 10 lessons, valid for 5 months',
             'tarifs.composition.resonance': '9 video-call lessons + 3 in-person, valid for 5 months',
-            'label.formule_flexible': 'Preferred package *',
             'label.duree_flexible': 'Lesson length *',
             'choice.duree30': '30 minutes', 'choice.duree45': '45 minutes', 'choice.duree60': '60 minutes',
             'label.essai_prelude': "I would like a Prélude trial lesson (30 min, €20), not deductible from a future commitment",
@@ -1353,8 +1348,8 @@ table.avail-grid input[type="checkbox"] {
             'howitworks.heading': 'Jak to działa?',
             'howitworks.text': 'Wypełnij poniższe 7 etapów: język, dane rodziny, dane kontaktowe, wybraną formułę i dostępność, plan zajęć dziecka, a następnie zaakceptuj ogólne warunki i zgodę na wizerunek.<br><br>Zapisy są organizowane według strefy geograficznej — po ustaleniu terminarza roku szkolnego zaproponuję termin dopasowany do Państwa dostępności.',
             'step.label.lang': 'Etap 1 z 7 — Język',
-            'step.label.type_formule': 'Etap 2 z 7 — Rodzaj formuły',
-            'step.label.famille': 'Etap 3 z 7 — Dane rodziny',
+            'step.label.famille': 'Etap 2 z 7 — Dane rodziny',
+            'step.label.type_formule': 'Etap 3 z 7 — Rodzaj formuły',
             'step.label.formule': 'Etap 4 z 7 — Formuła i dostępność',
             'step.label.emploi': 'Etap 5 z 7 — Plan zajęć',
             'step.label.cgv': 'Etap 6 z 7 — Ogólne warunki',
@@ -1363,9 +1358,10 @@ table.avail-grid input[type="checkbox"] {
             'heading.famille': 'Dane rodziny',
             'heading.type_formule': 'Jaką formułę Państwo wybierają?',
             'choice.formule_annee': 'Formuła roczna',
-            'choice.formule_flexible': 'Formuła elastyczna (9:00-15:00)',
-            'intro.famille.annee': 'Witajcie wszyscy! 🎹 Mam nadzieję, że wakacje były wspaniałe! Czas zorganizować terminy zajęć na nowy rok muzyczny.<br><br>⚠️ Ten formularz zawiera ważne informacje dotyczące organizacji zajęć i ogólnych warunków. Prosimy o uważne zapoznanie się z całą treścią.<br><br>Zajęcia odbywają się w następujących godzinach:<br>• Poniedziałek-piątek od 15:00 do 20:00<br>• Środa od 9:00 do 20:00<br>• Przerwa obiadowa od 11:30 do 14:00<br><br>Dotychczasowe terminy nie mogą zostać odnowione z powodu zmian w planie zajęć.',
-            'intro.famille.flexible': 'Witajcie wszyscy! 🎹 Mam nadzieję, że wakacje były wspaniałe! Czas zorganizować terminy zajęć na nowy rok muzyczny.<br><br>⚠️ Ten formularz zawiera ważne informacje dotyczące organizacji zajęć i ogólnych warunków. Prosimy o uważne zapoznanie się z całą treścią.<br><br>Zajęcia odbywają się w następujących godzinach:<br>• Poniedziałek-piątek od 9:00 do 15:00<br><br>Rezerwacja dowolna w zależności od dostępności — szczegółowy harmonogram zostanie ustalony później.',
+            'hint.formule_quartier': 'Niektóre formuły nie są dostępne dla Państwa dzielnicy — poza Monako / Beausoleil / Cap d\'Ail oferowana jest wyłącznie formuła Résonance (wideorozmowa).',
+            'intro.famille': 'Witajcie wszyscy! 🎹 Mam nadzieję, że wakacje były wspaniałe! Czas zorganizować terminy zajęć na nowy rok muzyczny.<br><br>⚠️ Ten formularz zawiera ważne informacje dotyczące organizacji zajęć i ogólnych warunków. Prosimy o uważne zapoznanie się z całą treścią.',
+            'intro.formule.annee': 'Zajęcia odbywają się w następujących godzinach:<br>• Poniedziałek-piątek od 15:00 do 20:00<br>• Środa od 9:00 do 20:00<br>• Przerwa obiadowa od 11:30 do 14:00<br><br>Dotychczasowe terminy nie mogą zostać odnowione z powodu zmian w planie zajęć.',
+            'intro.formule.flexible': 'Zajęcia odbywają się w następujących godzinach:<br>• Poniedziałek-piątek od 9:00 do 15:00<br><br>Rezerwacja dowolna w zależności od dostępności — szczegółowy harmonogram zostanie ustalony później.',
             'label.type_inscription': 'Zapis dotyczy obecnie *',
             'choice.deja_inscrit': 'Uczeń już zapisany',
             'choice.nouvel_eleve': 'Nowy uczeń',
@@ -1392,7 +1388,6 @@ table.avail-grid input[type="checkbox"] {
             'tarifs.th.composition': 'Skład',
             'tarifs.composition.impromptu': 'Karnet 10 lekcji, ważny 5 miesięcy',
             'tarifs.composition.resonance': '9 lekcji wideo + 3 stacjonarne, ważny 5 miesięcy',
-            'label.formule_flexible': 'Wybrana formuła *',
             'label.duree_flexible': 'Czas trwania lekcji *',
             'choice.duree30': '30 minut', 'choice.duree45': '45 minut', 'choice.duree60': '60 minut',
             'label.essai_prelude': 'Chcę skorzystać z lekcji próbnej Prélude (30 min, 20€), niepomniejszającej przyszłego zobowiązania',
@@ -1462,11 +1457,10 @@ table.avail-grid input[type="checkbox"] {
         if (!TRANSLATIONS[lang]) return;
         currentLang = lang;
         applyTranslations(lang);
-        populateQuartierOptions(lang, currentTypeFormule);
+        populateQuartierOptions(lang);
         stepLabel.textContent = TRANSLATIONS[lang]['step.label.' + steps[currentStepIndex]];
         if (!signatureTouched) updateSignatureTemplate();
-        const checkedFlexible = document.querySelector('input[name="formule_flexible"]:checked');
-        if (checkedFlexible) applyFormuleFlexibleLock(checkedFlexible.value);
+        if (currentTypeFormule) applyFormulePaymentLock(currentTypeFormule);
     }
 
     const LANG_VALUE_TO_CODE = { 'Français': 'fr', 'English': 'en', 'Polski': 'pl' };
@@ -1475,15 +1469,15 @@ table.avail-grid input[type="checkbox"] {
     });
 
     // ============================================================
-    // TYPE DE FORMULE (à l'année / flexible) & logique associée
+    // TYPE DE FORMULE (à l'année / Impromptu / Résonance) & logique associée
     // ============================================================
-    const introFamilleAnnee = document.getElementById('introFamilleAnnee');
-    const introFamilleFlexible = document.getElementById('introFamilleFlexible');
+    const introFormuleAnnee = document.getElementById('introFormuleAnnee');
+    const introFormuleFlexible = document.getElementById('introFormuleFlexible');
     const tarifsAnneeEl = document.getElementById('tarifsAnnee');
-    const tarifsFlexibleEl = document.getElementById('tarifsFlexible');
+    const tarifsImpromptuEl = document.getElementById('tarifsImpromptu');
+    const tarifsResonanceEl = document.getElementById('tarifsResonance');
     const dureeAnneeGroup = document.getElementById('dureeAnneeGroup');
     const autreDureeGroup = document.getElementById('autreDureeGroup');
-    const formuleFlexibleGroup = document.getElementById('formuleFlexibleGroup');
     const dureeFlexibleGroup = document.getElementById('dureeFlexibleGroup');
     const essaiFlexibleGroup = document.getElementById('essaiFlexibleGroup');
     const dispoGroup = document.getElementById('dispoGroup');
@@ -1492,6 +1486,7 @@ table.avail-grid input[type="checkbox"] {
     const rythmeTrimestriel = document.getElementById('rythme_trimestriel');
     const rythmeAnnuel = document.getElementById('rythme_annuel');
     const rythmePaiementNote = document.getElementById('rythmePaiementNote');
+    const quartierRestrictionNote = document.getElementById('quartierRestrictionNote');
 
     function resetRythmePaiement() {
         [rythmeMensuel, rythmeTrimestriel, rythmeAnnuel].forEach(r => { r.disabled = false; });
@@ -1499,9 +1494,9 @@ table.avail-grid input[type="checkbox"] {
         rythmePaiementNote.textContent = '';
     }
 
-    function applyFormuleFlexibleLock(value) {
+    function applyFormulePaymentLock(value) {
         if (value === 'Résonance (visio)' || value === 'Impromptu') {
-            // Les deux formules flexibles sont désormais des carnets de cours à paiement unique.
+            // Les deux formules flexibles sont des carnets de cours à paiement unique.
             [rythmeMensuel, rythmeTrimestriel, rythmeAnnuel].forEach(r => { r.disabled = true; r.checked = false; });
             rythmePaiementNote.textContent = TRANSLATIONS[currentLang]['rythme.note.carnet'];
             rythmePaiementNote.style.display = 'block';
@@ -1514,38 +1509,48 @@ table.avail-grid input[type="checkbox"] {
     function updateFormuleTypeUI(typeFormule) {
         currentTypeFormule = typeFormule;
         const isAnnee = typeFormule === "Formule à l'année";
-        const isFlexible = typeFormule === 'Formule flexible (9h00-15h00)';
-        populateQuartierOptions(currentLang, typeFormule);
+        const isImpromptu = typeFormule === 'Impromptu';
+        const isResonance = typeFormule === 'Résonance (visio)';
+        const isFlexible = isImpromptu || isResonance;
 
-        introFamilleAnnee.style.display = isAnnee ? '' : 'none';
-        introFamilleFlexible.style.display = isFlexible ? '' : 'none';
+        introFormuleAnnee.style.display = isAnnee ? '' : 'none';
+        introFormuleFlexible.style.display = isFlexible ? '' : 'none';
         tarifsAnneeEl.style.display = isAnnee ? '' : 'none';
-        tarifsFlexibleEl.style.display = isFlexible ? '' : 'none';
+        tarifsImpromptuEl.style.display = isImpromptu ? '' : 'none';
+        tarifsResonanceEl.style.display = isResonance ? '' : 'none';
         dureeAnneeGroup.style.display = isAnnee ? '' : 'none';
         autreDureeGroup.style.display = isAnnee ? '' : 'none';
         dispoGroup.style.display = isAnnee ? '' : 'none';
         gardePartageeGroup.style.display = isAnnee ? '' : 'none';
-        formuleFlexibleGroup.style.display = isFlexible ? '' : 'none';
         dureeFlexibleGroup.style.display = isFlexible ? '' : 'none';
         essaiFlexibleGroup.style.display = isFlexible ? '' : 'none';
 
-        if (isAnnee) {
-            resetRythmePaiement();
-        } else if (isFlexible) {
-            const checkedFlexible = document.querySelector('input[name="formule_flexible"]:checked');
-            applyFormuleFlexibleLock(checkedFlexible ? checkedFlexible.value : null);
-        }
+        applyFormulePaymentLock(typeFormule);
     }
 
-    document.querySelectorAll('input[name="type_formule"]').forEach(input => {
+    // Filtre les formules disponibles selon le quartier choisi à l'étape précédente :
+    // hors de Monaco/Beausoleil/Cap d'Ail, seule la formule Résonance (visio) est proposée.
+    const typeFormuleInputs = document.querySelectorAll('input[name="type_formule"]');
+    function updateFormuleAvailability() {
+        const restricted = isQuartierResonanceOnly(quartierSelect.value);
+        typeFormuleInputs.forEach(input => {
+            const shouldDisable = restricted && input.value !== 'Résonance (visio)';
+            input.disabled = shouldDisable;
+            if (shouldDisable && input.checked) {
+                input.checked = false;
+                updateFormuleTypeUI(null);
+            }
+        });
+        quartierRestrictionNote.style.display = restricted ? 'block' : 'none';
+    }
+    quartierSelect.addEventListener('change', updateFormuleAvailability);
+
+    typeFormuleInputs.forEach(input => {
         input.addEventListener('change', () => updateFormuleTypeUI(input.value));
-    });
-    document.querySelectorAll('input[name="formule_flexible"]').forEach(input => {
-        input.addEventListener('change', () => applyFormuleFlexibleLock(input.value));
     });
 
     // Navigation multi-étapes
-    const steps = ['lang', 'type_formule', 'famille', 'formule', 'emploi', 'cgv', 'autorisation'];
+    const steps = ['lang', 'famille', 'type_formule', 'formule', 'emploi', 'cgv', 'autorisation'];
     let currentStepIndex = 0;
 
     const stepEls = {};
