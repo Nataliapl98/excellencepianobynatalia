@@ -374,13 +374,6 @@ table.tarifs-table td:first-child, table.tarifs-table th:first-child {
     font-weight: 600;
 }
 table.tarifs-table tr:last-child td { border-bottom: none; }
-table.tarifs-table .price-sub {
-    display: block;
-    font-size: 0.72rem;
-    font-weight: 400;
-    color: #9a7d3a;
-    margin-top: 2px;
-}
 .tarifs-tables-row {
     display: flex;
     flex-wrap: wrap;
@@ -737,11 +730,11 @@ table.avail-grid input[type="checkbox"] {
                                 <tbody>
                                     <tr><td data-i18n="choice.impromptu">Impromptu (carnet de 10 cours)</td><td data-i18n="tarifs.composition.impromptu">Carnet de 10 cours, valable 4 mois</td><td>430€</td><td>540€</td><td>650€</td></tr>
                                     <tr>
-                                        <td data-i18n="choice.resonance_visio">Résonance (hybride visio)</td>
-                                        <td data-i18n="tarifs.composition.resonance">3 cours en visio + 1 à domicile / mois</td>
-                                        <td>140€<span data-i18n="unit.mois">/mois</span><span class="price-sub">(35€<span data-i18n="unit.cours">/cours</span>)</span></td>
-                                        <td>160€<span data-i18n="unit.mois">/mois</span><span class="price-sub">(40€<span data-i18n="unit.cours">/cours</span>)</span></td>
-                                        <td>200€<span data-i18n="unit.mois">/mois</span><span class="price-sub">(50€<span data-i18n="unit.cours">/cours</span>)</span></td>
+                                        <td data-i18n="choice.resonance_visio">Résonance (carnet de 12 cours)</td>
+                                        <td data-i18n="tarifs.composition.resonance">9 cours en visio + 3 à domicile, valable 4 mois</td>
+                                        <td>420€</td>
+                                        <td>480€</td>
+                                        <td>600€</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -770,7 +763,7 @@ table.avail-grid input[type="checkbox"] {
                     <div class="field-group" id="formuleFlexibleGroup" style="display:none;">
                         <label class="field-label" data-i18n="label.formule_flexible">Formule souhaitée *</label>
                         <div class="choice-row">
-                            <label class="choice-chip"><input type="radio" name="formule_flexible" value="Résonance (visio)" required><span data-i18n="choice.resonance_visio">Résonance (hybride visio)</span></label>
+                            <label class="choice-chip"><input type="radio" name="formule_flexible" value="Résonance (visio)" required><span data-i18n="choice.resonance_visio">Résonance (carnet de 12 cours)</span></label>
                             <label class="choice-chip"><input type="radio" name="formule_flexible" value="Impromptu" required><span data-i18n="choice.impromptu">Impromptu (carnet de 10 cours)</span></label>
                         </div>
                         <div class="error-message" data-i18n="error.select_option">Merci de sélectionner une option.</div>
@@ -1213,17 +1206,15 @@ table.avail-grid input[type="checkbox"] {
             'remises.cumul': 'Les deux remises se cumulent.',
             'reminder.detail.label': 'Détail et simulateur :',
             'reminder.detail.link': 'voir la page tarifs',
-            'choice.impromptu': 'Impromptu (carnet de 10 cours)', 'choice.resonance_visio': 'Résonance (hybride visio)',
+            'choice.impromptu': 'Impromptu (carnet de 10 cours)', 'choice.resonance_visio': 'Résonance (carnet de 12 cours)',
             'tarifs.th.composition': 'Composition',
             'tarifs.composition.impromptu': 'Carnet de 10 cours, valable 4 mois',
-            'tarifs.composition.resonance': '3 cours en visio + 1 à domicile / mois',
-            'unit.mois': '/mois', 'unit.cours': '/cours',
+            'tarifs.composition.resonance': '9 cours en visio + 3 à domicile, valable 4 mois',
             'label.formule_flexible': 'Formule souhaitée *',
             'label.duree_flexible': 'Durée du cours *',
             'choice.duree30': '30 minutes', 'choice.duree45': '45 minutes', 'choice.duree60': '60 minutes',
             'label.essai_prelude': "Je souhaite un cours d'essai Prélude (30 min, 20€), non déductible d'un futur engagement",
-            'rythme.note.resonance': 'Paiement mensuel obligatoire pour la formule Résonance (engagement minimum 3 mois).',
-            'rythme.note.impromptu': "Paiement unique à la réservation du carnet de cours — pas de rythme de paiement à choisir pour la formule Impromptu.",
+            'rythme.note.carnet': "Paiement unique à la réservation du carnet de cours — pas de rythme de paiement à choisir.",
             'label.duree_cours': 'Durée désirée du cours *',
             'hint.duree_cours': 'Si fratrie, indiquez la durée totale des cours (ex : 2× Progression 45 min = 90 min).',
             'choice.decouverte30': 'Découverte 30 min',
@@ -1307,17 +1298,15 @@ table.avail-grid input[type="checkbox"] {
             'remises.cumul': 'Both discounts are cumulative.',
             'reminder.detail.label': 'Details and simulator:',
             'reminder.detail.link': 'see the pricing page',
-            'choice.impromptu': 'Impromptu (pack of 10 lessons)', 'choice.resonance_visio': 'Résonance (hybrid video-call)',
+            'choice.impromptu': 'Impromptu (pack of 10 lessons)', 'choice.resonance_visio': 'Résonance (pack of 12 lessons)',
             'tarifs.th.composition': 'Package',
             'tarifs.composition.impromptu': 'Pack of 10 lessons, valid for 4 months',
-            'tarifs.composition.resonance': '3 video-call lessons + 1 in-person / month',
-            'unit.mois': '/month', 'unit.cours': '/lesson',
+            'tarifs.composition.resonance': '9 video-call lessons + 3 in-person, valid for 4 months',
             'label.formule_flexible': 'Preferred package *',
             'label.duree_flexible': 'Lesson length *',
             'choice.duree30': '30 minutes', 'choice.duree45': '45 minutes', 'choice.duree60': '60 minutes',
             'label.essai_prelude': "I would like a Prélude trial lesson (30 min, €20), not deductible from a future commitment",
-            'rythme.note.resonance': 'Monthly payment is required for the Résonance package (minimum 3-month commitment).',
-            'rythme.note.impromptu': "One-off payment when booking the lesson pack — no payment schedule to choose for the Impromptu package.",
+            'rythme.note.carnet': "One-off payment when booking the lesson pack — no payment schedule to choose.",
             'label.duree_cours': 'Desired lesson length *',
             'hint.duree_cours': 'For siblings, indicate the total lesson length (e.g. 2× Progression 45 min = 90 min).',
             'choice.decouverte30': 'Découverte 30 min',
@@ -1399,17 +1388,15 @@ table.avail-grid input[type="checkbox"] {
             'remises.cumul': 'Oba rabaty się kumulują.',
             'reminder.detail.label': 'Szczegóły i symulator:',
             'reminder.detail.link': 'zobacz stronę z cennikiem',
-            'choice.impromptu': 'Impromptu (karnet 10 lekcji)', 'choice.resonance_visio': 'Résonance (hybryda wideo)',
+            'choice.impromptu': 'Impromptu (karnet 10 lekcji)', 'choice.resonance_visio': 'Résonance (karnet 12 lekcji)',
             'tarifs.th.composition': 'Skład',
             'tarifs.composition.impromptu': 'Karnet 10 lekcji, ważny 4 miesiące',
-            'tarifs.composition.resonance': '3 lekcje wideo + 1 stacjonarna / miesiąc',
-            'unit.mois': '/miesiąc', 'unit.cours': '/lekcja',
+            'tarifs.composition.resonance': '9 lekcji wideo + 3 stacjonarne, ważny 4 miesiące',
             'label.formule_flexible': 'Wybrana formuła *',
             'label.duree_flexible': 'Czas trwania lekcji *',
             'choice.duree30': '30 minut', 'choice.duree45': '45 minut', 'choice.duree60': '60 minut',
             'label.essai_prelude': 'Chcę skorzystać z lekcji próbnej Prélude (30 min, 20€), niepomniejszającej przyszłego zobowiązania',
-            'rythme.note.resonance': 'Płatność miesięczna jest wymagana w formule Résonance (minimalne zobowiązanie 3 miesiące).',
-            'rythme.note.impromptu': 'Płatność jednorazowa przy rezerwacji karnetu — brak rytmu płatności do wyboru w formule Impromptu.',
+            'rythme.note.carnet': 'Płatność jednorazowa przy rezerwacji karnetu — brak rytmu płatności do wyboru.',
             'label.duree_cours': 'Wybrana długość lekcji *',
             'hint.duree_cours': 'W przypadku rodzeństwa proszę podać łączny czas lekcji (np. 2× Progression 45 min = 90 min).',
             'choice.decouverte30': 'Découverte 30 min',
@@ -1513,18 +1500,10 @@ table.avail-grid input[type="checkbox"] {
     }
 
     function applyFormuleFlexibleLock(value) {
-        if (value === 'Résonance (visio)') {
-            rythmeTrimestriel.checked = false;
-            rythmeAnnuel.checked = false;
-            rythmeMensuel.disabled = false;
-            rythmeTrimestriel.disabled = true;
-            rythmeAnnuel.disabled = true;
-            rythmeMensuel.checked = true;
-            rythmePaiementNote.textContent = TRANSLATIONS[currentLang]['rythme.note.resonance'];
-            rythmePaiementNote.style.display = 'block';
-        } else if (value === 'Impromptu') {
+        if (value === 'Résonance (visio)' || value === 'Impromptu') {
+            // Les deux formules flexibles sont désormais des carnets de cours à paiement unique.
             [rythmeMensuel, rythmeTrimestriel, rythmeAnnuel].forEach(r => { r.disabled = true; r.checked = false; });
-            rythmePaiementNote.textContent = TRANSLATIONS[currentLang]['rythme.note.impromptu'];
+            rythmePaiementNote.textContent = TRANSLATIONS[currentLang]['rythme.note.carnet'];
             rythmePaiementNote.style.display = 'block';
         } else {
             resetRythmePaiement();
