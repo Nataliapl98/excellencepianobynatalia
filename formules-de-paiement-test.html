@@ -16,17 +16,21 @@
 <!-- Tailwind CSS CDN -->
 <script src="https://cdn.tailwindcss.com"></script>
 <style>
+*, *::before, *::after {
+    box-sizing: border-box;
+}
 /* Couleur du texte du menu contextuel */
 #context-menu a {
     color: #18233f !important;
 }
 
-body {
+html, body {
     font-family: 'Inter', sans-serif;
     background-color: #f9fafb;
     color: #1f2937;
     margin: 0;
     padding: 0;
+    overflow-x: clip;
 }
 
 header {
@@ -52,7 +56,8 @@ header {
     left: 0;
     right: 0;
     margin: auto;
-    width: 1400px;
+    width: 100%;
+    max-width: 1400px;
     height: 300px;
     background: transparent;
 }
@@ -267,13 +272,73 @@ footer {
     max-width: 700px;
 }
 
+#simulateur > div > div {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    box-sizing: border-box;
+}
+
+@media (max-width: 640px) {
+    header {
+        height: 8rem;
+    }
+    .logo-container-header {
+        height: 130px;
+    }
+    .logo-container-header img {
+        height: 100px !important;
+        width: auto !important;
+        max-width: 62vw !important;
+    }
+    #context-menu-wrapper {
+        top: 12px !important;
+        right: 12px !important;
+    }
+    #context-menu-toggle {
+        padding: 8px 10px !important;
+    }
+    #context-menu-toggle svg {
+        width: 26px !important;
+        height: 26px !important;
+    }
+    .main-title {
+        font-size: 2rem !important;
+    }
+    .section-subtitle {
+        font-size: 1.3rem !important;
+        padding: 14px 10px !important;
+    }
+    .explanation-container {
+        padding: 24px 18px 20px 18px !important;
+    }
+    .explanation-container h2 {
+        font-size: 1.5rem !important;
+    }
+    .explanation-container p {
+        font-size: 1rem !important;
+    }
+    .labels {
+        flex-wrap: wrap;
+        gap: 8px 14px;
+    }
+    .label {
+        font-size: 0.95rem !important;
+    }
+    .simulator-result-card {
+        padding: 20px 16px 24px 16px;
+        max-width: 100%;
+    }
+    .result-breakdown {
+        max-width: 100%;
+    }
+}
 </style>
 </head>
 <body class="antialiased">
     <!-- Header Section -->
     <header class="bg-white shadow-md py-4 px-6 rounded-b-xl flex items-center justify-center relative z-1000">
-        <div class="logo-container-header" style="display:flex;justify-content:center;align-items:center;position:absolute;left:0;right:0;margin:auto;width:1400px;height:300px;background:transparent;">
-            <img src="images/logo-header.jpg" alt="Logo Piano" style="height:240px;width:600px;object-fit:contain;">
+        <div class="logo-container-header" style="display:flex;justify-content:center;align-items:center;position:absolute;left:0;right:0;margin:auto;width:100%;max-width:1400px;height:300px;background:transparent;">
+            <img src="images/logo-header.jpg" alt="Logo Piano" style="height:240px;width:600px;max-width:90vw;object-fit:contain;">
         </div>
     </header>
 
@@ -310,7 +375,7 @@ footer {
                     <span id="label-progression" class="label">Progression 45'</span>
                     <span id="label-excellence"  class="label">Excellence 60'</span>
                 </div>
-                <div id="switch-formule" class="switch" style="width:280px;"></div>
+                <div id="switch-formule" class="switch" style="width:min(100%,280px);"></div>
             </div>
 
             <div class="selector-group">
@@ -321,7 +386,7 @@ footer {
                     <span id="label-fid-3" class="label">5-6 ans</span>
                     <span id="label-fid-4" class="label">7 ans et +</span>
                 </div>
-                <div id="switch-fidelite" class="switch" style="width:340px;"></div>
+                <div id="switch-fidelite" class="switch" style="width:min(100%,340px);"></div>
             </div>
 
             <div class="selector-group">
@@ -331,7 +396,7 @@ footer {
                     <span id="label-pay-2" class="label">Trimestriel</span>
                     <span id="label-pay-3" class="label">Annuel</span>
                 </div>
-                <div id="switch-paiement" class="switch" style="width:280px;"></div>
+                <div id="switch-paiement" class="switch" style="width:min(100%,280px);"></div>
             </div>
 
             <div class="simulator-result-card">
