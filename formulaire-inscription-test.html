@@ -16,18 +16,21 @@
 <!-- Tailwind CSS CDN -->
 <script src="https://cdn.tailwindcss.com"></script>
 <style>
+*, *::before, *::after {
+    box-sizing: border-box;
+}
 /* Couleur du texte du menu contextuel */
 #context-menu a {
     color: #18233f !important;
 }
 
-body {
+html, body {
     font-family: 'Inter', sans-serif;
     background-color: #f9fafb;
     color: #1f2937;
     margin: 0;
     padding: 0;
-    overflow-x: hidden;
+    overflow-x: clip;
 }
 
 header {
@@ -353,10 +356,10 @@ select.field-select:focus {
 table.tarifs-table {
     border-collapse: collapse;
     width: 100%;
-    min-width: 340px;
     background: #fdfcf8;
     border-radius: 10px;
     overflow: hidden;
+    table-layout: fixed;
 }
 table.tarifs-table th, table.tarifs-table td {
     text-align: center;
@@ -364,6 +367,7 @@ table.tarifs-table th, table.tarifs-table td {
     font-size: 0.88rem;
     color: #18233f;
     border-bottom: 1px solid #eee1c7;
+    word-break: break-word;
 }
 table.tarifs-table th {
     font-weight: 700;
