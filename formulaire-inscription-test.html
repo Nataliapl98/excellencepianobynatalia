@@ -1677,6 +1677,17 @@ table.avail-grid input[type="checkbox"] {
         return true;
     }
 
+    function scrollToFormTop() {
+        // Ferme le clavier virtuel mobile avant de mesurer la position : sinon le
+        // clavier se referme après coup, la mise en page change et le scroll
+        // calculé sur l'ancienne hauteur retombe ailleurs (souvent en bas de page).
+        if (document.activeElement && document.activeElement.blur) document.activeElement.blur();
+        setTimeout(() => {
+            const formTop = document.getElementById('inscriptionForm').getBoundingClientRect().top + window.scrollY;
+            window.scrollTo({ top: Math.max(formTop - 100, 0), behavior: 'smooth' });
+        }, 50);
+    }
+
     btnNext.addEventListener('click', () => {
         const currentKey = steps[currentStepIndex];
         if (!validateStep(currentKey)) return;
@@ -1684,7 +1695,7 @@ table.avail-grid input[type="checkbox"] {
         while (nextIndex < steps.length - 1 && !isStepApplicable(steps[nextIndex])) nextIndex++;
         currentStepIndex = nextIndex;
         showStep(steps[currentStepIndex]);
-        window.scrollTo({ top: document.getElementById('inscriptionForm').offsetTop - 100, behavior: 'smooth' });
+        scrollToFormTop();
     });
 
     btnPrev.addEventListener('click', () => {
@@ -1692,7 +1703,7 @@ table.avail-grid input[type="checkbox"] {
         while (prevIndex > 0 && !isStepApplicable(steps[prevIndex])) prevIndex--;
         currentStepIndex = prevIndex;
         showStep(steps[currentStepIndex]);
-        window.scrollTo({ top: document.getElementById('inscriptionForm').offsetTop - 100, behavior: 'smooth' });
+        scrollToFormTop();
     });
 
     // Pré-remplissage de la phrase de signature (étape 5) à partir de l'étape 1

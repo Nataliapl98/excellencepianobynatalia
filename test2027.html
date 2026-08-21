@@ -330,7 +330,10 @@
         }
         /* ----------- Fin Parallaxe Inscription ----------- */
             #a-propos {
-            background-image: url(images/pedagogie-bg.JPG) /* Image de remplacement */
+            background-image: url(images/pedagogie-bg.JPG); /* Image de remplacement */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
         }
         /* Section Options de cours avec effet biaisé et image de fond fixe */
         #options-cours {
@@ -763,6 +766,25 @@
             #reveal-section-inscription .text-center {
                 transform: skewY(0deg) !important;
             }
+            /* Ces wrappers ont une hauteur fixe (h-[70vh]) pensée pour caler la
+               carte de texte dans un coin sur desktop ; sur mobile, si le texte
+               dépasse cette hauteur, l'excédent part au-dessus de la boîte et se
+               retrouve invisible (overflow:hidden de la section parente). On
+               repasse en hauteur automatique pour que la section grandisse avec
+               son contenu. */
+            #a-propos .section-content-wrapper,
+            #concert .section-content-wrapper,
+            #stages-intensifs .section-content-wrapper {
+                height: auto !important;
+            }
+            /* Les photos de comparaison (piano jouet / piano droit) étaient
+               forcées à 320px de haut sur une colonne de ~45% de largeur,
+               donc rognées sur les côtés en portrait serré. Un cadre carré
+               les recadre beaucoup moins agressivement. */
+            #exigences-piano .piano-images .image-wrapper img {
+                height: auto !important;
+                aspect-ratio: 1 / 1;
+            }
         }
         @media (max-width: 480px) {
             .tarif-remises-grid {
@@ -848,20 +870,21 @@
          <!-- Section : À propos de la pédagogie -->
         <section id="a-propos" class="page-section py-16 mb-20" style="margin-top:60px">
             <div class="flex flex-col items-end h-[70vh] w-full section-content-wrapper" style="min-height:500px;padding-left:2vw;padding-right:2vw;justify-content:flex-end;">
-                <div style="background:rgba(255, 255, 255, 0.497);border-radius:2.5rem;padding:2rem 1.5rem 1.5rem 1.5rem;box-shadow:0 0 64px 32px rgba(255,255,255,0.45), 0 2px 24px 0 rgba(31,41,55,0.10);backdrop-filter:blur(32px);-webkit-backdrop-filter:blur(32px);border:1px solid rgba(255,255,255,0.10);margin-bottom:2rem;margin-right:2vw;max-width:540px;transform:skewY(4deg);">
+                <div style="background:rgba(255, 255, 255, 0.32);border-radius:2.5rem;padding:2rem 1.5rem 1.5rem 1.5rem;box-shadow:0 0 64px 32px rgba(255,255,255,0.45), 0 2px 24px 0 rgba(31,41,55,0.10);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,0.10);margin-bottom:2rem;margin-right:2vw;max-width:540px;transform:skewY(4deg);">
                         <p class="text-lg leading-relaxed text-center" style="color:#18233f;font-size:1.25rem;"> <!-- text-gray-700 -->
                             Forte de plus de 10 années d'expérience, j'enseigne le piano avec bienveillance et méthode.<br><br> Mon objectif est de transmettre le plaisir de jouer, en adaptant chaque cours aux besoins et au rythme de l'élève.<br><br>
 Que vous soyez débutant(e) ou que vous souhaitiez vous perfectionner, nous construirons ensemble un parcours musical stimulant et personnalisé.
                         </p>
                         <p class="text-lg leading-relaxed mt-4 text-center" style="color:#18233f;font-size:1.25rem;"> <!-- text-gray-700 -->
                            Mon approche privilégie un apprentissage progressif qui allie technique solide et plaisir musical, en explorant une variété de styles selon vos goûts.
+                        </p>
                 </div>
             </div>
         </section>
         <!-- Section: Concert -->
     <section id="concert" class="page-section" style="background: url('images/concert-bg.jpg') center center/cover no-repeat; border-radius:0; margin-top:60px;margin-bottom:60px;">
     <div class="flex flex-col items-end h-[70vh] w-full section-content-wrapper" style="min-height:500px;padding-left:2vw;padding-right:2vw;justify-content:flex-start;">
-            <div style="background:rgba(255,255,255,0.32);border-radius:2.5rem;padding:2rem 1.5rem 1.5rem 1.5rem;box-shadow:0 0 64px 32px rgba(255,255,255,0.45), 0 2px 24px 0 rgba(31,41,55,0.10);backdrop-filter:blur(32px);-webkit-backdrop-filter:blur(32px);border:1px solid rgba(255,255,255,0.10);margin-bottom:0.1rem;margin-top:0.5rem;margin-right:2vw;max-width:540px;transform:skewY(4deg);">
+            <div style="background:rgba(255,255,255,0.32);border-radius:2.5rem;padding:2rem 1.5rem 1.5rem 1.5rem;box-shadow:0 0 64px 32px rgba(255,255,255,0.45), 0 2px 24px 0 rgba(31,41,55,0.10);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,0.10);margin-bottom:0.1rem;margin-top:0.5rem;margin-right:2vw;max-width:540px;transform:skewY(4deg);">
                 <h2 class="text-4xl mb-6" style="color:#18233f;font-family:'Great Vibes',cursive;text-align:center;font-weight:700;text-shadow:none;background:none;">Concert de fin d'année</h2>
                 <p class="text-lg leading-relaxed text-center" style="color:#18233f;font-size:1.25rem;">
                     Chaque année, nous clôturons l'année musicale par un magnifique concert où tous les élèves, quel que soit leur niveau, ont l'opportunité de se produire sur scène ! <br><br> C'est un moment privilégié pour partager leur passion, montrer leurs progrès et célébrer ensemble une année de travail et de musique.<br><br> Ce concert est une expérience enrichissante qui développe la confiance en soi et le plaisir de jouer devant un public. Famille et amis sont chaleureusement invités à venir applaudir nos jeunes talents !<br><br>
@@ -875,7 +898,7 @@ Date et lieu du prochain concert :<br>
         <!-- Section: Stages d'été -->
     <section id="stages-intensifs" class="page-section" style="background: url('images/stages-bg.jpg') center center/cover no-repeat; border-radius:0; margin-top:60px;margin-bottom:60px">
         <div class="flex flex-col items-start h-[70vh] w-full section-content-wrapper" style="min-height:500px;padding-left:2vw;padding-right:2vw;justify-content:flex-start;">
-            <div style="background:rgba(255,255,255,0.32);border-radius:2.5rem;padding:2rem 1.5rem 1.5rem 1.5rem;box-shadow:0 0 64px 32px rgba(255,255,255,0.45), 0 2px 24px 0 rgba(31,41,55,0.10);backdrop-filter:blur(32px);-webkit-backdrop-filter:blur(32px);border:1px solid rgba(255,255,255,0.10);margin-top:2rem;margin-left:2vw;max-width:500px;transform:skewY(4deg);">
+            <div style="background:rgba(255,255,255,0.32);border-radius:2.5rem;padding:2rem 1.5rem 1.5rem 1.5rem;box-shadow:0 0 64px 32px rgba(255,255,255,0.45), 0 2px 24px 0 rgba(31,41,55,0.10);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,0.10);margin-top:2rem;margin-left:2vw;max-width:500px;transform:skewY(4deg);">
                 <h2 class="text-4xl mb-6" style="color:#18233f;font-family:'Great Vibes',cursive;font-weight:700;text-shadow:none;background:none;">Stages intensifs</h2>
                 <p class="text-lg leading-relaxed text-center" style="color:#18233f;font-size:1.25rem;">
                     Offrez à votre enfant une immersion musicale unique avec les stages intensifs de piano.<br> Ces stages sont conçus pour développer rapidement les compétences techniques et artistiques des jeunes pianistes.<br><br>
