@@ -659,13 +659,16 @@
                 playBtn.innerHTML = '&#9654;'; // Play icon
                 isPlaying = false;
             });
-            // Masque automatiquement l'infobulle après quelques secondes pour ne pas cacher le contenu au scroll
-            setTimeout(() => {
-                if (msg && audio.paused) {
-                    msg.style.opacity = 0;
-                    setTimeout(() => { msg.style.display = 'none'; }, 700);
-                }
-            }, 6000);
+            // Masque l'infobulle dès le premier scroll (elle cache sinon le texte des sections en défilant), avec un repli automatique si l'utilisateur ne scrolle pas
+            let audioHintDismissed = false;
+            function dismissAudioHint() {
+                if (audioHintDismissed || !msg) return;
+                audioHintDismissed = true;
+                msg.style.opacity = 0;
+                setTimeout(() => { msg.style.display = 'none'; }, 700);
+            }
+            window.addEventListener('scroll', dismissAudioHint, { once: true, passive: true });
+            setTimeout(dismissAudioHint, 4000);
             function loadTrack(idx){
                 if(idx<0) idx=audioFiles.length-1;
                 if(idx>=audioFiles.length) idx=0;
