@@ -649,7 +649,7 @@
  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
         body {
             font-family: 'Inter', sans-serif;
-            overflow-x: hidden;
+            overflow-x: clip;
             background-color: #f0f0f0;
         }
            /* Conteneur principal qui gère le défilement et déclenche l'effet */
@@ -1095,7 +1095,7 @@ document.addEventListener('DOMContentLoaded', function() {
             <div class="option-price">430€ à 650€</div>
             <ul class="option-list">
                 <li>30 min : 430€ · 45 min : 540€ · 60 min : 650€</li>
-                <li>Valable 4 mois, réservation libre en semaine de 9h à 15h</li>
+                <li>Valable 5 mois, réservation libre en semaine de 9h à 15h</li>
                 <li>Présentiel — idéal pour retraités, télétravailleurs, parents disponibles en journée</li>
                 <li>Sans remise fidélité ni paiement</li>
                 <li>Essai Prélude (optionnel) : 30 min, 20€ — premier cours avant de vous engager (1 par élève)</li>
@@ -1103,13 +1103,13 @@ document.addEventListener('DOMContentLoaded', function() {
         </div>
         <div class="option-card">
             <div class="option-title">Formule Résonance</div>
-            <div class="option-tag">Forfait mensuel (4 cours)</div>
-            <div class="option-price">140€ à 200€</div>
+            <div class="option-tag">Carnet de 12 cours</div>
+            <div class="option-price">420€ à 600€</div>
             <ul class="option-list">
-                <li>3 cours en visio + 1 en présentiel par mois, en semaine de 9h à 15h</li>
-                <li>30 min : 35€ · 45 min : 40€ · 60 min : 50€ le cours</li>
+                <li>9 cours en visio + 3 en présentiel, en semaine de 9h à 15h</li>
+                <li>30 min : 420€ · 45 min : 480€ · 60 min : 600€ le carnet (soit 35€ · 40€ · 50€ le cours)</li>
                 <li>Formule hybride idéale pour l'arrière-pays</li>
-                <li>Engagement minimum 3 mois, virement dû avant le 5 du mois</li>
+                <li>Valable 5 mois, sans engagement ni paiement récurrent</li>
                 <li>Essai Prélude (optionnel) : 30 min en visio, 20€ — premier cours avant de vous engager (1 par élève)</li>
             </ul>
         </div>
@@ -1119,7 +1119,7 @@ document.addEventListener('DOMContentLoaded', function() {
 <!-- Section : Inscription (parallaxe) -->
 <section id="inscription" style="margin-top:0;margin-bottom:60px">
     <!-- Conteneur principal qui gère l'animation de défilement (zone centrale réduite) -->
-    <div class="scroll-wrapper" id="scroll-wrapper-inscription" style="transform:skewY(-4deg);width:1500px;margin:0 auto;">
+    <div class="scroll-wrapper" id="scroll-wrapper-inscription" style="width:100%;max-width:1500px;margin:0 auto;">
         <div class="parallax-container" style="max-width:1500px;margin:0 auto;">
             <div class="photo-grid" style="position:absolute;top:0;left:0;width:100%;height:96%;display:flex;z-index:10;max-width:1500px;margin:0 auto;">
                 <div class="photo-wrapper left-photo" id="photo1-inscription" style="width:50%;height:100%;border-radius:0;box-shadow:none;">
@@ -1130,7 +1130,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 </div>
             </div>
             <div class="reveal-section" id="reveal-section-inscription" style="position:relative;z-index:20;pointer-events:auto;display:flex;align-items:center;justify-content:center;height:100vh;width:100%;max-width:1500px;margin:0 auto;">
-                <div class="text-center p-12 w-full max-w-2xl mx-auto" style="background:rgba(251, 250, 250, 0.97);border-radius:2.5rem;box-shadow:0 8px 48px 0 rgba(185,148,78,0.10);transform:skewY(4deg);font-size:1.55rem;">
+                <div class="text-center p-12 w-full max-w-2xl mx-auto" style="background:rgba(251, 250, 250, 0.97);border-radius:2.5rem;box-shadow:0 8px 48px 0 rgba(185,148,78,0.10);font-size:1.55rem;">
                     <h2 class="text-4xl text-gray-800 mb-8" style="font-size:2.7rem;">De premiers accords aux plus belles mélodies...</h2>
                     <p style="margin-bottom:2.2rem;">L'aventure commence en septembre !<br><br> 📝 <strong> Inscriptions et Réinscriptions :</strong><br> du 8 au 12 septembre 2025 <br><br> Inscriptions possible en cours d'année, me contacter au préalable.</p>
                     <a href="https://forms.gle/7Kob2aKeVZzQGfDV6" target="_blank" class="cta-button" style="font-size:1.25rem;padding:1.2rem 2.8rem;color:#b9944e;font-weight:bold;border:2px solid #b9944e;border-radius:1.2rem;display:inline-block;">
@@ -1587,6 +1587,13 @@ document.addEventListener('DOMContentLoaded', function() {
                 playBtn.innerHTML = '&#9654;'; // Play icon
                 isPlaying = false;
             });
+            // Masque automatiquement l'infobulle après quelques secondes pour ne pas cacher le contenu au scroll
+            setTimeout(() => {
+                if (msg && audio.paused) {
+                    msg.style.opacity = 0;
+                    setTimeout(() => { msg.style.display = 'none'; }, 700);
+                }
+            }, 6000);
             function loadTrack(idx){
                 if(idx<0) idx=audioFiles.length-1;
                 if(idx>=audioFiles.length) idx=0;
@@ -1715,9 +1722,11 @@ document.addEventListener('DOMContentLoaded', function() {
                         entries.forEach(entry => {
                             parallaxeActive = entry.isIntersecting;
                             if (!parallaxeActive) {
-                                photo1.style.transform = '';
-                                photo2.style.transform = '';
-                                revealSection.style.opacity = 0;
+                                if (entry.boundingClientRect.top > 0) {
+                                    photo1.style.transform = '';
+                                    photo2.style.transform = '';
+                                    revealSection.style.opacity = 0;
+                                }
                             } else {
                                 handleParallaxInscription();
                             }
