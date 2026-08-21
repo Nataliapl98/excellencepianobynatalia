@@ -1,6 +1,3 @@
-    <button id="back-to-top" title="Retour en haut" aria-label="Retour en haut" style="position:fixed;bottom:24px;right:24px;z-index:2000;background:rgba(255,255,255,0.85);color:#4338ca;border:none;border-radius:50%;width:48px;height:48px;box-shadow:0 2px 8px rgba(0,0,0,0.12);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background 0.2s;">
-        <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 15l7-7 7 7"/></svg>
-    </button>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -20,14 +17,17 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
     <style>
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
         html, body {
             scroll-behavior: smooth;
             font-family: 'Inter', sans-serif;
             background-color: #f9fafb;
             color: #1f2937;
-            width: 100vw;
-            max-width: 100vw;
-            overflow-x: hidden;
+            width: 100%;
+            max-width: 100%;
+            overflow-x: clip;
             margin: 0;
             padding: 0;
         }
@@ -38,13 +38,136 @@
             opacity: 0;
             transform: translateY(-80px) scale(0.95);
         }
+        .section-title {
+            font-family: 'Great Vibes', cursive;
+            color: #18233f;
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+        /* Carte d'annonce */
+        .annonce-card {
+            background: #fff;
+            border-radius: 0.75rem;
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05);
+            padding: 1rem;
+            width: 100%;
+            max-width: 20rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .annonce-card img {
+            width: 100%;
+            height: 10rem;
+            object-fit: cover;
+            border-radius: 0.5rem;
+        }
+        .annonce-illustration {
+            font-size: 0.68rem;
+            color: #9ca3af;
+            font-style: italic;
+            margin: 0.35rem 0 0.6rem 0;
+        }
+        .annonce-nom {
+            font-weight: 700;
+            color: #18233f;
+            text-align: center;
+            margin-bottom: 0.25rem;
+        }
+        .annonce-prix {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #18233f;
+            margin-bottom: 0.25rem;
+        }
+        .annonce-lieu {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #8a6d1f;
+            margin-bottom: 0.6rem;
+            text-align: center;
+        }
+        .annonce-avis {
+            font-size: 0.875rem;
+            color: #374151;
+            text-align: center;
+        }
+        .annonce-lien {
+            margin-top: 0.9rem;
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: #8a6d1f;
+            text-decoration: underline;
+        }
+        .cartes-colonne {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        /* Bloc "autres annonces à vérifier" */
+        .autres-annonces {
+            width: 100%;
+            max-width: 20rem;
+            margin: 0 auto;
+            background: rgba(255,255,255,0.85);
+            border: 1px solid rgba(138,109,31,0.25);
+            border-radius: 1rem;
+            padding: 1rem;
+        }
+        .autres-annonces p {
+            font-size: 0.85rem;
+            color: #374151;
+            margin: 0 0 0.8rem 0;
+            text-align: center;
+        }
+        .autres-annonces .liens {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+        .autres-annonces .liens a {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #8a6d1f;
+            border: 1px solid rgba(138,109,31,0.4);
+            border-radius: 999px;
+            padding: 0.25rem 0.75rem;
+            text-decoration: none;
+        }
+        /* Magasins */
+        .magasin-card {
+            background: #fff;
+            border-radius: 1rem;
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
+            padding: 1.2rem;
+            width: 100%;
+            max-width: 20rem;
+            text-align: left;
+        }
+        .magasin-card h3 {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: #18233f;
+            margin: 0 0 0.5rem 0;
+        }
+        .magasin-card p {
+            font-size: 0.85rem;
+            color: #374151;
+            margin: 0 0 0.6rem 0;
+            line-height: 1.55;
+        }
+        .page-section {
+            padding: 1.5rem 0.5rem;
+            min-height: auto;
+        }
         @media (max-width: 600px) {
             .page-section {
                 padding: 1rem 0.5rem;
                 min-height: auto;
-            }
-            .section-title {
-                font-size: 1.3rem;
             }
             header {
                 height: 5rem;
@@ -59,7 +182,7 @@
 <body>
     <!-- Header Section -->
     <header id="header-bg" role="banner" aria-label="En-tête Excellence Piano By Natalia">
-        <div style="width:100vw;height:100%;display:flex;align-items:center;justify-content:center;">
+        <div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;">
             <img src="images/logo-header.jpg" alt="Logo Excellence Piano By Natalia" style="height:80%;max-height:90px;width:auto;object-fit:contain;display:block;">
         </div>
     </header>
@@ -74,279 +197,205 @@
             <a href="#pianos-silent" class="bg-white/90 hover:bg-indigo-100 font-semibold py-2 px-5 rounded-lg shadow transition-all duration-200" style="backdrop-filter:blur(4px);color:#18233f;">Piano droits Silent</a>
             <a href="#pianos-numeriques" class="bg-white/90 hover:bg-indigo-100 font-semibold py-2 px-5 rounded-lg shadow transition-all duration-200" style="backdrop-filter:blur(4px);color:#18233f;">Pianos numériques</a>
             <a href="#piano-queue" class="bg-white/90 hover:bg-indigo-100 font-semibold py-2 px-5 rounded-lg shadow transition-all duration-200" style="backdrop-filter:blur(4px);color:#18233f;">Piano à queue</a>
+            <a href="#magasins" class="bg-white/90 hover:bg-indigo-100 font-semibold py-2 px-5 rounded-lg shadow transition-all duration-200" style="backdrop-filter:blur(4px);color:#18233f;">Magasins à Nice</a>
         </nav>
     </div>
-    <script>
-        // Bouton retour en haut toujours visible
-        const backToTopBtn = document.getElementById('back-to-top');
-        backToTopBtn.addEventListener('click', function() {
-            window.scrollTo({top:0,behavior:'smooth'});
-        });
-    // Script pour le menu déroulant
-    document.addEventListener('DOMContentLoaded', function() {
-        var toggle = document.getElementById('context-menu-toggle');
-        var menu = document.getElementById('context-menu');
-        if(toggle && menu) {
-            toggle.addEventListener('click', function() {
-                menu.style.display = (menu.style.display === 'flex') ? 'none' : 'flex';
-            });
-            document.addEventListener('click', function(e) {
-                if (!toggle.contains(e.target) && !menu.contains(e.target)) {
-                    menu.style.display = 'none';
-                }
-            });
-            // Fermer le menu après clic sur un lien
-            menu.querySelectorAll('a').forEach(function(link) {
-                link.addEventListener('click', function() {
-                    menu.style.display = 'none';
-                });
-            });
-        }
-    });
-    </script>
+
     <main class="container mx-auto px-2 py-6">
     <!-- Section Accueil annonces -->
     <section id="annonces-piano" class="page-section" style="margin-top:70px;">
         <div class="section-content-wrapper" style="width:100%;text-align:center;">
-            <h1 class="section-title" style="color:#18233f;font-family:'Great Vibes',cursive;font-size:2.7rem;">Annonces Piano</h1>
+            <h1 class="section-title" style="font-size:2.7rem;">Annonces Piano</h1>
             <div style="max-width:95vw;margin:0 auto 2rem auto;">
-                <p style="font-size:1.05rem;margin-bottom:2rem;">Retrouvez ici toutes les annonces de pianos d'occasion.<br><br> Je vous conseillerais toujours en premier lieu de consulter les annonces de piano acoustiques, et en second lieu, les pianos numériques !<br><br> Je vous invite à contacter directement les propriétaires des annonces afin de s'assurer que les pianos sont toujours disponibles. Certains pianos restent plusieurs mois sans repreneur, donc tentez votre chance!<br><br>Je me tiens bien sûr à votre disposition si vous souhaitez organiser une visite chez le vendeur pour essayer et vérifier le piano.</p>
+                <p style="font-size:1.05rem;margin-bottom:1.5rem;">Retrouvez ici une sélection de pianos d'occasion à vendre autour de Monaco, Beausoleil, Cap-d'Ail, Roquebrune-Cap-Martin, Menton et Nice.<br><br>Je vous conseille toujours de regarder en premier lieu les pianos acoustiques, et en second lieu les pianos numériques (88 touches lestées et pédalier au minimum).<br><br>Contactez directement les vendeurs pour vérifier que le piano est toujours disponible : les annonces changent vite, mais certains pianos restent aussi plusieurs mois sans repreneur, alors tentez votre chance !<br><br>Je me tiens bien sûr à votre disposition pour vous accompagner chez le vendeur, essayer le piano et vérifier son état avant votre achat.</p>
+                <p style="font-size:0.85rem;color:#8a6d1f;font-weight:600;margin-bottom:1.5rem;">Annonces relevées le 21 août 2026 — les prix et la disponibilité sont à confirmer auprès du vendeur.</p>
             </div>
             <div class="flex flex-col gap-4 mt-4 mb-4 items-center">
-                <img src="images/annonce1.jpg" alt="Annonce 1" class="photo-fade w-full max-w-xs h-44 object-cover rounded-xl shadow-lg">
-                <img src="images/annonce2.jpg" alt="Annonce 2" class="photo-fade w-full max-w-xs h-44 object-cover rounded-xl shadow-lg">
-                <img src="images/annonce3.jpg" alt="Annonce 3" class="photo-fade w-full max-w-xs h-44 object-cover rounded-xl shadow-lg">
+                <img src="images/annonce1.jpg" alt="Piano d'occasion" class="photo-fade w-full max-w-xs h-44 object-cover rounded-xl shadow-lg">
+                <img src="images/annonce2.jpg" alt="Piano d'occasion" class="photo-fade w-full max-w-xs h-44 object-cover rounded-xl shadow-lg">
+                <img src="images/annonce3.jpg" alt="Piano d'occasion" class="photo-fade w-full max-w-xs h-44 object-cover rounded-xl shadow-lg">
             </div>
         </div>
     </section>
+
     <!-- Section : Pianos droits -->
     <section id="pianos-droits" class="page-section" style="background:#f7f7fa;">
         <div class="section-content-wrapper" style="width:100%;text-align:center;">
-            <h2 class="section-title" style="color:#18233f;font-family:'Great Vibes',cursive;font-size:2.2rem;">Pianos droits</h2>
-            <p style="font-size:1rem;">Découvrez nos annonces de pianos droits, neufs ou d'occasion, pour tous les niveaux et tous les budgets.</p>
-            <div class="flex flex-col gap-6 mt-8 mb-8 items-center">
-                <!-- Piano 1 -->
-                <div class="bg-white rounded-xl shadow-lg p-4 w-full max-w-xs flex flex-col items-center">
-                    <img src="images/annonces-piano/droit/Schimmel.jpg" alt="Piano droit 1" class="rounded-lg mb-3 w-full h-40 object-cover">
-                    <div class="text-lg font-semibold text-indigo-700 mb-1">Prix : 4 000 € à negocier</div>
-                    <div class="text-sm text-gray-700 mb-1">Mon avis : Excellente marque ! Très bonne affaire pour la qualité.<br>A récupérer sur Roquebrune-Cap-Martin.<br> A ne pas manquer !</div>
-                    <a href="https://www.leboncoin.fr/ad/instruments_de_musique/3050367100" target="_blank" class="text-blue-600 underline text-sm">Découvrir ce piano</a>
+            <h2 class="section-title" style="font-size:2.2rem;">Pianos droits</h2>
+            <p style="font-size:1rem;">Le piano droit acoustique reste mon premier conseil : c'est l'instrument qui vous fera le plus progresser.</p>
+            <div class="cartes-colonne">
+                <!-- Samick JS 121 -->
+                <div class="annonce-card">
+                    <img src="images/annonces-piano/droit/piano droit samick silent.jpg" alt="Piano droit Samick">
+                    <div class="annonce-illustration">Photo d'illustration</div>
+                    <div class="annonce-nom">Piano droit Samick JS 121</div>
+                    <div class="annonce-prix">650 €</div>
+                    <div class="annonce-lieu">Beausoleil (06240)</div>
+                    <div class="annonce-avis">Annoncé en bon état, et tout près d'ici. À ce prix, un piano droit acoustique est une très belle porte d'entrée.</div>
+                    <a href="https://www.leboncoin.fr/ad/instruments_de_musique/3127063803" target="_blank" rel="noopener" class="annonce-lien">Découvrir ce piano</a>
                 </div>
-                <!-- Piano 2 -->
-                <div class="bg-white rounded-xl shadow-lg p-4 w-full max-w-xs flex flex-col items-center">
-                    <img src="images/annonces-piano/droit/Piano Weimer.jpg" alt="Piano droit 2" class="rounded-lg mb-3 w-full h-40 object-cover">
-                    <div class="text-lg font-semibold text-indigo-700 mb-1">Prix : 850 €</div>
-                    <div class="text-sm text-gray-700 mb-1">Mon avis : Piano acheté d'occasion à Music3000. Factures à l'appui. Très bon état.<br>A ne pas manquer!</div>
-                    <a href="https://www.leboncoin.fr/ad/instruments_de_musique/3017917488" target="_blank" class="text-blue-600 underline text-sm">Découvrir ce piano</a>
+                <!-- Holstein noir -->
+                <div class="annonce-card">
+                    <img src="images/annonces-piano/droit/hoffman.jpg" alt="Piano droit noir">
+                    <div class="annonce-illustration">Photo d'illustration</div>
+                    <div class="annonce-nom">Piano droit Holstein noir</div>
+                    <div class="annonce-prix">250 €</div>
+                    <div class="annonce-lieu">Cap-d'Ail (06320) — à 5 km</div>
+                    <div class="annonce-avis">État annoncé satisfaisant. À ce tarif, il faut impérativement l'essayer sur place avant d'acheter : je peux vous accompagner pour le vérifier.</div>
+                    <a href="https://www.leboncoin.fr/ad/instruments_de_musique/3239781382" target="_blank" rel="noopener" class="annonce-lien">Découvrir ce piano</a>
                 </div>
-                <!-- Piano 3 -->
-                <div class="bg-white rounded-xl shadow-lg p-4 w-full max-w-xs flex flex-col items-center">
-                    <img src="images/annonces-piano/droit/piano young chan.jpg" alt="Piano droit 3" class="rounded-lg mb-3 w-full h-40 object-cover">
-                    <div class="text-lg font-semibold text-indigo-700 mb-1">Prix : 600 € négociable</div>
-                    <div class="text-sm text-gray-700 mb-1">Mon avis : Parfait pour débuter.<br>Annonce urgente, prix négociable!.</div>
-                    <a href="https://www.leboncoin.fr/ad/instruments_de_musique/3038295905" target="_blank" class="text-blue-600 underline text-sm">Découvrir ce piano</a>
-                </div>
-                <!-- Piano 4 -->
-                <div class="bg-white rounded-xl shadow-lg p-4 w-full max-w-xs flex flex-col items-center">
-                    <img src="images/annonces-piano/droit/Piano yamaha marron.jpg" alt="Piano droit 4" class="rounded-lg mb-3 w-full h-40 object-cover">
-                    <div class="text-lg font-semibold text-indigo-700 mb-1">Prix : 1 300 € à débattre</div>
-                    <div class="text-sm text-gray-700 mb-1">Mon avis : Piano en bois laqué. Valeur sûre pour tous les débutants. Livraison gratuite incluse</div>
-                    <a href="https://www.leboncoin.fr/ad/instruments_de_musique/3041438062" target="_blank" class="text-blue-600 underline text-sm">Découvrir ce piano</a>
-                </div>
-                <!-- Piano 5 -->
-                <div class="bg-white rounded-xl shadow-lg p-4 w-full max-w-xs flex flex-col items-center">
-                    <img src="images/annonces-piano/droit/piano Heineman.jpg" alt="Piano droit 5" class="rounded-lg mb-3 w-full h-40 object-cover">
-                    <div class="text-lg font-semibold text-indigo-700 mb-1">Prix : 850 € à débattre</div>
-                    <div class="text-sm text-gray-700 mb-1">Mon avis : très bon piano pour débuter !</div>
-                    <a href="https://www.leboncoin.fr/ad/instruments_de_musique/3042695892" target="_blank" class="text-blue-600 underline text-sm">Découvrir ce piano</a>
-                </div>
-                <!-- Piano 6 -->
-                <div class="bg-white rounded-xl shadow-lg p-4 w-full max-w-xs flex flex-col items-center">
-                    <img src="images/annonces-piano/droit/piano pleyel.jpg" alt="Piano droit 6" class="rounded-lg mb-3 w-full h-40 object-cover">
-                    <div class="text-lg font-semibold text-indigo-700 mb-1">Prix : 2 000 € à débattre</div>
-                    <div class="text-sm text-gray-700 mb-1">Mon avis : Excellent piano, la marque Pleyel est largement reconnue pour sa robustesse.</div>
-                    <a href="https://www.leboncoin.fr/ad/instruments_de_musique/3027946855" target="_blank" class="text-blue-600 underline text-sm">Découvrir ce piano</a>
-                </div>
-                <!-- Piano 7 -->
-                <div class="bg-white rounded-xl shadow-lg p-4 w-full max-w-xs flex flex-col items-center">
-                    <img src="images/annonces-piano/droit/hoffman.jpg" alt="Piano droit 7" class="rounded-lg mb-3 w-full h-40 object-cover">
-                    <div class="text-lg font-semibold text-indigo-700 mb-1">Prix : 7 000 € négociable</div>
-                    <div class="text-sm text-gray-700 mb-1">Mon avis : URGENT donc négociable. Excellente marque, acheté en 2019 avec facture<br> Entretenu régulièrement</div>
-                    <a href="https://www.leboncoin.fr/ad/instruments_de_musique/3049483818" target="_blank" class="text-blue-600 underline text-sm">Découvrir ce piano</a>
-                </div>
-                <!-- Piano 8 -->
-                <div class="bg-white rounded-xl shadow-lg p-4 w-full max-w-xs flex flex-col items-center">
-                    <img src="images/annonces-piano/droit/yamaha U1.jpg" alt="Piano droit 8" class="rounded-lg mb-3 w-full h-40 object-cover">
-                    <div class="text-lg font-semibold text-indigo-700 mb-1">Prix : 3 800 €</div>
-                    <div class="text-sm text-gray-700 mb-1">Mon avis : Superbe piano, Excellente mécanique. Piano qui dure de longues années! Prix à négocier</div>
-                    <a href="https://www.leboncoin.fr/ad/instruments_de_musique/3049213191" target="_blank" class="text-blue-600 underline text-sm">Découvrir ce piano</a>
+            </div>
+            <div class="autres-annonces">
+                <p>D'autres pianos acoustiques (droits ou à queue) sont en ligne dans le secteur, mais je n'ai pas encore pu en détailler le contenu :</p>
+                <div class="liens">
+                    <a href="https://www.leboncoin.fr/ad/instruments_de_musique/3094107107" target="_blank" rel="noopener">Annonce 1</a>
+                    <a href="https://www.leboncoin.fr/ad/instruments_de_musique/3252324959" target="_blank" rel="noopener">Annonce 2</a>
                 </div>
             </div>
         </div>
     </section>
+
     <!-- Section : Piano droits Silent -->
     <section id="pianos-silent" class="page-section" style="background:#f9fafb;">
         <div class="section-content-wrapper" style="width:100%;text-align:center;">
-            <h2 class="section-title" style="color:#18233f;font-family:'Great Vibes',cursive;font-size:2.2rem;">Piano droits Silent</h2>
-            <p style="font-size:1rem;">Retrouvez ici les annonces pour les pianos droits équipés du système Silent, idéals pour jouer à toute heure.</p>
-            <div class="flex flex-col gap-6 mt-8 mb-8 items-center">
-                <!-- Piano Silent 1 -->
-                <div class="bg-white rounded-xl shadow-lg p-4 w-full max-w-xs flex flex-col items-center">
-                    <img src="images/annonces-piano/Silent/piano droit samick silent.jpg" alt="Piano Silent 1" class="rounded-lg mb-3 w-full h-40 object-cover">
-                    <div class="text-lg font-semibold text-indigo-700 mb-1">Prix : 800 €</div>
-                    <div class="text-sm text-gray-700 mb-1">Mon avis : A ce prix, il serait fou de s'en priver !<br>Excellent rapport qualité-prix!</div>
-                    <a href="https://www.leboncoin.fr/ad/instruments_de_musique/3019678928" target="_blank" class="text-blue-600 underline text-sm">Découvrir ce piano</a>
-                </div>
-                <!-- Piano Silent 3 -->
-                <div class="bg-white rounded-xl shadow-lg p-4 w-full max-w-xs flex flex-col items-center">
-                    <img src="images/annonces-piano/Silent/piano Kieffer.jpg" alt="Piano Silent 3" class="rounded-lg mb-3 w-full h-40 object-cover">
-                    <div class="text-lg font-semibold text-indigo-700 mb-1">Prix : 1 700 €</div>
-                    <div class="text-sm text-gray-700 mb-1">Mon avis : Très bon rapport qualité/prix, parfait pour débuter.</div>
-                    <a href="https://www.leboncoin.fr/ad/instruments_de_musique/2928936370" target="_blank" class="text-blue-600 underline text-sm">Découvrir ce piano</a>
-                </div>
-                <!-- Piano Silent 4 -->
-                <div class="bg-white rounded-xl shadow-lg p-4 w-full max-w-xs flex flex-col items-center">
-                    <img src="images/annonces-piano/Silent/ritmuller.jpg" alt="Piano Silent 4" class="rounded-lg mb-3 w-full h-40 object-cover">
-                    <div class="text-lg font-semibold text-indigo-700 mb-1">Prix : 1 850 €</div>
-                    <div class="text-sm text-gray-700 mb-1">Mon avis : Très bon piano avec un supper rapport qualité prix<br>A ne pas manquer !.</div>
-                    <a href="https://www.leboncoin.fr/ad/instruments_de_musique/2998730584" target="_blank" class="text-blue-600 underline text-sm">Découvrir ce piano</a>
+            <h2 class="section-title" style="font-size:2.2rem;">Piano droits Silent</h2>
+            <p style="font-size:1rem;">Un piano acoustique équipé d'un système silencieux : le vrai toucher et la vraie sonorité, avec la possibilité de travailler au casque à toute heure.</p>
+            <div class="cartes-colonne">
+                <!-- Yamaha B2 SC3 -->
+                <div class="annonce-card">
+                    <img src="images/annonces-piano/Silent/piano droit Yamaha U3.jpg" alt="Piano droit Yamaha avec système silencieux">
+                    <div class="annonce-illustration">Photo d'illustration</div>
+                    <div class="annonce-nom">Yamaha B2 blanc SC3 (2020)</div>
+                    <div class="annonce-prix">4 500 €</div>
+                    <div class="annonce-lieu">Nice (06300)</div>
+                    <div class="annonce-avis">Le meilleur des deux mondes : un vrai piano acoustique Yamaha, récent, que l'on peut aussi jouer au casque sans déranger personne.</div>
+                    <a href="https://www.leboncoin.fr/ad/instruments_de_musique/3237833145" target="_blank" rel="noopener" class="annonce-lien">Découvrir ce piano</a>
                 </div>
             </div>
+            <div class="autres-annonces" style="margin-bottom:1.5rem;">
+                <p>D'autres pianos silencieux sont en ligne, sans détails récupérés de mon côté :</p>
+                <div class="liens">
+                    <a href="https://www.leboncoin.fr/ad/instruments_de_musique/3219295010" target="_blank" rel="noopener">Annonce 1</a>
+                    <a href="https://www.leboncoin.fr/ad/instruments_de_musique/3180468694" target="_blank" rel="noopener">Annonce 2</a>
+                    <a href="https://www.leboncoin.fr/ad/instruments_de_musique/2942338791" target="_blank" rel="noopener">Annonce 3</a>
+                    <a href="https://www.leboncoin.fr/ad/instruments_de_musique/3181988112" target="_blank" rel="noopener">Annonce 4</a>
+                    <a href="https://www.leboncoin.fr/ad/instruments_de_musique/3215715619" target="_blank" rel="noopener">Annonce 5</a>
+                    <a href="https://www.leboncoin.fr/ck/instruments_de_musique/piano-silencieux" target="_blank" rel="noopener">Toutes les annonces « piano silencieux »</a>
+                </div>
+            </div>
+            <p style="font-size:0.9rem;max-width:20rem;margin:0 auto;color:#374151;">Bon à savoir : si vous ne trouvez pas de piano déjà équipé, vous pouvez acheter un bon piano droit d'occasion, puis faire poser le système silencieux ensuite chez Pianopolis ou Pianos Guglielmi, à Nice.</p>
         </div>
     </section>
+
     <!-- Section : Pianos numériques -->
     <section id="pianos-numeriques" class="page-section" style="background:#f7f7fa;">
         <div class="section-content-wrapper" style="width:100%;text-align:center;">
-            <h2 class="section-title" style="color:#18233f;font-family:'Great Vibes',cursive;font-size:2.2rem;">Pianos numériques</h2>
-            <p style="font-size:1rem;">Annonces de pianos numériques pour débutants, confirmés ou professionnels, avec de nombreuses fonctionnalités modernes.</p>
-            <div class="flex flex-col gap-6 mt-8 mb-8 items-center">
-                <!-- Piano Numérique 1 -->
-                <div class="bg-white rounded-xl shadow-lg p-4 w-full max-w-xs flex flex-col items-center">
-                    <img src="images/annonces-piano/numerique/yamaha.jpg" alt="Piano Numérique 1" class="rounded-lg mb-3 w-full h-40 object-cover">
-                    <div class="text-lg font-semibold text-indigo-700 mb-1">Prix : 900 €</div>
-                    <div class="text-sm text-gray-700 mb-1">Mon avis : Très bon piano numérique. A récupérer à la colle-sur-loup. Très bon rapport qualité-prix !</div>
-                    <a href="https://www.leboncoin.fr/ad/instruments_de_musique/3034581610" target="_blank" class="text-blue-600 underline text-sm">Découvrir ce piano</a>
+            <h2 class="section-title" style="font-size:2.2rem;">Pianos numériques</h2>
+            <p style="font-size:1rem;">Une solution possible si l'acoustique n'est pas envisageable, à condition d'avoir 88 touches lestées et un pédalier. Les petits claviers non lestés ne permettent pas de suivre les cours.</p>
+            <div class="cartes-colonne">
+                <!-- Casio PX730 -->
+                <div class="annonce-card">
+                    <img src="images/annonces-piano/numerique/casio blanc.jpg" alt="Piano numérique Casio">
+                    <div class="annonce-illustration">Photo d'illustration</div>
+                    <div class="annonce-nom">Casio PX730</div>
+                    <div class="annonce-prix">490 €</div>
+                    <div class="annonce-lieu">Beausoleil (06240)</div>
+                    <div class="annonce-avis">88 touches lestées : il répond bien au minimum requis pour suivre les cours, et il est tout près.</div>
+                    <a href="https://www.leboncoin.fr/ad/instruments_de_musique/3187524574" target="_blank" rel="noopener" class="annonce-lien">Découvrir ce piano</a>
                 </div>
-                <!-- Piano Numérique 2 -->
-                <div class="bg-white rounded-xl shadow-lg p-4 w-full max-w-xs flex flex-col items-center">
-                    <img src="images/annonces-piano/numerique/kawai.jpg" alt="Piano Numérique 2" class="rounded-lg mb-3 w-full h-40 object-cover">
-                    <div class="text-lg font-semibold text-indigo-700 mb-1">Prix : 900 €</div>
-                    <div class="text-sm text-gray-700 mb-1">Mon avis : Toucher lourd, très proche d'un piano acoustique.</div>
-                    <a href="https://www.leboncoin.fr/ad/instruments_de_musique/2970817891" target="_blank" class="text-blue-600 underline text-sm">Découvrir ce piano</a>
+                <!-- DP50 -->
+                <div class="annonce-card">
+                    <img src="images/annonces-piano/numerique/arius.jpg" alt="Piano numérique avec meuble">
+                    <div class="annonce-illustration">Photo d'illustration</div>
+                    <div class="annonce-nom">Piano numérique DP50</div>
+                    <div class="annonce-prix">450 €</div>
+                    <div class="annonce-lieu">Menton (06500)</div>
+                    <div class="annonce-avis">Annoncé en bon état, et vendu complet : meuble, banquette et casque inclus. Pratique pour installer l'élève tout de suite dans de bonnes conditions.</div>
+                    <a href="https://www.leboncoin.fr/ad/instruments_de_musique/3253091282" target="_blank" rel="noopener" class="annonce-lien">Découvrir ce piano</a>
                 </div>
-                <!-- Piano Numérique 3 -->
-                <div class="bg-white rounded-xl shadow-lg p-4 w-full max-w-xs flex flex-col items-center">
-                    <img src="images/annonces-piano/numerique/kawai noir.jpg" alt="Piano Numérique 3" class="rounded-lg mb-3 w-full h-40 object-cover">
-                    <div class="text-lg font-semibold text-indigo-700 mb-1">Prix : 800 €</div>
-                    <div class="text-sm text-gray-700 mb-1">Mon avis : Toucher lourd, très proche d'un piano acoustique. Super rapport qualité-prix.</div>
-                    <a href="https://www.leboncoin.fr/ad/instruments_de_musique/3039840308" target="_blank" class="text-blue-600 underline text-sm">Découvrir ce piano</a>
-                </div>
-                <!-- Piano Numérique 4 -->
-                <div class="bg-white rounded-xl shadow-lg p-4 w-full max-w-xs flex flex-col items-center">
-                    <img src="images/annonces-piano/numerique/roland.jpg" alt="Piano Numérique 4" class="rounded-lg mb-3 w-full h-40 object-cover">
-                    <div class="text-lg font-semibold text-indigo-700 mb-1">Prix : 1 100 €</div>
-                    <div class="text-sm text-gray-700 mb-1">Mon avis : Valeur sûre, très bon état.</div>
-                    <a href="https://www.leboncoin.fr/ad/instruments_de_musique/3025589143" target="_blank" class="text-blue-600 underline text-sm">Découvrir ce piano</a>
-                </div>
-                <!-- Piano Numérique 5 -->
-                <div class="bg-white rounded-xl shadow-lg p-4 w-full max-w-xs flex flex-col items-center">
-                    <img src="images/annonces-piano/numerique/casio blanc.jpg" alt="Piano Numérique 5" class="rounded-lg mb-3 w-full h-40 object-cover">
-                    <div class="text-lg font-semibold text-indigo-700 mb-1">Prix : 9000 €</div>
-                    <div class="text-sm text-gray-700 mb-1">Mon avis : Très Bon rapport qualité/prix, casque en sus pour 50€.</div>
-                    <a href="https://www.leboncoin.fr/ad/accessoires_informatique/2967571249" target="_blank" class="text-blue-600 underline text-sm">Découvrir ce piano</a>
-                </div>
-                <!-- Piano Numérique 6 -->
-                <div class="bg-white rounded-xl shadow-lg p-4 w-full max-w-xs flex flex-col items-center">
-                    <img src="images/annonces-piano/numerique/yamaha noir.jpg" alt="Piano Numérique 6" class="rounded-lg mb-3 w-full h-40 object-cover">
-                    <div class="text-lg font-semibold text-indigo-700 mb-1">Prix : 750 €</div>
-                    <div class="text-sm text-gray-700 mb-1">Mon avis : Toucher lourd, très proche d'un piano acoustique. très bon rapport qualité-prix!</div>
-                    <a href="https://www.leboncoin.fr/ad/instruments_de_musique/3037580459" target="_blank" class="text-blue-600 underline text-sm">Découvrir ce piano</a>
-                </div>
-                <!-- Piano Numérique 7 -->
-                <div class="bg-white rounded-xl shadow-lg p-4 w-full max-w-xs flex flex-col items-center">
-                    <img src="images/annonces-piano/numerique/arius.jpg" alt="Piano Numérique 7" class="rounded-lg mb-3 w-full h-40 object-cover">
-                    <div class="text-lg font-semibold text-indigo-700 mb-1">Prix : 590 €</div>
-                    <div class="text-sm text-gray-700 mb-1">Mon avis : Bon piano numérique, Bon rapport qualité-prix</div>
-                    <a href="https://www.leboncoin.fr/ad/instruments_de_musique/3040101448" target="_blank" class="text-blue-600 underline text-sm">Découvrir ce piano</a>
-                </div>
-                <!-- Piano Numérique 8 -->
-                <div class="bg-white rounded-xl shadow-lg p-4 w-full max-w-xs flex flex-col items-center">
-                    <img src="images/annonces-piano/numerique/casio celviano.jpg" alt="Piano Numérique 8" class="rounded-lg mb-3 w-full h-40 object-cover">
-                    <div class="text-lg font-semibold text-indigo-700 mb-1">Prix : 7 500 €</div>
-                    <div class="text-sm text-gray-700 mb-1">Mon avis : Parfait pour débuter. Très bon prix!.</div>
-                    <a href="https://www.leboncoin.fr/ad/instruments_de_musique/3006347742" target="_blank" class="text-blue-600 underline text-sm">Découvrir ce piano</a>
+            </div>
+            <div class="autres-annonces">
+                <p>D'autres pianos numériques sont en ligne dans le secteur. Pensez à vérifier qu'ils ont bien 88 touches lestées :</p>
+                <div class="liens">
+                    <a href="https://www.leboncoin.fr/ad/instruments_de_musique/3253519009" target="_blank" rel="noopener">Annonce 1</a>
+                    <a href="https://www.leboncoin.fr/ad/instruments_de_musique/3180519593" target="_blank" rel="noopener">Annonce 2</a>
+                    <a href="https://www.leboncoin.fr/ad/instruments_de_musique/3247064917" target="_blank" rel="noopener">Annonce 3</a>
+                    <a href="https://www.leboncoin.fr/ad/instruments_de_musique/3250873341" target="_blank" rel="noopener">Annonce 4</a>
+                    <a href="https://www.leboncoin.fr/ad/instruments_de_musique/3182657278" target="_blank" rel="noopener">Annonce 5</a>
+                    <a href="https://www.leboncoin.fr/ad/instruments_de_musique/3154466971" target="_blank" rel="noopener">Annonce 6</a>
+                    <a href="https://www.leboncoin.fr/ad/instruments_de_musique/2914588770" target="_blank" rel="noopener">Annonce 7</a>
+                    <a href="https://www.leboncoin.fr/ad/instruments_de_musique/3246259781" target="_blank" rel="noopener">Annonce 8</a>
                 </div>
             </div>
         </div>
     </section>
+
     <!-- Section : Piano à queue -->
     <section id="piano-queue" class="page-section" style="background:#f9fafb;">
         <div class="section-content-wrapper" style="width:100%;text-align:center;">
-            <h2 class="section-title" style="color:#18233f;font-family:'Great Vibes',cursive;font-size:2.2rem;">Piano à queue</h2>
-            <p style="font-size:1rem;">Consultez ici les annonces de pianos à queue, pour une expérience pianistique d'exception.</p>
-            <div class="flex flex-col gap-6 mt-8 mb-8 items-center">
-                <!-- Piano Queue 1 -->
-                <div class="bg-white rounded-xl shadow-lg p-4 w-full max-w-xs flex flex-col items-center">
-                    <img src="images/annonces-piano/queue/piano yamaha.jpg" alt="Piano à queue 1" class="rounded-lg mb-3 w-full h-40 object-cover">
-                    <div class="text-lg font-semibold text-indigo-700 mb-1">Prix : 5 500 € à débattre</div>
-                    <div class="text-sm text-gray-700 mb-1">Mon avis : Superbe sonorité, piano à queue dit crapaud avec peu de profondeur 155cm, idéal pour petit salon.</div>
-                    <a href="https://www.leboncoin.fr/ad/cd_musique/2954801305" target="_blank" class="text-blue-600 underline text-sm">Découvrir ce piano</a>
+            <h2 class="section-title" style="font-size:2.2rem;">Piano à queue</h2>
+            <p style="font-size:1rem;">Pour une expérience pianistique d'exception, si la place le permet.</p>
+            <div class="cartes-colonne">
+                <!-- Yamaha à queue -->
+                <div class="annonce-card">
+                    <img src="images/annonces-piano/queue/piano yamaha.jpg" alt="Piano à queue Yamaha">
+                    <div class="annonce-illustration">Photo d'illustration</div>
+                    <div class="annonce-nom">Piano à queue Yamaha</div>
+                    <div class="annonce-prix">7 000 €</div>
+                    <div class="annonce-lieu">Roquebrune-Cap-Martin (06190) — à 5 km</div>
+                    <div class="annonce-avis">Annoncé en état neuf, avec une baisse de prix récente. Un Yamaha à queue à ce tarif mérite le déplacement pour l'essayer.</div>
+                    <a href="https://www.leboncoin.fr/ad/instruments_de_musique/2473334214" target="_blank" rel="noopener" class="annonce-lien">Découvrir ce piano</a>
                 </div>
-                <!-- Piano Queue 2 -->
-                <div class="bg-white rounded-xl shadow-lg p-4 w-full max-w-xs flex flex-col items-center">
-                    <img src="images/annonces-piano/queue/g3 yamaha.jpg" alt="Piano à queue 2" class="rounded-lg mb-3 w-full h-40 object-cover">
-                    <div class="text-lg font-semibold text-indigo-700 mb-1">Prix : 11 900 € à débattre</div>
-                    <div class="text-sm text-gray-700 mb-1">Mon avis : Finition haut de gamme, toucher précis.<br> Rénové en 2020 : meuble repoli et marteaux neufs</div>
-                    <a href="https://www.leboncoin.fr/ad/instruments_de_musique/3019120370" target="_blank" class="text-blue-600 underline text-sm">Découvrir ce piano</a>
+                <!-- Demi-queue don -->
+                <div class="annonce-card">
+                    <img src="images/annonces-piano/queue/pleyel.jpg" alt="Piano demi-queue">
+                    <div class="annonce-illustration">Photo d'illustration</div>
+                    <div class="annonce-nom">Piano demi-queue</div>
+                    <div class="annonce-prix">Don gratuit</div>
+                    <div class="annonce-lieu">Menton (06500) — à 10 km</div>
+                    <div class="annonce-avis">Donné gratuitement, état annoncé satisfaisant. Pensez à prévoir un déménageur spécialisé pour le transport, et à le faire accorder à l'arrivée.</div>
+                    <a href="https://www.leboncoin.fr/ad/instruments_de_musique/3199042181" target="_blank" rel="noopener" class="annonce-lien">Découvrir ce piano</a>
                 </div>
-                <!-- Piano Queue 3 -->
-                <div class="bg-white rounded-xl shadow-lg p-4 w-full max-w-xs flex flex-col items-center">
-                    <img src="images/annonces-piano/queue/piano seiler.jpg" alt="Piano à queue 3" class="rounded-lg mb-3 w-full h-40 object-cover">
-                    <div class="text-lg font-semibold text-indigo-700 mb-1">Prix : 12 000 € à débattre</div>
-                    <div class="text-sm text-gray-700 mb-1">Mon avis : Très beau piano aux belles sonorités. Possibilité de négocier le prix. A récupérer sur Nice avec transporteurs (environ 150 €)</div>
-                    <a href="https://www.leboncoin.fr/ad/instruments_de_musique/3006093833" target="_blank" class="text-blue-600 underline text-sm">Découvrir ce piano</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section : Magasins à Nice -->
+    <section id="magasins" class="page-section" style="background:#f7f7fa;">
+        <div class="section-content-wrapper" style="width:100%;text-align:center;">
+            <h2 class="section-title" style="font-size:2.2rem;">Acheter en magasin, à Nice</h2>
+            <p style="font-size:1rem;">Une alternative aux petites annonces : le piano est révisé, accordé et garanti. C'est souvent le choix le plus serein pour une première acquisition.</p>
+            <div class="cartes-colonne">
+                <div class="magasin-card">
+                    <h3>La Maison du Piano</h3>
+                    <p>Facteurs et accordeurs depuis 1991, spécialistes de l'occasion à Nice. Ils ont travaillé avec l'Opéra de Nice, la Ville de Nice et le Conservatoire. Pianos d'occasion récents ou anciens, tous garantis 5 ans.</p>
+                    <a href="https://www.accordeur-piano-nice.fr/" target="_blank" rel="noopener" class="annonce-lien">Voir le site</a>
                 </div>
-                <!-- Piano Queue 4 -->
-                <div class="bg-white rounded-xl shadow-lg p-4 w-full max-w-xs flex flex-col items-center">
-                    <img src="images/annonces-piano/queue/piano steinway.jpg" alt="Piano à queue 4" class="rounded-lg mb-3 w-full h-40 object-cover">
-                    <div class="text-lg font-semibold text-indigo-700 mb-1">Prix : 48 000 €</div>
-                    <div class="text-sm text-gray-700 mb-1">Mon avis : La FERRARI des pianos. Mécanique et son exceptionnelle<br>Entièrement révisé en 2023. Très rare à ce prix, ce piano vous accompagnera toute votre vie!</div>
-                    <a href="https://www.leboncoin.fr/ad/instruments_de_musique/3021428806" target="_blank" class="text-blue-600 underline text-sm">Découvrir ce piano</a>
+                <div class="magasin-card">
+                    <h3>Pianopolis</h3>
+                    <p>4 rue Gioffredo, 06000 Nice — 04 93 54 68 44<br>Neuf, occasion et numérique. Pianos d'occasion révisés et accordés, garantie 5 à 10 ans. Ils posent aussi le système silencieux sur un piano acoustique. Le stock tourne vite : mieux vaut les appeler directement.</p>
+                    <a href="https://pianopolis.com/" target="_blank" rel="noopener" class="annonce-lien">Voir le site</a>
                 </div>
-                <!-- Piano Queue 5 -->
-                <div class="bg-white rounded-xl shadow-lg p-4 w-full max-w-xs flex flex-col items-center">
-                    <img src="images/annonces-piano/queue/piano sojin.jpg" alt="Piano à queue 5" class="rounded-lg mb-3 w-full h-40 object-cover">
-                    <div class="text-lg font-semibold text-indigo-700 mb-1">Prix : 4 500 € à négocier</div>
-                    <div class="text-sm text-gray-700 mb-1">Mon avis : URGENT pour déménagement. Prix négociable.<br>Régulièrement entretenu, bonne affaire !</div>
-                    <a href="https://www.leboncoin.fr/ad/instruments_de_musique/2785652286" target="_blank" class="text-blue-600 underline text-sm">Découvrir ce piano</a>
+                <div class="magasin-card">
+                    <h3>Pianos Guglielmi</h3>
+                    <p>À Nice également. Spécialiste du numérique (Yamaha, Roland, Korg, Kawai, Casio) et installateur agréé du système silencieux Korg — une deuxième option pour équiper un piano acoustique après l'achat.</p>
                 </div>
-                <!-- Piano Queue 6 -->
-                <div class="bg-white rounded-xl shadow-lg p-4 w-full max-w-xs flex flex-col items-center">
-                    <img src="images/annonces-piano/queue/piano pleyel blanc.jpg" alt="Piano à queue 6" class="rounded-lg mb-3 w-full h-40 object-cover">
-                    <div class="text-lg font-semibold text-indigo-700 mb-1">Prix : 9 000 €</div>
-                    <div class="text-sm text-gray-700 mb-1">Mon avis : Régulièrement entretenu. Magnifique piano. Très bon rapport qualité prix!</div>
-                    <a href="https://www.leboncoin.fr/ad/instruments_de_musique/3037472264" target="_blank" class="text-blue-600 underline text-sm">Découvrir ce piano</a>
-                </div>
-                <!-- Piano Queue 7 -->
-                <div class="bg-white rounded-xl shadow-lg p-4 w-full max-w-xs flex flex-col items-center">
-                    <img src="images/annonces-piano/queue/piano yamaha silent.jpg" alt="Piano à queue 7" class="rounded-lg mb-3 w-full h-40 object-cover">
-                    <div class="text-lg font-semibold text-indigo-700 mb-1">Prix : 9 800 €</div>
-                    <div class="text-sm text-gray-700 mb-1">Mon avis: Système SILENT!.<br>Très belle occasion pour ce piano à queue Silent. Très belle occasion!.</div>
-                    <a href="https://www.leboncoin.fr/ad/instruments_de_musique/3017615801" target="_blank" class="text-blue-600 underline text-sm">Découvrir ce piano</a>
-                </div>
-                <!-- Piano Queue 8 -->
-                <div class="bg-white rounded-xl shadow-lg p-4 w-full max-w-xs flex flex-col items-center">
-                    <img src="images/annonces-piano/queue/Gotriang blanc.jpg" alt="Piano à queue 8" class="rounded-lg mb-3 w-full h-40 object-cover">
-                    <div class="text-lg font-semibold text-indigo-700 mb-1">Prix : 19 000 €</div>
-                    <div class="text-sm text-gray-700 mb-1">Mon avis : Entretenu régulièrement.<br>Prix négociable!</div>
-                    <a href="https://www.leboncoin.fr/ad/instruments_de_musique/3021437518" target="_blank" class="text-blue-600 underline text-sm">Découvrir ce piano</a>
+            </div>
+            <div class="autres-annonces">
+                <p>Vous préférez guetter les nouvelles annonces vous-même ? Voici les recherches enregistrées, commune par commune :</p>
+                <div class="liens">
+                    <a href="https://www.leboncoin.fr/cl/instruments_de_musique/cp_beausoleil_06240" target="_blank" rel="noopener">Beausoleil</a>
+                    <a href="https://www.leboncoin.fr/cl/instruments_de_musique/cp_roquebrune-cap-martin_06190" target="_blank" rel="noopener">Roquebrune-Cap-Martin</a>
+                    <a href="https://www.leboncoin.fr/cl/instruments_de_musique/cp_menton_06500" target="_blank" rel="noopener">Menton</a>
+                    <a href="https://www.leboncoin.fr/cl/instruments_de_musique/cp_levens_06670" target="_blank" rel="noopener">Levens</a>
                 </div>
             </div>
         </div>
     </section>
     </main>
+
     <!-- Footer -->
-    <footer class="bg-gray-800 text-white py-8 px-6 mt-20" style="border-radius:0;max-width:100vw;width:100vw;margin-left:calc(-50vw + 50%);left:0;right:0;">
+    <footer class="bg-gray-800 text-white py-8 px-6 mt-20" style="border-radius:0;width:100%;left:0;right:0;">
         <div class="container mx-auto text-center">
             <p class="mb-4">&copy; 2025 Excellence piano by Natalia. Tous droits réservés.</p>
             <p class="text-sm">
@@ -355,7 +404,17 @@
             </p>
         </div>
     </footer>
+
+    <button id="back-to-top" title="Retour en haut" aria-label="Retour en haut" style="position:fixed;bottom:24px;right:24px;z-index:2000;background:rgba(255,255,255,0.85);color:#8a6d1f;border:none;border-radius:50%;width:48px;height:48px;box-shadow:0 2px 8px rgba(0,0,0,0.12);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background 0.2s;">
+        <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 15l7-7 7 7"/></svg>
+    </button>
+
     <script>
+        // Bouton retour en haut
+        const backToTopBtn = document.getElementById('back-to-top');
+        backToTopBtn.addEventListener('click', function() {
+            window.scrollTo({top:0,behavior:'smooth'});
+        });
         // Menu contextuel déroulant (hamburger)
         const menuToggle = document.getElementById('context-menu-toggle');
         const menu = document.getElementById('context-menu');
@@ -392,11 +451,13 @@
                 if(rect.top > 80 && rect.top < window.innerHeight * 0.6) {
                     photo.classList.remove('evaporate');
                 } else if(rect.top <= 80) {
-                                    photo.classList.add('evaporate');
-                                }
-                            });
-                        }
-                        window.addEventListener('scroll', handlePhotoFade);
-                        window.addEventListener('resize', handlePhotoFade);
-                        document.addEventListener('DOMContentLoaded', handlePhotoFade);
-                    </script>
+                    photo.classList.add('evaporate');
+                }
+            });
+        }
+        window.addEventListener('scroll', handlePhotoFade);
+        window.addEventListener('resize', handlePhotoFade);
+        document.addEventListener('DOMContentLoaded', handlePhotoFade);
+    </script>
+</body>
+</html>
