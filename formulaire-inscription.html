@@ -1682,36 +1682,36 @@ table.avail-grid input[type="checkbox"] {
 
     function scrollToFormTop() {
         // Ferme le clavier virtuel mobile avant de mesurer la position : le clavier
-        // se referme avec sa propre animation (~200-300ms), et si on mesure/scroll
-        // avant la fin de cette animation, la page grandit ensuite sous nos pieds
-        // et le scroll retombe ailleurs (souvent en bas de page). On attend le
-        // resize du visualViewport (fin réelle de l'animation du clavier) plutôt
-        // qu'un délai fixe deviné ; scroll instantané (pas "smooth") pour éviter
-        // qu'une animation de scroll soit elle-même interrompue par ce changement
-        // de mise en page.
+        // se referme avec sa propre animation, en plusieurs redimensionnements
+        // successifs du visualViewport (pas un seul événement net). Réagir au
+        // tout premier resize saute donc en pleine animation, sur une hauteur de
+        // page qui continue de changer juste après - ce qui retombait en bas de
+        // page sur les étapes où un champ texte (donc le clavier) était utilisé.
+        // On attend maintenant que les resize s'arrêtent (silence de 150ms) avant
+        // de mesurer/scroller, avec un filet de sécurité si ça traîne.
         if (document.activeElement && document.activeElement.blur) document.activeElement.blur();
         function jumpToForm() {
             const formTop = document.getElementById('inscriptionForm').getBoundingClientRect().top + window.scrollY;
             window.scrollTo(0, Math.max(formTop - 100, 0));
         }
         if (window.visualViewport) {
-            let done = false;
-            const onResize = () => {
-                if (done) return;
-                done = true;
+            let settleTimer = null;
+            let capTimer = null;
+            function finish() {
+                clearTimeout(settleTimer);
+                clearTimeout(capTimer);
                 window.visualViewport.removeEventListener('resize', onResize);
                 jumpToForm();
-            };
+            }
+            function onResize() {
+                clearTimeout(settleTimer);
+                settleTimer = setTimeout(finish, 150);
+            }
             window.visualViewport.addEventListener('resize', onResize);
-            // Repli si aucun resize ne survient (pas de clavier ouvert, ex. étape précédente = choix radio)
-            setTimeout(() => {
-                if (done) return;
-                done = true;
-                window.visualViewport.removeEventListener('resize', onResize);
-                jumpToForm();
-            }, 350);
+            settleTimer = setTimeout(finish, 150); // au cas où aucun clavier n'était ouvert
+            capTimer = setTimeout(finish, 700); // filet de sécurité si les resize n'en finissent pas
         } else {
-            setTimeout(jumpToForm, 350);
+            setTimeout(jumpToForm, 450);
         }
     }
 
