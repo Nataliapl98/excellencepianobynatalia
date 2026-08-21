@@ -681,6 +681,19 @@ table.avail-grid input[type="checkbox"] {
                         <p class="legal-note" id="quartierRestrictionNote" style="display:none;margin-top:0.8rem;" data-i18n="hint.formule_quartier">Certaines formules ne sont pas disponibles pour votre quartier — seule la formule Résonance (visio hybride) est proposée hors de Monaco / Beausoleil / Cap d'Ail.</p>
                         <div class="error-message" data-i18n="error.select_option">Merci de sélectionner une option.</div>
                     </div>
+
+                    <div class="field-group" style="margin-top:1.4rem;">
+                        <label class="field-label" data-i18n="label.type_piano">L'élève possède-t-il déjà un piano ?</label>
+                        <div class="choice-row" style="justify-content:center;">
+                            <label class="choice-chip"><input type="checkbox" name="type_piano" value="Piano acoustique (droit ou à queue)"><span data-i18n="choice.piano_acoustique">Piano acoustique (droit ou à queue)</span></label>
+                            <label class="choice-chip"><input type="checkbox" name="type_piano" value="Piano numérique"><span data-i18n="choice.piano_numerique">Piano numérique</span></label>
+                        </div>
+                    </div>
+
+                    <div class="consent-row" style="margin-top:1rem;">
+                        <input type="checkbox" id="interet_location_piano" name="interet_location_piano" value="Je suis intéressé(e) par la location du piano proposée par Natalia elle-même">
+                        <label for="interet_location_piano" data-i18n="label.interet_location_piano">Je suis intéressé(e) par la location du piano proposée par Natalia elle-même (Roland DP90)</label>
+                    </div>
                 </div>
 
                 <!-- ÉTAPE : FORMULE + DISPONIBILITÉS -->
@@ -1194,6 +1207,10 @@ table.avail-grid input[type="checkbox"] {
             'heading.type_formule': 'Quelle formule souhaitez-vous ?',
             'choice.formule_annee': "Formule à l'année",
             'hint.formule_quartier': "Certaines formules ne sont pas disponibles pour votre quartier — seule la formule Résonance (visio hybride) est proposée hors de Monaco / Beausoleil / Cap d'Ail.",
+            'label.type_piano': "L'élève possède-t-il déjà un piano ?",
+            'choice.piano_acoustique': "Piano acoustique (droit ou à queue)",
+            'choice.piano_numerique': "Piano numérique",
+            'label.interet_location_piano': "Je suis intéressé(e) par la location du piano proposée par Natalia elle-même (Roland DP90)",
             'intro.famille': "Bonjour à tous ! 🎹 J'espère que vous avez passé d'excellentes vacances ! Il est temps d'organiser les créneaux pour cette nouvelle année musicale.<br><br>⚠️ Ce formulaire contient des informations importantes sur l'organisation des cours et les conditions générales. Merci de prendre le temps de tout lire attentivement.",
             'intro.formule.annee': "Les cours ont lieu aux horaires suivants :<br>• Lundi au vendredi de 15h00 à 20h00<br>• Mercredi de 9h00 à 20h00<br>• Pause déjeuner de 11h30 à 14h00<br><br>Les anciens créneaux ne peuvent pas être renouvelés suite aux changements d'emploi du temps.",
             'intro.formule.impromptu': "Les cours ont lieu aux horaires suivants :<br>• Lundi au vendredi de 9h00 à 15h00<br><br>Réservation libre selon les disponibilités — le planning précis sera géré ultérieurement.",
@@ -1288,6 +1305,10 @@ table.avail-grid input[type="checkbox"] {
             'heading.type_formule': 'Which package would you like?',
             'choice.formule_annee': 'Yearly enrollment',
             'hint.formule_quartier': 'Some packages are not available for your neighbourhood — only the Résonance (hybrid video call) package is offered outside of Monaco / Beausoleil / Cap d\'Ail.',
+            'label.type_piano': 'Does the student already have a piano?',
+            'choice.piano_acoustique': 'Acoustic piano (upright or grand)',
+            'choice.piano_numerique': 'Digital piano',
+            'label.interet_location_piano': 'I am interested in renting the piano offered by Natalia herself (Roland DP90)',
             'intro.famille': "Hello everyone! 🎹 I hope you had a wonderful holiday! It's time to organise the time slots for this new music year.<br><br>⚠️ This form contains important information about how lessons are organised and the general terms. Please take the time to read everything carefully.",
             'intro.formule.annee': "Lessons take place at the following times:<br>• Monday to Friday from 3pm to 8pm<br>• Wednesday from 9am to 8pm<br>• Lunch break from 11:30am to 2pm<br><br>Previous time slots cannot be renewed due to timetable changes.",
             'intro.formule.impromptu': "Lessons take place at the following times:<br>• Monday to Friday from 9am to 3pm<br><br>Free booking based on availability — the precise schedule will be managed later on.",
@@ -1380,6 +1401,10 @@ table.avail-grid input[type="checkbox"] {
             'heading.type_formule': 'Jaką formułę Państwo wybierają?',
             'choice.formule_annee': 'Formuła roczna',
             'hint.formule_quartier': 'Niektóre formuły nie są dostępne dla Państwa dzielnicy — poza Monako / Beausoleil / Cap d\'Ail oferowana jest wyłącznie formuła Résonance (hybrydowa, wideorozmowa).',
+            'label.type_piano': 'Czy uczeń posiada już fortepian lub pianino?',
+            'choice.piano_acoustique': 'Pianino/fortepian akustyczny',
+            'choice.piano_numerique': 'Pianino cyfrowe',
+            'label.interet_location_piano': 'Jestem zainteresowany(a) wynajmem pianina proponowanego osobiście przez Natalię (Roland DP90)',
             'intro.famille': 'Witajcie wszyscy! 🎹 Mam nadzieję, że wakacje były wspaniałe! Czas zorganizować terminy zajęć na nowy rok muzyczny.<br><br>⚠️ Ten formularz zawiera ważne informacje dotyczące organizacji zajęć i ogólnych warunków. Prosimy o uważne zapoznanie się z całą treścią.',
             'intro.formule.annee': 'Zajęcia odbywają się w następujących godzinach:<br>• Poniedziałek-piątek od 15:00 do 20:00<br>• Środa od 9:00 do 20:00<br>• Przerwa obiadowa od 11:30 do 14:00<br><br>Dotychczasowe terminy nie mogą zostać odnowione z powodu zmian w planie zajęć.',
             'intro.formule.impromptu': 'Zajęcia odbywają się w następujących godzinach:<br>• Poniedziałek-piątek od 9:00 do 15:00<br><br>Rezerwacja dowolna w zależności od dostępności — szczegółowy harmonogram zostanie ustalony później.',
