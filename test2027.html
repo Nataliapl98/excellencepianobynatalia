@@ -729,14 +729,14 @@
         }
         /* ----------- Fin Parallaxe Exigences Piano ----------- */
 
-        /* ----------- Bloc "Comment ça marche" (accroche d'accueil) ----------- */
-        #comment-ca-marche {
-            background: #fff;
-            padding: 56px 20px 64px;
-        }
+        /* ----------- Bloc accroche d'accueil (parcours en 4 étapes) ----------- */
         #comment-ca-marche .cm-inner {
             max-width: 1100px;
+            width: 100%;
             margin: 0 auto;
+            padding: 0 1.5rem;
+            box-sizing: border-box;
+            transform: skewY(4deg);
         }
         #comment-ca-marche h2 {
             font-family: 'Great Vibes', cursive;
@@ -771,6 +771,7 @@
             border-radius: 20px;
             padding: 28px 18px 22px;
             text-align: center;
+            box-sizing: border-box;
             transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
             cursor: pointer;
         }
@@ -885,11 +886,12 @@
             </div>
         </div>
     </section>
-    <!-- Section : Comment ça marche (accroche) -->
-    <section id="comment-ca-marche">
+    <!-- Section : accroche "parcours en 4 étapes" -->
+    <section id="comment-ca-marche" class="page-section" style="background:#fff;border-radius:0;margin-top:60px;margin-bottom:60px;min-height:auto;padding-top:56px;">
+        <div class="section-content-wrapper w-full">
         <div class="cm-inner">
-            <h2>Comment ça marche ?</h2>
-            <p>De l'inscription au premier cours, en 4 étapes simples.</p>
+            <h2>De l'inscription au premier cours, sans surprise.</h2>
+            <p>Quatre étapes claires, du choix de la formule à votre premier cours.</p>
             <div class="cm-steps">
                 <a href="#options-cours" class="cm-step">
                     <div class="cm-num">1</div>
@@ -907,7 +909,7 @@
                     <div class="cm-num">3</div>
                     <div class="cm-icon">📅</div>
                     <div class="cm-title">Je reçois mon créneau</div>
-                    <div class="cm-text">Formule à l'année : je confirme le jour et l'heure du cours. Formule flexible : vous réservez vous-même en ligne.</div>
+                    <div class="cm-text">Formule à l'année : la semaine de la rentrée, une fois les disponibilités de tous les élèves reçues, je fixe le jour et l'heure de votre cours. Formule flexible : vous réservez vous-même votre créneau en ligne.</div>
                 </a>
                 <a href="mentions-legales.html#modalites-paiement" class="cm-step">
                     <div class="cm-num">4</div>
@@ -916,6 +918,7 @@
                     <div class="cm-text">Espèces, virement ou chèque — mensuel, trimestriel ou annuel.</div>
                 </a>
             </div>
+        </div>
         </div>
     </section>
             <!-- Section Citation -->
