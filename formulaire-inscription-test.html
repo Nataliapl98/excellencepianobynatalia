@@ -575,45 +575,82 @@ table.avail-grid input[type="checkbox"] {
     margin: -0.8rem 0 1.6rem 0;
 }
 .cm-steps {
+    position: relative;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 18px;
+    gap: 22px;
+    padding-top: 40px;
+}
+.cm-line {
+    position: absolute;
+    top: 40px;
+    left: 12.5%;
+    right: 12.5%;
+    height: 3px;
+    background: linear-gradient(90deg, transparent 0%, #b9944e 12%, #d9b866 50%, #b9944e 88%, transparent 100%);
+    z-index: 0;
 }
 .cm-step {
     position: relative;
-    display: block;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     text-decoration: none;
-    background: linear-gradient(135deg, #f9fafb 0%, #eaf0fa 100%);
-    border: 1.5px solid #d8cba9;
-    border-radius: 20px;
-    padding: 26px 16px 20px;
-    text-align: center;
-    transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
-    cursor: pointer;
+    transition: transform 0.25s ease;
 }
-a.cm-step:hover, a.cm-step:focus-visible {
-    transform: translateY(-6px);
-    box-shadow: 0 10px 24px rgba(24,35,63,0.16);
-    border-color: #b9944e;
+.cm-step:nth-of-type(odd) .cm-card { background: linear-gradient(135deg, #fbf8f1 0%, #f3ecd9 100%); }
+.cm-step:nth-of-type(even) .cm-card { background: linear-gradient(135deg, #f5f7fb 0%, #e9edf6 100%); }
+.cm-medallion {
+    position: relative;
+    width: 60px;
+    height: 60px;
+    min-height: 60px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 32% 28%, #f3dfa8 0%, #d9b866 45%, #b9944e 100%);
+    box-shadow: 0 6px 16px rgba(185,148,78,0.45), 0 0 0 5px #fff, 0 0 0 6px #d8cba9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.7rem;
+    margin-bottom: 14px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 .cm-step .cm-num {
     position: absolute;
-    top: -14px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 28px;
-    height: 28px;
+    top: -6px;
+    right: -6px;
+    width: 24px;
+    height: 24px;
     border-radius: 50%;
     background: #18233f;
     color: #d9b866;
     font-weight: 700;
-    font-size: 0.9rem;
+    font-size: 0.78rem;
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 2px 8px rgba(24,35,63,0.25);
+    box-shadow: 0 2px 8px rgba(24,35,63,0.35), 0 0 0 3px #fff;
 }
-.cm-step .cm-icon { font-size: 1.9rem; margin: 8px 0 8px; }
+.cm-card {
+    width: 100%;
+    border: 1.5px solid #d8cba9;
+    border-radius: 18px;
+    padding: 18px 14px 20px;
+    text-align: center;
+    box-sizing: border-box;
+    box-shadow: 0 4px 14px rgba(24,35,63,0.08);
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+a.cm-step:hover .cm-medallion, a.cm-step:focus-visible .cm-medallion {
+    transform: scale(1.08) rotate(-4deg);
+    box-shadow: 0 8px 22px rgba(185,148,78,0.6), 0 0 0 5px #fff, 0 0 0 6px #b9944e;
+}
+a.cm-step:hover .cm-card, a.cm-step:focus-visible .cm-card {
+    transform: translateY(-8px);
+    box-shadow: 0 14px 28px rgba(24,35,63,0.18);
+    border-color: #b9944e;
+}
 .cm-step .cm-title {
     font-weight: 700;
     color: #18233f;
@@ -628,11 +665,26 @@ a.cm-step:hover, a.cm-step:focus-visible {
     line-height: 1.4;
     font-family: 'Inter', sans-serif;
 }
+.cm-arrow {
+    display: inline-block;
+    margin-top: 8px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: #b9944e;
+    opacity: 0;
+    transform: translateY(-4px);
+    transition: opacity 0.25s ease, transform 0.25s ease;
+}
+a.cm-step:hover .cm-arrow, a.cm-step:focus-visible .cm-arrow {
+    opacity: 1;
+    transform: translateY(0);
+}
 @media (max-width: 900px) {
-    .cm-steps { grid-template-columns: repeat(2, 1fr); }
+    .cm-steps { grid-template-columns: repeat(2, 1fr); row-gap: 36px; }
+    .cm-line { display: none; }
 }
 @media (max-width: 640px) {
-    .cm-steps { grid-template-columns: 1fr; }
+    .cm-steps { grid-template-columns: 1fr; padding-top: 8px; }
 }
 </style>
 </head>
@@ -672,29 +724,38 @@ a.cm-step:hover, a.cm-step:focus-visible {
             <div id="comment-ca-marche">
                 <p>Quatre étapes claires, du choix de la formule à votre premier cours.</p>
                 <div class="cm-steps">
+                    <div class="cm-line"></div>
                     <a href="index.html#options-cours" class="cm-step">
-                        <div class="cm-num">1</div>
-                        <div class="cm-icon">🎹</div>
-                        <div class="cm-title">Je choisis ma formule</div>
-                        <div class="cm-text">À l'année (planning fixe) ou flexible (sans engagement scolaire).</div>
+                        <div class="cm-medallion"><span class="cm-num">1</span>🎹</div>
+                        <div class="cm-card">
+                            <div class="cm-title">Je choisis ma formule</div>
+                            <div class="cm-text">À l'année (planning fixe) ou flexible (sans engagement scolaire).</div>
+                            <span class="cm-arrow">Voir les formules →</span>
+                        </div>
                     </a>
                     <a href="#inscriptionForm" class="cm-step">
-                        <div class="cm-num">2</div>
-                        <div class="cm-icon">📝</div>
-                        <div class="cm-title">Je m'inscris</div>
-                        <div class="cm-text">Un formulaire simple : mes coordonnées et mes disponibilités.</div>
+                        <div class="cm-medallion"><span class="cm-num">2</span>📝</div>
+                        <div class="cm-card">
+                            <div class="cm-title">Je m'inscris</div>
+                            <div class="cm-text">Un formulaire simple : mes coordonnées et mes disponibilités.</div>
+                            <span class="cm-arrow">Commencer →</span>
+                        </div>
                     </a>
                     <a href="#inscriptionForm" class="cm-step">
-                        <div class="cm-num">3</div>
-                        <div class="cm-icon">📅</div>
-                        <div class="cm-title">Je reçois mon créneau</div>
-                        <div class="cm-text">Formule à l'année : la semaine de la rentrée, une fois les disponibilités de tous les élèves reçues, je fixe le jour et l'heure de votre cours. Formule flexible : vous réservez vous-même votre créneau en ligne.</div>
+                        <div class="cm-medallion"><span class="cm-num">3</span>📅</div>
+                        <div class="cm-card">
+                            <div class="cm-title">Je reçois mon créneau</div>
+                            <div class="cm-text">Formule à l'année : la semaine de la rentrée, une fois les disponibilités de tous les élèves reçues, je fixe le jour et l'heure de votre cours. Formule flexible : vous réservez vous-même votre créneau en ligne.</div>
+                            <span class="cm-arrow">En savoir plus →</span>
+                        </div>
                     </a>
                     <a href="mentions-legales.html#modalites-paiement" class="cm-step">
-                        <div class="cm-num">4</div>
-                        <div class="cm-icon">💳</div>
-                        <div class="cm-title">Je règle mon cours</div>
-                        <div class="cm-text">Espèces, virement ou chèque — mensuel, trimestriel ou annuel.</div>
+                        <div class="cm-medallion"><span class="cm-num">4</span>💳</div>
+                        <div class="cm-card">
+                            <div class="cm-title">Je règle mon cours</div>
+                            <div class="cm-text">Espèces, virement ou chèque — mensuel, trimestriel ou annuel.</div>
+                            <span class="cm-arrow">Modalités →</span>
+                        </div>
                     </a>
                 </div>
             </div>
