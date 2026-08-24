@@ -1,3 +1,18 @@
+<!-- Splash screen choix version -->
+    <div id="splash-choix-version" style="position:fixed;z-index:9999;top:0;left:0;width:100vw;height:100vh;background:rgba(255,255,255,0.85);display:flex;flex-direction:column;align-items:center;justify-content:center;">
+        <img src="images/LOGO.png" alt="Logo Excellence Piano" style="width:120px;height:120px;object-fit:cover;border-radius:50%;margin-bottom:2rem;box-shadow:0 2px 12px rgba(0,0,0,0.08);border:3px solid #b9944e;">
+        <h2 style="font-family:'Great Vibes',cursive;font-size:2.2rem;color:#b9944e;margin-bottom:1.5rem;text-align:center;">Bienvenue sur Excellence Piano</h2>
+        <p style="font-size:1.1rem;color:#18233f;margin-bottom:2.2rem;text-align:center;max-width:90vw;">Veuillez choisir votre expérience :</p>
+        <div style="display:flex;gap:2rem;flex-wrap:wrap;justify-content:center;">
+            <button onclick="window.location.href='accueil-mobile.html'" style="background:#b9944e;color:#18233f;font-size:1.1rem;padding:0.9rem 2.2rem;border:none;border-radius:999px;box-shadow:0 2px 8px rgba(185,148,78,0.18);font-weight:600;cursor:pointer;transition:background 0.2s;">Version mobile</button>
+            <button onclick="fermerSplash()" style="background:#18233f;color:#b9944e;font-size:1.1rem;padding:0.9rem 2.2rem;border:2px solid #b9944e;border-radius:999px;box-shadow:0 2px 8px rgba(24,35,63,0.18);font-weight:600;cursor:pointer;transition:background 0.2s;">Version ordinateur</button>
+        </div>
+    </div>
+    <script>
+    function fermerSplash() {
+        document.getElementById('splash-choix-version').style.display = 'none';
+    }
+    </script>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -68,16 +83,11 @@
     <!-- Google Fonts - Inter pour le corps du texte, Great Vibes pour les titres -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
     <style>
-        *, *::before, *::after {
-            box-sizing: border-box;
-        }
         html, body {
             scroll-behavior: smooth;
             font-family: 'Inter', sans-serif;
             background-color: #f9fafb;
             color: #1f2937;
-            max-width: 100%;
-            overflow-x: clip;
         }
         .page-section {
             scroll-snap-align: start;
@@ -199,8 +209,7 @@
             left: 0;
             right: 0;
             margin: auto;
-            width: 100%;
-            max-width: 1400px;
+            width: 1400px;
             height: 300px;
             background: transparent;
         }
@@ -212,19 +221,6 @@
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
         @media (max-width: 767px) {
-            header {
-                height: auto;
-                padding-top: 1rem;
-                padding-bottom: 1rem;
-            }
-            header .logo-container-header {
-                position: relative;
-                height: auto;
-            }
-            header .logo-container-header img {
-                width: 260px !important;
-                height: auto !important;
-            }
             .page-section {
                 transform: skewY(0deg);
                 margin-top: 2rem;
@@ -330,10 +326,7 @@
         }
         /* ----------- Fin Parallaxe Inscription ----------- */
             #a-propos {
-            background-image: url(images/pedagogie-bg.JPG); /* Image de remplacement */
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
+            background-image: url(images/pedagogie-bg.JPG) /* Image de remplacement */
         }
         /* Section Options de cours avec effet biaisé et image de fond fixe */
         #options-cours {
@@ -374,7 +367,7 @@
         }
         @media (max-width: 767px) {
             #formules-flexibles {
-                transform: skewY(0deg);
+                transform: skewY(4deg);
                 border-bottom: none;
                 box-shadow: none;
                 min-height: auto;
@@ -384,7 +377,7 @@
                 border-radius: 0.75rem;
             }
             #options-cours {
-                transform: skewY(0deg);
+                transform: skewY(4deg);
                 border-bottom: none;
                 box-shadow: none;
                 min-height: auto;
@@ -392,7 +385,7 @@
                 padding-top: 2rem;
                 padding-bottom: 2rem;
                 border-radius: 0.75rem;
-            } }
+            } }   
             #options-cours .texte-fond-cours {
                 background: rgba(255,255,255,0.32);
                 backdrop-filter: blur(32px);
@@ -735,67 +728,148 @@
             display: block;
         }
         /* ----------- Fin Parallaxe Exigences Piano ----------- */
-    </style>
-    <style>
-        @media (max-width: 767px) {
-            /* Le bloc mobile précédent skewait la section ET son bandeau de titre
-               (inline style) dans le même sens au lieu de s'annuler, inclinant
-               visiblement le texte. La section est maintenant à plat (voir plus
-               haut) ; son bandeau de titre doit l'être aussi. */
-            #options-cours > div:first-child,
-            #formules-flexibles > div:first-child {
-                transform: skewY(0deg) !important;
-            }
-            /* Effet "skewy" (cartes légèrement inclinées) : effet desktop
-               uniquement. Sur mobile on aplatit toutes les cartes/sections qui
-               gardaient un transform:skewY hérité (règle en dur ou style inline),
-               pour un rendu net comme le reste de la page mobile. */
-            #branding-hero .section-content-wrapper,
-            #citation,
-            #citation .section-content-wrapper,
-            #a-propos .section-content-wrapper > div,
-            #concert .section-content-wrapper > div,
-            #stages-intensifs .section-content-wrapper > div,
-            #temoignages .section-content-wrapper,
-            #exigences-piano .section-content-wrapper > div,
-            #options-cours .options-grid,
-            #options-cours .tarif-remises,
-            #options-cours .cta-configurer,
-            #formules-flexibles .options-grid,
-            #scroll-wrapper-inscription,
-            #reveal-section-inscription .text-center {
-                transform: skewY(0deg) !important;
-            }
-            /* Ces wrappers ont une hauteur fixe (h-[70vh]) pensée pour caler la
-               carte de texte dans un coin sur desktop ; sur mobile, si le texte
-               dépasse cette hauteur, l'excédent part au-dessus de la boîte et se
-               retrouve invisible (overflow:hidden de la section parente). On
-               repasse en hauteur automatique pour que la section grandisse avec
-               son contenu. */
-            #a-propos .section-content-wrapper,
-            #concert .section-content-wrapper,
-            #stages-intensifs .section-content-wrapper {
-                height: auto !important;
-            }
-            /* Les photos de comparaison (piano jouet / piano droit) étaient
-               forcées à 320px de haut sur une colonne de ~45% de largeur,
-               donc rognées sur les côtés en portrait serré. Un cadre carré
-               les recadre beaucoup moins agressivement. */
-            #exigences-piano .piano-images .image-wrapper img {
-                height: auto !important;
-                aspect-ratio: 1 / 1;
-            }
+
+        /* ----------- Bloc accroche d'accueil (parcours en 4 étapes) ----------- */
+        #comment-ca-marche .cm-inner {
+            max-width: 1100px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            box-sizing: border-box;
+            transform: skewY(4deg);
         }
-        @media (max-width: 480px) {
-            .tarif-remises-grid {
-                grid-template-columns: 1fr;
-            }
-            #options-cours .options-grid {
-                grid-template-columns: 1fr;
-            }
-            #formules-flexibles .options-grid {
-                grid-template-columns: 1fr;
-            }
+        #comment-ca-marche h2 {
+            font-family: 'Great Vibes', cursive;
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 0.6rem;
+            background: linear-gradient(90deg, #18233f 0%, #b9944e 60%, #18233f 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: none;
+        }
+        #comment-ca-marche > .cm-inner > p {
+            text-align: center;
+            font-family: 'Inter', sans-serif;
+            color: #18233f;
+            opacity: 0.85;
+            font-size: 1.05rem;
+            margin-bottom: 2.2rem;
+        }
+        .cm-steps {
+            position: relative;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 26px;
+            padding-top: 44px;
+        }
+        .cm-line {
+            position: absolute;
+            top: 44px;
+            left: 12.5%;
+            right: 12.5%;
+            height: 3px;
+            background: linear-gradient(90deg, transparent 0%, #b9944e 12%, #d9b866 50%, #b9944e 88%, transparent 100%);
+            z-index: 0;
+        }
+        .cm-step {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-decoration: none;
+            box-sizing: border-box;
+            transition: transform 0.25s ease;
+        }
+        .cm-step:nth-of-type(odd) .cm-card { background: linear-gradient(135deg, #fbf8f1 0%, #f3ecd9 100%); }
+        .cm-step:nth-of-type(even) .cm-card { background: linear-gradient(135deg, #f5f7fb 0%, #e9edf6 100%); }
+        .cm-medallion {
+            position: relative;
+            width: 74px;
+            height: 74px;
+            min-height: 74px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 32% 28%, #f3dfa8 0%, #d9b866 45%, #b9944e 100%);
+            box-shadow: 0 6px 16px rgba(185,148,78,0.45), 0 0 0 5px #fff, 0 0 0 6px #d8cba9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.9rem;
+            margin-bottom: 16px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .cm-step .cm-num {
+            position: absolute;
+            top: -6px;
+            right: -6px;
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            background: #18233f;
+            color: #d9b866;
+            font-weight: 700;
+            font-size: 0.82rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 8px rgba(24,35,63,0.35), 0 0 0 3px #fff;
+        }
+        .cm-card {
+            width: 100%;
+            border: 1.5px solid #d8cba9;
+            border-radius: 18px;
+            padding: 20px 16px 22px;
+            text-align: center;
+            box-sizing: border-box;
+            box-shadow: 0 4px 14px rgba(24,35,63,0.08);
+            transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+        }
+        a.cm-step:hover .cm-medallion, a.cm-step:focus-visible .cm-medallion {
+            transform: scale(1.08) rotate(-4deg);
+            box-shadow: 0 8px 22px rgba(185,148,78,0.6), 0 0 0 5px #fff, 0 0 0 6px #b9944e;
+        }
+        a.cm-step:hover .cm-card, a.cm-step:focus-visible .cm-card {
+            transform: translateY(-8px);
+            box-shadow: 0 14px 28px rgba(24,35,63,0.18);
+            border-color: #b9944e;
+        }
+        .cm-step .cm-title {
+            font-weight: 700;
+            color: #18233f;
+            font-size: 1.05rem;
+            margin-bottom: 6px;
+            font-family: 'Inter', sans-serif;
+        }
+        .cm-step .cm-text {
+            font-size: 0.9rem;
+            color: #18233f;
+            opacity: 0.8;
+            line-height: 1.45;
+            font-family: 'Inter', sans-serif;
+        }
+        .cm-arrow {
+            display: inline-block;
+            margin-top: 10px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: #b9944e;
+            opacity: 0;
+            transform: translateY(-4px);
+            transition: opacity 0.25s ease, transform 0.25s ease;
+        }
+        a.cm-step:hover .cm-arrow, a.cm-step:focus-visible .cm-arrow {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        @media (max-width: 900px) {
+            .cm-steps { grid-template-columns: repeat(2, 1fr); row-gap: 40px; }
+            .cm-line { display: none; }
+        }
+        @media (max-width: 640px) {
+            .cm-steps { grid-template-columns: 1fr; padding-top: 10px; }
+            #comment-ca-marche h2 { font-size: 2rem; }
         }
     </style>
 </head>
@@ -861,6 +935,50 @@
             </div>
         </div>
     </section>
+    <!-- Section : accroche "parcours en 4 étapes" -->
+    <section id="comment-ca-marche" class="page-section" style="background:#fff;border-radius:0;margin-top:60px;margin-bottom:60px;min-height:auto;padding-top:56px;">
+        <div class="section-content-wrapper w-full">
+        <div class="cm-inner">
+            <h2>De l'inscription au premier cours, sans surprise.</h2>
+            <p>Quatre étapes claires, du choix de la formule à votre premier cours.</p>
+            <div class="cm-steps">
+                <div class="cm-line"></div>
+                <a href="#options-cours" class="cm-step">
+                    <div class="cm-medallion"><span class="cm-num">1</span><svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="5" width="19" height="14" rx="1.5"/><rect x="6" y="5" width="2.6" height="8" fill="#18233f" stroke="none"/><rect x="10.7" y="5" width="2.6" height="8" fill="#18233f" stroke="none"/><rect x="15.4" y="5" width="2.6" height="8" fill="#18233f" stroke="none"/></svg></div>
+                    <div class="cm-card">
+                        <div class="cm-title">Je choisis ma formule</div>
+                        <div class="cm-text">À l'année (planning fixe) ou flexible (sans engagement scolaire).</div>
+                        <span class="cm-arrow">Voir les formules →</span>
+                    </div>
+                </a>
+                <a href="formulaire-inscription.html" class="cm-step">
+                    <div class="cm-medallion"><span class="cm-num">2</span><svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2.5" width="16" height="19" rx="2"/><line x1="7.5" y1="7.5" x2="16.5" y2="7.5"/><line x1="7.5" y1="11.5" x2="16.5" y2="11.5"/><path d="M7.5 16.3l2.1 2.1 4.9-4.9" stroke-width="2.1"/></svg></div>
+                    <div class="cm-card">
+                        <div class="cm-title">Je m'inscris</div>
+                        <div class="cm-text">Un formulaire simple : mes coordonnées et mes disponibilités.</div>
+                        <span class="cm-arrow">M'inscrire →</span>
+                    </div>
+                </a>
+                <a href="formulaire-inscription.html#inscriptionForm" class="cm-step">
+                    <div class="cm-medallion"><span class="cm-num">3</span><svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><line x1="3" y1="10" x2="21" y2="10"/><line x1="8" y1="2.5" x2="8" y2="6.5"/><line x1="16" y1="2.5" x2="16" y2="6.5"/><circle cx="8" cy="14.5" r="1.3" fill="#fff" stroke="none"/><circle cx="12" cy="14.5" r="1.3" fill="#fff" stroke="none"/><circle cx="16" cy="14.5" r="1.3" fill="#18233f" stroke="none"/><circle cx="8" cy="18" r="1.3" fill="#fff" stroke="none"/><circle cx="12" cy="18" r="1.3" fill="#fff" stroke="none"/></svg></div>
+                    <div class="cm-card">
+                        <div class="cm-title">Je reçois mon créneau</div>
+                        <div class="cm-text">Formule à l'année : la semaine de la rentrée, une fois les disponibilités de tous les élèves reçues, je fixe le jour et l'heure de votre cours. Formule flexible : vous réservez vous-même votre créneau en ligne.</div>
+                        <span class="cm-arrow">En savoir plus →</span>
+                    </div>
+                </a>
+                <a href="mentions-legales.html#modalites-paiement" class="cm-step">
+                    <div class="cm-medallion"><span class="cm-num">4</span><svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2.5"/><rect x="2" y="9" width="20" height="3" fill="#18233f" stroke="none"/><rect x="4.5" y="14.5" width="4.5" height="2.4" rx="0.6" fill="#fff" stroke="none"/></svg></div>
+                    <div class="cm-card">
+                        <div class="cm-title">Je règle mon cours</div>
+                        <div class="cm-text">Espèces, virement ou chèque — mensuel, trimestriel ou annuel.</div>
+                        <span class="cm-arrow">Modalités →</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+        </div>
+    </section>
             <!-- Section Citation -->
     <section id="citation" class="page-section" style="transform:skewY(-4deg); position:relative; min-height:00px; max-width:1500px; margin:0 auto 60px auto; display:flex; align-items:center; justify-content:center;margin-top:60px">
             <div class="section-content-wrapper flex items-center justify-center w-full h-full" style="transform:skewY(4deg); position:relative; min-height:400px;">
@@ -871,21 +989,20 @@
          <!-- Section : À propos de la pédagogie -->
         <section id="a-propos" class="page-section py-16 mb-20" style="margin-top:60px">
             <div class="flex flex-col items-end h-[70vh] w-full section-content-wrapper" style="min-height:500px;padding-left:2vw;padding-right:2vw;justify-content:flex-end;">
-                <div style="background:rgba(255, 255, 255, 0.32);border-radius:2.5rem;padding:2rem 1.5rem 1.5rem 1.5rem;box-shadow:0 0 64px 32px rgba(255,255,255,0.45), 0 2px 24px 0 rgba(31,41,55,0.10);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,0.10);margin-bottom:2rem;margin-right:2vw;max-width:540px;transform:skewY(4deg);">
+                <div style="background:rgba(255, 255, 255, 0.497);border-radius:2.5rem;padding:2rem 1.5rem 1.5rem 1.5rem;box-shadow:0 0 64px 32px rgba(255,255,255,0.45), 0 2px 24px 0 rgba(31,41,55,0.10);backdrop-filter:blur(32px);-webkit-backdrop-filter:blur(32px);border:1px solid rgba(255,255,255,0.10);margin-bottom:2rem;margin-right:2vw;max-width:540px;transform:skewY(4deg);">
                         <p class="text-lg leading-relaxed text-center" style="color:#18233f;font-size:1.25rem;"> <!-- text-gray-700 -->
                             Forte de plus de 10 années d'expérience, j'enseigne le piano avec bienveillance et méthode.<br><br> Mon objectif est de transmettre le plaisir de jouer, en adaptant chaque cours aux besoins et au rythme de l'élève.<br><br>
 Que vous soyez débutant(e) ou que vous souhaitiez vous perfectionner, nous construirons ensemble un parcours musical stimulant et personnalisé.
                         </p>
                         <p class="text-lg leading-relaxed mt-4 text-center" style="color:#18233f;font-size:1.25rem;"> <!-- text-gray-700 -->
                            Mon approche privilégie un apprentissage progressif qui allie technique solide et plaisir musical, en explorant une variété de styles selon vos goûts.
-                        </p>
                 </div>
             </div>
         </section>
         <!-- Section: Concert -->
     <section id="concert" class="page-section" style="background: url('images/concert-bg.jpg') center center/cover no-repeat; border-radius:0; margin-top:60px;margin-bottom:60px;">
     <div class="flex flex-col items-end h-[70vh] w-full section-content-wrapper" style="min-height:500px;padding-left:2vw;padding-right:2vw;justify-content:flex-start;">
-            <div style="background:rgba(255,255,255,0.32);border-radius:2.5rem;padding:2rem 1.5rem 1.5rem 1.5rem;box-shadow:0 0 64px 32px rgba(255,255,255,0.45), 0 2px 24px 0 rgba(31,41,55,0.10);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,0.10);margin-bottom:0.1rem;margin-top:0.5rem;margin-right:2vw;max-width:540px;transform:skewY(4deg);">
+            <div style="background:rgba(255,255,255,0.32);border-radius:2.5rem;padding:2rem 1.5rem 1.5rem 1.5rem;box-shadow:0 0 64px 32px rgba(255,255,255,0.45), 0 2px 24px 0 rgba(31,41,55,0.10);backdrop-filter:blur(32px);-webkit-backdrop-filter:blur(32px);border:1px solid rgba(255,255,255,0.10);margin-bottom:0.1rem;margin-top:0.5rem;margin-right:2vw;max-width:540px;transform:skewY(4deg);">
                 <h2 class="text-4xl mb-6" style="color:#18233f;font-family:'Great Vibes',cursive;text-align:center;font-weight:700;text-shadow:none;background:none;">Concert de fin d'année</h2>
                 <p class="text-lg leading-relaxed text-center" style="color:#18233f;font-size:1.25rem;">
                     Chaque année, nous clôturons l'année musicale par un magnifique concert où tous les élèves, quel que soit leur niveau, ont l'opportunité de se produire sur scène ! <br><br> C'est un moment privilégié pour partager leur passion, montrer leurs progrès et célébrer ensemble une année de travail et de musique.<br><br> Ce concert est une expérience enrichissante qui développe la confiance en soi et le plaisir de jouer devant un public. Famille et amis sont chaleureusement invités à venir applaudir nos jeunes talents !<br><br>
@@ -899,7 +1016,7 @@ Date et lieu du prochain concert :<br>
         <!-- Section: Stages d'été -->
     <section id="stages-intensifs" class="page-section" style="background: url('images/stages-bg.jpg') center center/cover no-repeat; border-radius:0; margin-top:60px;margin-bottom:60px">
         <div class="flex flex-col items-start h-[70vh] w-full section-content-wrapper" style="min-height:500px;padding-left:2vw;padding-right:2vw;justify-content:flex-start;">
-            <div style="background:rgba(255,255,255,0.32);border-radius:2.5rem;padding:2rem 1.5rem 1.5rem 1.5rem;box-shadow:0 0 64px 32px rgba(255,255,255,0.45), 0 2px 24px 0 rgba(31,41,55,0.10);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,0.10);margin-top:2rem;margin-left:2vw;max-width:500px;transform:skewY(4deg);">
+            <div style="background:rgba(255,255,255,0.32);border-radius:2.5rem;padding:2rem 1.5rem 1.5rem 1.5rem;box-shadow:0 0 64px 32px rgba(255,255,255,0.45), 0 2px 24px 0 rgba(31,41,55,0.10);backdrop-filter:blur(32px);-webkit-backdrop-filter:blur(32px);border:1px solid rgba(255,255,255,0.10);margin-top:2rem;margin-left:2vw;max-width:500px;transform:skewY(4deg);">
                 <h2 class="text-4xl mb-6" style="color:#18233f;font-family:'Great Vibes',cursive;font-weight:700;text-shadow:none;background:none;">Stages intensifs</h2>
                 <p class="text-lg leading-relaxed text-center" style="color:#18233f;font-size:1.25rem;">
                     Offrez à votre enfant une immersion musicale unique avec les stages intensifs de piano.<br> Ces stages sont conçus pour développer rapidement les compétences techniques et artistiques des jeunes pianistes.<br><br>
@@ -993,11 +1110,11 @@ document.addEventListener('DOMContentLoaded', function() {
             }
             rotationProgress = Math.min(Math.max(rotationProgress, 0), 1);
             const rotation = 90 * rotationProgress;
-            if (phone) phone.style.transform = `rotate(${rotation}deg)`;
+            phone.style.transform = `rotate(${rotation}deg)`;
             // Apparition du texte et du formulaire
             const opacityProgress = Math.min(Math.max(totalProgress * 3, 0), 1);
-            if (textZone) textZone.style.opacity = opacityProgress;
-            if (contactFormContainer) contactFormContainer.style.opacity = opacityProgress;
+            textZone.style.opacity = opacityProgress;
+            contactFormContainer.style.opacity = opacityProgress;
         });
         // Gestion du formulaire
         const form = contactSection.querySelector('#contactForm');
@@ -1470,7 +1587,7 @@ document.addEventListener('DOMContentLoaded', function() {
     <div class="contact-form-container" style="max-width:480px;margin:0 auto;box-sizing:border-box;">
             <!-- Formulaire unique -->
 <div style="text-align:center;padding:24px 0;">
-  <form id="contactForm" action="https://getform.io/f/avrmmxoa" method="POST" style="max-width:400px;margin:0 auto;text-align:left;background:#fff;padding:24px 32px;border-radius:16px;box-shadow:0 2px 16px rgba(24,35,63,0.08);">
+  <form action="https://getform.io/f/avrmmxoa" method="POST" style="max-width:400px;margin:0 auto;text-align:left;background:#fff;padding:24px 32px;border-radius:16px;box-shadow:0 2px 16px rgba(24,35,63,0.08);">
     <h2 style="color:#18233f;font-size:1.4rem;margin-bottom:18px;text-align:center;font-family:'Inter',sans-serif;">Contactez-moi</h2>
     <div class="form-group" style="margin-bottom:16px;">
       <label for="name" style="color:#18233f;font-weight:600;">Nom :</label>
@@ -1881,6 +1998,64 @@ document.addEventListener('DOMContentLoaded', function() {
     </script>
 <!-- Section : Inscription (parallaxe) -->
     <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const scrollWrapper = document.querySelector('.scroll-wrapper');
+            const parallaxPhoto = document.getElementById('parallax-photo');
+            const parallaxPhotoWrapper = document.getElementById('parallax-photo-wrapper');
+            const pianoSection = document.getElementById('piano-section');
+            let parallaxeActive = false;
+
+            // Fonction d'animation de la parallaxe (photo unique)
+            function handleParallax() {
+                if (!parallaxeActive) return;
+                const rect = scrollWrapper.getBoundingClientRect();
+                const windowHeight = window.innerHeight;
+                // Calcul du scroll relatif à la section
+                const sectionTop = rect.top + window.scrollY;
+                const scrollPos = window.scrollY - sectionTop;
+                const scrollHeight = scrollWrapper.clientHeight - windowHeight;
+                // Accélération plus forte
+                let progress = scrollPos / scrollHeight;
+                progress = Math.min(1, Math.max(0, progress * 2));
+                // Easing pour plus de fluidité (easeInOutQuad)
+                function easeInOutQuad(t) {
+                    return t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2;
+                }
+                progress = easeInOutQuad(progress);
+
+                // Mouvement de la photo du centre vers la gauche
+                const maxTranslateX = parallaxPhotoWrapper.offsetWidth * 0.4; // 40% de la largeur du conteneur
+                parallaxPhoto.style.transform = `translateX(${-progress * maxTranslateX}px)`;
+                parallaxPhoto.style.opacity = 1 - progress * 0.7; // Légère disparition
+
+                // Affichage progressif de la section piano
+                const pianoFadeStart = 0.6; // Commence à apparaître à 60% de l'animation
+                const pianoProgress = Math.min(1, Math.max(0, (progress - pianoFadeStart) / (1 - pianoFadeStart)));
+                pianoSection.style.opacity = pianoProgress;
+            }
+
+            // IntersectionObserver pour activer/désactiver la parallaxe
+            const observer = new window.IntersectionObserver(
+                (entries) => {
+                    entries.forEach(entry => {
+                        parallaxeActive = entry.isIntersecting;
+                        if (!parallaxeActive) {
+                            // Reset styles quand la section sort de la vue
+                            parallaxPhoto.style.transform = '';
+                            parallaxPhoto.style.opacity = '';
+                            pianoSection.style.opacity = 0;
+                        } else {
+                            handleParallax(); // Met à jour dès l'entrée
+                        }
+                    });
+                },
+                { threshold: 0.1 }
+            );
+            observer.observe(scrollWrapper);
+
+            window.addEventListener('scroll', handleParallax);
+        window.addEventListener('resize', handleParallax);
+    });
         <!-- Contact Parallaxe JS -->
         document.addEventListener('DOMContentLoaded', () => {
                 const contactSection = document.getElementById('contact');
@@ -1908,11 +2083,11 @@ document.addEventListener('DOMContentLoaded', function() {
             }
                 rotationProgress = Math.min(Math.max(rotationProgress, 0), 1);
                 const rotation = 90 * rotationProgress;
-                if (phone) phone.style.transform = `rotate(${rotation}deg)`;
+                phone.style.transform = `rotate(${rotation}deg)`;
             // Apparition du texte et du formulaire
                 const opacityProgress = Math.min(Math.max(totalProgress * 3, 0), 1);
-                if (textZone) textZone.style.opacity = opacityProgress;
-                if (contactFormContainer) contactFormContainer.style.opacity = opacityProgress;
+                textZone.style.opacity = opacityProgress;
+                contactFormContainer.style.opacity = opacityProgress;
         });
         /* ----------- Fin Contact Parallaxe Styles ----------- */
         // Gestion du formulaire
