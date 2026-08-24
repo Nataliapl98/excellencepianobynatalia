@@ -282,6 +282,7 @@
             justify-content: center;
             align-items: center;
             opacity: 0;
+            transition: opacity 0.25s ease-out;
             z-index: 30;
             background-color: #eeeeee;
         }
@@ -1961,9 +1962,11 @@ document.addEventListener('DOMContentLoaded', function() {
                     photo1.style.transform = `translateX(${-progress * maxTranslate}px)`;
                     photo2.style.transform = `translateX(${progress * maxTranslate}px)`;
 
-                    // Apparition du texte au centre
-                    const revealStart = 0.5;
-                    const revealProgress = Math.min(1, Math.max(0, (progress - revealStart) / (1 - revealStart)));
+                    // Apparition du texte au centre (démarre tôt pour que les visiteurs
+                    // comprennent rapidement qu'il y a du contenu sous les deux photos)
+                    const revealStart = 0.12;
+                    const revealEnd = 0.55;
+                    const revealProgress = Math.min(1, Math.max(0, (progress - revealStart) / (revealEnd - revealStart)));
                     revealSection.style.opacity = revealProgress;
                 }
 
