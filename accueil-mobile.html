@@ -309,12 +309,19 @@
             margin-bottom: 4px;
             text-align: center;
         }
-        #formules-flexibles-mobile .option-tag {
-            font-size: 0.85rem;
+        #formules-flexibles-mobile .option-note {
+            display: block;
+            width: fit-content;
+            margin: 0 auto 10px auto;
+            font-size: 0.75rem;
             font-weight: 700;
-            color: #18233f;
+            letter-spacing: 0.2px;
+            color: #7a5d28;
+            background: rgba(255,255,255,0.7);
+            border: 1px solid rgba(185,148,78,0.65);
+            border-radius: 999px;
+            padding: 3px 12px;
             text-align: center;
-            margin-bottom: 6px;
         }
         #formules-flexibles-mobile .option-price {
             font-size: 1.3rem;
@@ -332,6 +339,20 @@
             color: #18233f;
             margin-bottom: 7px;
             list-style-type: disc;
+        }
+        #formules-flexibles-mobile .paiement-link {
+            color: #18233f;
+            font-weight: bold;
+            text-decoration: none;
+            font-size: 15px;
+            display: block;
+            margin-top: 18px;
+            text-align: center;
+            transition: color 0.2s;
+        }
+        #formules-flexibles-mobile .paiement-link:hover {
+            color: #b9944e;
+            text-decoration: underline;
         }
         /* Section images exigences piano */
         .piano-images {
@@ -665,21 +686,24 @@
         <div class="main-title" data-i18n="flex.kicker">Formules flexibles</div>
         <p class="subtitle" data-i18n="flex.subtitle">Pour celles et ceux qui veulent du piano sans engagement scolaire classique, ou qui habitent loin.</p>
         <div class="options-grid">
-            <div class="option-card">
+            <div class="option-card" style="backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);background:rgba(255,255,255,0.32);border-radius:2rem;padding:1.5rem;box-shadow:0 0 32px 8px rgba(255,255,255,0.25), 0 2px 12px 0 rgba(31,41,55,0.10);border:1px solid rgba(255,255,255,0.10);position:relative;">
                 <div class="option-title" data-i18n="flex.impromptu.title">Formule Impromptu</div>
-                <div class="option-tag" data-i18n="flex.impromptu.tag">Carnet de 10 cours</div>
+                <div class="option-note" data-i18n="flex.impromptu.tag">Carnet de 10 cours</div>
                 <div class="option-price">430€ <span data-i18n="flex.to">à</span> 650€</div>
+                <div class="option-note" data-i18n="flex.impromptu.zone">📍 Monaco et communes limitrophes uniquement</div>
                 <ul class="option-list">
                     <li data-i18n="flex.impromptu.li1">30 min : 430€ · 45 min : 540€ · 60 min : 650€</li>
                     <li data-i18n="flex.impromptu.li2">Valable 5 mois, réservation libre en semaine de 9h à 15h</li>
                     <li data-i18n="flex.impromptu.li3">Présentiel — idéal pour retraités, télétravailleurs, parents disponibles en journée</li>
                     <li data-i18n="flex.impromptu.li4">Essai Prélude (optionnel) : 30 min, 20€ — premier cours avant de vous engager (1 par élève)</li>
                 </ul>
+                <a class="paiement-link" href="formules-de-paiement.html#simulateur" target="_blank" data-i18n="mobile.configurer" style="margin-top:18px;display:block;">Configurer ma formule</a>
             </div>
-            <div class="option-card">
+            <div class="option-card" style="backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);background:rgba(255,255,255,0.32);border-radius:2rem;padding:1.5rem;box-shadow:0 0 32px 8px rgba(255,255,255,0.25), 0 2px 12px 0 rgba(31,41,55,0.10);border:1px solid rgba(255,255,255,0.10);position:relative;">
                 <div class="option-title" data-i18n="flex.resonance.title">Formule Résonance</div>
-                <div class="option-tag" data-i18n="flex.resonance.tag">Carnet de 12 cours</div>
+                <div class="option-note" data-i18n="flex.resonance.tag">Carnet de 12 cours</div>
                 <div class="option-price">420€ <span data-i18n="flex.to">à</span> 600€</div>
+                <div class="option-note" data-i18n="flex.resonance.zone">📍 Monaco, communes limitrophes et arrière-pays</div>
                 <ul class="option-list">
                     <li data-i18n="flex.resonance.li1">9 cours en visio + 3 en présentiel, en semaine de 9h à 15h</li>
                     <li data-i18n="flex.resonance.li2">30 min : 420€ · 45 min : 480€ · 60 min : 600€ le carnet (soit 35€ · 40€ · 50€ le cours)</li>
@@ -687,6 +711,7 @@
                     <li data-i18n="flex.resonance.li4">Valable 5 mois, sans engagement ni paiement récurrent</li>
                     <li data-i18n="flex.resonance.li5">Essai Prélude (optionnel) : 30 min en visio, 20€ — premier cours avant de vous engager (1 par élève)</li>
                 </ul>
+                <a class="paiement-link" href="formules-de-paiement.html#simulateur" target="_blank" data-i18n="mobile.configurer" style="margin-top:18px;display:block;">Configurer ma formule</a>
             </div>
         </div>
     </section>
@@ -993,12 +1018,14 @@
             'flex.to': 'à',
             'flex.impromptu.title': 'Formule Impromptu',
             'flex.impromptu.tag': 'Carnet de 10 cours',
+            'flex.impromptu.zone': '📍 Monaco et communes limitrophes uniquement',
             'flex.impromptu.li1': '30 min : 430€ · 45 min : 540€ · 60 min : 650€',
             'flex.impromptu.li2': 'Valable 5 mois, réservation libre en semaine de 9h à 15h',
             'flex.impromptu.li3': 'Présentiel — idéal pour retraités, télétravailleurs, parents disponibles en journée',
             'flex.impromptu.li4': 'Essai Prélude (optionnel) : 30 min, 20€ — premier cours avant de vous engager (1 par élève)',
             'flex.resonance.title': 'Formule Résonance',
             'flex.resonance.tag': 'Carnet de 12 cours',
+            'flex.resonance.zone': '📍 Monaco, communes limitrophes et arrière-pays',
             'flex.resonance.li1': '9 cours en visio + 3 en présentiel, en semaine de 9h à 15h',
             'flex.resonance.li2': '30 min : 420€ · 45 min : 480€ · 60 min : 600€ le carnet (soit 35€ · 40€ · 50€ le cours)',
             'flex.resonance.li3': "Formule hybride idéale pour l'arrière-pays",
@@ -1090,12 +1117,14 @@
             'flex.to': 'to',
             'flex.impromptu.title': 'Impromptu package',
             'flex.impromptu.tag': '10-lesson pack',
+            'flex.impromptu.zone': '📍 Monaco and neighbouring towns only',
             'flex.impromptu.li1': '30 min: €430 · 45 min: €540 · 60 min: €650',
             'flex.impromptu.li2': 'Valid for 5 months, free booking on weekdays from 9am to 3pm',
             'flex.impromptu.li3': 'In-person — ideal for retirees, remote workers, parents available during the day',
             'flex.impromptu.li4': 'Optional Prelude trial: 30 min, €20 — a first lesson before committing (1 per student)',
             'flex.resonance.title': 'Resonance package',
             'flex.resonance.tag': '12-lesson pack',
+            'flex.resonance.zone': '📍 Monaco, neighbouring towns and the surrounding countryside',
             'flex.resonance.li1': '9 lessons via video call + 3 in person, on weekdays from 9am to 3pm',
             'flex.resonance.li2': '30 min: €420 · 45 min: €480 · 60 min: €600 per pack (i.e. €35 · €40 · €50 per lesson)',
             'flex.resonance.li3': 'A hybrid package ideal for those living further out',
@@ -1187,12 +1216,14 @@
             'flex.to': 'do',
             'flex.impromptu.title': 'Formuła Impromptu',
             'flex.impromptu.tag': 'Karnet 10 lekcji',
+            'flex.impromptu.zone': '📍 Tylko Monako i sąsiednie miejscowości',
             'flex.impromptu.li1': '30 min: 430€ · 45 min: 540€ · 60 min: 650€',
             'flex.impromptu.li2': 'Ważny 5 miesięcy, dowolna rezerwacja w tygodniu od 9:00 do 15:00',
             'flex.impromptu.li3': 'Stacjonarnie — idealne dla emerytów, pracujących zdalnie, rodziców dostępnych w ciągu dnia',
             'flex.impromptu.li4': 'Opcjonalna lekcja próbna Prélude: 30 min, 20€ — pierwsza lekcja przed podjęciem zobowiązania (1 na ucznia)',
             'flex.resonance.title': 'Formuła Résonance',
             'flex.resonance.tag': 'Karnet 12 lekcji',
+            'flex.resonance.zone': '📍 Monako, sąsiednie miejscowości i dalsza okolica',
             'flex.resonance.li1': '9 lekcji online + 3 stacjonarnie, w tygodniu od 9:00 do 15:00',
             'flex.resonance.li2': '30 min: 420€ · 45 min: 480€ · 60 min: 600€ za karnet (czyli 35€ · 40€ · 50€ za lekcję)',
             'flex.resonance.li3': 'Formuła hybrydowa idealna dla osób mieszkających dalej',
