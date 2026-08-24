@@ -541,12 +541,33 @@
                 margin-bottom: 8px;
                 text-align: center;
             }
-            #formules-flexibles .option-tag {
-                font-size: 15px;
+            #formules-flexibles .option-note {
+                display: inline-block;
+                align-self: center;
+                font-size: 12.5px;
                 font-weight: 700;
-                color: #18233f;
+                letter-spacing: 0.2px;
+                color: #7a5d28;
+                background: rgba(255,255,255,0.6);
+                border: 1px solid rgba(185,148,78,0.65);
+                border-radius: 999px;
+                padding: 3px 12px;
                 text-align: center;
                 margin-bottom: 6px;
+            }
+            #formules-flexibles .option-zone {
+                display: inline-block;
+                align-self: center;
+                font-size: 13px;
+                font-weight: 600;
+                letter-spacing: 0.1px;
+                color: #6b5636;
+                background: rgba(185,148,78,0.16);
+                border: 1px solid rgba(185,148,78,0.25);
+                border-radius: 999px;
+                padding: 4px 14px;
+                text-align: center;
+                margin-bottom: 18px;
             }
             #formules-flexibles .option-price {
                 font-size: 22px;
@@ -564,6 +585,21 @@
                 color: #18233f;
                 margin-bottom: 10px;
                 list-style-type: disc;
+            }
+            #formules-flexibles .paiement-link {
+                color: #18233f;
+                font-weight: bold;
+                text-decoration: none;
+                font-size: 15px;
+                display: block;
+                margin-top: auto;
+                padding-top: 16px;
+                text-align: center;
+                transition: color 0.2s;
+            }
+            #formules-flexibles .paiement-link:hover {
+                color: #b9944e;
+                text-decoration: underline;
             }
             /* ----------- Transparence remises (fidélité / paiement) ----------- */
             .tarif-remises {
@@ -883,11 +919,11 @@
     <div id="context-menu-wrapper" style="position:fixed;top:32px;right:32px;z-index:2000;display:flex;flex-direction:column;align-items:flex-end;">
         <div style="display:flex;gap:8px;align-items:center;">
             <div id="lang-switcher-wrapper" style="position:relative;">
-                <button id="lang-switcher-toggle" aria-label="Changer de langue" style="background:rgba(255,255,255,0.9);border:none;border-radius:12px;padding:10px 12px;box-shadow:0 2px 8px rgba(0,0,0,0.10);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1.4rem;line-height:1;">🇫🇷</button>
+                <button id="lang-switcher-toggle" aria-label="Changer de langue" style="background:rgba(255,255,255,0.9);border:none;border-radius:12px;padding:10px 12px;box-shadow:0 2px 8px rgba(0,0,0,0.10);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1.4rem;line-height:1;"><svg width="20" height="14" viewBox="0 0 3 2" style="display:inline-block;vertical-align:middle;border-radius:2px;overflow:hidden;"><rect width="1" height="2" fill="#0055A4"/><rect x="1" width="1" height="2" fill="#fff"/><rect x="2" width="1" height="2" fill="#EF4135"/></svg></button>
                 <div id="lang-switcher-menu" style="display:none;position:absolute;top:calc(100% + 8px);right:0;background:#fff;border-radius:12px;box-shadow:0 4px 16px rgba(0,0,0,0.15);overflow:hidden;min-width:150px;z-index:2001;">
-                    <button class="lang-option" data-lang="fr" style="display:block;width:100%;text-align:left;padding:10px 16px;background:none;border:none;cursor:pointer;font-size:0.95rem;color:#18233f;font-weight:600;">🇫🇷 Français</button>
-                    <button class="lang-option" data-lang="en" style="display:block;width:100%;text-align:left;padding:10px 16px;background:none;border:none;cursor:pointer;font-size:0.95rem;color:#18233f;font-weight:600;">🇬🇧 English</button>
-                    <button class="lang-option" data-lang="pl" style="display:block;width:100%;text-align:left;padding:10px 16px;background:none;border:none;cursor:pointer;font-size:0.95rem;color:#18233f;font-weight:600;">🇵🇱 Polski</button>
+                    <button class="lang-option" data-lang="fr" style="display:block;width:100%;text-align:left;padding:10px 16px;background:none;border:none;cursor:pointer;font-size:0.95rem;color:#18233f;font-weight:600;"><svg width="20" height="14" viewBox="0 0 3 2" style="display:inline-block;vertical-align:middle;border-radius:2px;overflow:hidden;"><rect width="1" height="2" fill="#0055A4"/><rect x="1" width="1" height="2" fill="#fff"/><rect x="2" width="1" height="2" fill="#EF4135"/></svg><span style="margin-left:8px;">Français</span></button>
+                    <button class="lang-option" data-lang="en" style="display:block;width:100%;text-align:left;padding:10px 16px;background:none;border:none;cursor:pointer;font-size:0.95rem;color:#18233f;font-weight:600;"><svg width="20" height="14" viewBox="0 0 60 36" style="display:inline-block;vertical-align:middle;border-radius:2px;overflow:hidden;"><rect width="60" height="36" fill="#00247D"/><path d="M0,0L60,36M60,0L0,36" stroke="#fff" stroke-width="6"/><path d="M0,0L60,36M60,0L0,36" stroke="#CF142B" stroke-width="2.4"/><path d="M30,0V36M0,18H60" stroke="#fff" stroke-width="10"/><path d="M30,0V36M0,18H60" stroke="#CF142B" stroke-width="6"/></svg><span style="margin-left:8px;">English</span></button>
+                    <button class="lang-option" data-lang="pl" style="display:block;width:100%;text-align:left;padding:10px 16px;background:none;border:none;cursor:pointer;font-size:0.95rem;color:#18233f;font-weight:600;"><svg width="20" height="14" viewBox="0 0 3 2" style="display:inline-block;vertical-align:middle;border-radius:2px;overflow:hidden;"><rect width="3" height="1" fill="#fff"/><rect y="1" width="3" height="1" fill="#DC143C"/></svg><span style="margin-left:8px;">Polski</span></button>
                 </div>
             </div>
             <button id="context-menu-toggle" aria-label="Ouvrir le menu" style="background:rgba(255,255,255,0.9);border:none;border-radius:12px;padding:10px 14px;box-shadow:0 2px 8px rgba(0,0,0,0.10);cursor:pointer;display:flex;align-items:center;justify-content:center;">
@@ -1300,19 +1336,22 @@ document.addEventListener('DOMContentLoaded', function() {
     <div class="options-grid" style="margin-top:40px;">
         <div class="option-card">
             <div class="option-title" data-i18n="flex.impromptu.title">Formule Impromptu</div>
-            <div class="option-tag" data-i18n="flex.impromptu.tag">Carnet de 10 cours</div>
+            <div class="option-note" data-i18n="flex.impromptu.tag">Carnet de 10 cours</div>
             <div class="option-price">430€ <span data-i18n="flex.to">à</span> 650€</div>
+            <div class="option-zone" data-i18n="flex.impromptu.zone">📍 Monaco et communes limitrophes uniquement</div>
             <ul class="option-list">
                 <li data-i18n="flex.impromptu.li1">30 min : 430€ · 45 min : 540€ · 60 min : 650€</li>
                 <li data-i18n="flex.impromptu.li2">Valable 5 mois, réservation libre en semaine de 9h à 15h</li>
                 <li data-i18n="flex.impromptu.li3">Présentiel — idéal pour retraités, télétravailleurs, parents disponibles en journée</li>
                 <li data-i18n="flex.impromptu.li4">Essai Prélude (optionnel) : 30 min, 20€ — premier cours avant de vous engager (1 par élève)</li>
             </ul>
+            <a class="paiement-link" href="formules-de-paiement.html#simulateur" target="_blank" rel="noopener" data-i18n="options.cta">Je configure ma formule</a>
         </div>
         <div class="option-card">
             <div class="option-title" data-i18n="flex.resonance.title">Formule Résonance</div>
-            <div class="option-tag" data-i18n="flex.resonance.tag">Carnet de 12 cours</div>
+            <div class="option-note" data-i18n="flex.resonance.tag">Carnet de 12 cours</div>
             <div class="option-price">420€ <span data-i18n="flex.to">à</span> 600€</div>
+            <div class="option-zone" data-i18n="flex.resonance.zone">📍 Monaco, communes limitrophes et arrière-pays</div>
             <ul class="option-list">
                 <li data-i18n="flex.resonance.li1">9 cours en visio + 3 en présentiel, en semaine de 9h à 15h</li>
                 <li data-i18n="flex.resonance.li2">30 min : 420€ · 45 min : 480€ · 60 min : 600€ le carnet (soit 35€ · 40€ · 50€ le cours)</li>
@@ -1320,6 +1359,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 <li data-i18n="flex.resonance.li4">Valable 5 mois, sans engagement ni paiement récurrent</li>
                 <li data-i18n="flex.resonance.li5">Essai Prélude (optionnel) : 30 min en visio, 20€ — premier cours avant de vous engager (1 par élève)</li>
             </ul>
+            <a class="paiement-link" href="formules-de-paiement.html#simulateur" target="_blank" rel="noopener" data-i18n="options.cta">Je configure ma formule</a>
         </div>
     </div>
 </section>
@@ -1717,7 +1757,7 @@ document.addEventListener('DOMContentLoaded', function() {
         <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 15l7-7 7 7"/></svg>
     </button>
         <div class="container mx-auto text-center">
-            <p class="mb-4"><span data-i18n="footer.copyright">&copy; 2025 Excellence piano by Natalia. Tous droits réservés.</span></p>
+            <p class="mb-4"><span data-i18n="footer.copyright">&copy; 2026 Excellence piano by Natalia. Tous droits réservés.</span></p>
             <p class="text-sm">
                 <a href="mentions-legales.html" class="text-gray-200 hover:text-gray-50 transition-colors duration-200" target="_blank" rel="noopener" data-i18n="footer.mentions">Mentions Légales</a> |
                 <a href="politique-confidentialite.html" class="text-gray-200 hover:text-gray-50 transition-colors duration-200" target="_blank" rel="noopener" data-i18n="footer.confidentialite">Politique de Confidentialité</a>
@@ -2244,12 +2284,14 @@ document.addEventListener('DOMContentLoaded', function() {
             'flex.subtitle': 'Pour celles et ceux qui veulent du piano sans engagement scolaire classique, ou qui habitent loin.',
             'flex.impromptu.title': 'Formule Impromptu',
             'flex.impromptu.tag': 'Carnet de 10 cours',
+            'flex.impromptu.zone': '📍 Monaco et communes limitrophes uniquement',
             'flex.impromptu.li1': '30 min : 430€ · 45 min : 540€ · 60 min : 650€',
             'flex.impromptu.li2': 'Valable 5 mois, réservation libre en semaine de 9h à 15h',
             'flex.impromptu.li3': 'Présentiel — idéal pour retraités, télétravailleurs, parents disponibles en journée',
             'flex.impromptu.li4': 'Essai Prélude (optionnel) : 30 min, 20€ — premier cours avant de vous engager (1 par élève)',
             'flex.resonance.title': 'Formule Résonance',
             'flex.resonance.tag': 'Carnet de 12 cours',
+            'flex.resonance.zone': '📍 Monaco, communes limitrophes et arrière-pays',
             'flex.resonance.li1': '9 cours en visio + 3 en présentiel, en semaine de 9h à 15h',
             'flex.resonance.li2': '30 min : 420€ · 45 min : 480€ · 60 min : 600€ le carnet (soit 35€ · 40€ · 50€ le cours)',
             'flex.resonance.li3': "Formule hybride idéale pour l'arrière-pays",
@@ -2268,7 +2310,7 @@ document.addEventListener('DOMContentLoaded', function() {
             'contact.note': 'Votre message sera envoyé directement, sans logiciel de messagerie requis.',
             'audio.click': 'Cliquez sur',
             'audio.enjoy': "pour profiter d'une ambiance musicale !",
-            'footer.copyright': '&copy; 2025 Excellence piano by Natalia. Tous droits réservés.',
+            'footer.copyright': '&copy; 2026 Excellence piano by Natalia. Tous droits réservés.',
             'footer.mentions': 'Mentions Légales',
             'footer.confidentialite': 'Politique de Confidentialité'
         },
@@ -2374,12 +2416,14 @@ document.addEventListener('DOMContentLoaded', function() {
             'flex.subtitle': 'For those who want piano lessons without a traditional school-term commitment, or who live further away.',
             'flex.impromptu.title': 'Impromptu package',
             'flex.impromptu.tag': '10-lesson pack',
+            'flex.impromptu.zone': '📍 Monaco and neighbouring towns only',
             'flex.impromptu.li1': '30 min: €430 · 45 min: €540 · 60 min: €650',
             'flex.impromptu.li2': 'Valid for 5 months, free booking on weekdays from 9am to 3pm',
             'flex.impromptu.li3': 'In-person — ideal for retirees, remote workers, parents available during the day',
             'flex.impromptu.li4': 'Optional Prelude trial: 30 min, €20 — a first lesson before committing (1 per student)',
             'flex.resonance.title': 'Resonance package',
             'flex.resonance.tag': '12-lesson pack',
+            'flex.resonance.zone': '📍 Monaco, neighbouring towns and the surrounding countryside',
             'flex.resonance.li1': '9 lessons via video call + 3 in person, on weekdays from 9am to 3pm',
             'flex.resonance.li2': '30 min: €420 · 45 min: €480 · 60 min: €600 per pack (i.e. €35 · €40 · €50 per lesson)',
             'flex.resonance.li3': 'A hybrid package ideal for those living further out',
@@ -2398,7 +2442,7 @@ document.addEventListener('DOMContentLoaded', function() {
             'contact.note': 'Your message will be sent directly, no email software required.',
             'audio.click': 'Click',
             'audio.enjoy': 'to enjoy some background music!',
-            'footer.copyright': '&copy; 2025 Excellence Piano by Natalia. All rights reserved.',
+            'footer.copyright': '&copy; 2026 Excellence Piano by Natalia. All rights reserved.',
             'footer.mentions': 'Legal Notice',
             'footer.confidentialite': 'Privacy Policy'
         },
@@ -2504,12 +2548,14 @@ document.addEventListener('DOMContentLoaded', function() {
             'flex.subtitle': 'Dla osób, które chcą grać na pianinie bez klasycznego zobowiązania szkolnego, lub mieszkają dalej.',
             'flex.impromptu.title': 'Formuła Impromptu',
             'flex.impromptu.tag': 'Karnet 10 lekcji',
+            'flex.impromptu.zone': '📍 Tylko Monako i sąsiednie miejscowości',
             'flex.impromptu.li1': '30 min: 430€ · 45 min: 540€ · 60 min: 650€',
             'flex.impromptu.li2': 'Ważny 5 miesięcy, dowolna rezerwacja w tygodniu od 9:00 do 15:00',
             'flex.impromptu.li3': 'Stacjonarnie — idealne dla emerytów, pracujących zdalnie, rodziców dostępnych w ciągu dnia',
             'flex.impromptu.li4': 'Opcjonalna lekcja próbna Prélude: 30 min, 20€ — pierwsza lekcja przed podjęciem zobowiązania (1 na ucznia)',
             'flex.resonance.title': 'Formuła Résonance',
             'flex.resonance.tag': 'Karnet 12 lekcji',
+            'flex.resonance.zone': '📍 Monako, sąsiednie miejscowości i dalsza okolica',
             'flex.resonance.li1': '9 lekcji online + 3 stacjonarnie, w tygodniu od 9:00 do 15:00',
             'flex.resonance.li2': '30 min: 420€ · 45 min: 480€ · 60 min: 600€ za karnet (czyli 35€ · 40€ · 50€ za lekcję)',
             'flex.resonance.li3': 'Formuła hybrydowa idealna dla osób mieszkających dalej',
@@ -2528,11 +2574,13 @@ document.addEventListener('DOMContentLoaded', function() {
             'contact.note': 'Twoja wiadomość zostanie wysłana bezpośrednio, bez potrzeby posiadania programu pocztowego.',
             'audio.click': 'Kliknij',
             'audio.enjoy': 'aby cieszyć się muzycznym klimatem!',
-            'footer.copyright': '&copy; 2025 Excellence Piano by Natalia. Wszelkie prawa zastrzeżone.',
+            'footer.copyright': '&copy; 2026 Excellence Piano by Natalia. Wszelkie prawa zastrzeżone.',
             'footer.mentions': 'Nota prawna',
             'footer.confidentialite': 'Polityka prywatności'
         }
     };
+
+    const FLAG_SVGS = {fr: '<svg width="20" height="14" viewBox="0 0 3 2" style="display:inline-block;vertical-align:middle;border-radius:2px;overflow:hidden;"><rect width="1" height="2" fill="#0055A4"/><rect x="1" width="1" height="2" fill="#fff"/><rect x="2" width="1" height="2" fill="#EF4135"/></svg>', en: '<svg width="20" height="14" viewBox="0 0 60 36" style="display:inline-block;vertical-align:middle;border-radius:2px;overflow:hidden;"><rect width="60" height="36" fill="#00247D"/><path d="M0,0L60,36M60,0L0,36" stroke="#fff" stroke-width="6"/><path d="M0,0L60,36M60,0L0,36" stroke="#CF142B" stroke-width="2.4"/><path d="M30,0V36M0,18H60" stroke="#fff" stroke-width="10"/><path d="M30,0V36M0,18H60" stroke="#CF142B" stroke-width="6"/></svg>', pl: '<svg width="20" height="14" viewBox="0 0 3 2" style="display:inline-block;vertical-align:middle;border-radius:2px;overflow:hidden;"><rect width="3" height="1" fill="#fff"/><rect y="1" width="3" height="1" fill="#DC143C"/></svg>'};
 
     function applyTranslations(lang) {
         if (!TRANSLATIONS[lang]) lang = 'fr';
@@ -2550,7 +2598,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
         document.documentElement.lang = lang;
         const langSwitcherToggleBtn = document.getElementById('lang-switcher-toggle');
-        if (langSwitcherToggleBtn) langSwitcherToggleBtn.textContent = ({fr:'🇫🇷',en:'🇬🇧',pl:'🇵🇱'})[lang] || '🇫🇷';
+        if (langSwitcherToggleBtn) langSwitcherToggleBtn.innerHTML = FLAG_SVGS[lang] || FLAG_SVGS.fr;
     }
 
     document.addEventListener('DOMContentLoaded', () => {
