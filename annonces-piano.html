@@ -190,11 +190,11 @@
     <div id="context-menu-wrapper" style="position:fixed;top:0;right:0;z-index:2000;display:flex;flex-direction:column;align-items:flex-end;">
         <div style="display:flex;gap:8px;align-items:center;">
             <div id="lang-switcher-wrapper" style="position:relative;">
-                <button id="lang-switcher-toggle" aria-label="Changer de langue" style="background:rgba(255,255,255,0.9);border:none;border-radius:12px;padding:10px 12px;box-shadow:0 2px 8px rgba(0,0,0,0.10);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1.4rem;line-height:1;">🇫🇷</button>
+                <button id="lang-switcher-toggle" aria-label="Changer de langue" style="background:rgba(255,255,255,0.9);border:none;border-radius:12px;padding:10px 12px;box-shadow:0 2px 8px rgba(0,0,0,0.10);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1.4rem;line-height:1;"><svg width="20" height="14" viewBox="0 0 3 2" style="display:inline-block;vertical-align:middle;border-radius:2px;overflow:hidden;"><rect width="1" height="2" fill="#0055A4"/><rect x="1" width="1" height="2" fill="#fff"/><rect x="2" width="1" height="2" fill="#EF4135"/></svg></button>
                 <div id="lang-switcher-menu" style="display:none;position:absolute;top:calc(100% + 8px);right:0;background:#fff;border-radius:12px;box-shadow:0 4px 16px rgba(0,0,0,0.15);overflow:hidden;min-width:150px;z-index:2001;">
-                    <button class="lang-option" data-lang="fr" style="display:block;width:100%;text-align:left;padding:10px 16px;background:none;border:none;cursor:pointer;font-size:0.95rem;color:#18233f;font-weight:600;">🇫🇷 Français</button>
-                    <button class="lang-option" data-lang="en" style="display:block;width:100%;text-align:left;padding:10px 16px;background:none;border:none;cursor:pointer;font-size:0.95rem;color:#18233f;font-weight:600;">🇬🇧 English</button>
-                    <button class="lang-option" data-lang="pl" style="display:block;width:100%;text-align:left;padding:10px 16px;background:none;border:none;cursor:pointer;font-size:0.95rem;color:#18233f;font-weight:600;">🇵🇱 Polski</button>
+                    <button class="lang-option" data-lang="fr" style="display:block;width:100%;text-align:left;padding:10px 16px;background:none;border:none;cursor:pointer;font-size:0.95rem;color:#18233f;font-weight:600;"><svg width="20" height="14" viewBox="0 0 3 2" style="display:inline-block;vertical-align:middle;border-radius:2px;overflow:hidden;"><rect width="1" height="2" fill="#0055A4"/><rect x="1" width="1" height="2" fill="#fff"/><rect x="2" width="1" height="2" fill="#EF4135"/></svg><span style="margin-left:8px;">Français</span></button>
+                    <button class="lang-option" data-lang="en" style="display:block;width:100%;text-align:left;padding:10px 16px;background:none;border:none;cursor:pointer;font-size:0.95rem;color:#18233f;font-weight:600;"><svg width="20" height="14" viewBox="0 0 60 36" style="display:inline-block;vertical-align:middle;border-radius:2px;overflow:hidden;"><rect width="60" height="36" fill="#00247D"/><path d="M0,0L60,36M60,0L0,36" stroke="#fff" stroke-width="6"/><path d="M0,0L60,36M60,0L0,36" stroke="#CF142B" stroke-width="2.4"/><path d="M30,0V36M0,18H60" stroke="#fff" stroke-width="10"/><path d="M30,0V36M0,18H60" stroke="#CF142B" stroke-width="6"/></svg><span style="margin-left:8px;">English</span></button>
+                    <button class="lang-option" data-lang="pl" style="display:block;width:100%;text-align:left;padding:10px 16px;background:none;border:none;cursor:pointer;font-size:0.95rem;color:#18233f;font-weight:600;"><svg width="20" height="14" viewBox="0 0 3 2" style="display:inline-block;vertical-align:middle;border-radius:2px;overflow:hidden;"><rect width="3" height="1" fill="#fff"/><rect y="1" width="3" height="1" fill="#DC143C"/></svg><span style="margin-left:8px;">Polski</span></button>
                 </div>
             </div>
             <button id="context-menu-toggle" aria-label="Ouvrir le menu" style="background:rgba(255,255,255,0.9);border:none;border-radius:12px;padding:10px 14px;box-shadow:0 2px 8px rgba(0,0,0,0.10);cursor:pointer;display:flex;align-items:center;justify-content:center;">
@@ -483,7 +483,7 @@
     <!-- Footer (copié de accueil.html) -->
     <footer class="bg-gray-800 text-white py-8 px-6 md:px-12 mt-20" style="border-radius:0;width:100%;left:0;right:0;">
         <div class="container mx-auto text-center">
-            <p class="mb-4"><span data-i18n="footer.copyright">&copy; 2025 Excellence piano by Natalia. Tous droits réservés.</span></p>
+            <p class="mb-4"><span data-i18n="footer.copyright">&copy; 2026 Excellence piano by Natalia. Tous droits réservés.</span></p>
             <p class="text-sm">
                 <a href="mentions-legales.html" class="text-gray-200 hover:text-gray-50 transition-colors duration-200" target="_blank" rel="noopener" data-i18n="footer.mentions">Mentions Légales</a> |
                 <a href="politique-confidentialite.html" class="text-gray-200 hover:text-gray-50 transition-colors duration-200" target="_blank" rel="noopener" data-i18n="footer.confidentialite">Politique de Confidentialité</a>
@@ -543,7 +543,7 @@
             'ap.pianopolisText': "4 rue Gioffredo, 06000 Nice — 04 93 54 68 44<br>Neuf, occasion et numérique. Pianos d'occasion révisés et accordés, garantie 5 à 10 ans. Ils posent aussi le système silencieux sur un piano acoustique. Le stock tourne vite : mieux vaut les appeler directement.",
             'ap.guglielmiText': "À Nice également. Spécialiste du numérique (Yamaha, Roland, Korg, Kawai, Casio) et installateur agréé du système silencieux Korg — une deuxième option pour équiper un piano acoustique après l'achat.",
             'ap.guetterIntro': 'Vous préférez guetter les nouvelles annonces vous-même ? Voici les recherches enregistrées, commune par commune :',
-            'footer.copyright': '&copy; 2025 Excellence piano by Natalia. Tous droits réservés.',
+            'footer.copyright': '&copy; 2026 Excellence piano by Natalia. Tous droits réservés.',
             'footer.mentions': 'Mentions Légales',
             'footer.confidentialite': 'Politique de Confidentialité'
         },
@@ -578,7 +578,7 @@
             'ap.pianopolisText': "4 rue Gioffredo, 06000 Nice — 04 93 54 68 44<br>New, second-hand and digital pianos. Second-hand pianos serviced and tuned, 5 to 10-year guarantee. They also fit silent systems on acoustic pianos. Stock moves fast: best to call them directly.",
             'ap.guglielmiText': 'Also in Nice. Digital piano specialist (Yamaha, Roland, Korg, Kawai, Casio) and approved installer of the Korg silent system — a second option for fitting an acoustic piano after purchase.',
             'ap.guetterIntro': 'Prefer to watch for new listings yourself? Here are the saved searches, area by area:',
-            'footer.copyright': '&copy; 2025 Excellence Piano by Natalia. All rights reserved.',
+            'footer.copyright': '&copy; 2026 Excellence Piano by Natalia. All rights reserved.',
             'footer.mentions': 'Legal Notice',
             'footer.confidentialite': 'Privacy Policy'
         },
@@ -613,12 +613,13 @@
             'ap.pianopolisText': '4 rue Gioffredo, 06000 Nice — 04 93 54 68 44<br>Nowe, używane i cyfrowe. Pianina używane po przeglądzie i nastrojone, gwarancja 5 do 10 lat. Montują też system wyciszający na pianinie akustycznym. Towar szybko się rozchodzi: lepiej zadzwonić bezpośrednio.',
             'ap.guglielmiText': 'Również w Nicei. Specjalista od instrumentów cyfrowych (Yamaha, Roland, Korg, Kawai, Casio) i autoryzowany instalator systemu wyciszającego Korg — druga opcja wyposażenia pianina akustycznego po zakupie.',
             'ap.guetterIntro': 'Wolisz sam śledzić nowe ogłoszenia? Oto zapisane wyszukiwania, gmina po gminie:',
-            'footer.copyright': '&copy; 2025 Excellence Piano by Natalia. Wszelkie prawa zastrzeżone.',
+            'footer.copyright': '&copy; 2026 Excellence Piano by Natalia. Wszelkie prawa zastrzeżone.',
             'footer.mentions': 'Nota prawna',
             'footer.confidentialite': 'Polityka prywatności'
         }
     };
     const TRANSLATIONS = window.TRANSLATIONS;
+    const FLAG_SVGS = {fr: '<svg width="20" height="14" viewBox="0 0 3 2" style="display:inline-block;vertical-align:middle;border-radius:2px;overflow:hidden;"><rect width="1" height="2" fill="#0055A4"/><rect x="1" width="1" height="2" fill="#fff"/><rect x="2" width="1" height="2" fill="#EF4135"/></svg>', en: '<svg width="20" height="14" viewBox="0 0 60 36" style="display:inline-block;vertical-align:middle;border-radius:2px;overflow:hidden;"><rect width="60" height="36" fill="#00247D"/><path d="M0,0L60,36M60,0L0,36" stroke="#fff" stroke-width="6"/><path d="M0,0L60,36M60,0L0,36" stroke="#CF142B" stroke-width="2.4"/><path d="M30,0V36M0,18H60" stroke="#fff" stroke-width="10"/><path d="M30,0V36M0,18H60" stroke="#CF142B" stroke-width="6"/></svg>', pl: '<svg width="20" height="14" viewBox="0 0 3 2" style="display:inline-block;vertical-align:middle;border-radius:2px;overflow:hidden;"><rect width="3" height="1" fill="#fff"/><rect y="1" width="3" height="1" fill="#DC143C"/></svg>'};
 
     function applyTranslations(lang) {
         if (!TRANSLATIONS[lang]) lang = 'fr';
@@ -637,7 +638,7 @@
         });
         document.documentElement.lang = lang;
         const langSwitcherToggleBtn = document.getElementById('lang-switcher-toggle');
-        if (langSwitcherToggleBtn) langSwitcherToggleBtn.textContent = ({fr:'🇫🇷',en:'🇬🇧',pl:'🇵🇱'})[lang] || '🇫🇷';
+        if (langSwitcherToggleBtn) langSwitcherToggleBtn.innerHTML = FLAG_SVGS[lang] || FLAG_SVGS.fr;
     }
 
     document.addEventListener('DOMContentLoaded', () => {
