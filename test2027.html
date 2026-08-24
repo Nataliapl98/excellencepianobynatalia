@@ -282,6 +282,7 @@
             justify-content: center;
             align-items: center;
             opacity: 0;
+            transition: opacity 0.25s ease-out;
             z-index: 30;
             background-color: #eeeeee;
         }
@@ -936,10 +937,10 @@
             <a href="#concert" data-i18n="nav.concert" class="bg-white/90 hover:bg-indigo-100 font-semibold py-2 px-5 rounded-lg shadow transition-all duration-200" style="backdrop-filter:blur(4px);color:#18233f;">Concert de fin d'année</a>
             <a href="#stages-intensifs" data-i18n="nav.stages" class="bg-white/90 hover:bg-indigo-100 font-semibold py-2 px-5 rounded-lg shadow transition-all duration-200" style="backdrop-filter:blur(4px);color:#18233f;">Stages intensifs</a>
             <a href="#exigences-piano" data-i18n="nav.piano" class="bg-white/90 hover:bg-indigo-100 font-semibold py-2 px-5 rounded-lg shadow transition-all duration-200" style="backdrop-filter:blur(4px);color:#18233f;">Bien choisir son piano</a>
-            <a href="annonces-piano.html" target="_blank" data-i18n="nav.annonces" class="bg-white/90 hover:bg-indigo-100 font-semibold py-2 px-5 rounded-lg shadow transition-all duration-200" style="backdrop-filter:blur(4px);color:#18233f;">Pianos d'occasion</a>
+            <a href="annonces-piano.html" data-i18n="nav.annonces" class="bg-white/90 hover:bg-indigo-100 font-semibold py-2 px-5 rounded-lg shadow transition-all duration-200" style="backdrop-filter:blur(4px);color:#18233f;">Pianos d'occasion</a>
             <a href="#options-cours" data-i18n="nav.formulesAnnee" class="bg-white/90 hover:bg-indigo-100 font-semibold py-2 px-5 rounded-lg shadow transition-all duration-200" style="backdrop-filter:blur(4px);color:#18233f;">Formules année</a>
             <a href="#formules-flexibles" data-i18n="nav.formulesFlex" class="bg-white/90 hover:bg-indigo-100 font-semibold py-2 px-5 rounded-lg shadow transition-all duration-200" style="backdrop-filter:blur(4px);color:#18233f;">Formules flexibles</a>
-            <a href="formules-de-paiement.html" target="_blank" data-i18n="nav.simulateur" class="bg-white/90 hover:bg-indigo-100 font-semibold py-2 px-5 rounded-lg shadow transition-all duration-200" style="backdrop-filter:blur(4px);color:#18233f;">Simulateur de tarif</a>
+            <a href="formules-de-paiement.html" data-i18n="nav.simulateur" class="bg-white/90 hover:bg-indigo-100 font-semibold py-2 px-5 rounded-lg shadow transition-all duration-200" style="backdrop-filter:blur(4px);color:#18233f;">Simulateur de tarif</a>
             <a href="#inscription" data-i18n="nav.inscription" class="bg-white/90 hover:bg-indigo-100 font-semibold py-2 px-5 rounded-lg shadow transition-all duration-200" style="backdrop-filter:blur(4px);color:#18233f;">Inscription</a>
             <a href="#contact" data-i18n="nav.contact" class="bg-white/90 hover:bg-indigo-100 font-semibold py-2 px-5 rounded-lg shadow transition-all duration-200" style="backdrop-filter:blur(4px);color:#18233f;">Contact</a>
         </nav>
@@ -1961,9 +1962,11 @@ document.addEventListener('DOMContentLoaded', function() {
                     photo1.style.transform = `translateX(${-progress * maxTranslate}px)`;
                     photo2.style.transform = `translateX(${progress * maxTranslate}px)`;
 
-                    // Apparition du texte au centre
-                    const revealStart = 0.5;
-                    const revealProgress = Math.min(1, Math.max(0, (progress - revealStart) / (1 - revealStart)));
+                    // Apparition du texte au centre (démarre tôt pour que les visiteurs
+                    // comprennent rapidement qu'il y a du contenu sous les deux photos)
+                    const revealStart = 0.12;
+                    const revealEnd = 0.55;
+                    const revealProgress = Math.min(1, Math.max(0, (progress - revealStart) / (revealEnd - revealStart)));
                     revealSection.style.opacity = revealProgress;
                 }
 
