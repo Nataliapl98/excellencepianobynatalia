@@ -717,9 +717,19 @@ a.cm-step:hover .cm-arrow, a.cm-step:focus-visible .cm-arrow {
 
 <!-- Menu contextuel sticky déroulant en haut à droite -->
 <div id="context-menu-wrapper" style="position:fixed;top:32px;right:32px;z-index:2000;display:flex;flex-direction:column;align-items:flex-end;">
-    <button id="context-menu-toggle" aria-label="Ouvrir le menu" style="background:rgba(255,255,255,0.9);border:none;border-radius:12px;padding:10px 14px;box-shadow:0 2px 8px rgba(0,0,0,0.10);cursor:pointer;display:flex;align-items:center;justify-content:center;">
-        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" stroke="#1f2937" stroke-width="3" stroke-linecap="round"><line x1="7" y1="10" x2="25" y2="10"/><line x1="7" y1="16" x2="25" y2="16"/><line x1="7" y1="22" x2="25" y2="22"/></svg>
-    </button>
+    <div style="display:flex;gap:8px;align-items:center;">
+        <div id="lang-switcher-wrapper" style="position:relative;">
+            <button id="lang-switcher-toggle" aria-label="Changer de langue" style="background:rgba(255,255,255,0.9);border:none;border-radius:12px;padding:10px 12px;box-shadow:0 2px 8px rgba(0,0,0,0.10);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1.4rem;line-height:1;">🌐</button>
+            <div id="lang-switcher-menu" style="display:none;position:absolute;top:calc(100% + 8px);right:0;background:#fff;border-radius:12px;box-shadow:0 4px 16px rgba(0,0,0,0.15);overflow:hidden;min-width:150px;z-index:2001;">
+                <button class="lang-option" data-lang="fr" style="display:block;width:100%;text-align:left;padding:10px 16px;background:none;border:none;cursor:pointer;font-size:0.95rem;color:#18233f;font-weight:600;">Français</button>
+                <button class="lang-option" data-lang="en" style="display:block;width:100%;text-align:left;padding:10px 16px;background:none;border:none;cursor:pointer;font-size:0.95rem;color:#18233f;font-weight:600;">English</button>
+                <button class="lang-option" data-lang="pl" style="display:block;width:100%;text-align:left;padding:10px 16px;background:none;border:none;cursor:pointer;font-size:0.95rem;color:#18233f;font-weight:600;">Polski</button>
+            </div>
+        </div>
+        <button id="context-menu-toggle" aria-label="Ouvrir le menu" style="background:rgba(255,255,255,0.9);border:none;border-radius:12px;padding:10px 14px;box-shadow:0 2px 8px rgba(0,0,0,0.10);cursor:pointer;display:flex;align-items:center;justify-content:center;">
+            <svg width="32" height="32" viewBox="0 0 32 32" fill="none" stroke="#1f2937" stroke-width="3" stroke-linecap="round"><line x1="7" y1="10" x2="25" y2="10"/><line x1="7" y1="16" x2="25" y2="16"/><line x1="7" y1="22" x2="25" y2="22"/></svg>
+        </button>
+    </div>
     <nav id="context-menu" style="margin-top:10px;display:none;flex-direction:column;gap:12px;align-items:flex-end;min-width:160px;">
     <a href="index.html#branding-hero" target="_blank" class="bg-white/90 hover:bg-indigo-100 font-semibold py-2 px-5 rounded-lg shadow transition-all duration-200" style="backdrop-filter:blur(4px);color:#18233f;">Accueil</a>
     <a href="index.html#a-propos" target="_blank" class="bg-white/90 hover:bg-indigo-100 font-semibold py-2 px-5 rounded-lg shadow transition-all duration-200" style="backdrop-filter:blur(4px);color:#18233f;">Ma pédagogie</a>
@@ -1752,9 +1762,56 @@ a.cm-step:hover .cm-arrow, a.cm-step:focus-visible .cm-arrow {
     }
 
     const LANG_VALUE_TO_CODE = { 'Français': 'fr', 'English': 'en', 'Polski': 'pl' };
+    const LANG_CODE_TO_VALUE = { fr: 'Français', en: 'English', pl: 'Polski' };
+
+    function syncLangControls(lang) {
+        const radio = document.querySelector('input[name="langue_choisie"][value="' + LANG_CODE_TO_VALUE[lang] + '"]');
+        if (radio) radio.checked = true;
+        document.querySelectorAll('.lang-option').forEach(btn => {
+            const active = btn.dataset.lang === lang;
+            btn.style.background = active ? '#eaf0fa' : 'none';
+            btn.style.color = active ? '#b9944e' : '#18233f';
+        });
+    }
+
+    function setSiteLanguage(lang) {
+        if (!TRANSLATIONS[lang]) return;
+        try { localStorage.setItem('site_lang', lang); } catch (e) {}
+        syncLangControls(lang);
+        setLanguage(lang);
+    }
+
     document.querySelectorAll('input[name="langue_choisie"]').forEach(input => {
-        input.addEventListener('change', () => setLanguage(LANG_VALUE_TO_CODE[input.value]));
+        input.addEventListener('change', () => setSiteLanguage(LANG_VALUE_TO_CODE[input.value]));
     });
+
+    const langSwitcherToggle = document.getElementById('lang-switcher-toggle');
+    const langSwitcherMenu = document.getElementById('lang-switcher-menu');
+    let langSwitcherOpen = false;
+    if (langSwitcherToggle && langSwitcherMenu) {
+        langSwitcherToggle.addEventListener('click', (e) => {
+            e.stopPropagation();
+            langSwitcherOpen = !langSwitcherOpen;
+            langSwitcherMenu.style.display = langSwitcherOpen ? 'block' : 'none';
+        });
+        document.addEventListener('click', (e) => {
+            if (!langSwitcherMenu.contains(e.target) && !langSwitcherToggle.contains(e.target)) {
+                langSwitcherMenu.style.display = 'none';
+                langSwitcherOpen = false;
+            }
+        });
+        document.querySelectorAll('.lang-option').forEach(btn => {
+            btn.addEventListener('click', () => {
+                setSiteLanguage(btn.dataset.lang);
+                langSwitcherMenu.style.display = 'none';
+                langSwitcherOpen = false;
+            });
+        });
+    }
+
+    let initialSiteLang = 'fr';
+    try { initialSiteLang = localStorage.getItem('site_lang') || 'fr'; } catch (e) {}
+    syncLangControls(initialSiteLang);
 
     // ============================================================
     // TYPE DE FORMULE (à l'année / Impromptu / Résonance) & logique associée
@@ -2083,6 +2140,8 @@ a.cm-step:hover .cm-arrow, a.cm-step:focus-visible .cm-arrow {
             alert('Une erreur est survenue lors de l\'envoi. Merci de réessayer, ou de me contacter directement si le problème persiste.');
         }
     });
+
+    if (initialSiteLang !== 'fr') setLanguage(initialSiteLang);
 })();
 </script>
 

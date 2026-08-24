@@ -12,7 +12,7 @@
         </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mentions légales - Excellence Piano By Natalia</title>
+    <title data-i18n="page.title">Mentions légales - Excellence Piano By Natalia</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         body {
@@ -61,10 +61,18 @@
     </style>
 </head>
 <body>
+    <div id="lang-switcher-wrapper" style="position:fixed;top:16px;right:16px;z-index:2001;">
+        <button id="lang-switcher-toggle" aria-label="Changer de langue" style="background:rgba(255,255,255,0.9);border:none;border-radius:12px;padding:10px 12px;box-shadow:0 2px 8px rgba(0,0,0,0.10);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1.4rem;line-height:1;">🌐</button>
+        <div id="lang-switcher-menu" style="display:none;position:absolute;top:calc(100% + 8px);right:0;background:#fff;border-radius:12px;box-shadow:0 4px 16px rgba(0,0,0,0.15);overflow:hidden;min-width:150px;z-index:2002;">
+            <button class="lang-option" data-lang="fr" style="display:block;width:100%;text-align:left;padding:10px 16px;background:none;border:none;cursor:pointer;font-size:0.95rem;color:#18233f;font-weight:600;">Français</button>
+            <button class="lang-option" data-lang="en" style="display:block;width:100%;text-align:left;padding:10px 16px;background:none;border:none;cursor:pointer;font-size:0.95rem;color:#18233f;font-weight:600;">English</button>
+            <button class="lang-option" data-lang="pl" style="display:block;width:100%;text-align:left;padding:10px 16px;background:none;border:none;cursor:pointer;font-size:0.95rem;color:#18233f;font-weight:600;">Polski</button>
+        </div>
+    </div>
     <div class="container">
-    <h1>Mentions Légales</h1>
-    <h2>1. Informations sur l'éditeur du site</h2>
-    <p>Entrepreneur individuel : Nathalie Setera-Selosse<br>
+    <h1 data-i18n="ml.heading">Mentions Légales</h1>
+    <h2 data-i18n="ml.s1Title">1. Informations sur l'éditeur du site</h2>
+    <p data-i18n="ml.s1Text">Entrepreneur individuel : Nathalie Setera-Selosse<br>
 Nom commercial : Excellence Piano by Natalia<br>
 Forme juridique : Entreprise individuelle (EI)<br>
 RCS : Nice 940 420 417<br>
@@ -77,105 +85,350 @@ Téléphone : [Votre numéro de téléphone]<br>
 Email : [Votre adresse email de contact]<br>
 TVA : TVA non applicable, article 293 B du CGI</p>
 
-    <h2>2. Directeur de la publication</h2>
-    <p>Nom : Nathalie Setera-Selosse<br>
+    <h2 data-i18n="ml.s2Title">2. Directeur de la publication</h2>
+    <p data-i18n="ml.s2Text">Nom : Nathalie Setera-Selosse<br>
 Qualité : Entrepreneur individuel</p>
 
-    <h2>3. Hébergement du site</h2>
-    <p>Hébergeur : GitHub, Inc.<br>
+    <h2 data-i18n="ml.s3Title">3. Hébergement du site</h2>
+    <p data-i18n="ml.s3Text">Hébergeur : GitHub, Inc.<br>
 Adresse : 88 Colin P Kelly Jr St, San Francisco, CA 94107, United States of America<br>
 Contact : <a href="https://enterprise.github.com/contact" target="_blank">https://enterprise.github.com/contact</a><br>
 Site web : <a href="https://github.com" target="_blank">https://github.com</a></p>
 
-    <h2>4. Conception et développement</h2>
-    <p>Conception et développement : Nathalie Setera-Selosse (Excellence Piano by Natalia)</p>
+    <h2 data-i18n="ml.s4Title">4. Conception et développement</h2>
+    <p data-i18n="ml.s4Text">Conception et développement : Nathalie Setera-Selosse (Excellence Piano by Natalia)</p>
 
-    <h2>5. Propriété intellectuelle</h2>
-    <p>Le contenu de ce site web (textes, images, vidéos, etc.) est protégé par le droit d'auteur. Toute reproduction, même partielle, est interdite sans autorisation préalable.<br>
+    <h2 data-i18n="ml.s5Title">5. Propriété intellectuelle</h2>
+    <p data-i18n="ml.s5Text">Le contenu de ce site web (textes, images, vidéos, etc.) est protégé par le droit d'auteur. Toute reproduction, même partielle, est interdite sans autorisation préalable.<br>
 Les marques et logos présents sur ce site sont la propriété de leurs détenteurs respectifs.</p>
 
-    <h2>6. Responsabilité</h2>
-    <p>L'éditeur s'efforce d'assurer l'exactitude et la mise à jour des informations diffusées sur ce site. Cependant, il ne peut garantir l'exactitude, la précision ou l'exhaustivité des informations mises à disposition.<br>
+    <h2 data-i18n="ml.s6Title">6. Responsabilité</h2>
+    <p data-i18n="ml.s6Text">L'éditeur s'efforce d'assurer l'exactitude et la mise à jour des informations diffusées sur ce site. Cependant, il ne peut garantir l'exactitude, la précision ou l'exhaustivité des informations mises à disposition.<br>
 L'éditeur ne pourra être tenu responsable des dommages directs ou indirects résultant de l'utilisation de ce site.</p>
 
-    <h2>7. Données personnelles</h2>
-    <p>Conformément au Règlement Général sur la Protection des Données (RGPD) et à la loi "Informatique et Libertés", vous disposez d'un droit d'accès, de rectification, de suppression et d'opposition aux données personnelles vous concernant.<br>
+    <h2 data-i18n="ml.s7Title">7. Données personnelles</h2>
+    <p data-i18n="ml.s7Text">Conformément au Règlement Général sur la Protection des Données (RGPD) et à la loi "Informatique et Libertés", vous disposez d'un droit d'accès, de rectification, de suppression et d'opposition aux données personnelles vous concernant.<br>
 Pour exercer ces droits, contactez-nous à : [email de contact]<br>
-<em>Note : Si vous collectez des données personnelles, vous devez également avoir une politique de confidentialité détaillée.</em></p>
+<em data-i18n="ml.s7Note">Note : Si vous collectez des données personnelles, vous devez également avoir une politique de confidentialité détaillée.</em></p>
 
-    <h2>8. Cookies</h2>
-    <p>Ce site utilise des cookies pour améliorer l'expérience utilisateur. En continuant à naviguer sur ce site, vous acceptez l'utilisation des cookies.<br>
-<em>Note : Détaillez les types de cookies utilisés et proposez un moyen de les refuser si nécessaire.</em></p>
+    <h2 data-i18n="ml.s8Title">8. Cookies</h2>
+    <p data-i18n="ml.s8Text">Ce site utilise des cookies pour améliorer l'expérience utilisateur. En continuant à naviguer sur ce site, vous acceptez l'utilisation des cookies.<br>
+<em data-i18n="ml.s8Note">Note : Détaillez les types de cookies utilisés et proposez un moyen de les refuser si nécessaire.</em></p>
 
-    <h2>9. Droit applicable</h2>
-    <p>Les présentes mentions légales sont soumises au droit français. En cas de litige, les tribunaux français seront seuls compétents.</p>
+    <h2 data-i18n="ml.s9Title">9. Droit applicable</h2>
+    <p data-i18n="ml.s9Text">Les présentes mentions légales sont soumises au droit français. En cas de litige, les tribunaux français seront seuls compétents.</p>
 
-    <p><strong>Mentions légales mises à jour le :</strong> [Date de dernière mise à jour]</p>
-        <div class="section-title">CONDITIONS GÉNÉRALES DES COURS DE PIANO</div>
-        <h2>Conditions Générales des Cours de Piano</h2>
+    <p><strong data-i18n="ml.updatedLabel">Mentions légales mises à jour le :</strong> <span data-i18n="ml.updatedDate">[Date de dernière mise à jour]</span></p>
+        <div class="section-title" data-i18n="ml.cgcTitle">CONDITIONS GÉNÉRALES DES COURS DE PIANO</div>
+        <h2 data-i18n="ml.cgcHeading">Conditions Générales des Cours de Piano</h2>
         <h3>Excellence Piano by Natalia SIRET : 94042041700013</h3>
-        <p>Conformément aux articles L.111-1 et suivants du Code de la consommation</p>
+        <p data-i18n="ml.cgcIntro">Conformément aux articles L.111-1 et suivants du Code de la consommation</p>
 
-        <h3>Modalités de tarification</h3>
-        <p>Cours d'essai : Pour les nouveaux élèves, un cours d'essai est proposé entre le 24 août et le 11 septembre 2026.<br>
+        <h3 data-i18n="ml.tarifTitle">Modalités de tarification</h3>
+        <p data-i18n="ml.tarifText1">Cours d'essai : Pour les nouveaux élèves, un cours d'essai est proposé entre le 24 août et le 11 septembre 2026.<br>
 Les tarifs annuels sont établis sur une base forfaitaire de 32 cours par année scolaire, permettant ainsi une répartition équitable des coûts sur l'ensemble de l'année.<br>
 Adaptation selon le calendrier scolaire : Le nombre effectif de cours peut varier entre 30 et 32 séances selon les jours fériés qui tombent sur le créneau de votre enfant. Un ajustement sera automatiquement effectué :</p>
         <ul>
-            <li>Si l'année compte moins de 32 cours : l'ajustement sera répercuté sur la facture suivante</li>
-            <li>Le tarif forfaitaire de base reste inchangé pour faciliter vos budgets et les modalités de paiement</li>
+            <li data-i18n="ml.tarifLi1">Si l'année compte moins de 32 cours : l'ajustement sera répercuté sur la facture suivante</li>
+            <li data-i18n="ml.tarifLi2">Le tarif forfaitaire de base reste inchangé pour faciliter vos budgets et les modalités de paiement</li>
         </ul>
-        <p>Avantages de cette formule :</p>
+        <p data-i18n="ml.avantagesIntro">Avantages de cette formule :</p>
         <ul>
-            <li>Mensualités ou versements réguliers et prévisibles</li>
-            <li>Pas de variation de tarif selon les mois et versements</li>
-            <li>Ajustement équitable reporté sur la période de facturation suivante</li>
+            <li data-i18n="ml.avantagesLi1">Mensualités ou versements réguliers et prévisibles</li>
+            <li data-i18n="ml.avantagesLi2">Pas de variation de tarif selon les mois et versements</li>
+            <li data-i18n="ml.avantagesLi3">Ajustement équitable reporté sur la période de facturation suivante</li>
         </ul>
-        <p>Cette méthode de calcul vous garantit une tarification juste et transparente, adaptée aux contraintes du calendrier officiel.</p>
-        <p>Modalités de paiement :</p>
+        <p data-i18n="ml.tarifConclusion">Cette méthode de calcul vous garantit une tarification juste et transparente, adaptée aux contraintes du calendrier officiel.</p>
+        <p id="modalites-paiement" data-i18n="ml.modalitesTitle">Modalités de paiement :</p>
         <ul>
-            <li>Paiement à la carte : règlement à la fin de chaque cours en espèces, par virement bancaire ou par chèque</li>
-            <li>Paiement mensuel ou par versement : les factures sont envoyées en fin de mois et doivent être réglées sous 30 jours, par espèces, virement bancaire ou chèque</li>
+            <li data-i18n="ml.modalitesLi1">Paiement à la carte : règlement à la fin de chaque cours en espèces, par virement bancaire ou par chèque</li>
+            <li data-i18n="ml.modalitesLi2">Paiement mensuel ou par versement : les factures sont envoyées en fin de mois et doivent être réglées sous 30 jours, par espèces, virement bancaire ou chèque</li>
         </ul>
-        <p>En cas de retard de paiement à l'échéance figurant sur la facture, des pénalités de retard calculées au taux d'intérêt légal en vigueur seront exigibles de plein droit après l'envoi d'une lettre de mise en demeure restée infructueuse. Aucune indemnité forfaitaire pour frais de recouvrement ne sera réclamée.</p>
+        <p data-i18n="ml.retardText">En cas de retard de paiement à l'échéance figurant sur la facture, des pénalités de retard calculées au taux d'intérêt légal en vigueur seront exigibles de plein droit après l'envoi d'une lettre de mise en demeure restée infructueuse. Aucune indemnité forfaitaire pour frais de recouvrement ne sera réclamée.</p>
 
-        <h3>Politique de gestion des absences</h3>
-        <p>Toute absence de l'élève donne lieu à une proposition de cours de rattrapage :</p>
+        <h3 data-i18n="ml.absencesTitle">Politique de gestion des absences</h3>
+        <p data-i18n="ml.absencesIntro">Toute absence de l'élève donne lieu à une proposition de cours de rattrapage :</p>
         <ul>
-            <li>Le responsable dispose de 30 jours à compter de l'absence pour choisir une date de rattrapage</li>
-            <li>Le rattrapage doit être réservé parmi les créneaux disponibles sur les 6 semaines suivantes</li>
-            <li>Passé ce délai de 30 jours sans réservation, le cours reste dû</li>
+            <li data-i18n="ml.absencesLi1">Le responsable dispose de 30 jours à compter de l'absence pour choisir une date de rattrapage</li>
+            <li data-i18n="ml.absencesLi2">Le rattrapage doit être réservé parmi les créneaux disponibles sur les 6 semaines suivantes</li>
+            <li data-i18n="ml.absencesLi3">Passé ce délai de 30 jours sans réservation, le cours reste dû</li>
         </ul>
-        <p><strong>Absence du professeur :</strong> un cours de rattrapage est proposé ou, à défaut, remboursé.</p>
-        <p>Cas exceptionnel : en cas de maladie prolongée de l'élève, l'absence est décomptée de la facture suivante, après étude au cas par cas.</p>
+        <p data-i18n="ml.absenceProf"><strong data-i18n="ml.absenceProfLabel">Absence du professeur :</strong> un cours de rattrapage est proposé ou, à défaut, remboursé.</p>
+        <p data-i18n="ml.casExceptionnel">Cas exceptionnel : en cas de maladie prolongée de l'élève, l'absence est décomptée de la facture suivante, après étude au cas par cas.</p>
 
-        <h3>Matériel et instrument</h3>
-        <p>Importance de l'instrument personnel : L'apprentissage du piano nécessite impérativement la disponibilité d'un instrument de qualité au domicile de l'élève. Fort de plus de 10 ans d'expérience pédagogique, j'ai constaté, en collaboration avec mes collègues professeurs, qu'un taux d'abandon significativement élevé est directement corrélé à l'utilisation d'instruments de mauvaise facture.</p>
-        <p>Instruments recommandés :</p>
+        <h3 data-i18n="ml.materielTitle">Matériel et instrument</h3>
+        <p data-i18n="ml.materielIntro">Importance de l'instrument personnel : L'apprentissage du piano nécessite impérativement la disponibilité d'un instrument de qualité au domicile de l'élève. Fort de plus de 10 ans d'expérience pédagogique, j'ai constaté, en collaboration avec mes collègues professeurs, qu'un taux d'abandon significativement élevé est directement corrélé à l'utilisation d'instruments de mauvaise facture.</p>
+        <p data-i18n="ml.materielRecommandes">Instruments recommandés :</p>
         <ul>
-            <li>Idéalement : Piano droit acoustique (avec ou sans système silent)</li>
-            <li>Au minimum : Piano numérique de qualité professionnelle (attention : tous les pianos numériques ne se valent pas)</li>
+            <li data-i18n="ml.materielLi1">Idéalement : Piano droit acoustique (avec ou sans système silent)</li>
+            <li data-i18n="ml.materielLi2">Au minimum : Piano numérique de qualité professionnelle (attention : tous les pianos numériques ne se valent pas)</li>
         </ul>
-        <p>Distinction fondamentale : Un piano est un instrument vivant qui vibre et avec lequel l'élève communique et grandit musicalement. Les petits claviers électriques sont des jouets et non des instruments de musique. Cette différence est essentielle pour garantir la progression et l'épanouissement musical de l'élève.</p>
-        <p>Solutions pour l'acquisition : Pour les familles hésitant lors de la première année, des solutions de location avec ou sans option d'achat sont disponibles auprès de :</p>
+        <p data-i18n="ml.distinctionText">Distinction fondamentale : Un piano est un instrument vivant qui vibre et avec lequel l'élève communique et grandit musicalement. Les petits claviers électriques sont des jouets et non des instruments de musique. Cette différence est essentielle pour garantir la progression et l'épanouissement musical de l'élève.</p>
+        <p data-i18n="ml.solutionsIntro">Solutions pour l'acquisition : Pour les familles hésitant lors de la première année, des solutions de location avec ou sans option d'achat sont disponibles auprès de :</p>
         <ul>
             <li>Pianopolis</li>
             <li>Niss'art Pianos</li>
             <li>Maison du piano Bettassa</li>
             <li>Cultura</li>
         </ul>
-        <p>Accompagnement dans le choix : Un conseil personnalisé pour le choix de l'instrument peut être fourni sur demande afin d'orienter les familles vers la solution la mieux adaptée à leurs besoins et leur budget.<br>
+        <p data-i18n="ml.accompagnementText">Accompagnement dans le choix : Un conseil personnalisé pour le choix de l'instrument peut être fourni sur demande afin d'orienter les familles vers la solution la mieux adaptée à leurs besoins et leur budget.<br>
 Responsabilité : L'élève et sa famille s'engagent à disposer d'un instrument conforme aux recommandations pédagogiques dans un délai raisonnable suivant le début des cours.</p>
 
-        <h3>Méthodes et supports pédagogiques</h3>
-        <p>Les manuels et partitions nécessaires à l'apprentissage sont sélectionnés et commandés en début d'année scolaire avec un prix inférieur accordés aux professeurs, selon le niveau et les besoins spécifiques de chaque élève. Ces supports pédagogiques feront l'objet d'une facturation séparée au prix coûtant.</p>
+        <h3 data-i18n="ml.methodesTitle">Méthodes et supports pédagogiques</h3>
+        <p data-i18n="ml.methodesText">Les manuels et partitions nécessaires à l'apprentissage sont sélectionnés et commandés en début d'année scolaire avec un prix inférieur accordés aux professeurs, selon le niveau et les besoins spécifiques de chaque élève. Ces supports pédagogiques feront l'objet d'une facturation séparée au prix coûtant.</p>
 
-        <h3>Résiliation</h3>
-        <p>Chaque partie peut résilier moyennant un préavis de 30 jours par lettre recommandée. Les cours dispensés et ceux du préavis restent dus. Les sommes versées pour la période postérieure au préavis seront remboursées sous 30 jours.<br>
+        <h3 data-i18n="ml.resiliationTitle">Résiliation</h3>
+        <p data-i18n="ml.resiliationText">Chaque partie peut résilier moyennant un préavis de 30 jours par lettre recommandée. Les cours dispensés et ceux du préavis restent dus. Les sommes versées pour la période postérieure au préavis seront remboursées sous 30 jours.<br>
 Pour les cours à la Carte, le préavis est porté à 15 jours.</p>
 
-        <h3>Acceptation des conditions</h3>
-        <p>En inscrivant votre enfant aux cours de piano, vous acceptez l'ensemble de ces conditions générales d'enseignement.</p>
-        </pre>
+        <h3 data-i18n="ml.acceptationTitle">Acceptation des conditions</h3>
+        <p data-i18n="ml.acceptationText">En inscrivant votre enfant aux cours de piano, vous acceptez l'ensemble de ces conditions générales d'enseignement.</p>
     </div>
+    <script>
+    window.TRANSLATIONS = {
+        fr: {
+            'page.title': 'Mentions légales - Excellence Piano By Natalia',
+            'ml.heading': 'Mentions Légales',
+            'ml.s1Title': "1. Informations sur l'éditeur du site",
+            'ml.s1Text': "Entrepreneur individuel : Nathalie Setera-Selosse<br>\nNom commercial : Excellence Piano by Natalia<br>\nForme juridique : Entreprise individuelle (EI)<br>\nRCS : Nice 940 420 417<br>\nDate d'immatriculation : 04/02/2025<br>\nDomicile personnel : 5 Place du Palais, 98000 Monaco<br>\nAdresse de l'établissement : Centre d'Affaires Le Forum, 33 Boulevard du Général Leclerc, 06240 Beausoleil<br>\nActivité : Enseignement du piano au domicile des élèves - Vente de formations digitales de piano et de musique pré-enregistrées<br>\nDate de commencement d'activité : 14/02/2025<br>\nTéléphone : [Votre numéro de téléphone]<br>\nEmail : [Votre adresse email de contact]<br>\nTVA : TVA non applicable, article 293 B du CGI",
+            'ml.s2Title': '2. Directeur de la publication',
+            'ml.s2Text': "Nom : Nathalie Setera-Selosse<br>\nQualité : Entrepreneur individuel",
+            'ml.s3Title': '3. Hébergement du site',
+            'ml.s3Text': 'Hébergeur : GitHub, Inc.<br>\nAdresse : 88 Colin P Kelly Jr St, San Francisco, CA 94107, United States of America<br>\nContact : <a href="https://enterprise.github.com/contact" target="_blank">https://enterprise.github.com/contact</a><br>\nSite web : <a href="https://github.com" target="_blank">https://github.com</a>',
+            'ml.s4Title': '4. Conception et développement',
+            'ml.s4Text': 'Conception et développement : Nathalie Setera-Selosse (Excellence Piano by Natalia)',
+            'ml.s5Title': '5. Propriété intellectuelle',
+            'ml.s5Text': "Le contenu de ce site web (textes, images, vidéos, etc.) est protégé par le droit d'auteur. Toute reproduction, même partielle, est interdite sans autorisation préalable.<br>\nLes marques et logos présents sur ce site sont la propriété de leurs détenteurs respectifs.",
+            'ml.s6Title': '6. Responsabilité',
+            'ml.s6Text': "L'éditeur s'efforce d'assurer l'exactitude et la mise à jour des informations diffusées sur ce site. Cependant, il ne peut garantir l'exactitude, la précision ou l'exhaustivité des informations mises à disposition.<br>\nL'éditeur ne pourra être tenu responsable des dommages directs ou indirects résultant de l'utilisation de ce site.",
+            'ml.s7Title': '7. Données personnelles',
+            'ml.s7Text': 'Conformément au Règlement Général sur la Protection des Données (RGPD) et à la loi "Informatique et Libertés", vous disposez d\'un droit d\'accès, de rectification, de suppression et d\'opposition aux données personnelles vous concernant.<br>\nPour exercer ces droits, contactez-nous à : [email de contact]<br>',
+            'ml.s7Note': 'Note : Si vous collectez des données personnelles, vous devez également avoir une politique de confidentialité détaillée.',
+            'ml.s8Title': '8. Cookies',
+            'ml.s8Text': "Ce site utilise des cookies pour améliorer l'expérience utilisateur. En continuant à naviguer sur ce site, vous acceptez l'utilisation des cookies.<br>",
+            'ml.s8Note': 'Note : Détaillez les types de cookies utilisés et proposez un moyen de les refuser si nécessaire.',
+            'ml.s9Title': '9. Droit applicable',
+            'ml.s9Text': 'Les présentes mentions légales sont soumises au droit français. En cas de litige, les tribunaux français seront seuls compétents.',
+            'ml.updatedLabel': 'Mentions légales mises à jour le :',
+            'ml.updatedDate': '[Date de dernière mise à jour]',
+            'ml.cgcTitle': 'CONDITIONS GÉNÉRALES DES COURS DE PIANO',
+            'ml.cgcHeading': 'Conditions Générales des Cours de Piano',
+            'ml.cgcIntro': 'Conformément aux articles L.111-1 et suivants du Code de la consommation',
+            'ml.tarifTitle': 'Modalités de tarification',
+            'ml.tarifText1': "Cours d'essai : Pour les nouveaux élèves, un cours d'essai est proposé entre le 24 août et le 11 septembre 2026.<br>\nLes tarifs annuels sont établis sur une base forfaitaire de 32 cours par année scolaire, permettant ainsi une répartition équitable des coûts sur l'ensemble de l'année.<br>\nAdaptation selon le calendrier scolaire : Le nombre effectif de cours peut varier entre 30 et 32 séances selon les jours fériés qui tombent sur le créneau de votre enfant. Un ajustement sera automatiquement effectué :",
+            'ml.tarifLi1': "Si l'année compte moins de 32 cours : l'ajustement sera répercuté sur la facture suivante",
+            'ml.tarifLi2': 'Le tarif forfaitaire de base reste inchangé pour faciliter vos budgets et les modalités de paiement',
+            'ml.avantagesIntro': 'Avantages de cette formule :',
+            'ml.avantagesLi1': 'Mensualités ou versements réguliers et prévisibles',
+            'ml.avantagesLi2': 'Pas de variation de tarif selon les mois et versements',
+            'ml.avantagesLi3': 'Ajustement équitable reporté sur la période de facturation suivante',
+            'ml.tarifConclusion': 'Cette méthode de calcul vous garantit une tarification juste et transparente, adaptée aux contraintes du calendrier officiel.',
+            'ml.modalitesTitle': 'Modalités de paiement :',
+            'ml.modalitesLi1': 'Paiement à la carte : règlement à la fin de chaque cours en espèces, par virement bancaire ou par chèque',
+            'ml.modalitesLi2': 'Paiement mensuel ou par versement : les factures sont envoyées en fin de mois et doivent être réglées sous 30 jours, par espèces, virement bancaire ou chèque',
+            'ml.retardText': "En cas de retard de paiement à l'échéance figurant sur la facture, des pénalités de retard calculées au taux d'intérêt légal en vigueur seront exigibles de plein droit après l'envoi d'une lettre de mise en demeure restée infructueuse. Aucune indemnité forfaitaire pour frais de recouvrement ne sera réclamée.",
+            'ml.absencesTitle': 'Politique de gestion des absences',
+            'ml.absencesIntro': 'Toute absence de l\'élève donne lieu à une proposition de cours de rattrapage :',
+            'ml.absencesLi1': 'Le responsable dispose de 30 jours à compter de l\'absence pour choisir une date de rattrapage',
+            'ml.absencesLi2': 'Le rattrapage doit être réservé parmi les créneaux disponibles sur les 6 semaines suivantes',
+            'ml.absencesLi3': 'Passé ce délai de 30 jours sans réservation, le cours reste dû',
+            'ml.absenceProfLabel': 'Absence du professeur :',
+            'ml.absenceProf': 'un cours de rattrapage est proposé ou, à défaut, remboursé.',
+            'ml.casExceptionnel': "Cas exceptionnel : en cas de maladie prolongée de l'élève, l'absence est décomptée de la facture suivante, après étude au cas par cas.",
+            'ml.materielTitle': 'Matériel et instrument',
+            'ml.materielIntro': "Importance de l'instrument personnel : L'apprentissage du piano nécessite impérativement la disponibilité d'un instrument de qualité au domicile de l'élève. Fort de plus de 10 ans d'expérience pédagogique, j'ai constaté, en collaboration avec mes collègues professeurs, qu'un taux d'abandon significativement élevé est directement corrélé à l'utilisation d'instruments de mauvaise facture.",
+            'ml.materielRecommandes': 'Instruments recommandés :',
+            'ml.materielLi1': 'Idéalement : Piano droit acoustique (avec ou sans système silent)',
+            'ml.materielLi2': 'Au minimum : Piano numérique de qualité professionnelle (attention : tous les pianos numériques ne se valent pas)',
+            'ml.distinctionText': "Distinction fondamentale : Un piano est un instrument vivant qui vibre et avec lequel l'élève communique et grandit musicalement. Les petits claviers électriques sont des jouets et non des instruments de musique. Cette différence est essentielle pour garantir la progression et l'épanouissement musical de l'élève.",
+            'ml.solutionsIntro': "Solutions pour l'acquisition : Pour les familles hésitant lors de la première année, des solutions de location avec ou sans option d'achat sont disponibles auprès de :",
+            'ml.accompagnementText': "Accompagnement dans le choix : Un conseil personnalisé pour le choix de l'instrument peut être fourni sur demande afin d'orienter les familles vers la solution la mieux adaptée à leurs besoins et leur budget.<br>\nResponsabilité : L'élève et sa famille s'engagent à disposer d'un instrument conforme aux recommandations pédagogiques dans un délai raisonnable suivant le début des cours.",
+            'ml.methodesTitle': 'Méthodes et supports pédagogiques',
+            'ml.methodesText': "Les manuels et partitions nécessaires à l'apprentissage sont sélectionnés et commandés en début d'année scolaire avec un prix inférieur accordés aux professeurs, selon le niveau et les besoins spécifiques de chaque élève. Ces supports pédagogiques feront l'objet d'une facturation séparée au prix coûtant.",
+            'ml.resiliationTitle': 'Résiliation',
+            'ml.resiliationText': "Chaque partie peut résilier moyennant un préavis de 30 jours par lettre recommandée. Les cours dispensés et ceux du préavis restent dus. Les sommes versées pour la période postérieure au préavis seront remboursées sous 30 jours.<br>\nPour les cours à la Carte, le préavis est porté à 15 jours.",
+            'ml.acceptationTitle': 'Acceptation des conditions',
+            'ml.acceptationText': "En inscrivant votre enfant aux cours de piano, vous acceptez l'ensemble de ces conditions générales d'enseignement."
+        },
+        en: {
+            'page.title': 'Legal Notice - Excellence Piano By Natalia',
+            'ml.heading': 'Legal Notice',
+            'ml.s1Title': '1. Information about the site publisher',
+            'ml.s1Text': "Sole trader: Nathalie Setera-Selosse<br>\nTrading name: Excellence Piano by Natalia<br>\nLegal form: Sole proprietorship (EI)<br>\nRCS: Nice 940 420 417<br>\nRegistration date: 04/02/2025<br>\nPersonal residence: 5 Place du Palais, 98000 Monaco<br>\nBusiness address: Centre d'Affaires Le Forum, 33 Boulevard du Général Leclerc, 06240 Beausoleil<br>\nActivity: Piano tuition at students' homes - Sale of pre-recorded digital piano and music courses<br>\nBusiness start date: 14/02/2025<br>\nPhone: [Your phone number]<br>\nEmail: [Your contact email address]<br>\nVAT: VAT not applicable, article 293 B of the French Tax Code",
+            'ml.s2Title': '2. Publication director',
+            'ml.s2Text': "Name: Nathalie Setera-Selosse<br>\nCapacity: Sole trader",
+            'ml.s3Title': '3. Site hosting',
+            'ml.s3Text': 'Host: GitHub, Inc.<br>\nAddress: 88 Colin P Kelly Jr St, San Francisco, CA 94107, United States of America<br>\nContact: <a href="https://enterprise.github.com/contact" target="_blank">https://enterprise.github.com/contact</a><br>\nWebsite: <a href="https://github.com" target="_blank">https://github.com</a>',
+            'ml.s4Title': '4. Design and development',
+            'ml.s4Text': 'Design and development: Nathalie Setera-Selosse (Excellence Piano by Natalia)',
+            'ml.s5Title': '5. Intellectual property',
+            'ml.s5Text': "The content of this website (text, images, videos, etc.) is protected by copyright. Any reproduction, even partial, is prohibited without prior authorisation.<br>\nTrademarks and logos on this site are the property of their respective owners.",
+            'ml.s6Title': '6. Liability',
+            'ml.s6Text': "The publisher strives to ensure the accuracy and updating of the information published on this site. However, it cannot guarantee the accuracy, precision or completeness of the information made available.<br>\nThe publisher cannot be held liable for direct or indirect damages resulting from the use of this site.",
+            'ml.s7Title': '7. Personal data',
+            'ml.s7Text': 'In accordance with the General Data Protection Regulation (GDPR) and the French "Data Protection Act", you have the right to access, rectify, delete and object to personal data concerning you.<br>\nTo exercise these rights, contact us at: [contact email]<br>',
+            'ml.s7Note': 'Note: If you collect personal data, you must also have a detailed privacy policy.',
+            'ml.s8Title': '8. Cookies',
+            'ml.s8Text': "This site uses cookies to improve the user experience. By continuing to browse this site, you accept the use of cookies.<br>",
+            'ml.s8Note': 'Note: Detail the types of cookies used and offer a way to refuse them if necessary.',
+            'ml.s9Title': '9. Applicable law',
+            'ml.s9Text': 'This legal notice is governed by French law. In the event of a dispute, the French courts shall have sole jurisdiction.',
+            'ml.updatedLabel': 'Legal notice last updated on:',
+            'ml.updatedDate': '[Last update date]',
+            'ml.cgcTitle': 'GENERAL TERMS AND CONDITIONS FOR PIANO LESSONS',
+            'ml.cgcHeading': 'General Terms and Conditions for Piano Lessons',
+            'ml.cgcIntro': 'In accordance with articles L.111-1 et seq. of the French Consumer Code',
+            'ml.tarifTitle': 'Pricing terms',
+            'ml.tarifText1': "Trial lesson: For new students, a trial lesson is offered between 24 August and 11 September 2026.<br>\nAnnual rates are set on a flat-rate basis of 32 lessons per school year, allowing costs to be shared fairly across the whole year.<br>\nAdjustment based on the school calendar: The actual number of lessons may vary between 30 and 32 sessions depending on public holidays falling on your child's slot. An adjustment will automatically be made:",
+            'ml.tarifLi1': 'If the year has fewer than 32 lessons: the adjustment will be applied to the following invoice',
+            'ml.tarifLi2': 'The base flat rate remains unchanged to make budgeting and payment terms easier',
+            'ml.avantagesIntro': 'Benefits of this package:',
+            'ml.avantagesLi1': 'Regular, predictable monthly or instalment payments',
+            'ml.avantagesLi2': 'No rate variation from month to month or between instalments',
+            'ml.avantagesLi3': 'Fair adjustment carried over to the following billing period',
+            'ml.tarifConclusion': 'This calculation method guarantees fair, transparent pricing, adapted to the constraints of the official school calendar.',
+            'ml.modalitesTitle': 'Payment terms:',
+            'ml.modalitesLi1': 'Pay-as-you-go: payment at the end of each lesson, in cash, bank transfer or cheque',
+            'ml.modalitesLi2': 'Monthly or instalment payment: invoices are sent at the end of the month and must be paid within 30 days, by cash, bank transfer or cheque',
+            'ml.retardText': "In the event of late payment after the due date shown on the invoice, late-payment penalties calculated at the legal interest rate in force will become payable as of right after a formal notice letter has gone unanswered. No flat-rate compensation for collection costs will be claimed.",
+            'ml.absencesTitle': 'Absence policy',
+            'ml.absencesIntro': 'Any absence by the student gives rise to an offer of a make-up lesson:',
+            'ml.absencesLi1': 'The parent/guardian has 30 days from the absence to choose a make-up date',
+            'ml.absencesLi2': 'The make-up lesson must be booked among the slots available over the following 6 weeks',
+            'ml.absencesLi3': 'After this 30-day period without a booking, the lesson remains due',
+            'ml.absenceProfLabel': "Teacher's absence:",
+            'ml.absenceProf': 'a make-up lesson is offered or, failing that, refunded.',
+            'ml.casExceptionnel': "Exceptional case: in the event of prolonged illness of the student, the absence is deducted from the following invoice, after case-by-case review.",
+            'ml.materielTitle': 'Equipment and instrument',
+            'ml.materielIntro': "Importance of a personal instrument: Learning the piano requires having a quality instrument available at the student's home. With over 10 years of teaching experience, I have observed, together with fellow teachers, that a significantly higher drop-out rate is directly linked to the use of poor-quality instruments.",
+            'ml.materielRecommandes': 'Recommended instruments:',
+            'ml.materielLi1': 'Ideally: an acoustic upright piano (with or without a silent system)',
+            'ml.materielLi2': 'At minimum: a professional-quality digital piano (note: not all digital pianos are equal)',
+            'ml.distinctionText': "Fundamental distinction: A piano is a living instrument that vibrates and with which the student communicates and grows musically. Small electric keyboards are toys, not musical instruments. This difference is essential to ensure the student's musical progress and development.",
+            'ml.solutionsIntro': "Solutions for acquiring an instrument: For families hesitant during the first year, rental solutions with or without a purchase option are available from:",
+            'ml.accompagnementText': "Guidance on choosing: Personalised advice on choosing an instrument can be provided on request to guide families towards the solution best suited to their needs and budget.<br>\nResponsibility: The student and their family agree to have an instrument that meets the pedagogical recommendations within a reasonable time after lessons begin.",
+            'ml.methodesTitle': 'Teaching methods and materials',
+            'ml.methodesText': "The manuals and sheet music needed for learning are selected and ordered at the start of the school year at a preferential teacher's rate, according to each student's level and specific needs. These teaching materials are billed separately at cost price.",
+            'ml.resiliationTitle': 'Termination',
+            'ml.resiliationText': "Either party may terminate with 30 days' notice by registered letter. Lessons already given and those falling within the notice period remain payable. Amounts paid for the period after the notice period will be refunded within 30 days.<br>\nFor Pay-as-you-go lessons, the notice period is extended to 15 days.",
+            'ml.acceptationTitle': 'Acceptance of terms',
+            'ml.acceptationText': "By enrolling your child in piano lessons, you accept all of these general teaching terms and conditions."
+        },
+        pl: {
+            'page.title': 'Nota prawna - Excellence Piano By Natalia',
+            'ml.heading': 'Nota Prawna',
+            'ml.s1Title': '1. Informacje o wydawcy strony',
+            'ml.s1Text': "Jednoosobowa działalność gospodarcza: Nathalie Setera-Selosse<br>\nNazwa handlowa: Excellence Piano by Natalia<br>\nForma prawna: Jednoosobowa działalność gospodarcza (EI)<br>\nRCS: Nicea 940 420 417<br>\nData rejestracji: 04/02/2025<br>\nMiejsce zamieszkania: 5 Place du Palais, 98000 Monako<br>\nAdres siedziby: Centre d'Affaires Le Forum, 33 Boulevard du Général Leclerc, 06240 Beausoleil<br>\nDziałalność: Nauka gry na pianinie w domu ucznia - Sprzedaż nagranych kursów cyfrowych pianina i muzyki<br>\nData rozpoczęcia działalności: 14/02/2025<br>\nTelefon: [Twój numer telefonu]<br>\nEmail: [Twój adres e-mail kontaktowy]<br>\nVAT: VAT nie ma zastosowania, art. 293 B francuskiego kodeksu podatkowego",
+            'ml.s2Title': '2. Dyrektor publikacji',
+            'ml.s2Text': "Imię i nazwisko: Nathalie Setera-Selosse<br>\nFunkcja: Przedsiębiorca indywidualny",
+            'ml.s3Title': '3. Hosting strony',
+            'ml.s3Text': 'Hosting: GitHub, Inc.<br>\nAdres: 88 Colin P Kelly Jr St, San Francisco, CA 94107, Stany Zjednoczone<br>\nKontakt: <a href="https://enterprise.github.com/contact" target="_blank">https://enterprise.github.com/contact</a><br>\nStrona internetowa: <a href="https://github.com" target="_blank">https://github.com</a>',
+            'ml.s4Title': '4. Projekt i rozwój',
+            'ml.s4Text': 'Projekt i rozwój: Nathalie Setera-Selosse (Excellence Piano by Natalia)',
+            'ml.s5Title': '5. Własność intelektualna',
+            'ml.s5Text': "Treść tej strony internetowej (teksty, obrazy, filmy itp.) jest chroniona prawem autorskim. Wszelkie powielanie, nawet częściowe, jest zabronione bez uprzedniej zgody.<br>\nZnaki towarowe i logo obecne na tej stronie są własnością ich odpowiednich właścicieli.",
+            'ml.s6Title': '6. Odpowiedzialność',
+            'ml.s6Text': "Wydawca dokłada starań, aby zapewnić dokładność i aktualność informacji publikowanych na tej stronie. Nie może jednak zagwarantować dokładności, precyzji ani kompletności udostępnianych informacji.<br>\nWydawca nie ponosi odpowiedzialności za szkody bezpośrednie lub pośrednie wynikające z korzystania z tej strony.",
+            'ml.s7Title': '7. Dane osobowe',
+            'ml.s7Text': 'Zgodnie z Ogólnym Rozporządzeniem o Ochronie Danych (RODO) i francuską ustawą "Informatique et Libertés", przysługuje Państwu prawo dostępu, sprostowania, usunięcia i sprzeciwu wobec danych osobowych Państwa dotyczących.<br>\nAby skorzystać z tych praw, prosimy o kontakt: [email kontaktowy]<br>',
+            'ml.s7Note': 'Uwaga: Jeśli zbierasz dane osobowe, musisz również posiadać szczegółową politykę prywatności.',
+            'ml.s8Title': '8. Pliki cookie',
+            'ml.s8Text': "Ta strona wykorzystuje pliki cookie w celu poprawy doświadczenia użytkownika. Kontynuując przeglądanie tej strony, akceptujesz wykorzystanie plików cookie.<br>",
+            'ml.s8Note': 'Uwaga: Opisz szczegółowo rodzaje wykorzystywanych plików cookie i zaproponuj sposób ich odrzucenia, jeśli to konieczne.',
+            'ml.s9Title': '9. Prawo właściwe',
+            'ml.s9Text': 'Niniejsza nota prawna podlega prawu francuskiemu. W przypadku sporu wyłącznie właściwe będą sądy francuskie.',
+            'ml.updatedLabel': 'Nota prawna zaktualizowana dnia:',
+            'ml.updatedDate': '[Data ostatniej aktualizacji]',
+            'ml.cgcTitle': 'OGÓLNE WARUNKI LEKCJI PIANINA',
+            'ml.cgcHeading': 'Ogólne Warunki Lekcji Pianina',
+            'ml.cgcIntro': 'Zgodnie z artykułami L.111-1 i następnymi francuskiego Kodeksu Konsumenckiego',
+            'ml.tarifTitle': 'Zasady ustalania cen',
+            'ml.tarifText1': "Lekcja próbna: Dla nowych uczniów lekcja próbna jest oferowana między 24 sierpnia a 11 września 2026.<br>\nRoczne stawki są ustalane na podstawie ryczałtu 32 lekcji na rok szkolny, co pozwala na sprawiedliwy podział kosztów na cały rok.<br>\nDostosowanie do kalendarza szkolnego: Rzeczywista liczba lekcji może wynosić od 30 do 32 zajęć, w zależności od dni wolnych przypadających na termin zajęć Państwa dziecka. Korekta zostanie dokonana automatycznie:",
+            'ml.tarifLi1': 'Jeśli rok liczy mniej niż 32 lekcje: korekta zostanie uwzględniona na kolejnej fakturze',
+            'ml.tarifLi2': 'Podstawowa stawka ryczałtowa pozostaje niezmieniona, aby ułatwić Państwu budżetowanie i warunki płatności',
+            'ml.avantagesIntro': 'Zalety tej formuły:',
+            'ml.avantagesLi1': 'Regularne, przewidywalne raty miesięczne lub wpłaty',
+            'ml.avantagesLi2': 'Brak zmian stawki w zależności od miesiąca czy wpłaty',
+            'ml.avantagesLi3': 'Sprawiedliwa korekta przenoszona na kolejny okres rozliczeniowy',
+            'ml.tarifConclusion': 'Ta metoda obliczeń gwarantuje sprawiedliwe i przejrzyste ceny, dostosowane do wymogów oficjalnego kalendarza szkolnego.',
+            'ml.modalitesTitle': 'Warunki płatności:',
+            'ml.modalitesLi1': 'Płatność za lekcję: rozliczenie na koniec każdej lekcji gotówką, przelewem bankowym lub czekiem',
+            'ml.modalitesLi2': 'Płatność miesięczna lub ratalna: faktury są wysyłane na koniec miesiąca i muszą być opłacone w ciągu 30 dni, gotówką, przelewem bankowym lub czekiem',
+            'ml.retardText': "W przypadku opóźnienia w płatności po terminie wskazanym na fakturze, odsetki za zwłokę naliczone według obowiązującej ustawowej stopy procentowej będą wymagalne z mocy prawa po wysłaniu bezskutecznego wezwania do zapłaty. Nie będzie żądane żadne ryczałtowe odszkodowanie za koszty windykacji.",
+            'ml.absencesTitle': 'Polityka zarządzania nieobecnościami',
+            'ml.absencesIntro': 'Każda nieobecność ucznia skutkuje propozycją lekcji odróbczej:',
+            'ml.absencesLi1': 'Rodzic/opiekun ma 30 dni od nieobecności na wybór terminu lekcji odróbczej',
+            'ml.absencesLi2': 'Lekcja odróbcza musi zostać zarezerwowana spośród dostępnych terminów w ciągu kolejnych 6 tygodni',
+            'ml.absencesLi3': 'Po upływie tego 30-dniowego terminu bez rezerwacji, lekcja pozostaje należna',
+            'ml.absenceProfLabel': 'Nieobecność nauczyciela:',
+            'ml.absenceProf': 'proponowana jest lekcja odróbcza lub, w razie braku takiej możliwości, zwrot kosztów.',
+            'ml.casExceptionnel': "Przypadek wyjątkowy: w razie przedłużającej się choroby ucznia, nieobecność jest odliczana od kolejnej faktury, po indywidualnym rozpatrzeniu.",
+            'ml.materielTitle': 'Sprzęt i instrument',
+            'ml.materielIntro': "Znaczenie własnego instrumentu: Nauka gry na pianinie wymaga koniecznie posiadania dobrej jakości instrumentu w domu ucznia. Dzięki ponad 10-letniemu doświadczeniu pedagogicznemu zaobserwowałam, wspólnie z innymi nauczycielami, że znacznie wyższy wskaźnik rezygnacji jest bezpośrednio powiązany z użytkowaniem instrumentów niskiej jakości.",
+            'ml.materielRecommandes': 'Zalecane instrumenty:',
+            'ml.materielLi1': 'Najlepiej: akustyczne pianino proste (z systemem silent lub bez)',
+            'ml.materielLi2': 'Co najmniej: pianino cyfrowe profesjonalnej jakości (uwaga: nie wszystkie pianina cyfrowe są sobie równe)',
+            'ml.distinctionText': "Podstawowa różnica: Pianino to żywy instrument, który wibruje i z którym uczeń komunikuje się i rozwija się muzycznie. Małe klawiatury elektryczne to zabawki, a nie instrumenty muzyczne. Ta różnica jest kluczowa dla zapewnienia postępów i rozwoju muzycznego ucznia.",
+            'ml.solutionsIntro': "Rozwiązania dotyczące zakupu: Dla rodzin wahających się w pierwszym roku, dostępne są rozwiązania wynajmu z opcją zakupu lub bez u:",
+            'ml.accompagnementText': "Wsparcie w wyborze: Na życzenie można otrzymać spersonalizowaną poradę dotyczącą wyboru instrumentu, aby pomóc rodzinom wybrać rozwiązanie najlepiej dopasowane do ich potrzeb i budżetu.<br>\nOdpowiedzialność: Uczeń i jego rodzina zobowiązują się do posiadania instrumentu zgodnego z zaleceniami pedagogicznymi w rozsądnym terminie od rozpoczęcia lekcji.",
+            'ml.methodesTitle': 'Metody i materiały dydaktyczne',
+            'ml.methodesText': "Podręczniki i nuty niezbędne do nauki są wybierane i zamawiane na początku roku szkolnego w preferencyjnej cenie dla nauczycieli, w zależności od poziomu i konkretnych potrzeb każdego ucznia. Te materiały dydaktyczne są fakturowane osobno po cenie kosztowej.",
+            'ml.resiliationTitle': 'Rozwiązanie umowy',
+            'ml.resiliationText': "Każda ze stron może rozwiązać umowę z 30-dniowym okresem wypowiedzenia listem poleconym. Odbyte lekcje oraz te przypadające na okres wypowiedzenia pozostają należne. Kwoty wpłacone za okres po zakończeniu wypowiedzenia zostaną zwrócone w ciągu 30 dni.<br>\nDla lekcji płatnych za zajęcie, okres wypowiedzenia wynosi 15 dni.",
+            'ml.acceptationTitle': 'Akceptacja warunków',
+            'ml.acceptationText': "Zapisując swoje dziecko na lekcje pianina, akceptują Państwo wszystkie niniejsze ogólne warunki nauczania."
+        }
+    };
+    const TRANSLATIONS = window.TRANSLATIONS;
+
+    function applyTranslations(lang) {
+        if (!TRANSLATIONS[lang]) lang = 'fr';
+        window.currentSiteLang = lang;
+        document.querySelectorAll('[data-i18n]').forEach(el => {
+            const key = el.getAttribute('data-i18n');
+            const value = TRANSLATIONS[lang][key];
+            if (typeof value === 'string') {
+                if (el.tagName === 'OPTION' || el.tagName === 'TITLE') { el.textContent = value; } else { el.innerHTML = value; }
+            }
+        });
+        document.querySelectorAll('.lang-option').forEach(btn => {
+            const active = btn.dataset.lang === lang;
+            btn.style.background = active ? '#eaf0fa' : 'none';
+            btn.style.color = active ? '#b9944e' : '#18233f';
+        });
+        document.documentElement.lang = lang;
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        const langToggle = document.getElementById('lang-switcher-toggle');
+        const langMenu = document.getElementById('lang-switcher-menu');
+        let langMenuOpen = false;
+        if (langToggle && langMenu) {
+            langToggle.addEventListener('click', (e) => {
+                e.stopPropagation();
+                langMenuOpen = !langMenuOpen;
+                langMenu.style.display = langMenuOpen ? 'block' : 'none';
+            });
+            document.addEventListener('click', (e) => {
+                if (!langMenu.contains(e.target) && !langToggle.contains(e.target)) {
+                    langMenu.style.display = 'none';
+                    langMenuOpen = false;
+                }
+            });
+            document.querySelectorAll('.lang-option').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const lang = btn.dataset.lang;
+                    try { localStorage.setItem('site_lang', lang); } catch (e) {}
+                    applyTranslations(lang);
+                    langMenu.style.display = 'none';
+                    langMenuOpen = false;
+                });
+            });
+        }
+        let initialLang = 'fr';
+        try { initialLang = localStorage.getItem('site_lang') || 'fr'; } catch (e) {}
+        applyTranslations(initialLang);
+    });
+    </script>
 </body>
 </html>
