@@ -1,21 +1,16 @@
-<!-- Splash screen choix version -->
-    <div id="splash-choix-version" style="position:fixed;z-index:9999;top:0;left:0;width:100vw;height:100vh;background:rgba(255,255,255,0.85);display:flex;flex-direction:column;align-items:center;justify-content:center;">
-        <img src="images/LOGO.png" alt="Logo Excellence Piano" style="width:120px;height:120px;object-fit:cover;border-radius:50%;margin-bottom:2rem;box-shadow:0 2px 12px rgba(0,0,0,0.08);border:3px solid #b9944e;">
-        <h2 style="font-family:'Great Vibes',cursive;font-size:2.2rem;color:#b9944e;margin-bottom:1.5rem;text-align:center;">Bienvenue sur Excellence Piano</h2>
-        <p style="font-size:1.1rem;color:#18233f;margin-bottom:2.2rem;text-align:center;max-width:90vw;">Veuillez choisir votre expérience :</p>
-        <div style="display:flex;gap:2rem;flex-wrap:wrap;justify-content:center;">
-            <button onclick="window.location.href='accueil-mobile.html'" style="background:#b9944e;color:#18233f;font-size:1.1rem;padding:0.9rem 2.2rem;border:none;border-radius:999px;box-shadow:0 2px 8px rgba(185,148,78,0.18);font-weight:600;cursor:pointer;transition:background 0.2s;">Version mobile</button>
-            <button onclick="fermerSplash()" style="background:#18233f;color:#b9944e;font-size:1.1rem;padding:0.9rem 2.2rem;border:2px solid #b9944e;border-radius:999px;box-shadow:0 2px 8px rgba(24,35,63,0.18);font-weight:600;cursor:pointer;transition:background 0.2s;">Version ordinateur</button>
-        </div>
-    </div>
-    <script>
-    function fermerSplash() {
-        document.getElementById('splash-choix-version').style.display = 'none';
-    }
-    </script>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
+        <!-- Redirection automatique vers la version mobile dédiée, avant le chargement -->
+        <script>
+        (function() {
+            try {
+                if (window.matchMedia('(max-width: 767px)').matches) {
+                    window.location.replace('accueil-mobile.html');
+                }
+            } catch (e) {}
+        })();
+        </script>
         <!-- Google tag (gtag.js) -->
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-WD9VS5039D"></script>
         <script>
