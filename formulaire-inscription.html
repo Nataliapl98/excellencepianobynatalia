@@ -560,6 +560,132 @@ table.avail-grid input[type="checkbox"] {
     .logo-container-header { width: 100% !important; }
     .logo-container-header img { max-width: 85% !important; width: auto !important; height: auto !important; }
 }
+
+/* ----------- Bloc "Comment ça marche" (accroche) ----------- */
+#comment-ca-marche {
+    max-width: 1100px;
+    margin: 0 auto 2.4rem auto;
+}
+#comment-ca-marche > p {
+    text-align: center;
+    font-family: 'Inter', sans-serif;
+    color: #18233f;
+    opacity: 0.85;
+    font-size: 1.02rem;
+    margin: -0.8rem 0 1.6rem 0;
+}
+.cm-steps {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 22px;
+    padding-top: 40px;
+}
+.cm-line {
+    position: absolute;
+    top: 40px;
+    left: 12.5%;
+    right: 12.5%;
+    height: 3px;
+    background: linear-gradient(90deg, transparent 0%, #b9944e 12%, #d9b866 50%, #b9944e 88%, transparent 100%);
+    z-index: 0;
+}
+.cm-step {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    transition: transform 0.25s ease;
+}
+.cm-step:nth-of-type(odd) .cm-card { background: linear-gradient(135deg, #fbf8f1 0%, #f3ecd9 100%); }
+.cm-step:nth-of-type(even) .cm-card { background: linear-gradient(135deg, #f5f7fb 0%, #e9edf6 100%); }
+.cm-medallion {
+    position: relative;
+    width: 64px;
+    height: 64px;
+    min-height: 64px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 32% 28%, #f3dfa8 0%, #d9b866 45%, #b9944e 100%);
+    box-shadow: 0 6px 16px rgba(185,148,78,0.45), 0 0 0 5px #fff, 0 0 0 6px #d8cba9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.7rem;
+    margin-bottom: 14px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.cm-step .cm-num {
+    position: absolute;
+    top: -6px;
+    right: -6px;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: #18233f;
+    color: #d9b866;
+    font-weight: 700;
+    font-size: 0.78rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 8px rgba(24,35,63,0.35), 0 0 0 3px #fff;
+}
+.cm-card {
+    width: 100%;
+    border: 1.5px solid #d8cba9;
+    border-radius: 18px;
+    padding: 18px 14px 20px;
+    text-align: center;
+    box-sizing: border-box;
+    box-shadow: 0 4px 14px rgba(24,35,63,0.08);
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+a.cm-step:hover .cm-medallion, a.cm-step:focus-visible .cm-medallion {
+    transform: scale(1.08) rotate(-4deg);
+    box-shadow: 0 8px 22px rgba(185,148,78,0.6), 0 0 0 5px #fff, 0 0 0 6px #b9944e;
+}
+a.cm-step:hover .cm-card, a.cm-step:focus-visible .cm-card {
+    transform: translateY(-8px);
+    box-shadow: 0 14px 28px rgba(24,35,63,0.18);
+    border-color: #b9944e;
+}
+.cm-step .cm-title {
+    font-weight: 700;
+    color: #18233f;
+    font-size: 1rem;
+    margin-bottom: 4px;
+    font-family: 'Inter', sans-serif;
+}
+.cm-step .cm-text {
+    font-size: 0.85rem;
+    color: #18233f;
+    opacity: 0.8;
+    line-height: 1.4;
+    font-family: 'Inter', sans-serif;
+}
+.cm-arrow {
+    display: inline-block;
+    margin-top: 8px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: #b9944e;
+    opacity: 0;
+    transform: translateY(-4px);
+    transition: opacity 0.25s ease, transform 0.25s ease;
+}
+a.cm-step:hover .cm-arrow, a.cm-step:focus-visible .cm-arrow {
+    opacity: 1;
+    transform: translateY(0);
+}
+@media (max-width: 900px) {
+    .cm-steps { grid-template-columns: repeat(2, 1fr); row-gap: 36px; }
+    .cm-line { display: none; }
+}
+@media (max-width: 640px) {
+    .cm-steps { grid-template-columns: 1fr; padding-top: 8px; }
+}
 </style>
 </head>
 <body class="antialiased">
@@ -594,6 +720,45 @@ table.avail-grid input[type="checkbox"] {
     <div style="background:#f9fafb;padding:2.5rem 0;">
         <div style="max-width:1000px;margin:0 auto;padding:0 1rem;">
             <h1 class="main-title" data-i18n="title.main" style="font-family:'Great Vibes',cursive;font-size:2.7rem;color:#18233f;text-shadow:2px 2px 6px rgba(255,255,255,0.7);background:none;box-shadow:none;border-radius:0;margin-bottom:2rem;text-align:center;letter-spacing:0.5px;">Formulaire d'inscription 2025/2026</h1>
+
+            <div id="comment-ca-marche">
+                <p>Quatre étapes claires, du choix de la formule à votre premier cours.</p>
+                <div class="cm-steps">
+                    <div class="cm-line"></div>
+                    <a href="index.html#options-cours" class="cm-step">
+                        <div class="cm-medallion"><span class="cm-num">1</span><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="5" width="19" height="14" rx="1.5"/><rect x="6" y="5" width="2.6" height="8" fill="#18233f" stroke="none"/><rect x="10.7" y="5" width="2.6" height="8" fill="#18233f" stroke="none"/><rect x="15.4" y="5" width="2.6" height="8" fill="#18233f" stroke="none"/></svg></div>
+                        <div class="cm-card">
+                            <div class="cm-title">Je choisis ma formule</div>
+                            <div class="cm-text">À l'année (planning fixe) ou flexible (sans engagement scolaire).</div>
+                            <span class="cm-arrow">Voir les formules →</span>
+                        </div>
+                    </a>
+                    <a href="#inscriptionForm" class="cm-step">
+                        <div class="cm-medallion"><span class="cm-num">2</span><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2.5" width="16" height="19" rx="2"/><line x1="7.5" y1="7.5" x2="16.5" y2="7.5"/><line x1="7.5" y1="11.5" x2="16.5" y2="11.5"/><path d="M7.5 16.3l2.1 2.1 4.9-4.9" stroke-width="2.1"/></svg></div>
+                        <div class="cm-card">
+                            <div class="cm-title">Je m'inscris</div>
+                            <div class="cm-text">Un formulaire simple : mes coordonnées et mes disponibilités.</div>
+                            <span class="cm-arrow">Commencer →</span>
+                        </div>
+                    </a>
+                    <a href="#inscriptionForm" class="cm-step">
+                        <div class="cm-medallion"><span class="cm-num">3</span><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><line x1="3" y1="10" x2="21" y2="10"/><line x1="8" y1="2.5" x2="8" y2="6.5"/><line x1="16" y1="2.5" x2="16" y2="6.5"/><circle cx="8" cy="14.5" r="1.3" fill="#fff" stroke="none"/><circle cx="12" cy="14.5" r="1.3" fill="#fff" stroke="none"/><circle cx="16" cy="14.5" r="1.3" fill="#18233f" stroke="none"/><circle cx="8" cy="18" r="1.3" fill="#fff" stroke="none"/><circle cx="12" cy="18" r="1.3" fill="#fff" stroke="none"/></svg></div>
+                        <div class="cm-card">
+                            <div class="cm-title">Je reçois mon créneau</div>
+                            <div class="cm-text">Formule à l'année : la semaine de la rentrée, une fois les disponibilités de tous les élèves reçues, je fixe le jour et l'heure de votre cours. Formule flexible : vous réservez vous-même votre créneau en ligne.</div>
+                            <span class="cm-arrow">En savoir plus →</span>
+                        </div>
+                    </a>
+                    <a href="mentions-legales.html#modalites-paiement" class="cm-step">
+                        <div class="cm-medallion"><span class="cm-num">4</span><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2.5"/><rect x="2" y="9" width="20" height="3" fill="#18233f" stroke="none"/><rect x="4.5" y="14.5" width="4.5" height="2.4" rx="0.6" fill="#fff" stroke="none"/></svg></div>
+                        <div class="cm-card">
+                            <div class="cm-title">Je règle mon cours</div>
+                            <div class="cm-text">Espèces, virement ou chèque — mensuel, trimestriel ou annuel.</div>
+                            <span class="cm-arrow">Modalités →</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
 
             <div class="explanation-container" style="background:#fff;color:#18233f;box-shadow:0 6px 14px rgba(24,35,63,0.10);">
                 <h2 data-i18n="howitworks.heading" style="font-family:'Great Vibes',cursive;text-align:center;font-size:2.1rem;background:linear-gradient(90deg,#18233f 0%,#b9944e 60%,#18233f 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:14px;">Comment ça marche ?</h2>
