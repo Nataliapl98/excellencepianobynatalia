@@ -1074,15 +1074,37 @@ a.cm-step:hover .cm-arrow, a.cm-step:focus-visible .cm-arrow {
                     <p data-i18n="intro.emploi" style="text-align:center;color:#18233f;font-size:0.95rem;margin-top:-0.6rem;margin-bottom:1.4rem;">Envoyez-moi l'emploi du temps scolaire et des activités extrascolaires de votre enfant — je choisirai l'heure et le jour du cours en fonction de vos disponibilités indiquées à l'étape précédente.</p>
 
                     <div class="field-group">
-                        <label class="field-label" data-i18n="label.emploi_upload">Emploi du temps scolaire et extrascolaire — photo, PDF ou document *</label>
-                        <label class="upload-zone" id="uploadZone">
+                        <label class="field-label" data-i18n="label.emploi_upload">Fichier 1 : Emploi du temps scolaire de la semaine — photo, PDF ou document *</label>
+                        <label class="upload-zone" id="uploadZone1">
                             <div class="upload-icon">📎</div>
-                            <div id="uploadZoneText" data-i18n="upload.placeholder">Cliquez pour choisir un fichier (PDF, JPG, PNG)</div>
-                            <input type="file" id="emploiDuTempsFile" accept=".pdf,.jpg,.jpeg,.png">
+                            <div id="uploadZoneText1" data-i18n="upload.placeholder">Cliquez pour choisir un fichier (PDF, JPG, PNG)</div>
+                            <input type="file" id="emploiDuTempsFile1" accept=".pdf,.jpg,.jpeg,.png">
                         </label>
-                        <div class="upload-status" id="uploadStatus"></div>
+                        <div class="upload-status" id="uploadStatus1"></div>
                         <input type="hidden" name="emploi_du_temps_url" id="emploi_du_temps_url">
                         <div class="error-message" id="uploadError" data-i18n="error.upload_required">Merci de joindre un fichier.</div>
+                    </div>
+
+                    <div class="field-group">
+                        <label class="field-label" data-i18n="label.activites_upload">Fichier 2 : Activités extrascolaires (optionnel) — photo, PDF ou document</label>
+                        <label class="upload-zone" id="uploadZone2">
+                            <div class="upload-icon">📎</div>
+                            <div id="uploadZoneText2" data-i18n="upload.placeholder">Cliquez pour choisir un fichier (PDF, JPG, PNG)</div>
+                            <input type="file" id="emploiDuTempsFile2" accept=".pdf,.jpg,.jpeg,.png">
+                        </label>
+                        <div class="upload-status" id="uploadStatus2"></div>
+                        <input type="hidden" name="activites_extra_url" id="activites_extra_url">
+                    </div>
+
+                    <div class="field-group">
+                        <label class="field-label" data-i18n="label.autres_upload">Fichier 3 : Autres documents si besoin (optionnel) — photo, PDF ou document</label>
+                        <label class="upload-zone" id="uploadZone3">
+                            <div class="upload-icon">📎</div>
+                            <div id="uploadZoneText3" data-i18n="upload.placeholder">Cliquez pour choisir un fichier (PDF, JPG, PNG)</div>
+                            <input type="file" id="emploiDuTempsFile3" accept=".pdf,.jpg,.jpeg,.png">
+                        </label>
+                        <div class="upload-status" id="uploadStatus3"></div>
+                        <input type="hidden" name="autres_fichier_url" id="autres_fichier_url">
                     </div>
 
                     <div class="field-group">
@@ -1498,7 +1520,9 @@ a.cm-step:hover .cm-arrow, a.cm-step:focus-visible .cm-arrow {
             'label.garde_adresses': 'Si garde partagée, le cours peut-il avoir lieu aux deux adresses ? Si oui, précisez les deux',
             'heading.emploi': 'Emploi du temps',
             'intro.emploi': "Envoyez-moi l'emploi du temps scolaire et des activités extrascolaires de votre enfant — je choisirai l'heure et le jour du cours en fonction de vos disponibilités indiquées à l'étape précédente.",
-            'label.emploi_upload': 'Emploi du temps scolaire et extrascolaire — photo, PDF ou document *',
+            'label.emploi_upload': 'Fichier 1 : Emploi du temps scolaire de la semaine — photo, PDF ou document *',
+            'label.activites_upload': 'Fichier 2 : Activités extrascolaires (optionnel) — photo, PDF ou document',
+            'label.autres_upload': 'Fichier 3 : Autres documents si besoin (optionnel) — photo, PDF ou document',
             'upload.placeholder': 'Cliquez pour choisir un fichier (PDF, JPG, PNG)',
             'error.upload_required': 'Merci de joindre un fichier.',
             'label.precisions': 'Précisions ou observations éventuelles',
@@ -1607,7 +1631,9 @@ a.cm-step:hover .cm-arrow, a.cm-step:focus-visible .cm-arrow {
             'label.garde_adresses': 'If shared custody, can the lesson take place at both addresses? If so, please specify both',
             'heading.emploi': 'Timetable',
             'intro.emploi': "Please send me your child's school and extracurricular timetable — I will choose the lesson time and day based on the availability you indicated in the previous step.",
-            'label.emploi_upload': 'School and extracurricular timetable — photo, PDF or document *',
+            'label.emploi_upload': 'File 1: Weekly school timetable — photo, PDF or document *',
+            'label.activites_upload': 'File 2: Extracurricular activities (optional) — photo, PDF or document',
+            'label.autres_upload': 'File 3: Other documents if needed (optional) — photo, PDF or document',
             'upload.placeholder': 'Click to choose a file (PDF, JPG, PNG)',
             'error.upload_required': 'Please attach a file.',
             'label.precisions': 'Any additional comments or details',
@@ -1716,7 +1742,9 @@ a.cm-step:hover .cm-arrow, a.cm-step:focus-visible .cm-arrow {
             'label.garde_adresses': 'Jeśli opieka naprzemienna, czy lekcja może odbywać się pod dwoma adresami? Jeśli tak, proszę podać oba',
             'heading.emploi': 'Plan zajęć',
             'intro.emploi': 'Proszę przesłać plan zajęć szkolnych i pozaszkolnych dziecka — wybiorę godzinę i dzień lekcji na podstawie dostępności wskazanej w poprzednim etapie.',
-            'label.emploi_upload': 'Plan zajęć szkolnych i pozaszkolnych — zdjęcie, PDF lub dokument *',
+            'label.emploi_upload': 'Plik 1: Tygodniowy plan zajęć szkolnych — zdjęcie, PDF lub dokument *',
+            'label.activites_upload': 'Plik 2: Zajęcia pozaszkolne (opcjonalnie) — zdjęcie, PDF lub dokument',
+            'label.autres_upload': 'Plik 3: Inne dokumenty w razie potrzeby (opcjonalnie) — zdjęcie, PDF lub dokument',
             'upload.placeholder': 'Kliknij, aby wybrać plik (PDF, JPG, PNG)',
             'error.upload_required': 'Proszę załączyć plik.',
             'label.precisions': 'Dodatkowe uwagi lub informacje',
@@ -2085,39 +2113,43 @@ a.cm-step:hover .cm-arrow, a.cm-step:focus-visible .cm-arrow {
     btnNext.addEventListener('click', updateSignatureTemplate);
 
     // Upload Cloudinary
-    const uploadZone = document.getElementById('uploadZone');
-    const fileInput = document.getElementById('emploiDuTempsFile');
-    const uploadStatus = document.getElementById('uploadStatus');
-    const uploadZoneText = document.getElementById('uploadZoneText');
-    const emploiUrlField = document.getElementById('emploi_du_temps_url');
+    function setupUploadZone(fileInputId, statusId, zoneTextId, urlFieldId, isRequired) {
+        const fileInput = document.getElementById(fileInputId);
+        const uploadStatus = document.getElementById(statusId);
+        const uploadZoneText = document.getElementById(zoneTextId);
+        const urlField = document.getElementById(urlFieldId);
 
-    fileInput.addEventListener('change', async () => {
-        const file = fileInput.files[0];
-        if (!file) return;
-        uploadZoneText.textContent = file.name;
-        uploadStatus.textContent = 'Envoi en cours...';
-        uploadStatus.className = 'upload-status pending';
-        emploiUrlField.value = '';
+        fileInput.addEventListener('change', async () => {
+            const file = fileInput.files[0];
+            if (!file) return;
+            uploadZoneText.textContent = file.name;
+            uploadStatus.textContent = 'Envoi en cours...';
+            uploadStatus.className = 'upload-status pending';
+            urlField.value = '';
 
-        try {
-            const formData = new FormData();
-            formData.append('file', file);
-            formData.append('upload_preset', CLOUDINARY_UPLOAD_PRESET);
-            const response = await fetch(`https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD_NAME}/auto/upload`, {
-                method: 'POST',
-                body: formData
-            });
-            if (!response.ok) throw new Error('Échec de l\'envoi');
-            const data = await response.json();
-            emploiUrlField.value = data.secure_url;
-            uploadStatus.textContent = 'Fichier envoyé ✓';
-            uploadStatus.className = 'upload-status success';
-            document.getElementById('uploadError').style.display = 'none';
-        } catch (err) {
-            uploadStatus.textContent = 'Échec de l\'envoi, merci de réessayer.';
-            uploadStatus.className = 'upload-status error';
-        }
-    });
+            try {
+                const formData = new FormData();
+                formData.append('file', file);
+                formData.append('upload_preset', CLOUDINARY_UPLOAD_PRESET);
+                const response = await fetch(`https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD_NAME}/auto/upload`, {
+                    method: 'POST',
+                    body: formData
+                });
+                if (!response.ok) throw new Error('Échec de l\'envoi');
+                const data = await response.json();
+                urlField.value = data.secure_url;
+                uploadStatus.textContent = 'Fichier envoyé ✓';
+                uploadStatus.className = 'upload-status success';
+                if (isRequired) document.getElementById('uploadError').style.display = 'none';
+            } catch (err) {
+                uploadStatus.textContent = 'Échec de l\'envoi, merci de réessayer.';
+                uploadStatus.className = 'upload-status error';
+            }
+        });
+    }
+    setupUploadZone('emploiDuTempsFile1', 'uploadStatus1', 'uploadZoneText1', 'emploi_du_temps_url', true);
+    setupUploadZone('emploiDuTempsFile2', 'uploadStatus2', 'uploadZoneText2', 'activites_extra_url', false);
+    setupUploadZone('emploiDuTempsFile3', 'uploadStatus3', 'uploadZoneText3', 'autres_fichier_url', false);
 
     // Soumission finale vers Formspree
     const form = document.getElementById('inscriptionForm');
