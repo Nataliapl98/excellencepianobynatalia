@@ -979,15 +979,46 @@ a.cm-step:hover .cm-arrow, a.cm-step:focus-visible .cm-arrow {
 
                     <!-- Durée — Formule à l'année -->
                     <div class="field-group" id="dureeAnneeGroup">
-                        <label class="field-label"><span data-i18n="label.duree_cours">Durée désirée du cours *</span><span class="field-hint" data-i18n="hint.duree_cours">Si fratrie, indiquez la durée totale des cours (ex : 2× Progression 45 min = 90 min).</span></label>
-                        <div class="choice-row">
-                            <label class="choice-chip"><input type="checkbox" name="duree_cours" value="Découverte 30 minutes"><span data-i18n="choice.decouverte30">Découverte 30 min</span></label>
-                            <label class="choice-chip"><input type="checkbox" name="duree_cours" value="Progression 45 minutes"><span data-i18n="choice.progression45">Progression 45 min</span></label>
-                            <label class="choice-chip"><input type="checkbox" name="duree_cours" value="Excellence 60 minutes"><span data-i18n="choice.excellence60">Excellence 60 min</span></label>
-                            <label class="choice-chip"><input type="checkbox" name="duree_cours" value="90 minutes (fratrie)"><span data-i18n="choice.90fratrie">90 min (fratrie)</span></label>
-                            <label class="choice-chip"><input type="checkbox" name="duree_cours" value="120 minutes (fratrie)"><span data-i18n="choice.120fratrie">120 min (fratrie)</span></label>
+                        <div class="field-group" id="situationEleveGroup">
+                            <label class="field-label"><span data-i18n="label.situation_eleve">Cette inscription concerne *</span></label>
+                            <div class="choice-row">
+                                <label class="choice-chip"><input type="radio" name="situation_eleve" value="Un seul élève — 1 cours par semaine" required><span data-i18n="choice.situation_solo1">Un seul élève — 1 cours/semaine</span></label>
+                                <label class="choice-chip"><input type="radio" name="situation_eleve" value="Un seul élève — 2 cours par semaine" required><span data-i18n="choice.situation_solo2">Un seul élève — 2 cours/semaine</span></label>
+                                <label class="choice-chip"><input type="radio" name="situation_eleve" value="Fratrie (plusieurs élèves)" required><span data-i18n="choice.situation_fratrie">Fratrie (plusieurs élèves)</span></label>
+                            </div>
+                            <div class="error-message" data-i18n="error.select_situation">Merci de préciser votre situation.</div>
                         </div>
-                        <div class="error-message" data-i18n="error.select_duree">Merci de sélectionner au moins une durée.</div>
+
+                        <div class="field-group" id="dureeSolo1Group" style="display:none;">
+                            <label class="field-label"><span data-i18n="label.duree_solo1">Durée du cours *</span></label>
+                            <div class="choice-row">
+                                <label class="choice-chip"><input type="radio" name="duree_solo1" value="Découverte 30 minutes"><span data-i18n="choice.decouverte30">Découverte 30 min</span></label>
+                                <label class="choice-chip"><input type="radio" name="duree_solo1" value="Progression 45 minutes"><span data-i18n="choice.progression45">Progression 45 min</span></label>
+                                <label class="choice-chip"><input type="radio" name="duree_solo1" value="Excellence 60 minutes"><span data-i18n="choice.excellence60">Excellence 60 min</span></label>
+                            </div>
+                            <div class="error-message" data-i18n="error.select_duree">Merci de sélectionner une durée.</div>
+                        </div>
+
+                        <div class="field-group" id="dureeSolo2Group" style="display:none;">
+                            <label class="field-label"><span data-i18n="label.duree_solo2">Durée de chaque cours *</span><span class="field-hint" data-i18n="hint.duree_solo2">2 cours par semaine, de cette durée.</span></label>
+                            <div class="choice-row">
+                                <label class="choice-chip"><input type="radio" name="duree_solo2" value="Découverte 30 minutes"><span data-i18n="choice.decouverte30">Découverte 30 min</span></label>
+                                <label class="choice-chip"><input type="radio" name="duree_solo2" value="Progression 45 minutes"><span data-i18n="choice.progression45">Progression 45 min</span></label>
+                                <label class="choice-chip"><input type="radio" name="duree_solo2" value="Excellence 60 minutes"><span data-i18n="choice.excellence60">Excellence 60 min</span></label>
+                            </div>
+                            <div class="error-message" data-i18n="error.select_duree">Merci de sélectionner une durée.</div>
+                        </div>
+
+                        <div class="field-group" id="fratrieGroup" style="display:none;">
+                            <label class="field-label" for="nombre_eleves_fratrie"><span data-i18n="label.nombre_eleves">Nombre d'élèves *</span></label>
+                            <select id="nombre_eleves_fratrie" name="nombre_eleves_fratrie">
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4+</option>
+                            </select>
+                            <div class="field-hint" style="margin-top:6px;" data-i18n="hint.fratrie_ordre">Indiquez la durée souhaitée pour chaque élève, dans le même ordre que les noms renseignés plus haut.</div>
+                            <div id="dureesFratrieContainer" style="margin-top:14px;"></div>
+                        </div>
                     </div>
 
                     <div class="field-group" id="autreDureeGroup">
@@ -1519,14 +1550,21 @@ a.cm-step:hover .cm-arrow, a.cm-step:focus-visible .cm-arrow {
             'choice.duree30': '30 minutes', 'choice.duree45': '45 minutes', 'choice.duree60': '60 minutes',
             'label.essai_prelude': "Je souhaite un cours d'essai Prélude (30 min, 20€), non déductible d'un futur engagement",
             'rythme.note.carnet': "Paiement unique à la réservation du carnet de cours — pas de rythme de paiement à choisir.",
-            'label.duree_cours': 'Durée désirée du cours *',
-            'hint.duree_cours': 'Si fratrie, indiquez la durée totale des cours (ex : 2× Progression 45 min = 90 min).',
+            'label.situation_eleve': 'Cette inscription concerne *',
+            'choice.situation_solo1': 'Un seul élève — 1 cours/semaine',
+            'choice.situation_solo2': 'Un seul élève — 2 cours/semaine',
+            'choice.situation_fratrie': 'Fratrie (plusieurs élèves)',
+            'error.select_situation': 'Merci de préciser votre situation.',
+            'label.duree_solo1': 'Durée du cours *',
+            'label.duree_solo2': 'Durée de chaque cours *',
+            'hint.duree_solo2': '2 cours par semaine, de cette durée.',
+            'label.nombre_eleves': "Nombre d'élèves *",
+            'hint.fratrie_ordre': "Indiquez la durée souhaitée pour chaque élève, dans le même ordre que les noms renseignés plus haut.",
+            'label.duree_eleve_n': (n) => `Élève ${n} — durée du cours *`,
             'choice.decouverte30': 'Découverte 30 min',
             'choice.progression45': 'Progression 45 min',
             'choice.excellence60': 'Excellence 60 min',
-            'choice.90fratrie': '90 min (fratrie)',
-            'choice.120fratrie': '120 min (fratrie)',
-            'error.select_duree': 'Merci de sélectionner au moins une durée.',
+            'error.select_duree': 'Merci de sélectionner une durée.',
             'label.autre_duree': 'Autre (précisez si besoin)',
             'label.rythme_paiement': 'Rythme de paiement souhaité *',
             'choice.mensuel': 'Mensuel',
@@ -1633,14 +1671,21 @@ a.cm-step:hover .cm-arrow, a.cm-step:focus-visible .cm-arrow {
             'choice.duree30': '30 minutes', 'choice.duree45': '45 minutes', 'choice.duree60': '60 minutes',
             'label.essai_prelude': "I would like a Prélude trial lesson (30 min, €20), not deductible from a future commitment",
             'rythme.note.carnet': "One-off payment when booking the lesson pack — no payment schedule to choose.",
-            'label.duree_cours': 'Desired lesson length *',
-            'hint.duree_cours': 'For siblings, indicate the total lesson length (e.g. 2× Progression 45 min = 90 min).',
+            'label.situation_eleve': 'This registration is for *',
+            'choice.situation_solo1': 'One student — 1 lesson/week',
+            'choice.situation_solo2': 'One student — 2 lessons/week',
+            'choice.situation_fratrie': 'Siblings (multiple students)',
+            'error.select_situation': 'Please specify your situation.',
+            'label.duree_solo1': 'Lesson length *',
+            'label.duree_solo2': 'Length of each lesson *',
+            'hint.duree_solo2': '2 lessons per week, of this length.',
+            'label.nombre_eleves': 'Number of students *',
+            'hint.fratrie_ordre': 'Indicate the desired lesson length for each student, in the same order as the names given above.',
+            'label.duree_eleve_n': (n) => `Student ${n} — lesson length *`,
             'choice.decouverte30': 'Découverte 30 min',
             'choice.progression45': 'Progression 45 min',
             'choice.excellence60': 'Excellence 60 min',
-            'choice.90fratrie': '90 min (siblings)',
-            'choice.120fratrie': '120 min (siblings)',
-            'error.select_duree': 'Please select at least one duration.',
+            'error.select_duree': 'Please select a duration.',
             'label.autre_duree': 'Other (specify if needed)',
             'label.rythme_paiement': 'Preferred payment schedule *',
             'choice.mensuel': 'Monthly', 'choice.trimestriel': 'Quarterly', 'choice.annuel': 'Annual',
@@ -1745,14 +1790,21 @@ a.cm-step:hover .cm-arrow, a.cm-step:focus-visible .cm-arrow {
             'choice.duree30': '30 minut', 'choice.duree45': '45 minut', 'choice.duree60': '60 minut',
             'label.essai_prelude': 'Chcę skorzystać z lekcji próbnej Prélude (30 min, 20€), niepomniejszającej przyszłego zobowiązania',
             'rythme.note.carnet': 'Płatność jednorazowa przy rezerwacji karnetu — brak rytmu płatności do wyboru.',
-            'label.duree_cours': 'Wybrana długość lekcji *',
-            'hint.duree_cours': 'W przypadku rodzeństwa proszę podać łączny czas lekcji (np. 2× Progression 45 min = 90 min).',
+            'label.situation_eleve': 'Ten zapis dotyczy *',
+            'choice.situation_solo1': 'Jeden uczeń — 1 lekcja/tydzień',
+            'choice.situation_solo2': 'Jeden uczeń — 2 lekcje/tydzień',
+            'choice.situation_fratrie': 'Rodzeństwo (kilku uczniów)',
+            'error.select_situation': 'Proszę określić Państwa sytuację.',
+            'label.duree_solo1': 'Czas trwania lekcji *',
+            'label.duree_solo2': 'Czas trwania każdej lekcji *',
+            'hint.duree_solo2': '2 lekcje tygodniowo, o tej długości.',
+            'label.nombre_eleves': 'Liczba uczniów *',
+            'hint.fratrie_ordre': 'Proszę wskazać pożądaną długość lekcji dla każdego ucznia, w tej samej kolejności co imiona podane powyżej.',
+            'label.duree_eleve_n': (n) => `Uczeń ${n} — czas trwania lekcji *`,
             'choice.decouverte30': 'Découverte 30 min',
             'choice.progression45': 'Progression 45 min',
             'choice.excellence60': 'Excellence 60 min',
-            'choice.90fratrie': '90 min (rodzeństwo)',
-            'choice.120fratrie': '120 min (rodzeństwo)',
-            'error.select_duree': 'Proszę wybrać co najmniej jedną długość lekcji.',
+            'error.select_duree': 'Proszę wybrać długość lekcji.',
             'label.autre_duree': 'Inne (w razie potrzeby proszę doprecyzować)',
             'label.rythme_paiement': 'Preferowany rytm płatności *',
             'choice.mensuel': 'Miesięczny', 'choice.trimestriel': 'Kwartalny', 'choice.annuel': 'Roczny',
@@ -1821,6 +1873,7 @@ a.cm-step:hover .cm-arrow, a.cm-step:focus-visible .cm-arrow {
         stepLabel.textContent = TRANSLATIONS[lang]['step.label.' + steps[currentStepIndex]];
         if (!signatureTouched) updateSignatureTemplate();
         if (currentTypeFormule) applyFormulePaymentLock(currentTypeFormule);
+        updateDureesFratrieLabels();
     }
 
     const LANG_VALUE_TO_CODE = { 'Français': 'fr', 'English': 'en', 'Polski': 'pl' };
@@ -1939,6 +1992,64 @@ a.cm-step:hover .cm-arrow, a.cm-step:focus-visible .cm-arrow {
         applyFormulePaymentLock(typeFormule);
     }
 
+    // Clarifie la durée souhaitée selon la situation : élève seul (1 ou 2
+    // cours/semaine) ou fratrie (plusieurs élèves, chacun avec sa propre durée),
+    // plutôt qu'un unique choix ambigu "90/120 min".
+    const dureeSolo1Group = document.getElementById('dureeSolo1Group');
+    const dureeSolo2Group = document.getElementById('dureeSolo2Group');
+    const fratrieGroup = document.getElementById('fratrieGroup');
+    const nombreElevesFratrie = document.getElementById('nombre_eleves_fratrie');
+    const dureesFratrieContainer = document.getElementById('dureesFratrieContainer');
+
+    function updateDureesFratrieLabels() {
+        const labelFn = TRANSLATIONS[currentLang] && TRANSLATIONS[currentLang]['label.duree_eleve_n'];
+        if (!labelFn) return;
+        dureesFratrieContainer.querySelectorAll('[data-eleve-label]').forEach(el => {
+            el.textContent = labelFn(el.dataset.eleveLabel);
+        });
+    }
+
+    function renderDureesFratrie() {
+        const n = parseInt(nombreElevesFratrie.value, 10) || 2;
+        dureesFratrieContainer.innerHTML = '';
+        for (let i = 1; i <= n; i++) {
+            const labelFn = TRANSLATIONS[currentLang] && TRANSLATIONS[currentLang]['label.duree_eleve_n'];
+            const labelText = labelFn ? labelFn(i) : `Élève ${i} — durée du cours *`;
+            const wrap = document.createElement('div');
+            wrap.className = 'field-group';
+            wrap.style.marginBottom = '14px';
+            wrap.innerHTML = `
+                <label class="field-label" data-eleve-label="${i}">${labelText}</label>
+                <div class="choice-row">
+                    <label class="choice-chip"><input type="radio" name="duree_eleve_${i}" value="Découverte 30 minutes" required><span data-i18n="choice.decouverte30">Découverte 30 min</span></label>
+                    <label class="choice-chip"><input type="radio" name="duree_eleve_${i}" value="Progression 45 minutes" required><span data-i18n="choice.progression45">Progression 45 min</span></label>
+                    <label class="choice-chip"><input type="radio" name="duree_eleve_${i}" value="Excellence 60 minutes" required><span data-i18n="choice.excellence60">Excellence 60 min</span></label>
+                </div>
+                <div class="error-message" data-i18n="error.select_duree">Merci de sélectionner une durée.</div>`;
+            dureesFratrieContainer.appendChild(wrap);
+        }
+        applyTranslations(currentLang);
+    }
+
+    function updateSituationEleveUI() {
+        const checked = document.querySelector('input[name="situation_eleve"]:checked');
+        const situation = checked ? checked.value : null;
+        const isSolo1 = situation === 'Un seul élève — 1 cours par semaine';
+        const isSolo2 = situation === 'Un seul élève — 2 cours par semaine';
+        const isFratrie = situation === 'Fratrie (plusieurs élèves)';
+
+        dureeSolo1Group.style.display = isSolo1 ? '' : 'none';
+        dureeSolo2Group.style.display = isSolo2 ? '' : 'none';
+        fratrieGroup.style.display = isFratrie ? '' : 'none';
+
+        if (isFratrie) renderDureesFratrie();
+    }
+
+    document.querySelectorAll('input[name="situation_eleve"]').forEach(input => {
+        input.addEventListener('change', updateSituationEleveUI);
+    });
+    nombreElevesFratrie.addEventListener('change', renderDureesFratrie);
+
     // Filtre les formules disponibles selon le quartier choisi à l'étape précédente :
     // hors de Monaco/Beausoleil/Cap d'Ail, seule la formule Résonance (visio) est proposée.
     const typeFormuleInputs = document.querySelectorAll('input[name="type_formule"]');
@@ -2044,8 +2155,8 @@ a.cm-step:hover .cm-arrow, a.cm-step:focus-visible .cm-arrow {
             if (!input.checked) { valid = false; showFieldError(input); } else { hideFieldError(input); }
         });
 
-        // Groupes de checkboxes "au moins une case cochée" (durée pour la formule à l'année)
-        ['duree_cours'].forEach(groupName => {
+        // Groupes de checkboxes "au moins une case cochée"
+        [].forEach(groupName => {
             const boxes = Array.from(stepEl.querySelectorAll(`input[name="${groupName}"]`)).filter(isVisible);
             if (boxes.length === 0) return;
             const anyChecked = boxes.some(b => b.checked);
