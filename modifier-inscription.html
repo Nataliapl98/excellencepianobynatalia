@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Modifier mon inscription - Excellence Piano by Natalia</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; }
+html, body {
+    font-family: 'Inter', sans-serif;
+    background-color: #f9fafb;
+    color: #1f2937;
+    margin: 0;
+    padding: 0;
+}
+.page-header {
+    text-align: center;
+    padding: 2.4rem 1.5rem 1.2rem;
+}
+.page-header h1 {
+    font-family: 'Great Vibes', cursive;
+    font-size: 2.4rem;
+    color: #18233f;
+    margin: 0 0 0.2rem;
+}
+.page-header p {
+    color: #7a5d28;
+    font-weight: 600;
+    margin: 0;
+    letter-spacing: 0.02em;
+}
+.form-shell {
+    max-width: 640px;
+    margin: 0 auto 40px auto;
+    background: #fff;
+    border: 1.5px solid #b9944e;
+    border-radius: 22px;
+    box-shadow: 0 8px 32px 0 rgba(24,35,63,0.10), 0 2px 8px 0 rgba(185,148,78,0.08);
+    padding: 2.2rem 2rem;
+    box-sizing: border-box;
+}
+.field-group { margin-bottom: 1.4rem; }
+.field-group label.field-label {
+    display: block;
+    font-weight: 700;
+    color: #18233f;
+    margin-bottom: 8px;
+    font-size: 0.98rem;
+}
+.field-group .field-hint {
+    display: block;
+    font-weight: 400;
+    font-size: 0.85rem;
+    color: #6b7280;
+    margin-top: 4px;
+}
+.field-group textarea {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 12px 14px;
+    border: 1.5px solid #d8cba9;
+    border-radius: 10px;
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+    color: #18233f;
+    resize: vertical;
+    min-height: 90px;
+}
+.field-group textarea:focus {
+    outline: none;
+    border-color: #b9944e;
+    box-shadow: 0 0 0 3px rgba(185,148,78,0.15);
+}
+.field-group input[type="text"] {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 12px 14px;
+    border: 1.5px solid #d8cba9;
+    border-radius: 10px;
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+    color: #18233f;
+}
+.upload-zone {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    border: 2px dashed #b9944e;
+    border-radius: 16px;
+    padding: 1.6rem 1.5rem;
+    text-align: center;
+    background: #fdfaf2;
+    cursor: pointer;
+}
+.upload-zone:hover { background: #f9f2df; }
+.upload-zone input[type="file"] { display: none; }
+.upload-zone .upload-icon { font-size: 2rem; margin-bottom: 8px; }
+.upload-status { margin-top: 12px; font-size: 0.9rem; font-weight: 600; }
+.upload-status.pending { color: #7a5d28; }
+.upload-status.success { color: #18233f; }
+.upload-status.error { color: #b91c1c; }
+.deja-envoye {
+    font-size: 0.85rem;
+    color: #18233f;
+    background: #f0f5f0;
+    border-left: 4px solid #4a7c59;
+    padding: 8px 12px;
+    margin-bottom: 10px;
+    border-radius: 6px;
+}
+.btn-submit {
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    padding: 14px 28px;
+    border-radius: 1rem;
+    cursor: pointer;
+    border: 2px solid #18233f;
+    background: #18233f;
+    color: #d9b866;
+    width: 100%;
+    transition: background 0.25s, transform 0.2s;
+}
+.btn-submit:hover { background: #23305a; transform: translateY(-2px); }
+.btn-submit:disabled { opacity: 0.6; cursor: default; transform: none; }
+.error-message { color: #b91c1c; font-size: 0.9rem; margin-top: 6px; }
+.success-message {
+    display: none;
+    background: #e8f5e9;
+    border-left: 5px solid #4a7c59;
+    padding: 16px;
+    margin-top: 20px;
+    font-size: 0.95rem;
+    color: #18233f;
+    border-radius: 8px;
+}
+.success-message.show { display: block; }
+.centre { text-align: center; }
+.dossier-titre {
+    font-weight: 700;
+    color: #18233f;
+    font-size: 1.1rem;
+    margin-bottom: 1.4rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #eee;
+}
+</style>
+</head>
+<body>
+<div class="page-header">
+    <h1>Excellence Piano by Natalia</h1>
+    <p>Modifier mon inscription</p>
+</div>
+
+<div class="form-shell">
+    <!-- Pas de token dans le lien : formulaire de récupération -->
+    <div id="sansToken" style="display:none;">
+        <div class="field-group">
+            <label class="field-label" for="tokenManuel">Collez ici votre lien personnel</label>
+            <span class="field-hint">Le lien qui vous a été donné à la fin de votre inscription (se terminant par un long code).</span>
+            <input type="text" id="tokenManuel" placeholder="https://excellencepianobynatalia.com/modifier-inscription.html?token=...">
+        </div>
+        <button class="btn-submit" id="btnChargerToken">Accéder à mon dossier</button>
+        <div class="error-message" id="erreurTokenManuel" style="display:none;">Lien non reconnu — vérifiez que vous l'avez collé en entier, ou contactez-moi directement à contact@excellencepianobynatalia.com.</div>
+    </div>
+
+    <!-- Chargement -->
+    <div id="chargement" class="centre" style="display:none;">
+        <p>Chargement de votre dossier…</p>
+    </div>
+
+    <!-- Dossier introuvable -->
+    <div id="introuvable" class="centre" style="display:none;">
+        <p><strong>Ce lien n'est plus valide ou introuvable.</strong></p>
+        <p>Merci de me contacter directement à <a href="mailto:contact@excellencepianobynatalia.com" style="color:#7a5d28;font-weight:700;">contact@excellencepianobynatalia.com</a> ou au 06 62 10 80 08.</p>
+    </div>
+
+    <!-- Dossier trouvé : formulaire de complément -->
+    <div id="dossierTrouve" style="display:none;">
+        <div class="dossier-titre" id="dossierTitre">Votre dossier</div>
+
+        <div class="field-group">
+            <label class="field-label">Fichier 1 : Emploi du temps scolaire de la semaine</label>
+            <div id="deja1" class="deja-envoye" style="display:none;">✅ Déjà envoyé — vous pouvez le remplacer si besoin.</div>
+            <label class="upload-zone" id="uploadZone1">
+                <div class="upload-icon">📎</div>
+                <div id="uploadZoneText1">Cliquez pour choisir un fichier (PDF, JPG, PNG)</div>
+                <input type="file" id="fichier1" accept=".pdf,.jpg,.jpeg,.png">
+            </label>
+            <div class="upload-status" id="uploadStatus1"></div>
+        </div>
+
+        <div class="field-group">
+            <label class="field-label">Fichier 2 : Activités extrascolaires (optionnel)</label>
+            <div id="deja2" class="deja-envoye" style="display:none;">✅ Déjà envoyé — vous pouvez le remplacer si besoin.</div>
+            <label class="upload-zone" id="uploadZone2">
+                <div class="upload-icon">📎</div>
+                <div id="uploadZoneText2">Cliquez pour choisir un fichier (PDF, JPG, PNG)</div>
+                <input type="file" id="fichier2" accept=".pdf,.jpg,.jpeg,.png">
+            </label>
+            <div class="upload-status" id="uploadStatus2"></div>
+        </div>
+
+        <div class="field-group">
+            <label class="field-label">Fichier 3 : Autres documents si besoin (optionnel)</label>
+            <div id="deja3" class="deja-envoye" style="display:none;">✅ Déjà envoyé — vous pouvez le remplacer si besoin.</div>
+            <label class="upload-zone" id="uploadZone3">
+                <div class="upload-icon">📎</div>
+                <div id="uploadZoneText3">Cliquez pour choisir un fichier (PDF, JPG, PNG)</div>
+                <input type="file" id="fichier3" accept=".pdf,.jpg,.jpeg,.png">
+            </label>
+            <div class="upload-status" id="uploadStatus3"></div>
+        </div>
+
+        <div class="field-group">
+            <label class="field-label" for="precisions">Précisions ou observations éventuelles</label>
+            <textarea id="precisions"></textarea>
+        </div>
+
+        <button class="btn-submit" id="btnEnregistrer">Enregistrer les modifications</button>
+
+        <div class="success-message" id="messageSucces">
+            <strong>✅ Enregistré !</strong>
+            <p style="margin:6px 0 0;">Vos informations ont bien été mises à jour. Merci !</p>
+        </div>
+    </div>
+</div>
+
+<script>
+(function () {
+    const CLOUDINARY_CLOUD_NAME = 'ngmuqvbm';
+    const CLOUDINARY_UPLOAD_PRESET = 'PianoNaty';
+    const INSCRIPTION_ENDPOINT = 'https://dashboardpiano.netlify.app/.netlify/functions/inscription';
+
+    function getTokenFromUrl(url) {
+        try {
+            const params = new URL(url).searchParams;
+            return params.get('token');
+        } catch (e) {
+            return null;
+        }
+    }
+
+    let token = new URLSearchParams(window.location.search).get('token');
+    let dossier = null;
+
+    function show(id) {
+        ['sansToken', 'chargement', 'introuvable', 'dossierTrouve'].forEach(elId => {
+            document.getElementById(elId).style.display = elId === id ? 'block' : 'none';
+        });
+    }
+
+    async function chargerDossier(t) {
+        show('chargement');
+        try {
+            const res = await fetch(`${INSCRIPTION_ENDPOINT}?token=${encodeURIComponent(t)}`);
+            const json = await res.json();
+            if (!res.ok || !json.data) {
+                show('introuvable');
+                return;
+            }
+            token = t;
+            dossier = json.data;
+            afficherDossier();
+        } catch (e) {
+            show('introuvable');
+        }
+    }
+
+    function afficherDossier() {
+        const nom = dossier.nom_eleves || dossier.nom_responsable || '';
+        document.getElementById('dossierTitre').textContent = nom ? `Dossier de ${nom}` : 'Votre dossier';
+        document.getElementById('precisions').value = dossier.precisions || '';
+        [1, 2, 3].forEach(i => {
+            const key = i === 1 ? 'emploi_du_temps_url' : i === 2 ? 'activites_extra_url' : 'autres_fichier_url';
+            if (dossier[key]) {
+                document.getElementById('deja' + i).style.display = 'block';
+            }
+        });
+        show('dossierTrouve');
+    }
+
+    function setupUploadZone(fileInputId, statusId, zoneTextId, key) {
+        const fileInput = document.getElementById(fileInputId);
+        const uploadStatus = document.getElementById(statusId);
+        const uploadZoneText = document.getElementById(zoneTextId);
+
+        fileInput.addEventListener('change', async () => {
+            const file = fileInput.files[0];
+            if (!file) return;
+            uploadZoneText.textContent = file.name;
+            uploadStatus.textContent = 'Envoi en cours...';
+            uploadStatus.className = 'upload-status pending';
+
+            try {
+                const formData = new FormData();
+                formData.append('file', file);
+                formData.append('upload_preset', CLOUDINARY_UPLOAD_PRESET);
+                const response = await fetch(`https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD_NAME}/auto/upload`, {
+                    method: 'POST',
+                    body: formData
+                });
+                if (!response.ok) throw new Error('Échec de l\'envoi');
+                const data = await response.json();
+                dossier[key] = data.secure_url;
+                uploadStatus.textContent = 'Fichier envoyé ✓';
+                uploadStatus.className = 'upload-status success';
+            } catch (e) {
+                uploadStatus.textContent = 'Échec de l\'envoi, merci de réessayer.';
+                uploadStatus.className = 'upload-status error';
+            }
+        });
+    }
+    setupUploadZone('fichier1', 'uploadStatus1', 'uploadZoneText1', 'emploi_du_temps_url');
+    setupUploadZone('fichier2', 'uploadStatus2', 'uploadZoneText2', 'activites_extra_url');
+    setupUploadZone('fichier3', 'uploadStatus3', 'uploadZoneText3', 'autres_fichier_url');
+
+    document.getElementById('btnEnregistrer').addEventListener('click', async () => {
+        const btn = document.getElementById('btnEnregistrer');
+        btn.disabled = true;
+        btn.textContent = 'Enregistrement...';
+        dossier.precisions = document.getElementById('precisions').value;
+        try {
+            await fetch(INSCRIPTION_ENDPOINT, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ token, data: dossier })
+            });
+            document.getElementById('messageSucces').classList.add('show');
+        } catch (e) {
+            alert("Une erreur est survenue. Merci de réessayer, ou de me contacter directement.");
+        } finally {
+            btn.disabled = false;
+            btn.textContent = 'Enregistrer les modifications';
+        }
+    });
+
+    document.getElementById('btnChargerToken').addEventListener('click', () => {
+        const raw = document.getElementById('tokenManuel').value.trim();
+        const t = getTokenFromUrl(raw) || (/^[a-f0-9-]{16,50}$/i.test(raw) ? raw : null);
+        if (!t) {
+            document.getElementById('erreurTokenManuel').style.display = 'block';
+            return;
+        }
+        document.getElementById('erreurTokenManuel').style.display = 'none';
+        chargerDossier(t);
+    });
+
+    if (token) {
+        chargerDossier(token);
+    } else {
+        show('sansToken');
+    }
+})();
+</script>
+</body>
+</html>

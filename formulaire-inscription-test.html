@@ -1373,7 +1373,12 @@ a.cm-step:hover .cm-arrow, a.cm-step:focus-visible .cm-arrow {
                     <div class="success-panel">
                         <div class="checkmark">✓</div>
                         <h3 style="margin-bottom:0.6rem;" data-i18n="heading.success">Inscription envoyée !</h3>
-                        <p style="color:#18233f;" data-i18n="text.success">Merci, votre dossier a bien été reçu. Je reviens vers vous rapidement pour confirmer votre créneau.</p>
+                        <p style="color:#18233f;" data-i18n="text.success">Merci, votre dossier a bien été reçu. Les créneaux de cours seront attribués le week-end du 12-13 septembre, juste avant la rentrée.</p>
+                        <div id="lienModificationBox" style="display:none;margin-top:1.2rem;padding:1rem;background:#fdf8ee;border:1px solid #e3d3a8;border-radius:10px;text-align:left;">
+                            <p style="font-weight:700;color:#18233f;margin-bottom:0.5rem;" data-i18n="text.lien_modification_titre">📎 Votre lien personnel pour compléter votre dossier plus tard</p>
+                            <p style="font-size:0.85rem;color:#18233f;margin-bottom:0.6rem;" data-i18n="text.lien_modification_hint">Si l'emploi du temps de votre enfant n'est pas encore finalisé, notez ce lien — vous pourrez y revenir pour l'envoyer, sans avoir à tout ressaisir.</p>
+                            <a id="lienModificationLink" href="#" style="word-break:break-all;color:#7a5d28;font-weight:700;text-decoration:underline;"></a>
+                        </div>
                     </div>
                 </div>
 
@@ -1602,7 +1607,9 @@ a.cm-step:hover .cm-arrow, a.cm-step:focus-visible .cm-arrow {
             'choice.autorise': "J'autorise", 'choice.refuse': 'Je refuse',
             'error.select_autorisation': 'Merci de sélectionner une réponse.',
             'heading.success': 'Inscription envoyée !',
-            'text.success': 'Merci, votre dossier a bien été reçu. Je reviens vers vous rapidement pour confirmer votre créneau.',
+            'text.success': 'Merci, votre dossier a bien été reçu. Les créneaux de cours seront attribués le week-end du 12-13 septembre, juste avant la rentrée.',
+            'text.lien_modification_titre': '📎 Votre lien personnel pour compléter votre dossier plus tard',
+            'text.lien_modification_hint': "Si l'emploi du temps de votre enfant n'est pas encore finalisé, notez ce lien — vous pourrez y revenir pour l'envoyer, sans avoir à tout ressaisir.",
             'btn.retour': 'Retour', 'btn.suivant': 'Suivant', 'btn.envoyer': 'Envoyer mon inscription',
             'signature.template': (r, e) => `Je soussigné(e), ${r}, parent ou responsable légal(e) de l'élève ${e}, confirme avoir pris connaissance des informations ci-dessus.`
         },
@@ -1722,7 +1729,9 @@ a.cm-step:hover .cm-arrow, a.cm-step:focus-visible .cm-arrow {
             'choice.autorise': 'I authorise', 'choice.refuse': 'I refuse',
             'error.select_autorisation': 'Please select an answer.',
             'heading.success': 'Registration sent!',
-            'text.success': 'Thank you, your application has been received. I will get back to you shortly to confirm your time slot.',
+            'text.success': 'Thank you, your application has been received. Lesson slots will be assigned the weekend of 12-13 September, just before term starts.',
+            'text.lien_modification_titre': '📎 Your personal link to complete your file later',
+            'text.lien_modification_hint': "If your child's timetable isn't finalised yet, save this link — you can come back to send it later, without re-entering everything.",
             'btn.retour': 'Back', 'btn.suivant': 'Next', 'btn.envoyer': 'Submit my registration',
             'signature.template': (r, e) => `I, the undersigned, ${r}, parent or legal guardian of the student ${e}, confirm that I have read and understood the information above.`
         },
@@ -1842,7 +1851,9 @@ a.cm-step:hover .cm-arrow, a.cm-step:focus-visible .cm-arrow {
             'choice.autorise': 'Wyrażam zgodę', 'choice.refuse': 'Nie wyrażam zgody',
             'error.select_autorisation': 'Proszę wybrać odpowiedź.',
             'heading.success': 'Zapis wysłany!',
-            'text.success': 'Dziękujemy, Państwa zgłoszenie zostało odebrane. Wkrótce skontaktuję się, aby potwierdzić termin.',
+            'text.success': 'Dziękujemy, Państwa zgłoszenie zostało odebrane. Terminy zajęć zostaną przydzielone w weekend 12-13 września, tuż przed rozpoczęciem roku szkolnego.',
+            'text.lien_modification_titre': '📎 Państwa osobisty link, aby uzupełnić dokumentację później',
+            'text.lien_modification_hint': 'Jeśli plan zajęć dziecka nie jest jeszcze ostateczny, proszę zapisać ten link — będzie można do niego wrócić, aby go przesłać, bez ponownego wypełniania wszystkiego.',
             'btn.retour': 'Wstecz', 'btn.suivant': 'Dalej', 'btn.envoyer': 'Wyślij zgłoszenie',
             'signature.template': (r, e) => `Ja, niżej podpisany/a, ${r}, rodzic lub opiekun prawny ucznia ${e}, potwierdzam zapoznanie się z powyższymi informacjami.`
         }
@@ -2292,6 +2303,17 @@ a.cm-step:hover .cm-arrow, a.cm-step:focus-visible .cm-arrow {
     setupUploadZone('emploiDuTempsFile3', 'uploadStatus3', 'uploadZoneText3', 'autres_fichier_url', false);
 
     // Soumission finale vers Formspree
+    const INSCRIPTION_ENDPOINT = 'https://dashboardpiano.netlify.app/.netlify/functions/inscription';
+
+    function genererToken() {
+        if (window.crypto && crypto.randomUUID) return crypto.randomUUID();
+        return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, c => {
+            const r = Math.random() * 16 | 0;
+            const v = c === 'x' ? r : (r & 0x3 | 0x8);
+            return v.toString(16);
+        });
+    }
+
     const form = document.getElementById('inscriptionForm');
     form.addEventListener('submit', async (e) => {
         e.preventDefault();
@@ -2310,6 +2332,10 @@ a.cm-step:hover .cm-arrow, a.cm-step:focus-visible .cm-arrow {
             }
         }
 
+        const token = genererToken();
+        const lienModification = `${window.location.origin}/modifier-inscription.html?token=${token}`;
+        payload.lien_modification = lienModification;
+
         try {
             const response = await fetch(FORMSPREE_ENDPOINT, {
                 method: 'POST',
@@ -2317,6 +2343,27 @@ a.cm-step:hover .cm-arrow, a.cm-step:focus-visible .cm-arrow {
                 body: JSON.stringify(payload)
             });
             if (!response.ok) throw new Error('Échec de l\'envoi');
+
+            // Sauvegarde une copie du dossier sous ce lien pour que la famille
+            // puisse revenir le compléter plus tard. Non bloquant : si ça échoue,
+            // l'inscription reste acquise (déjà reçue par email juste au-dessus),
+            // seul le lien de complément ne sera pas proposé.
+            try {
+                const resInscription = await fetch(INSCRIPTION_ENDPOINT, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ token, data: payload })
+                });
+                if (resInscription.ok) {
+                    const lienEl = document.getElementById('lienModificationLink');
+                    lienEl.href = lienModification;
+                    lienEl.textContent = lienModification;
+                    document.getElementById('lienModificationBox').style.display = 'block';
+                }
+            } catch (e) {
+                // silencieux : l'inscription est acquise malgré tout
+            }
+
             showStep('success');
         } catch (err) {
             btnSubmit.disabled = false;
