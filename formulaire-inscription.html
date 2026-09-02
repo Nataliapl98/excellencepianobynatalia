@@ -317,6 +317,75 @@ select.field-select:focus {
     box-shadow: 0 0 0 3px rgba(185,148,78,0.15);
 }
 .field-group textarea { resize: vertical; min-height: 90px; }
+.eleves-list { display: flex; flex-direction: column; gap: 10px; }
+.eleve-row {
+    display: grid;
+    grid-template-columns: auto 1fr auto auto;
+    gap: 8px;
+    align-items: center;
+}
+.eleve-row-num {
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 32% 28%, #f3dfa8 0%, #d9b866 45%, #b9944e 100%);
+    color: #18233f;
+    font-weight: 700;
+    font-size: 0.85rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+.eleve-row input[type="text"],
+.eleve-row input[type="date"] {
+    box-sizing: border-box;
+    padding: 11px 12px;
+    border: 1.5px solid #d8cba9;
+    border-radius: 10px;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.95rem;
+    color: #18233f;
+    background: #fdfcf8;
+}
+.eleve-row input[type="text"] { width: 100%; }
+.eleve-row input[type="date"] { min-width: 0; }
+.eleve-row input:focus {
+    outline: none;
+    border-color: #b9944e;
+    box-shadow: 0 0 0 3px rgba(185,148,78,0.15);
+}
+.eleve-age {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #7a5d28;
+    background: rgba(185,148,78,0.14);
+    border: 1px solid rgba(185,148,78,0.25);
+    border-radius: 999px;
+    padding: 6px 10px;
+    white-space: nowrap;
+    text-align: center;
+    min-width: 56px;
+}
+.add-eleve-link {
+    display: inline-block;
+    margin-top: 10px;
+    background: none;
+    border: none;
+    padding: 0;
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 0.9rem;
+    color: #b9944e;
+    cursor: pointer;
+    text-decoration: underline;
+}
+.add-eleve-link:hover { color: #18233f; }
+@media (max-width: 640px) {
+    .eleve-row { grid-template-columns: auto 1fr; }
+    .eleve-row input[type="date"] { grid-column: 2; }
+    .eleve-age { grid-column: 2; justify-self: start; }
+}
 
 .choice-row {
     display: flex;
@@ -841,8 +910,29 @@ a.cm-step:hover .cm-arrow, a.cm-step:focus-visible .cm-arrow {
                     </div>
 
                     <div class="field-group">
-                        <label class="field-label" for="nom_eleves" data-i18n="label.nom_eleves">Nom et prénom du ou des élèves *</label>
-                        <input type="text" id="nom_eleves" name="nom_eleves" required>
+                        <label class="field-label" data-i18n="label.eleves_liste">Élève(s) : nom et date de naissance *</label>
+                        <div class="eleves-list" id="elevesListeContainer">
+                            <div class="eleve-row" data-eleve-index="1">
+                                <span class="eleve-row-num">1</span>
+                                <input type="text" class="eleve-nom" name="eleve1_nom" required>
+                                <input type="date" class="eleve-naissance" name="eleve1_naissance" required>
+                                <span class="eleve-age" data-age-for="1">—</span>
+                            </div>
+                            <div class="eleve-row" data-eleve-index="2" style="display:none;">
+                                <span class="eleve-row-num">2</span>
+                                <input type="text" class="eleve-nom" name="eleve2_nom">
+                                <input type="date" class="eleve-naissance" name="eleve2_naissance">
+                                <span class="eleve-age" data-age-for="2">—</span>
+                            </div>
+                            <div class="eleve-row" data-eleve-index="3" style="display:none;">
+                                <span class="eleve-row-num">3</span>
+                                <input type="text" class="eleve-nom" name="eleve3_nom">
+                                <input type="date" class="eleve-naissance" name="eleve3_naissance">
+                                <span class="eleve-age" data-age-for="3">—</span>
+                            </div>
+                        </div>
+                        <button type="button" id="ajouterEleveBtn" class="add-eleve-link" data-i18n="cta.ajouter_eleve">+ Ajouter un élève</button>
+                        <input type="hidden" id="nom_eleves" name="nom_eleves">
                         <div class="error-message" data-i18n="error.required">Ce champ est obligatoire.</div>
                     </div>
 
@@ -1536,7 +1626,9 @@ a.cm-step:hover .cm-arrow, a.cm-step:focus-visible .cm-arrow {
             'error.select_option': 'Merci de sélectionner une option.',
             'label.nom_responsable': 'Nom et prénom du responsable *',
             'error.required': 'Ce champ est obligatoire.',
-            'label.nom_eleves': 'Nom et prénom du ou des élèves *',
+            'label.eleves_liste': 'Élève(s) : nom et date de naissance *',
+            'cta.ajouter_eleve': '+ Ajouter un élève',
+            'age.years': (n) => n <= 1 ? `${n} an` : `${n} ans`,
             'label.email': 'Adresse e-mail *',
             'hint.email': 'Utilisée pour vous envoyer documents et factures — merci d\'indiquer une adresse que vous consultez régulièrement.',
             'error.email': "Merci d'indiquer une adresse e-mail valide.",
@@ -1661,7 +1753,9 @@ a.cm-step:hover .cm-arrow, a.cm-step:focus-visible .cm-arrow {
             'error.select_option': 'Please select an option.',
             'label.nom_responsable': 'Full name of the parent/guardian *',
             'error.required': 'This field is required.',
-            'label.nom_eleves': 'Full name of the student(s) *',
+            'label.eleves_liste': 'Student(s): name and date of birth *',
+            'cta.ajouter_eleve': '+ Add a student',
+            'age.years': (n) => n <= 1 ? `${n} year old` : `${n} years old`,
             'label.email': 'Email address *',
             'hint.email': 'Used to send you documents and invoices — please provide an address you check regularly.',
             'error.email': 'Please provide a valid email address.',
@@ -1784,7 +1878,15 @@ a.cm-step:hover .cm-arrow, a.cm-step:focus-visible .cm-arrow {
             'error.select_option': 'Proszę wybrać opcję.',
             'label.nom_responsable': 'Imię i nazwisko opiekuna *',
             'error.required': 'To pole jest wymagane.',
-            'label.nom_eleves': 'Imię i nazwisko ucznia/uczniów *',
+            'label.eleves_liste': 'Uczeń(-owie): imię, nazwisko i data urodzenia *',
+            'cta.ajouter_eleve': '+ Dodaj ucznia',
+            'age.years': (n) => {
+                let word;
+                if (n === 1) word = 'rok';
+                else if ([2,3,4].includes(n % 10) && ![12,13,14].includes(n % 100)) word = 'lata';
+                else word = 'lat';
+                return `${n} ${word}`;
+            },
             'label.email': 'Adres e-mail *',
             'hint.email': 'Używany do wysyłania dokumentów i faktur — prosimy podać adres, który Państwo regularnie sprawdzają.',
             'error.email': 'Proszę podać prawidłowy adres e-mail.',
@@ -2014,6 +2116,54 @@ a.cm-step:hover .cm-arrow, a.cm-step:focus-visible .cm-arrow {
         applyFormulePaymentLock(typeFormule);
     }
 
+    // Liste des élèves : nom + date de naissance par ligne, âge calculé
+    // automatiquement, jusqu'à 3 lignes révélées au fur et à mesure.
+    const nomElevesHidden = document.getElementById('nom_eleves');
+    const elevesRows = Array.from(document.querySelectorAll('.eleve-row'));
+    const ajouterEleveBtn = document.getElementById('ajouterEleveBtn');
+
+    function calcAge(dobStr) {
+        if (!dobStr) return null;
+        const dob = new Date(dobStr + 'T00:00:00');
+        if (isNaN(dob.getTime())) return null;
+        const today = new Date();
+        let age = today.getFullYear() - dob.getFullYear();
+        const m = today.getMonth() - dob.getMonth();
+        if (m < 0 || (m === 0 && today.getDate() < dob.getDate())) age--;
+        return age >= 0 && age < 120 ? age : null;
+    }
+
+    function updateEleveAge(row) {
+        const dobInput = row.querySelector('.eleve-naissance');
+        const ageSpan = row.querySelector('.eleve-age');
+        const age = calcAge(dobInput.value);
+        const ageFn = TRANSLATIONS[currentLang] && TRANSLATIONS[currentLang]['age.years'];
+        ageSpan.textContent = (age !== null && ageFn) ? ageFn(age) : '—';
+    }
+
+    function syncNomEleves() {
+        const noms = elevesRows.map(row => row.querySelector('.eleve-nom').value.trim()).filter(Boolean);
+        nomElevesHidden.value = noms.join(', ');
+    }
+
+    elevesRows.forEach(row => {
+        const nomInput = row.querySelector('.eleve-nom');
+        const dobInput = row.querySelector('.eleve-naissance');
+        nomInput.addEventListener('input', syncNomEleves);
+        dobInput.addEventListener('input', () => updateEleveAge(row));
+        dobInput.addEventListener('change', () => updateEleveAge(row));
+    });
+
+    if (ajouterEleveBtn) {
+        ajouterEleveBtn.addEventListener('click', () => {
+            const nextHidden = elevesRows.find(row => row.style.display === 'none');
+            if (!nextHidden) return;
+            nextHidden.style.display = '';
+            const stillHidden = elevesRows.some(row => row.style.display === 'none');
+            if (!stillHidden) ajouterEleveBtn.style.display = 'none';
+        });
+    }
+
     // Clarifie la durée souhaitée selon la situation : élève seul (1 ou 2
     // cours/semaine) ou fratrie (plusieurs élèves, chacun avec sa propre durée),
     // plutôt qu'un unique choix ambigu "90/120 min".
@@ -2147,8 +2297,8 @@ a.cm-step:hover .cm-arrow, a.cm-step:focus-visible .cm-arrow {
         const stepEl = stepEls[stepKey];
         let valid = true;
 
-        // Champs texte / email / textarea requis (les champs masqués par une branche non active sont ignorés)
-        Array.from(stepEl.querySelectorAll('input[type="text"][required], input[type="email"][required], textarea[required]')).filter(isVisible).forEach(input => {
+        // Champs texte / email / date / textarea requis (les champs masqués par une branche non active sont ignorés)
+        Array.from(stepEl.querySelectorAll('input[type="text"][required], input[type="email"][required], input[type="date"][required], textarea[required]')).filter(isVisible).forEach(input => {
             const ok = input.value.trim() && (input.type !== 'email' || input.value.includes('@'));
             if (!ok) { valid = false; showFieldError(input); } else { hideFieldError(input); }
         });

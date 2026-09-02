@@ -346,6 +346,58 @@
             max-width: 95vw;
             margin: 4px auto 0 auto;
         }
+        #tarifs-cours .tarif-remises {
+            max-width: 95vw;
+            margin: 28px auto 0 auto;
+            background: rgba(255,255,255,0.85);
+            border-radius: 1.5rem;
+            padding: 1.2rem 1.1rem;
+            box-shadow: 0 4px 18px rgba(24,35,63,0.18);
+            box-sizing: border-box;
+        }
+        #tarifs-cours .tarif-remises h3 {
+            font-family: 'Great Vibes', cursive;
+            font-size: 1.5rem;
+            font-weight: 400;
+            color: #18233f;
+            text-align: center;
+            margin: 0 0 1rem 0;
+            text-shadow: none;
+        }
+        #tarifs-cours .tarif-remises-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+        }
+        #tarifs-cours .tarif-remises table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        #tarifs-cours .tarif-remises caption {
+            font-weight: 700;
+            color: #18233f;
+            margin-bottom: 0.4rem;
+            text-align: center;
+            font-size: 0.95rem;
+        }
+        #tarifs-cours .tarif-remises th, #tarifs-cours .tarif-remises td {
+            padding: 6px 8px;
+            text-align: center;
+            font-size: 0.88rem;
+            color: #18233f;
+            border-bottom: 1px solid rgba(24,35,63,0.15);
+        }
+        #tarifs-cours .tarif-remises th {
+            font-weight: 700;
+            color: #7a5d28;
+        }
+        #tarifs-cours .tarif-remises p {
+            font-size: 0.85rem;
+            color: #18233f;
+            opacity: 0.85;
+            text-align: center;
+            margin: 1rem 0 0 0;
+        }
         /* Section : formules flexibles (mobile) */
         #formules-flexibles-mobile {
             background: url('images/piano4.jpg') center center/cover no-repeat;
@@ -908,6 +960,27 @@
                 <a class="paiement-link" href="formules-de-paiement.html#simulateur" target="_blank" data-i18n="mobile.configurer" style="margin-top:18px;display:block;">Configurer ma formule</a>
             </div>
         </div>
+        <div class="tarif-remises">
+            <h3 data-i18n="options.remisesTitle">Remises fidélité &amp; paiement (cumulables)</h3>
+            <div class="tarif-remises-grid">
+                <table>
+                    <caption data-i18n="options.anciennete">Ancienneté</caption>
+                    <tr><th data-i18n="options.duree">Durée</th><th data-i18n="options.remise">Remise</th></tr>
+                    <tr><td data-i18n="options.a12">1-2 ans</td><td>0%</td></tr>
+                    <tr><td data-i18n="options.a34">3-4 ans</td><td>-2%</td></tr>
+                    <tr><td data-i18n="options.a56">5-6 ans</td><td>-4%</td></tr>
+                    <tr><td data-i18n="options.a7p">7 ans et +</td><td>-6%</td></tr>
+                </table>
+                <table>
+                    <caption data-i18n="options.freqPaiement">Fréquence de paiement</caption>
+                    <tr><th data-i18n="options.rythme">Rythme</th><th data-i18n="options.remise">Remise</th></tr>
+                    <tr><td data-i18n="options.mensuel">Mensuel</td><td>0%</td></tr>
+                    <tr><td data-i18n="options.trimestriel">Trimestriel</td><td>-5%</td></tr>
+                    <tr><td data-i18n="options.annuel">Annuel</td><td>-10%</td></tr>
+                </table>
+            </div>
+            <p data-i18n="options.remisesNote">Les deux remises se cumulent en cascade sur le tarif de base. Le tarif exact applicable à votre situation vous est communiqué individuellement.</p>
+        </div>
         <p class="tarifs-note" data-i18n="mobile.tarifsNote">Remises fidélité et paiement cumulables — configurez votre tarif exact avec le <a href="formules-de-paiement.html#simulateur" target="_blank" style="color:#b9944e;font-weight:600;">simulateur de tarif</a>.</p>
     </div>
     </section>
@@ -1294,6 +1367,20 @@
             'options.perMonth': '/mois',
             'options.note': "Engagement à l'année · sept-juin",
             'mobile.configurer': 'Configurer ma formule',
+            'options.remisesTitle': 'Remises fidélité &amp; paiement (cumulables)',
+            'options.anciennete': 'Ancienneté',
+            'options.duree': 'Durée',
+            'options.remise': 'Remise',
+            'options.a12': '1-2 ans',
+            'options.a34': '3-4 ans',
+            'options.a56': '5-6 ans',
+            'options.a7p': '7 ans et +',
+            'options.freqPaiement': 'Fréquence de paiement',
+            'options.rythme': 'Rythme',
+            'options.mensuel': 'Mensuel',
+            'options.trimestriel': 'Trimestriel',
+            'options.annuel': 'Annuel',
+            'options.remisesNote': 'Les deux remises se cumulent en cascade sur le tarif de base. Le tarif exact applicable à votre situation vous est communiqué individuellement.',
             'mobile.tarifsNote': 'Remises fidélité et paiement cumulables — configurez votre tarif exact avec le <a href="formules-de-paiement.html#simulateur" target="_blank" style="color:#b9944e;font-weight:600;">simulateur de tarif</a>.',
             'flex.kicker': 'Formules flexibles',
             'flex.subtitle': 'Pour celles et ceux qui veulent du piano sans engagement scolaire classique, ou qui habitent loin.',
@@ -1427,6 +1514,20 @@
             'options.perMonth': '/month',
             'options.note': 'Annual commitment · Sept-June',
             'mobile.configurer': 'Configure my package',
+            'options.remisesTitle': 'Loyalty &amp; payment discounts (combinable)',
+            'options.anciennete': 'Loyalty',
+            'options.duree': 'Duration',
+            'options.remise': 'Discount',
+            'options.a12': '1-2 years',
+            'options.a34': '3-4 years',
+            'options.a56': '5-6 years',
+            'options.a7p': '7 years and more',
+            'options.freqPaiement': 'Payment frequency',
+            'options.rythme': 'Frequency',
+            'options.mensuel': 'Monthly',
+            'options.trimestriel': 'Quarterly',
+            'options.annuel': 'Annual',
+            'options.remisesNote': 'Both discounts stack in cascade on the base rate. The exact rate for your situation will be confirmed individually.',
             'mobile.tarifsNote': 'Loyalty and payment discounts can be combined — configure your exact rate with the <a href="formules-de-paiement.html#simulateur" target="_blank" style="color:#b9944e;font-weight:600;">price calculator</a>.',
             'flex.kicker': 'Flexible packages',
             'flex.subtitle': 'For those who want piano lessons without a traditional school-term commitment, or who live further away.',
@@ -1560,6 +1661,20 @@
             'options.perMonth': '/miesiąc',
             'options.note': 'Zobowiązanie roczne · wrzesień-czerwiec',
             'mobile.configurer': 'Skonfiguruj moją formułę',
+            'options.remisesTitle': 'Rabaty za lojalność i płatność (łączone)',
+            'options.anciennete': 'Staż',
+            'options.duree': 'Okres',
+            'options.remise': 'Rabat',
+            'options.a12': '1-2 lata',
+            'options.a34': '3-4 lata',
+            'options.a56': '5-6 lat',
+            'options.a7p': '7 lat i więcej',
+            'options.freqPaiement': 'Częstotliwość płatności',
+            'options.rythme': 'Tryb',
+            'options.mensuel': 'Miesięcznie',
+            'options.trimestriel': 'Kwartalnie',
+            'options.annuel': 'Rocznie',
+            'options.remisesNote': 'Oba rabaty łączą się kaskadowo na cenie bazowej. Dokładna cena dla Państwa sytuacji zostanie przekazana indywidualnie.',
             'mobile.tarifsNote': 'Rabaty za lojalność i płatność łączą się — skonfiguruj dokładną cenę za pomocą <a href="formules-de-paiement.html#simulateur" target="_blank" style="color:#b9944e;font-weight:600;">kalkulatora ceny</a>.',
             'flex.kicker': 'Formuły elastyczne',
             'flex.subtitle': 'Dla osób, które chcą grać na pianinie bez klasycznego zobowiązania szkolnego, lub mieszkają dalej.',
