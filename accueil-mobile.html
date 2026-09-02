@@ -143,6 +143,99 @@
             color: #18233f;
             text-shadow: 2px 2px 4px rgba(255,255,255,0.7);
         }
+        /* ----------- Comment ça marche ----------- */
+        #comment-ca-marche-mobile {
+            background: #fff;
+            padding: 2rem 1rem;
+        }
+        #comment-ca-marche-mobile .main-title {
+            display: block;
+            text-align: center;
+            font-family: 'Great Vibes', cursive;
+            font-weight: 400;
+            font-size: 1.9rem;
+            background: linear-gradient(90deg, #18233f 0%, #b9944e 60%, #18233f 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: none;
+            margin-bottom: 0.5rem;
+        }
+        #comment-ca-marche-mobile .subtitle {
+            font-size: 0.92rem;
+            color: #18233f;
+            opacity: 0.85;
+            text-align: center;
+            max-width: 90vw;
+            margin: 0 auto 1.4rem auto;
+        }
+        #comment-ca-marche-mobile .cm-steps-mobile {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            max-width: 95vw;
+            margin: 0 auto;
+        }
+        #comment-ca-marche-mobile .cm-step-mobile {
+            display: block;
+            text-decoration: none;
+            background: linear-gradient(135deg, #fbf8f1 0%, #f3ecd9 100%);
+            border: 1.5px solid #d8cba9;
+            border-radius: 1.2rem;
+            padding: 1rem 1.2rem;
+            box-shadow: 0 4px 14px rgba(24,35,63,0.08);
+            box-sizing: border-box;
+        }
+        #comment-ca-marche-mobile .cm-step-mobile:nth-of-type(even) {
+            background: linear-gradient(135deg, #f5f7fb 0%, #e9edf6 100%);
+        }
+        #comment-ca-marche-mobile .cm-step-head {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 6px;
+        }
+        #comment-ca-marche-mobile .cm-num-mobile {
+            flex-shrink: 0;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 32% 28%, #f3dfa8 0%, #d9b866 45%, #b9944e 100%);
+            color: #18233f;
+            font-weight: 700;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 6px rgba(185,148,78,0.4);
+        }
+        #comment-ca-marche-mobile .cm-title-mobile {
+            font-weight: 700;
+            color: #18233f;
+            font-size: 1rem;
+            font-family: 'Inter', sans-serif;
+            text-shadow: none;
+        }
+        #comment-ca-marche-mobile .cm-text-mobile {
+            font-size: 0.88rem;
+            color: #18233f;
+            opacity: 0.85;
+            line-height: 1.45;
+            margin: 0 0 8px 0;
+        }
+        #comment-ca-marche-mobile .cm-arrow-mobile {
+            display: inline-block;
+            font-size: 0.82rem;
+            font-weight: 700;
+            color: #b9944e;
+        }
+        #comment-ca-marche-mobile .cm-faq-link {
+            display: inline-block;
+            font-weight: 700;
+            font-size: 0.92rem;
+            color: #b9944e;
+            text-decoration: none;
+        }
         /* Section options de cours */
     #tarifs-cours {
             background: url('images/piano2.jpg') center center/cover no-repeat;
@@ -578,6 +671,48 @@
                     </div>
                 </div>
             </div>
+        </div>
+    </section>
+    <!-- Section : Comment ça marche -->
+    <section id="comment-ca-marche-mobile">
+        <div class="main-title" data-i18n="cm.heading">De l'inscription au premier cours, sans surprise.</div>
+        <p class="subtitle" data-i18n="cm.intro">Quatre étapes claires, du choix de la formule à votre premier cours.</p>
+        <div class="cm-steps-mobile">
+            <a href="#tarifs-cours" class="cm-step-mobile">
+                <div class="cm-step-head">
+                    <span class="cm-num-mobile">1</span>
+                    <span class="cm-title-mobile" data-i18n="cm.step1.title">Je choisis ma formule</span>
+                </div>
+                <p class="cm-text-mobile" data-i18n="cm.step1.text">À l'année (planning fixe) ou flexible (sans engagement scolaire).</p>
+                <span class="cm-arrow-mobile" data-i18n="cm.step1.arrow">Voir les formules →</span>
+            </a>
+            <a href="formulaire-inscription.html" class="cm-step-mobile">
+                <div class="cm-step-head">
+                    <span class="cm-num-mobile">2</span>
+                    <span class="cm-title-mobile" data-i18n="cm.step2.title">Je m'inscris</span>
+                </div>
+                <p class="cm-text-mobile" data-i18n="cm.step2.text">Un formulaire simple : mes coordonnées et mes disponibilités.</p>
+                <span class="cm-arrow-mobile" data-i18n="cm.step2.arrow">M'inscrire →</span>
+            </a>
+            <a href="formulaire-inscription.html#inscriptionForm" class="cm-step-mobile">
+                <div class="cm-step-head">
+                    <span class="cm-num-mobile">3</span>
+                    <span class="cm-title-mobile" data-i18n="cm.step3.title">Je reçois mon créneau</span>
+                </div>
+                <p class="cm-text-mobile" data-i18n="cm.step3.text">Formule à l'année : la semaine de la rentrée, une fois les disponibilités de tous les élèves reçues, je fixe le jour et l'heure de votre cours. Formule flexible : vous réservez vous-même votre créneau en ligne.</p>
+                <span class="cm-arrow-mobile" data-i18n="cm.step3.arrow">En savoir plus →</span>
+            </a>
+            <a href="mentions-legales.html#modalites-paiement" class="cm-step-mobile">
+                <div class="cm-step-head">
+                    <span class="cm-num-mobile">4</span>
+                    <span class="cm-title-mobile" data-i18n="cm.step4.title">Je règle mon cours</span>
+                </div>
+                <p class="cm-text-mobile" data-i18n="cm.step4.text">Espèces, virement ou chèque — mensuel, trimestriel ou annuel.</p>
+                <span class="cm-arrow-mobile" data-i18n="cm.step4.arrow">Modalités →</span>
+            </a>
+        </div>
+        <div style="text-align:right;margin-top:1.2rem;max-width:95vw;margin-left:auto;margin-right:auto;">
+            <a href="#faq-mobile" class="cm-faq-link" data-i18n="cm.faqLink">Consultez la FAQ ici →</a>
         </div>
     </section>
     <!-- Section Citation -->
@@ -1094,6 +1229,21 @@
             'rentree.banner': "🎹 C'est la rentrée ! Reprise des cours lundi 14 septembre 2026.",
             'hero.tagline': "L'art du piano s'invite chez vous...",
             'hero.textMobile': "Natalia, professeure diplômée avec plus de 10 ans d'expertise, transforme votre salon en conservatoire privé.<br><br> Une pédagogie sur-mesure qui s'adapte à votre rythme, que vous soyez débutant curieux ou pianiste confirmé.<br><br>L'excellence musicale dans le confort de votre foyer.",
+            'cm.heading': 'De l\'inscription au premier cours, sans surprise.',
+            'cm.intro': 'Quatre étapes claires, du choix de la formule à votre premier cours.',
+            'cm.step1.title': 'Je choisis ma formule',
+            'cm.step1.text': "À l'année (planning fixe) ou flexible (sans engagement scolaire).",
+            'cm.step1.arrow': 'Voir les formules →',
+            'cm.step2.title': "Je m'inscris",
+            'cm.step2.text': 'Un formulaire simple : mes coordonnées et mes disponibilités.',
+            'cm.step2.arrow': "M'inscrire →",
+            'cm.step3.title': 'Je reçois mon créneau',
+            'cm.step3.text': "Formule à l'année : la semaine de la rentrée, une fois les disponibilités de tous les élèves reçues, je fixe le jour et l'heure de votre cours. Formule flexible : vous réservez vous-même votre créneau en ligne.",
+            'cm.step3.arrow': 'En savoir plus →',
+            'cm.step4.title': 'Je règle mon cours',
+            'cm.step4.text': 'Espèces, virement ou chèque — mensuel, trimestriel ou annuel.',
+            'cm.step4.arrow': 'Modalités →',
+            'cm.faqLink': 'Consultez la FAQ ici →',
             'citation.text': '" La couleur est la touche.<br>L\'œil est le marteau. <br>L\'âme est le piano aux cordes nombreuses.<br>L\'artiste est la main qui,<br>par l\'usage convenable de telle ou telle touche,<br>met l\'âme humaine en vibration."<br>Vassily Kandinsky',
             'apropos.textMobile': "Forte de plus de 10 années d'expérience, j'enseigne le piano avec bienveillance et méthode.<br><br> Mon objectif est de transmettre le plaisir de jouer, en adaptant chaque cours aux besoins et au rythme de l'élève.<br><br>Que vous soyez débutant(e) ou que vous souhaitiez vous perfectionner, nous construirons ensemble un parcours musical stimulant et personnalisé.<br><br>Mon approche privilégie un apprentissage progressif qui allie technique solide et plaisir musical, en explorant une variété de styles selon vos goûts.",
             'concert.title': "Concert de fin d'année",
@@ -1212,6 +1362,21 @@
             'rentree.banner': '🎹 Back to school! Lessons resume Monday, September 14, 2026.',
             'hero.tagline': 'The art of piano comes to you...',
             'hero.textMobile': 'Natalia, a qualified teacher with over 10 years of expertise, turns your living room into a private conservatory.<br><br> A tailor-made teaching approach that adapts to your pace, whether you are a curious beginner or an accomplished pianist.<br><br>Musical excellence in the comfort of your own home.',
+            'cm.heading': 'From registration to your first lesson, no surprises.',
+            'cm.intro': 'Four clear steps, from choosing your package to your first lesson.',
+            'cm.step1.title': 'I choose my package',
+            'cm.step1.text': 'Annual (fixed schedule) or flexible (no school-term commitment).',
+            'cm.step1.arrow': 'See the packages →',
+            'cm.step2.title': 'I register',
+            'cm.step2.text': 'A simple form: your contact details and your availability.',
+            'cm.step2.arrow': 'Get started →',
+            'cm.step3.title': 'I receive my time slot',
+            'cm.step3.text': "Annual package: the week before the new school term, once every student's availability has been received, I set the day and time of your lesson. Flexible package: you book your own slot online.",
+            'cm.step3.arrow': 'Find out more →',
+            'cm.step4.title': 'I pay for my lessons',
+            'cm.step4.text': 'Cash, bank transfer or cheque — monthly, quarterly or annually.',
+            'cm.step4.arrow': 'Payment terms →',
+            'cm.faqLink': 'Check out the FAQ here →',
             'citation.text': '"Colour is the keyboard.<br>The eyes are the hammers. <br>The soul is the piano with its many strings.<br>The artist is the hand that,<br>through the appropriate use of one key or another,<br>sets the human soul vibrating."<br>Vassily Kandinsky',
             'apropos.textMobile': "With over 10 years of experience, I teach piano with kindness and method.<br><br> My goal is to pass on the joy of playing, adapting each lesson to the student's needs and pace.<br><br>Whether you are a beginner or looking to improve, together we will build a stimulating, personalised musical journey.<br><br>My approach favours progressive learning that combines solid technique with musical enjoyment, exploring a variety of styles to suit your taste.",
             'concert.title': 'End-of-year concert',
@@ -1330,6 +1495,21 @@
             'rentree.banner': '🎹 Powrót do szkoły! Zajęcia wznawiają się w poniedziałek, 14 września 2026.',
             'hero.tagline': 'Sztuka fortepianu przychodzi do Państwa domu...',
             'hero.textMobile': 'Natalia, dyplomowana nauczycielka z ponad 10-letnim doświadczeniem, zamienia Państwa salon w prywatne konserwatorium.<br><br> Indywidualna pedagogika dostosowana do Państwa tempa, niezależnie czy jesteście ciekawymi początkującymi, czy zaawansowanymi pianistami.<br><br>Muzyczna doskonałość w komforcie własnego domu.',
+            'cm.heading': 'Od zapisu do pierwszej lekcji, bez niespodzianek.',
+            'cm.intro': 'Cztery jasne etapy, od wyboru formuły po pierwszą lekcję.',
+            'cm.step1.title': 'Wybieram formułę',
+            'cm.step1.text': 'Roczna (stały grafik) lub elastyczna (bez zobowiązania na rok szkolny).',
+            'cm.step1.arrow': 'Zobacz formuły →',
+            'cm.step2.title': 'Zapisuję się',
+            'cm.step2.text': 'Prosty formularz: dane kontaktowe i dostępność.',
+            'cm.step2.arrow': 'Zacznij →',
+            'cm.step3.title': 'Otrzymuję termin zajęć',
+            'cm.step3.text': 'Formuła roczna: w tygodniu poprzedzającym rozpoczęcie roku szkolnego, po otrzymaniu dostępności wszystkich uczniów, ustalam dzień i godzinę lekcji. Formuła elastyczna: rezerwujesz termin samodzielnie online.',
+            'cm.step3.arrow': 'Dowiedz się więcej →',
+            'cm.step4.title': 'Płacę za lekcje',
+            'cm.step4.text': 'Gotówka, przelew lub czek — miesięcznie, kwartalnie lub rocznie.',
+            'cm.step4.arrow': 'Warunki płatności →',
+            'cm.faqLink': 'Zobacz FAQ tutaj →',
             'citation.text': '"Kolor jest klawiaturą.<br>Oko jest młoteczkiem. <br>Dusza jest fortepianem o wielu strunach.<br>Artysta jest dłonią, która,<br>poprzez odpowiednie użycie tej czy innej klawisza,<br>wprawia ludzką duszę w wibrację."<br>Wassily Kandinsky',
             'apropos.textMobile': 'Z ponad 10-letnim doświadczeniem uczę gry na pianinie z życzliwością i metodą.<br><br> Moim celem jest przekazanie radości grania, dostosowując każdą lekcję do potrzeb i tempa ucznia.<br><br>Niezależnie od tego, czy jesteś początkujący(-a), czy chcesz się doskonalić, razem zbudujemy stymulującą i spersonalizowaną drogę muzyczną.<br><br>Moje podejście stawia na stopniowe uczenie się, łączące solidną technikę z przyjemnością muzykowania, poprzez odkrywanie różnych stylów zgodnie z Twoimi upodobaniami.',
             'concert.title': 'Koncert na koniec roku',
