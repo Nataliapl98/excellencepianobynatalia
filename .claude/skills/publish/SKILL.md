@@ -1,16 +1,23 @@
 ---
 name: publish
-description: Publish a reviewed test page (test2027.html, *-test.html) to its live counterpart on excellencepianobynatalia.com — copies the content over, commits, pushes, opens a PR, and merges it. Use when the user says "publie", "mets en ligne", "publish this", or asks to push a test page to the real site.
+description: Publish a reviewed test page (*-test.html) to its live counterpart on excellencepianobynatalia.com — copies the content over, commits, pushes, opens a PR, and merges it. Use when the user says "publie", "mets en ligne", "publish this", or asks to push a test page to the real site.
 ---
 
 # Publish a test page to the live site
 
-This repo's workflow: new content/design work is drafted in a **test page** first
-(e.g. `test2027.html`, `formules-de-paiement-test.html`), deployed live via GitHub
-Pages so the user can preview it at its own URL, then — once approved — copied onto
-the **real page** that visitors actually see.
+Most of the site is now edited **directly on the live files** (e.g. `index.html`,
+`formulaire-inscription.html`) — always starting from a fresh branch off `main` (the
+local dev branch's copies of live files go stale, since nothing merges main back into
+it) — and pushed live immediately via PR + squash-merge. There is no test-staging step
+for those pages anymore; skip this skill for them.
 
-This skill performs that last step: test page → live page.
+A few pages still follow the older draft-first workflow: content/design work is
+drafted in a **test page** (e.g. `formules-de-paiement-test.html`), deployed live via
+GitHub Pages so the user can preview it at its own URL, then — once approved — copied
+onto the **real page** that visitors actually see.
+
+This skill performs that last step: test page → live page. Only use it for pages that
+still have a `*-test.html` counterpart being maintained.
 
 ## 1. Identify the test file and its live counterpart
 
@@ -18,7 +25,6 @@ Known mappings:
 
 | Test file | Live file |
 |---|---|
-| `test2027.html` | `index.html` |
 | `formules-de-paiement-test.html` | `formules-de-paiement.html` |
 
 For any other file following the `<name>-test.html` pattern, the live counterpart is
