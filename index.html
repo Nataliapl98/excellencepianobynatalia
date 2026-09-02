@@ -111,6 +111,70 @@
             ]
         }
         </script>
+        <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [
+                {
+                    "@type": "Question",
+                    "name": "Quelle est la différence entre la formule à l'année et les formules flexibles ?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "La formule à l'année (Découverte, Progression ou Excellence) réserve un créneau hebdomadaire fixe pour toute l'année scolaire, en présentiel. Les formules flexibles (Impromptu et Résonance) sont des carnets de cours sans engagement à l'année, à réserver au fur et à mesure selon vos disponibilités."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "Comment fonctionne la formule Résonance (visio + présentiel) ?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Le carnet Résonance comprend 12 cours : 9 en visioconférence et 3 en présentiel, à réserver librement en semaine entre 9h et 15h. C'est la formule idéale si vous habitez dans l'arrière-pays (Peille, Peillon, Sainte-Agnès, Castellar, Gorbio, Èze, Villefranche-sur-Mer) ou si vous préférez la flexibilité du distanciel avec quelques rendez-vous en présentiel pour ajuster la posture et le toucher. Le carnet est valable 5 mois, sans engagement ni paiement récurrent."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "Comment fonctionne la formule Impromptu ?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Impromptu est un carnet de 10 cours en présentiel, valable 5 mois, à réserver librement en semaine entre 9h et 15h. Sans engagement à l'année, c'est une formule adaptée aux retraités, télétravailleurs ou parents disponibles en journée."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "Découverte, Progression ou Excellence : comment choisir ma formule à l'année ?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Les trois formules se distinguent par la durée du cours hebdomadaire : Découverte (30 minutes), Progression (45 minutes) et Excellence (60 minutes). Le choix dépend de l'âge de l'élève, de son niveau et du temps de pratique souhaité — je peux vous conseiller lors du premier échange."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "Le nombre de cours dans l'année est-il toujours le même ?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Non : il varie généralement entre 29 et 32 séances selon le jour de la semaine choisi, en fonction des jours fériés et vacances scolaires qui tombent sur ce jour. Ce nombre est fixé dès le choix du créneau et ne change pas en cours d'année."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "Proposez-vous des cours en dehors de Monaco ?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Oui. Les cours à domicile en présentiel se donnent à Monaco, Beausoleil et Cap-d'Ail. Pour l'arrière-pays (Peille, Peillon, Sainte-Agnès, Castellar, Gorbio, Èze, Villefranche-sur-Mer), la formule Résonance en visioconférence permet de suivre des cours de qualité sans contrainte de déplacement."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "Comment se passe un premier cours d'essai ?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Pour les formules flexibles (Impromptu et Résonance), un cours d'essai Prélude optionnel de 30 minutes est proposé à 20€, en présentiel ou en visio selon la formule, avant de vous engager. Pour les formules à l'année, l'inscription se fait directement via le formulaire en ligne — n'hésitez pas à me contacter au préalable pour toute question sur le déroulement des cours."
+                    }
+                }
+            ]
+        }
+        </script>
     <title data-i18n="page.title">Cours de piano à Monaco, Beausoleil, Cap-d'Ail & en visio (arrière-pays) - Excellence Piano by Natalia</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -636,6 +700,55 @@
             #formules-flexibles .paiement-link:hover {
                 color: #b9944e;
                 text-decoration: underline;
+            }
+            /* ----------- FAQ ----------- */
+            #faq .faq-list {
+                max-width: 720px;
+                margin: 40px auto 0 auto;
+                display: flex;
+                flex-direction: column;
+                gap: 14px;
+            }
+            #faq details {
+                background:
+                    linear-gradient(85deg, rgba(92, 81, 16, 0.009) 0%, rgba(92, 81, 16, 0.089) 100%),
+                    linear-gradient(30deg, rgba(179, 177, 177, 0.741) 0%, rgba(172, 170, 170, 0.848) 100%);
+                border-radius: 16px;
+                padding: 4px 20px;
+                box-shadow: 0 6px 18px #18233f;
+            }
+            #faq summary {
+                font-size: 16px;
+                font-weight: 700;
+                color: #18233f;
+                padding: 16px 0;
+                cursor: pointer;
+                list-style: none;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                gap: 12px;
+            }
+            #faq summary::-webkit-details-marker {
+                display: none;
+            }
+            #faq summary::after {
+                content: '+';
+                font-size: 22px;
+                font-weight: 400;
+                color: #b9944e;
+                flex-shrink: 0;
+                transition: transform 0.2s;
+            }
+            #faq details[open] summary::after {
+                transform: rotate(45deg);
+            }
+            #faq details p {
+                font-size: 15px;
+                color: #18233f;
+                opacity: 0.85;
+                margin: 0 0 18px 0;
+                line-height: 1.5;
             }
             /* ----------- Transparence remises (fidélité / paiement) ----------- */
             .tarif-remises {
@@ -1401,6 +1514,45 @@ document.addEventListener('DOMContentLoaded', function() {
             </ul>
             <a class="paiement-link" href="formulaire-inscription.html" target="_blank" data-i18n="flex.cta">Je m'inscris</a>
         </div>
+    </div>
+</section>
+<section id="faq">
+    <div style="width:100%;display:flex;justify-content:center;align-items:center;margin-top:60px;margin-bottom:60px;transform:skewY(4deg);z-index:2;position:relative;">
+    <div style="background:rgba(255,255,255,0.32);border-radius:2.5rem;padding:2rem 1.5rem 1.5rem 1.5rem;box-shadow:0 0 64px 32px rgba(255,255,255,0.45), 0 2px 24px 0 rgba(31,41,55,0.10);backdrop-filter:blur(32px);-webkit-backdrop-filter:blur(32px);border:1px solid rgba(255,255,255,0.10);max-width:540px;margin:0 auto;">
+    <div style="font-size:1rem;letter-spacing:0.12em;text-transform:uppercase;color:#8a6d1f;font-weight:700;text-align:center;margin-bottom:0.4rem;text-shadow:0 1px 2px rgba(255,255,255,0.5);" data-i18n="faq.kicker">Questions fréquentes</div>
+    <h2 style="font-size:2.2rem;font-family:'Great Vibes',cursive;color:#18233f;text-align:center;margin-bottom:1.2rem;width:100%;font-weight:700;text-shadow:none;background:none;" data-i18n="faq.heading">Tout comprendre avant de choisir votre formule.</h2>
+    <p style="font-size:1.05rem;color:#18233f;text-align:center;margin:0;" data-i18n="faq.subtitle">Les réponses aux questions les plus fréquentes sur les formules à l'année et les formules flexibles.</p>
+    </div>
+    </div>
+    <div class="faq-list">
+        <details>
+            <summary data-i18n="faq.q1">Quelle est la différence entre la formule à l'année et les formules flexibles ?</summary>
+            <p data-i18n="faq.a1">La formule à l'année (Découverte, Progression ou Excellence) réserve un créneau hebdomadaire fixe pour toute l'année scolaire, en présentiel. Les formules flexibles (Impromptu et Résonance) sont des carnets de cours sans engagement à l'année, à réserver au fur et à mesure selon vos disponibilités.</p>
+        </details>
+        <details>
+            <summary data-i18n="faq.q2">Comment fonctionne la formule Résonance (visio + présentiel) ?</summary>
+            <p data-i18n="faq.a2">Le carnet Résonance comprend 12 cours : 9 en visioconférence et 3 en présentiel, à réserver librement en semaine entre 9h et 15h. C'est la formule idéale si vous habitez dans l'arrière-pays (Peille, Peillon, Sainte-Agnès, Castellar, Gorbio, Èze, Villefranche-sur-Mer) ou si vous préférez la flexibilité du distanciel avec quelques rendez-vous en présentiel pour ajuster la posture et le toucher. Le carnet est valable 5 mois, sans engagement ni paiement récurrent.</p>
+        </details>
+        <details>
+            <summary data-i18n="faq.q3">Comment fonctionne la formule Impromptu ?</summary>
+            <p data-i18n="faq.a3">Impromptu est un carnet de 10 cours en présentiel, valable 5 mois, à réserver librement en semaine entre 9h et 15h. Sans engagement à l'année, c'est une formule adaptée aux retraités, télétravailleurs ou parents disponibles en journée.</p>
+        </details>
+        <details>
+            <summary data-i18n="faq.q4">Découverte, Progression ou Excellence : comment choisir ma formule à l'année ?</summary>
+            <p data-i18n="faq.a4">Les trois formules se distinguent par la durée du cours hebdomadaire : Découverte (30 minutes), Progression (45 minutes) et Excellence (60 minutes). Le choix dépend de l'âge de l'élève, de son niveau et du temps de pratique souhaité — je peux vous conseiller lors du premier échange.</p>
+        </details>
+        <details>
+            <summary data-i18n="faq.q5">Le nombre de cours dans l'année est-il toujours le même ?</summary>
+            <p data-i18n="faq.a5">Non : il varie généralement entre 29 et 32 séances selon le jour de la semaine choisi, en fonction des jours fériés et vacances scolaires qui tombent sur ce jour. Ce nombre est fixé dès le choix du créneau et ne change pas en cours d'année.</p>
+        </details>
+        <details>
+            <summary data-i18n="faq.q6">Proposez-vous des cours en dehors de Monaco ?</summary>
+            <p data-i18n="faq.a6">Oui. Les cours à domicile en présentiel se donnent à Monaco, Beausoleil et Cap-d'Ail. Pour l'arrière-pays (Peille, Peillon, Sainte-Agnès, Castellar, Gorbio, Èze, Villefranche-sur-Mer), la formule Résonance en visioconférence permet de suivre des cours de qualité sans contrainte de déplacement.</p>
+        </details>
+        <details>
+            <summary data-i18n="faq.q7">Comment se passe un premier cours d'essai ?</summary>
+            <p data-i18n="faq.a7">Pour les formules flexibles (Impromptu et Résonance), un cours d'essai Prélude optionnel de 30 minutes est proposé à 20€, en présentiel ou en visio selon la formule, avant de vous engager. Pour les formules à l'année, l'inscription se fait directement via le formulaire en ligne — n'hésitez pas à me contacter au préalable pour toute question sur le déroulement des cours.</p>
+        </details>
     </div>
 </section>
 </main>
@@ -2342,6 +2494,23 @@ document.addEventListener('DOMContentLoaded', function() {
             'flex.resonance.li4': 'Valable 5 mois, sans engagement ni paiement récurrent',
             'flex.resonance.li5': 'Essai Prélude (optionnel) : 30 min en visio, 20€ — premier cours avant de vous engager (1 par élève)',
             'flex.cta': "Je m'inscris",
+            'faq.kicker': 'Questions fréquentes',
+            'faq.heading': 'Tout comprendre avant de choisir votre formule.',
+            'faq.subtitle': "Les réponses aux questions les plus fréquentes sur les formules à l'année et les formules flexibles.",
+            'faq.q1': "Quelle est la différence entre la formule à l'année et les formules flexibles ?",
+            'faq.a1': "La formule à l'année (Découverte, Progression ou Excellence) réserve un créneau hebdomadaire fixe pour toute l'année scolaire, en présentiel. Les formules flexibles (Impromptu et Résonance) sont des carnets de cours sans engagement à l'année, à réserver au fur et à mesure selon vos disponibilités.",
+            'faq.q2': 'Comment fonctionne la formule Résonance (visio + présentiel) ?',
+            'faq.a2': "Le carnet Résonance comprend 12 cours : 9 en visioconférence et 3 en présentiel, à réserver librement en semaine entre 9h et 15h. C'est la formule idéale si vous habitez dans l'arrière-pays (Peille, Peillon, Sainte-Agnès, Castellar, Gorbio, Èze, Villefranche-sur-Mer) ou si vous préférez la flexibilité du distanciel avec quelques rendez-vous en présentiel pour ajuster la posture et le toucher. Le carnet est valable 5 mois, sans engagement ni paiement récurrent.",
+            'faq.q3': 'Comment fonctionne la formule Impromptu ?',
+            'faq.a3': "Impromptu est un carnet de 10 cours en présentiel, valable 5 mois, à réserver librement en semaine entre 9h et 15h. Sans engagement à l'année, c'est une formule adaptée aux retraités, télétravailleurs ou parents disponibles en journée.",
+            'faq.q4': 'Découverte, Progression ou Excellence : comment choisir ma formule à l\'année ?',
+            'faq.a4': "Les trois formules se distinguent par la durée du cours hebdomadaire : Découverte (30 minutes), Progression (45 minutes) et Excellence (60 minutes). Le choix dépend de l'âge de l'élève, de son niveau et du temps de pratique souhaité — je peux vous conseiller lors du premier échange.",
+            'faq.q5': "Le nombre de cours dans l'année est-il toujours le même ?",
+            'faq.a5': "Non : il varie généralement entre 29 et 32 séances selon le jour de la semaine choisi, en fonction des jours fériés et vacances scolaires qui tombent sur ce jour. Ce nombre est fixé dès le choix du créneau et ne change pas en cours d'année.",
+            'faq.q6': 'Proposez-vous des cours en dehors de Monaco ?',
+            'faq.a6': "Oui. Les cours à domicile en présentiel se donnent à Monaco, Beausoleil et Cap-d'Ail. Pour l'arrière-pays (Peille, Peillon, Sainte-Agnès, Castellar, Gorbio, Èze, Villefranche-sur-Mer), la formule Résonance en visioconférence permet de suivre des cours de qualité sans contrainte de déplacement.",
+            'faq.q7': 'Comment se passe un premier cours d\'essai ?',
+            'faq.a7': "Pour les formules flexibles (Impromptu et Résonance), un cours d'essai Prélude optionnel de 30 minutes est proposé à 20€, en présentiel ou en visio selon la formule, avant de vous engager. Pour les formules à l'année, l'inscription se fait directement via le formulaire en ligne — n'hésitez pas à me contacter au préalable pour toute question sur le déroulement des cours.",
             'inscription.heading': 'De premiers accords aux plus belles mélodies...',
             'inscription.text': "L'aventure commence en septembre !<br><br> 📝 <strong> Inscriptions et Réinscriptions :</strong><br> du 24 août au 11 septembre 2026 <br><br> Inscriptions possible en cours d'année, me contacter au préalable.<br><br> Inscription toute l'année pour les formules flexibles.",
             'inscription.cta': "Accédez au formulaire d'inscription",
@@ -2477,6 +2646,23 @@ document.addEventListener('DOMContentLoaded', function() {
             'flex.resonance.li4': 'Valid for 5 months, no commitment or recurring payment',
             'flex.resonance.li5': 'Optional Prelude trial: 30 min via video call, €20 — a first lesson before committing (1 per student)',
             'flex.cta': 'I sign up',
+            'faq.kicker': 'Frequently asked questions',
+            'faq.heading': 'Everything you need to know before choosing a package.',
+            'faq.subtitle': 'Answers to the most common questions about the annual packages and the flexible packages.',
+            'faq.q1': "What's the difference between the annual package and the flexible packages?",
+            'faq.a1': "The annual package (Découverte, Progression or Excellence) reserves a fixed weekly slot for the whole school year, in person. The flexible packages (Impromptu and Résonance) are lesson bundles with no annual commitment, booked as you go according to your availability.",
+            'faq.q2': 'How does the Résonance package (video + in-person) work?',
+            'faq.a2': "The Résonance bundle includes 12 lessons: 9 via video call and 3 in person, freely bookable on weekdays between 9am and 3pm. It's the ideal package if you live in the hinterland (Peille, Peillon, Sainte-Agnès, Castellar, Gorbio, Èze, Villefranche-sur-Mer) or if you prefer the flexibility of remote lessons with a few in-person sessions to fine-tune posture and touch. The bundle is valid for 5 months, with no commitment or recurring payment.",
+            'faq.q3': 'How does the Impromptu package work?',
+            'faq.a3': "Impromptu is a bundle of 10 in-person lessons, valid for 5 months, freely bookable on weekdays between 9am and 3pm. With no annual commitment, it's a package suited to retirees, remote workers or parents available during the day.",
+            'faq.q4': 'Découverte, Progression or Excellence: how do I choose my annual package?',
+            'faq.a4': "The three packages differ by weekly lesson length: Découverte (30 minutes), Progression (45 minutes) and Excellence (60 minutes). The choice depends on the student's age, level and desired practice time — I can advise you during our first conversation.",
+            'faq.q5': 'Is the number of lessons per year always the same?',
+            'faq.a5': "No: it generally varies between 29 and 32 sessions depending on the weekday chosen, based on how many public holidays and school breaks fall on that day. This number is set as soon as the slot is chosen and does not change during the year.",
+            'faq.q6': 'Do you offer lessons outside Monaco?',
+            'faq.a6': "Yes. In-person home lessons are given in Monaco, Beausoleil and Cap-d'Ail. For the hinterland (Peille, Peillon, Sainte-Agnès, Castellar, Gorbio, Èze, Villefranche-sur-Mer), the Résonance video-call package lets you take quality lessons with no travel required.",
+            'faq.q7': 'How does a first trial lesson work?',
+            'faq.a7': "For the flexible packages (Impromptu and Résonance), an optional 30-minute Prélude trial lesson is offered for €20, in person or by video call depending on the package, before you commit. For the annual packages, registration is done directly through the online form — feel free to contact me beforehand with any questions about how lessons work.",
             'inscription.heading': 'From the first chords to the most beautiful melodies...',
             'inscription.text': 'The adventure begins in September!<br><br> 📝 <strong> Registrations and Re-registrations:</strong><br> from 24 August to 11 September 2026 <br><br> Registration is possible throughout the year, please contact me beforehand.<br><br> Registration is open all year round for flexible packages.',
             'inscription.cta': 'Go to the registration form',
@@ -2612,6 +2798,23 @@ document.addEventListener('DOMContentLoaded', function() {
             'flex.resonance.li4': 'Ważny 5 miesięcy, bez zobowiązania i bez płatności cyklicznych',
             'flex.resonance.li5': 'Opcjonalna lekcja próbna Prélude: 30 min online, 20€ — pierwsza lekcja przed podjęciem zobowiązania (1 na ucznia)',
             'flex.cta': 'Zapisuję się',
+            'faq.kicker': 'Najczęściej zadawane pytania',
+            'faq.heading': 'Wszystko, co warto wiedzieć przed wyborem formuły.',
+            'faq.subtitle': 'Odpowiedzi na najczęstsze pytania dotyczące formuł rocznych i formuł elastycznych.',
+            'faq.q1': 'Jaka jest różnica między formułą roczną a formułami elastycznymi?',
+            'faq.a1': 'Formuła roczna (Découverte, Progression lub Excellence) rezerwuje stały cotygodniowy termin na cały rok szkolny, stacjonarnie. Formuły elastyczne (Impromptu i Résonance) to karnety lekcji bez rocznego zobowiązania, rezerwowane na bieżąco według Państwa dostępności.',
+            'faq.q2': 'Jak działa formuła Résonance (wideo + stacjonarnie)?',
+            'faq.a2': 'Karnet Résonance obejmuje 12 lekcji: 9 online i 3 stacjonarnie, rezerwowane dowolnie w tygodniu między 9:00 a 15:00. To idealna formuła, jeśli mieszkają Państwo na zapleczu (Peille, Peillon, Sainte-Agnès, Castellar, Gorbio, Èze, Villefranche-sur-Mer) lub wolą elastyczność lekcji zdalnych z kilkoma spotkaniami stacjonarnymi w celu dopracowania postawy i dotyku. Karnet jest ważny 5 miesięcy, bez zobowiązania i bez płatności cyklicznych.',
+            'faq.q3': 'Jak działa formuła Impromptu?',
+            'faq.a3': 'Impromptu to karnet 10 lekcji stacjonarnych, ważny 5 miesięcy, rezerwowanych dowolnie w tygodniu między 9:00 a 15:00. Bez rocznego zobowiązania — to formuła dopasowana do emerytów, osób pracujących zdalnie lub rodziców dostępnych w ciągu dnia.',
+            'faq.q4': 'Découverte, Progression czy Excellence: jak wybrać formułę roczną?',
+            'faq.a4': 'Trzy formuły różnią się długością cotygodniowej lekcji: Découverte (30 minut), Progression (45 minut) i Excellence (60 minut). Wybór zależy od wieku ucznia, jego poziomu i chęci do ćwiczeń — mogę doradzić podczas pierwszej rozmowy.',
+            'faq.q5': 'Czy liczba lekcji w roku jest zawsze taka sama?',
+            'faq.a5': 'Nie: zazwyczaj wynosi od 29 do 32 lekcji, w zależności od wybranego dnia tygodnia oraz liczby dni świątecznych i wakacji szkolnych przypadających na ten dzień. Liczba ta jest ustalana od razu przy wyborze terminu i nie zmienia się w trakcie roku.',
+            'faq.q6': 'Czy prowadzą Państwo lekcje poza Monako?',
+            'faq.a6': "Tak. Lekcje stacjonarne w domu odbywają się w Monako, Beausoleil i Cap-d'Ail. Dla zaplecza (Peille, Peillon, Sainte-Agnès, Castellar, Gorbio, Èze, Villefranche-sur-Mer) formuła Résonance w formie wideokonferencji pozwala na lekcje wysokiej jakości bez konieczności dojazdu.",
+            'faq.q7': 'Jak wygląda pierwsza lekcja próbna?',
+            'faq.a7': 'W przypadku formuł elastycznych (Impromptu i Résonance) proponowana jest opcjonalna lekcja próbna Prélude: 30 minut za 20€, stacjonarnie lub online w zależności od formuły, przed podjęciem zobowiązania. W przypadku formuł rocznych zapis odbywa się bezpośrednio przez formularz online — zapraszam do kontaktu przed zapisem w razie jakichkolwiek pytań dotyczących przebiegu lekcji.',
             'inscription.heading': 'Od pierwszych akordów do najpiękniejszych melodii...',
             'inscription.text': 'Przygoda zaczyna się we wrześniu!<br><br> 📝 <strong> Zapisy i ponowne zapisy:</strong><br> od 24 sierpnia do 11 września 2026 <br><br> Zapisy możliwe również w trakcie roku, proszę o wcześniejszy kontakt.<br><br> Zapisy na formuły elastyczne trwają przez cały rok.',
             'inscription.cta': 'Przejdź do formularza zapisu',
