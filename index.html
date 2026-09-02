@@ -1082,6 +1082,20 @@
             opacity: 1;
             transform: translateY(0);
         }
+        .cm-faq-link {
+            display: inline-block;
+            font-family: 'Inter', sans-serif;
+            font-weight: 700;
+            font-size: 0.95rem;
+            color: #b9944e;
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.2s ease, color 0.2s ease;
+        }
+        .cm-faq-link:hover, .cm-faq-link:focus-visible {
+            color: #18233f;
+            border-color: #18233f;
+        }
         @media (max-width: 900px) {
             .cm-steps { grid-template-columns: repeat(2, 1fr); row-gap: 40px; }
             .cm-line { display: none; }
@@ -1208,6 +1222,9 @@
                         <span class="cm-arrow" data-i18n="cm.step4.arrow">Modalités →</span>
                     </div>
                 </a>
+            </div>
+            <div style="text-align:right;margin-top:24px;">
+                <a href="#faq" class="cm-faq-link" data-i18n="cm.faqLink">Consultez la FAQ ici →</a>
             </div>
         </div>
         </div>
@@ -2442,6 +2459,7 @@ document.addEventListener('DOMContentLoaded', function() {
             'cm.step4.title': 'Je règle mon cours',
             'cm.step4.text': 'Espèces, virement ou chèque — mensuel, trimestriel ou annuel.',
             'cm.step4.arrow': 'Modalités →',
+            'cm.faqLink': 'Consultez la FAQ ici →',
             'citation.text': '" La couleur est la touche.<br>L\'œil est le marteau. <br>L\'âme est le piano aux cordes nombreuses.<br>L\'artiste est la main qui,<br>par l\'usage convenable de telle ou telle touche,<br>met l\'âme humaine en vibration."<br>Vassily Kandinsky',
             'apropos.text1': "Forte de plus de 10 années d'expérience, j'enseigne le piano avec bienveillance et méthode.<br><br> Mon objectif est de transmettre le plaisir de jouer, en adaptant chaque cours aux besoins et au rythme de l'élève.<br><br>Que vous soyez débutant(e) ou que vous souhaitiez vous perfectionner, nous construirons ensemble un parcours musical stimulant et personnalisé.",
             'apropos.text2': "Mon approche privilégie un apprentissage progressif qui allie technique solide et plaisir musical, en explorant une variété de styles selon vos goûts.",
@@ -2594,6 +2612,7 @@ document.addEventListener('DOMContentLoaded', function() {
             'cm.step4.title': 'I pay for my lessons',
             'cm.step4.text': 'Cash, bank transfer or cheque — monthly, quarterly or annually.',
             'cm.step4.arrow': 'Payment terms →',
+            'cm.faqLink': 'Check out the FAQ here →',
             'citation.text': '"Colour is the keyboard.<br>The eyes are the hammers. <br>The soul is the piano with its many strings.<br>The artist is the hand that,<br>through the appropriate use of one key or another,<br>sets the human soul vibrating."<br>Vassily Kandinsky',
             'apropos.text1': "With over 10 years of experience, I teach piano with kindness and method.<br><br> My goal is to pass on the joy of playing, adapting each lesson to the student's needs and pace.<br><br>Whether you are a beginner or looking to improve, together we will build a stimulating, personalised musical journey.",
             'apropos.text2': 'My approach favours progressive learning that combines solid technique with musical enjoyment, exploring a variety of styles to suit your taste.',
@@ -2746,6 +2765,7 @@ document.addEventListener('DOMContentLoaded', function() {
             'cm.step4.title': 'Płacę za lekcje',
             'cm.step4.text': 'Gotówka, przelew lub czek — miesięcznie, kwartalnie lub rocznie.',
             'cm.step4.arrow': 'Warunki płatności →',
+            'cm.faqLink': 'Zobacz FAQ tutaj →',
             'citation.text': '"Kolor jest klawiaturą.<br>Oko jest młoteczkiem. <br>Dusza jest fortepianem o wielu strunach.<br>Artysta jest dłonią, która,<br>poprzez odpowiednie użycie tej czy innej klawisza,<br>wprawia ludzką duszę w wibrację."<br>Wassily Kandinsky',
             'apropos.text1': 'Z ponad 10-letnim doświadczeniem uczę gry na pianinie z życzliwością i metodą.<br><br> Moim celem jest przekazanie radości grania, dostosowując każdą lekcję do potrzeb i tempa ucznia.<br><br>Niezależnie od tego, czy jesteś początkujący(-a), czy chcesz się doskonalić, razem zbudujemy stymulującą i spersonalizowaną drogę muzyczną.',
             'apropos.text2': 'Moje podejście stawia na stopniowe uczenie się, łączące solidną technikę z przyjemnością muzykowania, poprzez odkrywanie różnych stylów zgodnie z Twoimi upodobaniami.',
