@@ -1664,6 +1664,7 @@ a.cm-step:hover .cm-arrow, a.cm-step:focus-visible .cm-arrow {
             'label.nombre_eleves': "Nombre d'élèves *",
             'hint.fratrie_ordre': "Indiquez la durée souhaitée pour chaque élève, dans le même ordre que les noms renseignés plus haut.",
             'label.duree_eleve_n': (n) => `Élève ${n} — durée du cours *`,
+            'label.duree_pour_eleve': (nom) => `${nom} — durée du cours *`,
             'choice.decouverte30': 'Découverte 30 min',
             'choice.progression45': 'Progression 45 min',
             'choice.excellence60': 'Excellence 60 min',
@@ -1791,6 +1792,7 @@ a.cm-step:hover .cm-arrow, a.cm-step:focus-visible .cm-arrow {
             'label.nombre_eleves': 'Number of students *',
             'hint.fratrie_ordre': 'Indicate the desired lesson length for each student, in the same order as the names given above.',
             'label.duree_eleve_n': (n) => `Student ${n} — lesson length *`,
+            'label.duree_pour_eleve': (nom) => `${nom} — lesson length *`,
             'choice.decouverte30': 'Découverte 30 min',
             'choice.progression45': 'Progression 45 min',
             'choice.excellence60': 'Excellence 60 min',
@@ -1922,6 +1924,7 @@ a.cm-step:hover .cm-arrow, a.cm-step:focus-visible .cm-arrow {
             'label.nombre_eleves': 'Liczba uczniów *',
             'hint.fratrie_ordre': 'Proszę wskazać pożądaną długość lekcji dla każdego ucznia, w tej samej kolejności co imiona podane powyżej.',
             'label.duree_eleve_n': (n) => `Uczeń ${n} — czas trwania lekcji *`,
+            'label.duree_pour_eleve': (nom) => `${nom} — czas trwania lekcji *`,
             'choice.decouverte30': 'Découverte 30 min',
             'choice.progression45': 'Progression 45 min',
             'choice.excellence60': 'Excellence 60 min',
@@ -2149,7 +2152,10 @@ a.cm-step:hover .cm-arrow, a.cm-step:focus-visible .cm-arrow {
     elevesRows.forEach(row => {
         const nomInput = row.querySelector('.eleve-nom');
         const dobInput = row.querySelector('.eleve-naissance');
-        nomInput.addEventListener('input', syncNomEleves);
+        nomInput.addEventListener('input', () => {
+            syncNomEleves();
+            if (typeof updateDureesFratrieLabels === 'function') updateDureesFratrieLabels();
+        });
         dobInput.addEventListener('input', () => updateEleveAge(row));
         dobInput.addEventListener('change', () => updateEleveAge(row));
     });
@@ -2173,11 +2179,23 @@ a.cm-step:hover .cm-arrow, a.cm-step:focus-visible .cm-arrow {
     const nombreElevesFratrie = document.getElementById('nombre_eleves_fratrie');
     const dureesFratrieContainer = document.getElementById('dureesFratrieContainer');
 
-    function updateDureesFratrieLabels() {
+    // Reprend le nom saisi à l'étape précédente (eleve1_nom, eleve2_nom, eleve3_nom)
+    // pour identifier clairement à qui correspond chaque choix de durée ; à défaut
+    // de nom renseigné, retombe sur le libellé générique "Élève N".
+    function dureeEleveLabelText(i) {
+        const nomInput = document.querySelector(`[name="eleve${i}_nom"]`);
+        const nom = nomInput ? nomInput.value.trim() : '';
+        if (nom) {
+            const labelPourFn = TRANSLATIONS[currentLang] && TRANSLATIONS[currentLang]['label.duree_pour_eleve'];
+            if (labelPourFn) return labelPourFn(nom);
+        }
         const labelFn = TRANSLATIONS[currentLang] && TRANSLATIONS[currentLang]['label.duree_eleve_n'];
-        if (!labelFn) return;
+        return labelFn ? labelFn(i) : `Élève ${i} — durée du cours *`;
+    }
+
+    function updateDureesFratrieLabels() {
         dureesFratrieContainer.querySelectorAll('[data-eleve-label]').forEach(el => {
-            el.textContent = labelFn(el.dataset.eleveLabel);
+            el.textContent = dureeEleveLabelText(el.dataset.eleveLabel);
         });
     }
 
@@ -2185,8 +2203,7 @@ a.cm-step:hover .cm-arrow, a.cm-step:focus-visible .cm-arrow {
         const n = parseInt(nombreElevesFratrie.value, 10) || 2;
         dureesFratrieContainer.innerHTML = '';
         for (let i = 1; i <= n; i++) {
-            const labelFn = TRANSLATIONS[currentLang] && TRANSLATIONS[currentLang]['label.duree_eleve_n'];
-            const labelText = labelFn ? labelFn(i) : `Élève ${i} — durée du cours *`;
+            const labelText = dureeEleveLabelText(i);
             const wrap = document.createElement('div');
             wrap.className = 'field-group';
             wrap.style.marginBottom = '14px';
