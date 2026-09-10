@@ -1384,11 +1384,26 @@ a.cm-step:hover .cm-arrow, a.cm-step:focus-visible .cm-arrow {
 
                     <p class="legal-note" id="cgvTranslationNote" style="display:none;" data-i18n="legalnote.translation">Traduction fournie à titre indicatif — la version française fait foi.</p>
 
+                    <p class="legal-note" style="margin-top:-0.4rem;margin-bottom:0.8rem;">
+                        <a href="documents-legaux/CGV-2026-09.pdf" target="_blank" style="color:#7a5d28;font-weight:700;" data-i18n="link.cgv_pdf">📄 Télécharger les CGV au format PDF (annexe : formulaire de rétractation)</a>
+                    </p>
+
                     <div class="consent-row">
                         <input type="checkbox" id="accepte_cgv" name="accepte_cgv" value="J'ai lu et j'accepte les conditions générales" required>
                         <label for="accepte_cgv" data-i18n="label.accepte_cgv">J'ai lu et j'accepte les conditions générales de vente *</label>
                     </div>
                     <div class="error-message" id="accepte_cgvError" data-i18n="error.accepte_cgv">Merci d'accepter les conditions générales pour continuer.</div>
+
+                    <div class="consent-row" style="margin-top:0.8rem;">
+                        <input type="checkbox" id="execution_anticipee" name="execution_anticipee" value="1">
+                        <label for="execution_anticipee" data-i18n="label.execution_anticipee">Je demande que les cours commencent avant la fin du délai de rétractation de 14 jours. En cas de rétractation, je reste redevable des cours déjà donnés.</label>
+                    </div>
+
+                    <!-- Piège anti-spam (honeypot) : invisible et ignoré par les humains, rempli uniquement par les robots. -->
+                    <div style="position:absolute;left:-9999px;top:-9999px;" aria-hidden="true">
+                        <label for="site_web">Site web</label>
+                        <input type="text" id="site_web" name="site_web" tabindex="-1" autocomplete="off">
+                    </div>
                 </div>
 
                 <!-- ÉTAPE : AUTORISATION DROIT À L'IMAGE -->
@@ -1472,6 +1487,9 @@ a.cm-step:hover .cm-arrow, a.cm-step:focus-visible .cm-arrow {
                             <p style="font-size:0.85rem;color:#18233f;margin-bottom:0.6rem;" data-i18n="text.lien_modification_hint">Si l'emploi du temps de votre enfant n'est pas encore finalisé, notez ce lien — vous pourrez y revenir pour l'envoyer, sans avoir à tout ressaisir.</p>
                             <a id="lienModificationLink" href="#" style="word-break:break-all;color:#7a5d28;font-weight:700;text-decoration:underline;"></a>
                         </div>
+                        <div id="recapEmailBox" style="display:none;margin-top:1rem;padding:0.9rem 1rem;background:#f0f5f0;border-left:4px solid #4a7c59;border-radius:6px;text-align:left;">
+                            <p style="color:#2e5233;font-weight:700;margin:0;" id="recapEmailTexte"></p>
+                        </div>
                     </div>
                 </div>
 
@@ -1494,6 +1512,12 @@ a.cm-step:hover .cm-arrow, a.cm-step:focus-visible .cm-arrow {
     const FORMSPREE_ENDPOINT = 'https://formspree.io/f/moeaybqv';
     const CLOUDINARY_CLOUD_NAME = 'ngmuqvbm';
     const CLOUDINARY_UPLOAD_PRESET = 'PianoNaty';
+    // TODO Natalia : remplacer <PROJECT-REF> par la référence de ton projet
+    // Supabase (visible dans l'URL du dashboard Supabase, ou Project Settings
+    // → General → Reference ID) une fois l'Edge Function dossiers-inscription
+    // déployée. Voir supabase/functions/README-DEPLOIEMENT.md dans le repo
+    // dashboard pour la marche à suivre complète.
+    const DOSSIER_INSCRIPTION_ENDPOINT = 'https://<PROJECT-REF>.supabase.co/functions/v1/dossiers-inscription';
     // ============================================================
 
     // Menu contextuel déroulant (hamburger)
@@ -1696,6 +1720,8 @@ a.cm-step:hover .cm-arrow, a.cm-step:focus-visible .cm-arrow {
             'legalnote.translation': 'Traduction fournie à titre indicatif — la version française fait foi.',
             'label.accepte_cgv': "J'ai lu et j'accepte les conditions générales de vente *",
             'error.accepte_cgv': 'Merci d\'accepter les conditions générales pour continuer.',
+            'link.cgv_pdf': '📄 Télécharger les CGV au format PDF (annexe : formulaire de rétractation)',
+            'label.execution_anticipee': 'Je demande que les cours commencent avant la fin du délai de rétractation de 14 jours. En cas de rétractation, je reste redevable des cours déjà donnés.',
             'heading.autorisation': "Autorisation droit à l'image",
             'label.signature': 'Signature *',
             'hint.signature': 'Merci de compléter la phrase ci-dessous avec vos informations.',
@@ -1707,6 +1733,7 @@ a.cm-step:hover .cm-arrow, a.cm-step:focus-visible .cm-arrow {
             'text.success': 'Merci, votre dossier a bien été reçu. Les créneaux de cours seront attribués le week-end du 12-13 septembre, juste avant la rentrée.',
             'text.lien_modification_titre': '📎 Votre lien personnel pour compléter votre dossier plus tard',
             'text.lien_modification_hint': "Si l'emploi du temps de votre enfant n'est pas encore finalisé, notez ce lien — vous pourrez y revenir pour l'envoyer, sans avoir à tout ressaisir.",
+            'text.recap_envoye': 'Un e-mail récapitulatif vient de vous être envoyé à {{email}}.',
             'btn.retour': 'Retour', 'btn.suivant': 'Suivant', 'btn.envoyer': 'Envoyer mon inscription',
             'signature.template': (r, e) => `Je soussigné(e), ${r}, parent ou responsable légal(e) de l'élève ${e}, confirme avoir pris connaissance des informations ci-dessus.`
         },
@@ -1822,6 +1849,8 @@ a.cm-step:hover .cm-arrow, a.cm-step:focus-visible .cm-arrow {
             'legalnote.translation': 'Translation provided for information only — the French version is authoritative.',
             'label.accepte_cgv': 'I have read and accept the general terms and conditions *',
             'error.accepte_cgv': 'Please accept the general terms to continue.',
+            'link.cgv_pdf': '📄 Download the terms and conditions as a PDF (appendix: withdrawal form)',
+            'label.execution_anticipee': 'I request that lessons begin before the end of the 14-day withdrawal period. If I withdraw, I remain liable for lessons already given.',
             'heading.autorisation': 'Image rights authorisation',
             'label.signature': 'Signature *',
             'hint.signature': 'Please complete the sentence below with your details.',
@@ -1833,6 +1862,7 @@ a.cm-step:hover .cm-arrow, a.cm-step:focus-visible .cm-arrow {
             'text.success': 'Thank you, your application has been received. Lesson slots will be assigned the weekend of 12-13 September, just before term starts.',
             'text.lien_modification_titre': '📎 Your personal link to complete your file later',
             'text.lien_modification_hint': "If your child's timetable isn't finalised yet, save this link — you can come back to send it later, without re-entering everything.",
+            'text.recap_envoye': 'A summary e-mail has just been sent to {{email}}.',
             'btn.retour': 'Back', 'btn.suivant': 'Next', 'btn.envoyer': 'Submit my registration',
             'signature.template': (r, e) => `I, the undersigned, ${r}, parent or legal guardian of the student ${e}, confirm that I have read and understood the information above.`
         },
@@ -1954,6 +1984,8 @@ a.cm-step:hover .cm-arrow, a.cm-step:focus-visible .cm-arrow {
             'legalnote.translation': 'Tłumaczenie ma charakter informacyjny — wersja francuska jest wiążąca.',
             'label.accepte_cgv': 'Zapoznałem/am się i akceptuję ogólne warunki sprzedaży *',
             'error.accepte_cgv': 'Aby kontynuować, proszę zaakceptować ogólne warunki.',
+            'link.cgv_pdf': '📄 Pobierz ogólne warunki w formacie PDF (załącznik: formularz odstąpienia od umowy)',
+            'label.execution_anticipee': 'Wnoszę o rozpoczęcie zajęć przed upływem 14-dniowego terminu odstąpienia od umowy. W przypadku odstąpienia pozostaję zobowiązany(-a) do zapłaty za już odbyte zajęcia.',
             'heading.autorisation': 'Zgoda na wizerunek',
             'label.signature': 'Podpis *',
             'hint.signature': 'Proszę uzupełnić poniższe zdanie swoimi danymi.',
@@ -1965,6 +1997,7 @@ a.cm-step:hover .cm-arrow, a.cm-step:focus-visible .cm-arrow {
             'text.success': 'Dziękujemy, Państwa zgłoszenie zostało odebrane. Terminy zajęć zostaną przydzielone w weekend 12-13 września, tuż przed rozpoczęciem roku szkolnego.',
             'text.lien_modification_titre': '📎 Państwa osobisty link, aby uzupełnić dokumentację później',
             'text.lien_modification_hint': 'Jeśli plan zajęć dziecka nie jest jeszcze ostateczny, proszę zapisać ten link — będzie można do niego wrócić, aby go przesłać, bez ponownego wypełniania wszystkiego.',
+            'text.recap_envoye': 'Wiadomość e-mail z podsumowaniem została właśnie wysłana na adres {{email}}.',
             'btn.retour': 'Wstecz', 'btn.suivant': 'Dalej', 'btn.envoyer': 'Wyślij zgłoszenie',
             'signature.template': (r, e) => `Ja, niżej podpisany/a, ${r}, rodzic lub opiekun prawny ucznia ${e}, potwierdzam zapoznanie się z powyższymi informacjami.`
         }
@@ -2532,6 +2565,30 @@ a.cm-step:hover .cm-arrow, a.cm-step:focus-visible .cm-arrow {
                     lienEl.href = lienModification;
                     lienEl.textContent = lienModification;
                     document.getElementById('lienModificationBox').style.display = 'block';
+                }
+            } catch (e) {
+                // silencieux : l'inscription est acquise malgré tout
+            }
+
+            // Enregistrement structuré + e-mail récapitulatif avec CGV en
+            // PDF, via l'Edge Function Supabase. Non bloquant, comme l'appel
+            // ci-dessus : si ça échoue, l'inscription reste acquise (déjà
+            // reçue par Formspree), seul le récapitulatif automatique ne
+            // partira pas (Natalia peut toujours le renvoyer depuis le
+            // dashboard une fois le souci réglé).
+            try {
+                const resRecap = await fetch(DOSSIER_INSCRIPTION_ENDPOINT, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+                if (resRecap.ok) {
+                    const t = TRANSLATIONS[currentLang] || TRANSLATIONS.fr;
+                    const texte = (t['text.recap_envoye'] || '').replace('{{email}}', payload.email || '');
+                    if (texte) {
+                        document.getElementById('recapEmailTexte').textContent = texte;
+                        document.getElementById('recapEmailBox').style.display = 'block';
+                    }
                 }
             } catch (e) {
                 // silencieux : l'inscription est acquise malgré tout
