@@ -2537,6 +2537,10 @@ a.cm-step:hover .cm-arrow, a.cm-step:focus-visible .cm-arrow {
                 payload[key] = value;
             }
         }
+        // Langue utilisée pour remplir le formulaire — permet à l'e-mail
+        // récapitulatif (Edge Function dossiers-inscription) de répondre
+        // dans la même langue plutôt que toujours en français.
+        payload.langue = currentLang;
 
         const token = genererToken();
         const lienModification = `${window.location.origin}/modifier-inscription.html?token=${token}`;
