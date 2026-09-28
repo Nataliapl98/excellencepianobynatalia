@@ -1677,6 +1677,7 @@ a.cm-step:hover .cm-arrow, a.cm-step:focus-visible .cm-arrow {
             'choice.duree30': '30 minutes', 'choice.duree45': '45 minutes', 'choice.duree60': '60 minutes',
             'label.essai_prelude': "Je souhaite un cours d'essai Prélude (30 min, 20€), non déductible d'un futur engagement",
             'rythme.note.carnet': "Paiement unique à la réservation du carnet de cours — pas de rythme de paiement à choisir.",
+            'confirm.resonance_visio': "La formule Résonance est un format hybride avec des cours en visioconférence (et non uniquement à domicile). Si vous souhaitez des cours uniquement à domicile, choisissez plutôt la formule Impromptu.\n\nConfirmer la formule Résonance (visio) ?",
             'label.situation_eleve': 'Cette inscription concerne *',
             'choice.situation_solo1': 'Un seul élève — 1 cours/semaine',
             'choice.situation_solo2': 'Un seul élève — 2 cours/semaine',
@@ -1808,6 +1809,7 @@ a.cm-step:hover .cm-arrow, a.cm-step:focus-visible .cm-arrow {
             'choice.duree30': '30 minutes', 'choice.duree45': '45 minutes', 'choice.duree60': '60 minutes',
             'label.essai_prelude': "I would like a Prélude trial lesson (30 min, €20), not deductible from a future commitment",
             'rythme.note.carnet': "One-off payment when booking the lesson pack — no payment schedule to choose.",
+            'confirm.resonance_visio': "The Résonance package is a hybrid format with video-call lessons (not exclusively at-home lessons). If you want at-home lessons only, please choose the Impromptu package instead.\n\nConfirm the Résonance (video call) package?",
             'label.situation_eleve': 'This registration is for *',
             'choice.situation_solo1': 'One student — 1 lesson/week',
             'choice.situation_solo2': 'One student — 2 lessons/week',
@@ -1943,6 +1945,7 @@ a.cm-step:hover .cm-arrow, a.cm-step:focus-visible .cm-arrow {
             'choice.duree30': '30 minut', 'choice.duree45': '45 minut', 'choice.duree60': '60 minut',
             'label.essai_prelude': 'Chcę skorzystać z lekcji próbnej Prélude (30 min, 20€), niepomniejszającej przyszłego zobowiązania',
             'rythme.note.carnet': 'Płatność jednorazowa przy rezerwacji karnetu — brak rytmu płatności do wyboru.',
+            'confirm.resonance_visio': 'Formuła Résonance to format hybrydowy z lekcjami w formie wideorozmowy (a nie wyłącznie lekcjami w domu). Jeśli chcą Państwo wyłącznie lekcji w domu, proszę wybrać formułę Impromptu.\n\nPotwierdzić formułę Résonance (wideorozmowa)?',
             'label.situation_eleve': 'Ten zapis dotyczy *',
             'choice.situation_solo1': 'Jeden uczeń — 1 lekcja/tydzień',
             'choice.situation_solo2': 'Jeden uczeń — 2 lekcje/tydzień',
@@ -2292,6 +2295,19 @@ a.cm-step:hover .cm-arrow, a.cm-step:focus-visible .cm-arrow {
     typeFormuleInputs.forEach(input => {
         input.addEventListener('change', () => updateFormuleTypeUI(input.value));
     });
+
+    // Avertit explicitement que Résonance est un format hybride en visio et
+    // non des cours uniquement à domicile — certains élèves l'ont choisie en
+    // pensant avoir des cours à domicile alors que c'est Impromptu qu'il fallait.
+    const resonanceInput = document.querySelector('input[name="type_formule"][value="Résonance (visio)"]');
+    if (resonanceInput) {
+        resonanceInput.addEventListener('change', () => {
+            if (resonanceInput.checked && !confirm(TRANSLATIONS[currentLang]['confirm.resonance_visio'])) {
+                resonanceInput.checked = false;
+                updateFormuleTypeUI(null);
+            }
+        });
+    }
 
     // Navigation multi-étapes
     const steps = ['famille', 'type_formule', 'formule', 'emploi', 'cgv', 'autorisation'];

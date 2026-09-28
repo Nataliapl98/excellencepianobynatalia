@@ -83,6 +83,32 @@ html, body {
     font-size: 1rem;
     color: #18233f;
 }
+.field-group select {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 12px 14px;
+    border: 1.5px solid #d8cba9;
+    border-radius: 10px;
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+    color: #18233f;
+}
+.choice-row { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 8px; }
+.choice-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 16px;
+    border: 1.5px solid #d8cba9;
+    border-radius: 999px;
+    cursor: pointer;
+    font-size: 0.92rem;
+    color: #18233f;
+    background: #fdfaf2;
+    transition: border-color 0.2s, background 0.2s;
+}
+.choice-chip:has(input:checked) { border-color: #b9944e; background: #f5ecd8; font-weight: 700; }
+.choice-chip input { accent-color: #b9944e; }
 .upload-zone {
     display: block;
     width: 100%;
@@ -182,6 +208,71 @@ html, body {
         <div class="dossier-titre" id="dossierTitre">Votre dossier</div>
 
         <div class="field-group">
+            <label class="field-label">Formule choisie</label>
+            <span class="field-hint">Une erreur au moment de l'inscription (ex. Résonance au lieu d'Impromptu) ? Corrigez-la ici.</span>
+            <div class="choice-row">
+                <label class="choice-chip"><input type="radio" name="type_formule" value="Formule à l'année"><span>Formule à l'année</span></label>
+                <label class="choice-chip"><input type="radio" name="type_formule" value="Impromptu"><span>Impromptu (carnet de 10 cours)</span></label>
+                <label class="choice-chip"><input type="radio" name="type_formule" value="Résonance (visio)"><span>Résonance (carnet de 12 cours)</span></label>
+            </div>
+        </div>
+
+        <div class="field-group" id="dureeFlexibleGroup" style="display:none;">
+            <label class="field-label">Durée du cours</label>
+            <div class="choice-row">
+                <label class="choice-chip"><input type="radio" name="duree_flexible" value="30 minutes"><span>30 minutes</span></label>
+                <label class="choice-chip"><input type="radio" name="duree_flexible" value="45 minutes"><span>45 minutes</span></label>
+                <label class="choice-chip"><input type="radio" name="duree_flexible" value="60 minutes"><span>60 minutes</span></label>
+            </div>
+        </div>
+
+        <div id="dureeAnneeGroup" style="display:none;">
+            <div class="field-group">
+                <label class="field-label">Cette inscription concerne</label>
+                <div class="choice-row">
+                    <label class="choice-chip"><input type="radio" name="situation_eleve" value="Un seul élève — 1 cours par semaine"><span>Un seul élève — 1 cours/semaine</span></label>
+                    <label class="choice-chip"><input type="radio" name="situation_eleve" value="Un seul élève — 2 cours par semaine"><span>Un seul élève — 2 cours/semaine</span></label>
+                    <label class="choice-chip"><input type="radio" name="situation_eleve" value="Fratrie (plusieurs élèves)"><span>Fratrie (plusieurs élèves)</span></label>
+                </div>
+            </div>
+
+            <div class="field-group" id="dureeSolo1Group" style="display:none;">
+                <label class="field-label">Durée du cours</label>
+                <div class="choice-row">
+                    <label class="choice-chip"><input type="radio" name="duree_solo1" value="Découverte 30 minutes"><span>Découverte 30 min</span></label>
+                    <label class="choice-chip"><input type="radio" name="duree_solo1" value="Progression 45 minutes"><span>Progression 45 min</span></label>
+                    <label class="choice-chip"><input type="radio" name="duree_solo1" value="Excellence 60 minutes"><span>Excellence 60 min</span></label>
+                </div>
+            </div>
+
+            <div class="field-group" id="dureeSolo2Group" style="display:none;">
+                <label class="field-label">Durée de chaque cours</label>
+                <span class="field-hint">2 cours par semaine, de cette durée.</span>
+                <div class="choice-row">
+                    <label class="choice-chip"><input type="radio" name="duree_solo2" value="Découverte 30 minutes"><span>Découverte 30 min</span></label>
+                    <label class="choice-chip"><input type="radio" name="duree_solo2" value="Progression 45 minutes"><span>Progression 45 min</span></label>
+                    <label class="choice-chip"><input type="radio" name="duree_solo2" value="Excellence 60 minutes"><span>Excellence 60 min</span></label>
+                </div>
+            </div>
+
+            <div class="field-group" id="fratrieGroup" style="display:none;">
+                <label class="field-label" for="nombre_eleves_fratrie">Nombre d'élèves</label>
+                <select id="nombre_eleves_fratrie" name="nombre_eleves_fratrie">
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4+</option>
+                </select>
+                <span class="field-hint">Indiquez la durée souhaitée pour chaque élève, dans le même ordre que les noms renseignés à l'inscription.</span>
+                <div id="dureesFratrieContainer" style="margin-top:14px;"></div>
+            </div>
+
+            <div class="field-group">
+                <label class="field-label" for="autre_duree">Autre (précisez si besoin)</label>
+                <input type="text" id="autre_duree" name="autre_duree">
+            </div>
+        </div>
+
+        <div class="field-group">
             <label class="field-label">Fichier 1 : Emploi du temps scolaire de la semaine</label>
             <div id="deja1" class="deja-envoye" style="display:none;">✅ Déjà envoyé — vous pouvez le remplacer si besoin.</div>
             <label class="upload-zone" id="uploadZone1">
@@ -273,6 +364,7 @@ html, body {
         const nom = dossier.nom_eleves || dossier.nom_responsable || '';
         document.getElementById('dossierTitre').textContent = nom ? `Dossier de ${nom}` : 'Votre dossier';
         document.getElementById('precisions').value = dossier.precisions || '';
+        initFormuleUI();
         [1, 2, 3].forEach(i => {
             const key = i === 1 ? 'emploi_du_temps_url' : i === 2 ? 'activites_extra_url' : 'autres_fichier_url';
             if (dossier[key]) {
@@ -280,6 +372,126 @@ html, body {
             }
         });
         show('dossierTrouve');
+    }
+
+    // Formule & durée du cours — repris de la même logique que le formulaire
+    // d'inscription, pour permettre à une famille de corriger un choix erroné
+    // (ex. Résonance au lieu d'Impromptu) sans devoir me contacter.
+    const dureeFlexibleGroupEl = document.getElementById('dureeFlexibleGroup');
+    const dureeAnneeGroupEl = document.getElementById('dureeAnneeGroup');
+    const dureeSolo1GroupEl = document.getElementById('dureeSolo1Group');
+    const dureeSolo2GroupEl = document.getElementById('dureeSolo2Group');
+    const fratrieGroupEl = document.getElementById('fratrieGroup');
+    const nombreElevesFratrieEl = document.getElementById('nombre_eleves_fratrie');
+    const dureesFratrieContainerEl = document.getElementById('dureesFratrieContainer');
+
+    function checkRadioByValue(name, value) {
+        document.querySelectorAll(`input[name="${name}"]`).forEach(el => {
+            el.checked = !!value && el.value === value;
+        });
+    }
+
+    function radioValue(name) {
+        const checked = document.querySelector(`input[name="${name}"]:checked`);
+        return checked ? checked.value : null;
+    }
+
+    function updateFormuleTypeUI(type) {
+        const isAnnee = type === "Formule à l'année";
+        const isFlexible = type === 'Impromptu' || type === 'Résonance (visio)';
+        dureeFlexibleGroupEl.style.display = isFlexible ? '' : 'none';
+        dureeAnneeGroupEl.style.display = isAnnee ? '' : 'none';
+    }
+
+    function renderDureesFratrie(prefill) {
+        const n = parseInt(nombreElevesFratrieEl.value, 10) || 2;
+        dureesFratrieContainerEl.innerHTML = '';
+        for (let i = 1; i <= n; i++) {
+            const wrap = document.createElement('div');
+            wrap.className = 'field-group';
+            wrap.style.marginBottom = '14px';
+            wrap.innerHTML = `
+                <label class="field-label">Élève ${i} — durée du cours</label>
+                <div class="choice-row">
+                    <label class="choice-chip"><input type="radio" name="duree_eleve_${i}" value="Découverte 30 minutes"><span>Découverte 30 min</span></label>
+                    <label class="choice-chip"><input type="radio" name="duree_eleve_${i}" value="Progression 45 minutes"><span>Progression 45 min</span></label>
+                    <label class="choice-chip"><input type="radio" name="duree_eleve_${i}" value="Excellence 60 minutes"><span>Excellence 60 min</span></label>
+                </div>`;
+            dureesFratrieContainerEl.appendChild(wrap);
+            if (prefill && dossier['duree_eleve_' + i]) {
+                checkRadioByValue('duree_eleve_' + i, dossier['duree_eleve_' + i]);
+            }
+        }
+    }
+
+    function updateSituationEleveUI(prefill) {
+        const situation = radioValue('situation_eleve');
+        dureeSolo1GroupEl.style.display = situation === 'Un seul élève — 1 cours par semaine' ? '' : 'none';
+        dureeSolo2GroupEl.style.display = situation === 'Un seul élève — 2 cours par semaine' ? '' : 'none';
+        fratrieGroupEl.style.display = situation === 'Fratrie (plusieurs élèves)' ? '' : 'none';
+        if (situation === 'Fratrie (plusieurs élèves)') renderDureesFratrie(prefill);
+    }
+
+    document.querySelectorAll('input[name="type_formule"]').forEach(input => {
+        input.addEventListener('change', () => updateFormuleTypeUI(input.value));
+    });
+
+    // Avertit explicitement que Résonance est un format hybride en visio et
+    // non des cours uniquement à domicile — certains élèves l'ont choisie en
+    // pensant avoir des cours à domicile alors que c'est Impromptu qu'il fallait.
+    const resonanceInputEdit = document.querySelector('input[name="type_formule"][value="Résonance (visio)"]');
+    if (resonanceInputEdit) {
+        resonanceInputEdit.addEventListener('change', () => {
+            if (resonanceInputEdit.checked && !confirm("La formule Résonance est un format hybride avec des cours en visioconférence (et non uniquement à domicile). Si vous souhaitez des cours uniquement à domicile, choisissez plutôt la formule Impromptu.\n\nConfirmer la formule Résonance (visio) ?")) {
+                resonanceInputEdit.checked = false;
+                updateFormuleTypeUI(null);
+            }
+        });
+    }
+
+    document.querySelectorAll('input[name="situation_eleve"]').forEach(input => {
+        input.addEventListener('change', () => updateSituationEleveUI(false));
+    });
+    nombreElevesFratrieEl.addEventListener('change', () => renderDureesFratrie(false));
+
+    function initFormuleUI() {
+        checkRadioByValue('type_formule', dossier.type_formule);
+        checkRadioByValue('duree_flexible', dossier.duree_flexible);
+        checkRadioByValue('situation_eleve', dossier.situation_eleve);
+        checkRadioByValue('duree_solo1', dossier.duree_solo1);
+        checkRadioByValue('duree_solo2', dossier.duree_solo2);
+        if (dossier.nombre_eleves_fratrie) nombreElevesFratrieEl.value = dossier.nombre_eleves_fratrie;
+        document.getElementById('autre_duree').value = dossier.autre_duree || '';
+
+        updateFormuleTypeUI(dossier.type_formule || null);
+        updateSituationEleveUI(true);
+    }
+
+    function collecterFormule() {
+        const type = radioValue('type_formule');
+        if (type) dossier.type_formule = type;
+
+        if (dossier.type_formule === 'Impromptu' || dossier.type_formule === 'Résonance (visio)') {
+            const df = radioValue('duree_flexible');
+            if (df) dossier.duree_flexible = df;
+        } else if (dossier.type_formule === "Formule à l'année") {
+            const se = radioValue('situation_eleve');
+            if (se) dossier.situation_eleve = se;
+            const d1 = radioValue('duree_solo1');
+            if (d1) dossier.duree_solo1 = d1;
+            const d2 = radioValue('duree_solo2');
+            if (d2) dossier.duree_solo2 = d2;
+            if (dossier.situation_eleve === 'Fratrie (plusieurs élèves)') {
+                dossier.nombre_eleves_fratrie = nombreElevesFratrieEl.value;
+                const n = parseInt(dossier.nombre_eleves_fratrie, 10) || 2;
+                for (let i = 1; i <= n; i++) {
+                    const de = radioValue('duree_eleve_' + i);
+                    if (de) dossier['duree_eleve_' + i] = de;
+                }
+            }
+            const autre = document.getElementById('autre_duree').value.trim();
+            if (autre) dossier.autre_duree = autre; else delete dossier.autre_duree;
+        }
     }
 
     function setupUploadZone(fileInputId, statusId, zoneTextId, key) {
@@ -322,6 +534,7 @@ html, body {
         btn.disabled = true;
         btn.textContent = 'Enregistrement...';
         dossier.precisions = document.getElementById('precisions').value;
+        collecterFormule();
         try {
             await fetch(INSCRIPTION_ENDPOINT, {
                 method: 'POST',
